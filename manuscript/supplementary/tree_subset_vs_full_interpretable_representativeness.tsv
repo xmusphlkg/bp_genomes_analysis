@@ -1,0 +1,97 @@
+baseline	dimension	level	full_denominator	full_n	full_pct	tree_denominator	tree_n	tree_pct	full_value	tree_value	note
+retained_cohort	country	Argentina	2247	12	0.0053404539385847796	157	0	0	NA	NA	NA
+retained_cohort	country	Australia	2247	43	0.01913662661326213	157	1	0.006369426751592357	NA	NA	NA
+retained_cohort	country	Brazil	2247	13	0.005785491766800178	157	0	0	NA	NA	NA
+retained_cohort	country	Canada	2247	17	0.0075656430796617715	157	0	0	NA	NA	NA
+retained_cohort	country	China	2247	755	0.33600356030262574	157	1	0.006369426751592357	NA	NA	NA
+retained_cohort	country	Czech Republic	2247	14	0.006230529595015576	157	0	0	NA	NA	NA
+retained_cohort	country	Denmark	2247	11	0.004895416110369382	157	0	0	NA	NA	NA
+retained_cohort	country	Finland	2247	16	0.007120605251446373	157	0	0	NA	NA	NA
+retained_cohort	country	France	2247	22	0.009790832220738763	157	3	0.01910828025477707	NA	NA	NA
+retained_cohort	country	Germany	2247	2	8.900756564307966e-4	157	0	0	NA	NA	NA
+retained_cohort	country	Guatemala	2247	5	0.0022251891410769915	157	0	0	NA	NA	NA
+retained_cohort	country	Haiti	2247	1	4.450378282153983e-4	157	0	0	NA	NA	NA
+retained_cohort	country	Hong Kong	2247	5	0.0022251891410769915	157	0	0	NA	NA	NA
+retained_cohort	country	India	2247	11	0.004895416110369382	157	0	0	NA	NA	NA
+retained_cohort	country	Italy	2247	15	0.006675567423230975	157	0	0	NA	NA	NA
+retained_cohort	country	Japan	2247	53	0.02358700489541611	157	1	0.006369426751592357	NA	NA	NA
+retained_cohort	country	Kenya	2247	12	0.0053404539385847796	157	0	0	NA	NA	NA
+retained_cohort	country	Mexico	2247	4	0.0017801513128615932	157	0	0	NA	NA	NA
+retained_cohort	country	Netherlands	2247	26	0.011570983533600357	157	6	0.03821656050955414	NA	NA	NA
+retained_cohort	country	New Zealand	2247	63	0.028037383177570093	157	0	0	NA	NA	NA
+retained_cohort	country	Norway	2247	1	4.450378282153983e-4	157	1	0.006369426751592357	NA	NA	NA
+retained_cohort	country	Peru	2247	6	0.0026702269692923898	157	0	0	NA	NA	NA
+retained_cohort	country	Poland	2247	8	0.0035603026257231864	157	0	0	NA	NA	NA
+retained_cohort	country	Russia	2247	2	8.900756564307966e-4	157	0	0	NA	NA	NA
+retained_cohort	country	South Africa	2247	32	0.014241210502892745	157	0	0	NA	NA	NA
+retained_cohort	country	Spain	2247	9	0.004005340453938585	157	0	0	NA	NA	NA
+retained_cohort	country	Sweden	2247	20	0.008900756564307966	157	2	0.012738853503184714	NA	NA	NA
+retained_cohort	country	Taiwan	2247	23	0.010235870048954161	157	1	0.006369426751592357	NA	NA	NA
+retained_cohort	country	USA	2247	958	0.4263462394303516	157	109	0.6942675159235668	NA	NA	NA
+retained_cohort	country	United Kingdom	2247	35	0.01557632398753894	157	0	0	NA	NA	NA
+retained_cohort	country	Unknown	2247	42	0.018691588785046728	157	27	0.17197452229299362	NA	NA	NA
+retained_cohort	country	missing	2247	10	0.004450378282153983	157	5	0.03184713375796178	NA	NA	NA
+retained_cohort	country	not provided	2247	1	4.450378282153983e-4	157	0	0	NA	NA	NA
+retained_cohort	year_band	pre-2009	2247	422	0.1878059635068981	157	37	0.2356687898089172	NA	NA	NA
+retained_cohort	year_band	2009-2013	2247	278	0.12372051624388072	157	88	0.5605095541401274	NA	NA	NA
+retained_cohort	year_band	2014-2018	2247	544	0.2421005785491767	157	0	0	NA	NA	NA
+retained_cohort	year_band	2019-2025	2247	927	0.41255006675567424	157	0	0	NA	NA	NA
+retained_cohort	year_band	NA	2247	76	0.03382287494437027	157	32	0.20382165605095542	NA	NA	NA
+retained_cohort	prn_state	intact	2247	617	0.27458834000890076	157	111	0.7070063694267515	NA	NA	NA
+retained_cohort	prn_state	disrupted	2247	577	0.2567868268802848	157	38	0.24203821656050956	NA	NA	NA
+retained_cohort	prn_state	insufficient_or_uncertain	2247	1053	0.46862483311081443	157	8	0.050955414012738856	NA	NA	NA
+retained_cohort	mechanism_class	coding_disrupted_inversion_or_rearrangement	2247	175	0.0778816199376947	157	11	0.07006369426751592	NA	NA	NA
+retained_cohort	mechanism_class	coding_disrupted_is481	2247	382	0.17000445037828216	157	26	0.16560509554140126	NA	NA	NA
+retained_cohort	mechanism_class	coding_disrupted_other	2247	20	0.008900756564307966	157	1	0.006369426751592357	NA	NA	NA
+retained_cohort	mechanism_class	insufficient_data	2247	1049	0.4668446817979528	157	6	0.03821656050955414	NA	NA	NA
+retained_cohort	mechanism_class	intact	2247	617	0.27458834000890076	157	111	0.7070063694267515	NA	NA	NA
+retained_cohort	mechanism_class	uncertain_fragmented_assembly	2247	4	0.0017801513128615932	157	2	0.012738853503184714	NA	NA	NA
+retained_cohort	read_linkage	linked	2247	1420	0.6319537160658656	157	106	0.6751592356687898	NA	NA	NA
+retained_cohort	read_linkage	not_linked	2247	827	0.3680462839341344	157	51	0.3248407643312102	NA	NA	NA
+retained_cohort	assembly_level	Chromosome	2247	4	0.0017801513128615932	157	2	0.012738853503184714	NA	NA	NA
+retained_cohort	assembly_level	Complete Genome	2247	1173	0.5220293724966623	157	126	0.802547770700637	NA	NA	NA
+retained_cohort	assembly_level	Contig	2247	502	0.22340898976412996	157	27	0.17197452229299362	NA	NA	NA
+retained_cohort	assembly_level	Scaffold	2247	568	0.25278148642634624	157	2	0.012738853503184714	NA	NA	NA
+retained_cohort	assembly_quality	n_contigs	2247	2247	NA	157	157	NA	1 [1, 282]	1 [1, 1]	median [Q1, Q3] for n_contigs
+retained_cohort	assembly_quality	contig_n50	2247	2247	NA	157	157	NA	4101142 [20802, 4107426]	4105954 [4100859, 4108752]	median [Q1, Q3] for contig_n50
+retained_cohort	assembly_quality	total_sequence_length	2247	2247	NA	157	157	NA	4101245 [3821966, 4107431]	4106389 [4102186, 4109554]	median [Q1, Q3] for total_sequence_length
+interpretable_subset	country	Australia	1194	5	0.0041876046901172526	149	0	0	NA	NA	NA
+interpretable_subset	country	Brazil	1194	8	0.006700167504187605	149	0	0	NA	NA	NA
+interpretable_subset	country	China	1194	69	0.05778894472361809	149	1	0.006711409395973154	NA	NA	NA
+interpretable_subset	country	Czech Republic	1194	14	0.011725293132328308	149	0	0	NA	NA	NA
+interpretable_subset	country	Denmark	1194	2	0.0016750418760469012	149	0	0	NA	NA	NA
+interpretable_subset	country	France	1194	11	0.009212730318257957	149	3	0.020134228187919462	NA	NA	NA
+interpretable_subset	country	Germany	1194	2	0.0016750418760469012	149	0	0	NA	NA	NA
+interpretable_subset	country	Guatemala	1194	5	0.0041876046901172526	149	0	0	NA	NA	NA
+interpretable_subset	country	Haiti	1194	1	8.375209380234506e-4	149	0	0	NA	NA	NA
+interpretable_subset	country	India	1194	7	0.005862646566164154	149	0	0	NA	NA	NA
+interpretable_subset	country	Japan	1194	16	0.01340033500837521	149	1	0.006711409395973154	NA	NA	NA
+interpretable_subset	country	Netherlands	1194	6	0.005025125628140704	149	6	0.040268456375838924	NA	NA	NA
+interpretable_subset	country	New Zealand	1194	63	0.052763819095477386	149	0	0	NA	NA	NA
+interpretable_subset	country	Norway	1194	1	8.375209380234506e-4	149	1	0.006711409395973154	NA	NA	NA
+interpretable_subset	country	South Africa	1194	31	0.025963149078726967	149	0	0	NA	NA	NA
+interpretable_subset	country	Spain	1194	1	8.375209380234506e-4	149	0	0	NA	NA	NA
+interpretable_subset	country	Sweden	1194	2	0.0016750418760469012	149	2	0.013422818791946308	NA	NA	NA
+interpretable_subset	country	USA	1194	897	0.7512562814070352	149	108	0.7248322147651006	NA	NA	NA
+interpretable_subset	country	United Kingdom	1194	15	0.01256281407035176	149	0	0	NA	NA	NA
+interpretable_subset	country	Unknown	1194	31	0.025963149078726967	149	23	0.15436241610738255	NA	NA	NA
+interpretable_subset	country	missing	1194	7	0.005862646566164154	149	4	0.026845637583892617	NA	NA	NA
+interpretable_subset	year_band	pre-2009	1194	143	0.11976549413735343	149	34	0.22818791946308725	NA	NA	NA
+interpretable_subset	year_band	2009-2013	1194	271	0.2269681742043551	149	88	0.5906040268456376	NA	NA	NA
+interpretable_subset	year_band	2014-2018	1194	506	0.423785594639866	149	0	0	NA	NA	NA
+interpretable_subset	year_band	2019-2025	1194	222	0.18592964824120603	149	0	0	NA	NA	NA
+interpretable_subset	year_band	NA	1194	52	0.04355108877721943	149	27	0.18120805369127516	NA	NA	NA
+interpretable_subset	prn_state	intact	1194	617	0.516750418760469	149	111	0.7449664429530202	NA	NA	NA
+interpretable_subset	prn_state	disrupted	1194	577	0.483249581239531	149	38	0.2550335570469799	NA	NA	NA
+interpretable_subset	mechanism_class	coding_disrupted_inversion_or_rearrangement	1194	175	0.14656616415410384	149	11	0.0738255033557047	NA	NA	NA
+interpretable_subset	mechanism_class	coding_disrupted_is481	1194	382	0.31993299832495814	149	26	0.174496644295302	NA	NA	NA
+interpretable_subset	mechanism_class	coding_disrupted_other	1194	20	0.01675041876046901	149	1	0.006711409395973154	NA	NA	NA
+interpretable_subset	mechanism_class	intact	1194	617	0.516750418760469	149	111	0.7449664429530202	NA	NA	NA
+interpretable_subset	read_linkage	linked	1194	1078	0.9028475711892797	149	102	0.6845637583892618	NA	NA	NA
+interpretable_subset	read_linkage	not_linked	1194	116	0.09715242881072027	149	47	0.31543624161073824	NA	NA	NA
+interpretable_subset	assembly_level	Chromosome	1194	4	0.0033500837520938024	149	2	0.013422818791946308	NA	NA	NA
+interpretable_subset	assembly_level	Complete Genome	1194	1151	0.9639865996649917	149	126	0.8456375838926175	NA	NA	NA
+interpretable_subset	assembly_level	Contig	1194	39	0.032663316582914576	149	21	0.14093959731543623	NA	NA	NA
+interpretable_subset	assembly_quality	n_contigs	1194	1194	NA	149	149	NA	1 [1, 1]	1 [1, 1]	median [Q1, Q3] for n_contigs
+interpretable_subset	assembly_quality	contig_n50	1194	1194	NA	149	149	NA	4107189 [4104342, 4109890]	4106388 [4102186, 4109528]	median [Q1, Q3] for contig_n50
+interpretable_subset	assembly_quality	total_sequence_length	1194	1194	NA	149	149	NA	4107366 [4104716, 4110516]	4106397 [4102661, 4109556]	median [Q1, Q3] for total_sequence_length

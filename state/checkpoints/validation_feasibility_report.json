@@ -1,0 +1,214 @@
+{
+  "assessment": "validation_feasibility",
+  "date": "2026-05-08T13:29:05.192658",
+  "n_candidates": 20,
+  "n_with_reads": 20,
+  "n_mechanism_classes": 4,
+  "n_countries": 4,
+  "threshold_candidates": 20,
+  "candidate_panel_ready": true,
+  "decision": "READY",
+  "candidates": [
+    {
+      "sample_id_canonical": "SAMN03216670",
+      "assembly_accession": "GCA_001605525.1",
+      "mechanism": "coding_disrupted_inversion_or_rearrangement",
+      "country": "USA",
+      "year": "2012",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN12585515",
+      "assembly_accession": "GCA_022407155.1",
+      "mechanism": "coding_disrupted_inversion_or_rearrangement",
+      "country": "NZL",
+      "year": "2012",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN42391104",
+      "assembly_accession": "GCA_047323835.1",
+      "mechanism": "coding_disrupted_inversion_or_rearrangement",
+      "country": "CHN",
+      "year": "2022",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN03249363",
+      "assembly_accession": "GCA_001605055.1",
+      "mechanism": "coding_disrupted_inversion_or_rearrangement",
+      "country": "USA",
+      "year": "2010",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN03249368",
+      "assembly_accession": "GCA_001605115.1",
+      "mechanism": "coding_disrupted_inversion_or_rearrangement",
+      "country": "USA",
+      "year": "2010",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN03216665",
+      "assembly_accession": "GCA_001605705.1",
+      "mechanism": "coding_disrupted_is481",
+      "country": "USA",
+      "year": "2012",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN12385781",
+      "assembly_accession": "GCA_022409215.1",
+      "mechanism": "coding_disrupted_is481",
+      "country": "NZL",
+      "year": "2013",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN42391103",
+      "assembly_accession": "GCA_047323845.1",
+      "mechanism": "coding_disrupted_is481",
+      "country": "CHN",
+      "year": "2022",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN03216666",
+      "assembly_accession": "GCA_001605445.1",
+      "mechanism": "coding_disrupted_is481",
+      "country": "USA",
+      "year": "2012",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN03216668",
+      "assembly_accession": "GCA_001605485.1",
+      "mechanism": "coding_disrupted_is481",
+      "country": "USA",
+      "year": "2012",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN06007543",
+      "assembly_accession": "GCA_002859785.1",
+      "mechanism": "coding_disrupted_other",
+      "country": "USA",
+      "year": "2014",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN12385786",
+      "assembly_accession": "GCA_022407535.1",
+      "mechanism": "coding_disrupted_other",
+      "country": "NZL",
+      "year": "2015",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN42391118",
+      "assembly_accession": "GCA_047324075.1",
+      "mechanism": "coding_disrupted_other",
+      "country": "CHN",
+      "year": "2022",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN08136991",
+      "assembly_accession": "GCA_004007095.1",
+      "mechanism": "coding_disrupted_other",
+      "country": "USA",
+      "year": "2013",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMN11539725",
+      "assembly_accession": "GCA_050562975.1",
+      "mechanism": "coding_disrupted_other",
+      "country": "USA",
+      "year": "2018",
+      "confidence": "rule_medium",
+      "has_reads": true,
+      "validation_role": "disrupted_target"
+    },
+    {
+      "sample_id_canonical": "SAMD00328237",
+      "assembly_accession": "GCA_019974435.1",
+      "mechanism": "intact",
+      "country": "JPN",
+      "year": "2018",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "intact_control"
+    },
+    {
+      "sample_id_canonical": "SAMD00549575",
+      "assembly_accession": "GCA_026001265.1",
+      "mechanism": "intact",
+      "country": "JPN",
+      "year": "2018",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "intact_control"
+    },
+    {
+      "sample_id_canonical": "SAMD00570813",
+      "assembly_accession": "GCA_055380295.1",
+      "mechanism": "intact",
+      "country": "JPN",
+      "year": "2020",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "intact_control"
+    },
+    {
+      "sample_id_canonical": "SAMD01593369",
+      "assembly_accession": "GCA_055387325.1",
+      "mechanism": "intact",
+      "country": "JPN",
+      "year": "2024",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "intact_control"
+    },
+    {
+      "sample_id_canonical": "SAMD01593370",
+      "assembly_accession": "GCA_055386935.1",
+      "mechanism": "intact",
+      "country": "JPN",
+      "year": "2024",
+      "confidence": "rule_high",
+      "has_reads": true,
+      "validation_role": "intact_control"
+    }
+  ],
+  "recommendation": "20 validation candidates identified across 4 mechanism classes and 4 countries. Proceed with long-read validation."
+}

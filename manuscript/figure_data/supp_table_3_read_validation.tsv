@@ -1,0 +1,18 @@
+mechanism_description	mechanism_type	validation_outcome	n_samples	percentage_within_mechanism
+Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	supported_candidate	1	16.7
+Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	supported_concordant	4	66.7
+Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	unresolved	1	16.7
+IS481 insertion	coding_disrupted_is481	supported_candidate	3	33.3
+IS481 insertion	coding_disrupted_is481	supported_concordant	4	44.4
+IS481 insertion	coding_disrupted_is481	unresolved	2	22.2
+Other disruption	coding_disrupted_other	supported	1	5.3
+Other disruption	coding_disrupted_other	supported_candidate	6	31.6
+Other disruption	coding_disrupted_other	supported_concordant	6	31.6
+Other disruption	coding_disrupted_other	no_prn_is_signal_detected	1	5.3
+Other disruption	coding_disrupted_other	unresolved	5	26.3
+Insufficient data	insufficient_data	supported	1	4.3
+Insufficient data	insufficient_data	supported_candidate	4	17.4
+Insufficient data	insufficient_data	supported_concordant	3	13.0
+Insufficient data	insufficient_data	no_prn_is_signal_detected	15	65.2
+Intact	intact	no_prn_is_signal_detected	7	77.8
+Intact	intact	unresolved	2	22.2

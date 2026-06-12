@@ -1,0 +1,138 @@
+sample_id_canonical	biosample_accession	assembly_accession	country_iso3	year	repo_prn_status	published_prn_status	prn_mechanism_call	repo_prn_mechanism_broad	published_prn_mechanism_raw	published_prn_mechanism_group	published_match_source	admin1_external	overlap_concordance_flag	mechanism_broad_concordance_flag	country_status_concordance_below_0p85
+SAMEA1931346	SAMEA1931346	GCA_001331015.1	AUS	2002.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA1931507	SAMEA1931507	GCA_001201635.1	AUS	1978.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA4700352	SAMEA4700352	GCA_900492145.1	FRA	2014.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMEA751155	SAMEA751155	GCA_001331635.1	AUS	2000.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751183	SAMEA751183	GCA_001206895.1	AUS	1995.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMEA751337	SAMEA751337	GCA_001198195.1	AUS	1998.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMEA751348	SAMEA751348	GCA_001212525.1	FRA	1995.0		PRN-	insufficient_data		other	other_or_unspecified	biosample		status_unassessable		True
+SAMEA751350	SAMEA751350	GCA_001208065.1	FRA	1993.0		PRN-	insufficient_data		other	other_or_unspecified	biosample		status_unassessable		True
+SAMEA751372	SAMEA751372	GCA_001332595.1	FRA	2000.0		PRN+	insufficient_data				biosample		status_unassessable		True
+SAMEA751374	SAMEA751374	GCA_001332615.1	FRA	1999.0		PRN-	insufficient_data		other	other_or_unspecified	biosample		status_unassessable		True
+SAMEA751405	SAMEA751405	GCA_001203235.1	AUS	2000.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751409	SAMEA751409	GCA_001332715.1	FRA	2002.0		PRN+	insufficient_data				biosample		status_unassessable		True
+SAMEA751413	SAMEA751413	GCA_001202575.1	FRA	2004.0		PRN-	insufficient_data		other	other_or_unspecified	biosample		status_unassessable		True
+SAMEA751415	SAMEA751415	GCA_001332735.1	FRA	2005.0		PRN-	insufficient_data		other	other_or_unspecified	biosample		status_unassessable		True
+SAMEA751417	SAMEA751417	GCA_001196575.1	FRA	2007.0		PRN+	insufficient_data				biosample		status_unassessable		True
+SAMEA751421	SAMEA751421	GCA_001198955.1	AUS	1998.0		PRN-	insufficient_data		other	other_or_unspecified	biosample		status_unassessable		True
+SAMEA751459	SAMEA751459	GCA_001333175.1	AUS	2007.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751470	SAMEA751470	GCA_001203115.1	AUS	1997.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751471	SAMEA751471	GCA_001333355.1	AUS	2006.0	PRN+	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_discordant		True
+SAMEA751472	SAMEA751472	GCA_001195265.1	AUS	1995.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751474	SAMEA751474	GCA_001333395.1	AUS	2002.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMEA751477	SAMEA751477	GCA_001196975.1	AUS	2004.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMEA751479	SAMEA751479	GCA_001333435.1	AUS	1989.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751506	SAMEA751506	GCA_001198715.1	AUS	2002.0	PRN-	PRN+	insufficient_data				biosample		status_discordant		True
+SAMEA751507	SAMEA751507	GCA_001208145.1	AUS		PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751508	SAMEA751508	GCA_001210185.1	AUS	1971.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMEA751509	SAMEA751509	GCA_001193155.1	AUS	1971.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751511	SAMEA751511	GCA_001203935.1	AUS	1977.0	PRN-	PRN+	insufficient_data				biosample		status_discordant		True
+SAMEA751512	SAMEA751512	GCA_001333795.1	AUS	1977.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMEA751513	SAMEA751513	GCA_001333815.1	AUS	1974.0	PRN+	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_discordant		True
+SAMEA751515	SAMEA751515	GCA_001333835.1	AUS	1997.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMEA751521	SAMEA751521	GCA_001333935.1	AUS	1990.0	PRN-	PRN-	insufficient_data		other	other_or_unspecified	biosample		status_concordant	mechanism_unassessable	True
+SAMN03366100	SAMN03366100	GCA_001509895.1	FRA	2007.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN03491902	SAMN03491902	GCA_001307565.1	FRA	2008.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN03491903	SAMN03491903	GCA_001307525.1	FRA	2009.0	PRN-	PRN-	coding_disrupted_is481	IS481	other	other_or_unspecified	biosample		status_concordant	mechanism_discordant	True
+SAMN07235949	SAMN07235949	GCA_002270325.1	AUS	2014.0	PRN+	PRN+	insufficient_data				biosample		status_concordant		True
+SAMN08524449	SAMN08524449	GCA_004636965.1	HTI	2014.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385761	SAMN12385761	GCA_022409595.1	NZL	1983.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385762	SAMN12385762	GCA_022409575.1	NZL	1984.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385765	SAMN12385765	GCA_022409535.1	NZL	1987.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385766	SAMN12385766	GCA_022409515.1	NZL	1988.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385768	SAMN12385768	GCA_022409415.1	NZL	1990.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385769	SAMN12385769	GCA_022409435.1	NZL	1991.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385770	SAMN12385770	GCA_022409475.1	NZL	1993.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385771	SAMN12385771	GCA_022409455.1	NZL	1994.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385772	SAMN12385772	GCA_022409395.1	NZL	1997.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385773	SAMN12385773	GCA_022409375.1	NZL	1999.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385774	SAMN12385774	GCA_022409355.1	NZL	2000.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385775	SAMN12385775	GCA_022409335.1	NZL	2001.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385776	SAMN12385776	GCA_022409315.1	NZL	2002.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385777	SAMN12385777	GCA_022409295.1	NZL	2002.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385778	SAMN12385778	GCA_022409255.1	NZL	2003.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385779	SAMN12385779	GCA_022409275.1	NZL	2007.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385780	SAMN12385780	GCA_022409235.1	NZL	2007.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385781	SAMN12385781	GCA_022409215.1	NZL	2013.0	PRN-	PRN-	coding_disrupted_is481	IS481	other	other_or_unspecified	biosample		status_concordant	mechanism_discordant	True
+SAMN12385782	SAMN12385782	GCA_022408035.1	NZL	2013.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12385783	SAMN12385783	GCA_022407895.1	NZL	2014.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12385784	SAMN12385784	GCA_022407775.1	NZL	2014.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12385785	SAMN12385785	GCA_022407655.1	NZL	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385787	SAMN12385787	GCA_022407515.1	NZL	2016.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385794	SAMN12385794	GCA_022407395.1	NZL	2005.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385795	SAMN12385795	GCA_022407375.1	NZL	2006.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385796	SAMN12385796	GCA_022407355.1	NZL	2006.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385799	SAMN12385799	GCA_022407295.1	NZL	2009.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12385800	SAMN12385800	GCA_022407275.1	NZL	2009.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385803	SAMN12385803	GCA_022407235.1	NZL	2010.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12385804	SAMN12385804	GCA_022407135.1	NZL	2012.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585513	SAMN12585513	GCA_022407215.1	NZL	2011.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN12585514	SAMN12585514	GCA_022407175.1	NZL	2011.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN12585516	SAMN12585516	GCA_022407115.1	NZL	2012.0	PRN-	PRN-	coding_disrupted_is481	IS481	245-246(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585519	SAMN12585519	GCA_022407075.1	NZL	2012.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585521	SAMN12585521	GCA_022407015.1	NZL	2012.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585522	SAMN12585522	GCA_022406995.1	NZL	2012.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585523	SAMN12585523	GCA_022406975.1	NZL	2012.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585524	SAMN12585524	GCA_022406935.1	NZL	2017.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585525	SAMN12585525	GCA_022406915.1	NZL	2017.0	PRN-	PRN-	coding_disrupted_is481	IS481	other	other_or_unspecified	biosample		status_concordant	mechanism_discordant	True
+SAMN12585526	SAMN12585526	GCA_022404855.1	NZL	2017.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585527	SAMN12585527	GCA_022404835.1	NZL	2017.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585530	SAMN12585530	GCA_022409175.1	NZL	2018.0	PRN-	PRN-	coding_disrupted_is481	IS481	1613-1614(IS insertion)	IS481	biosample		status_concordant	mechanism_concordant	True
+SAMN12585532	SAMN12585532	GCA_022409135.1	NZL	2018.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN18200430	SAMN18200430	GCA_017357205.1	AUS	2011.0	PRN-	PRN-	coding_disrupted_inversion_or_rearrangement	other_or_unspecified	other	other_or_unspecified	biosample		status_concordant	mechanism_concordant	True
+SAMN18200431	SAMN18200431	GCA_017357125.1	AUS	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN18200432	SAMN18200432	GCA_017357165.1	AUS	2008.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015657	SAMN33015657	GCA_032272945.1	ZAF	2015.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015658	SAMN33015658	GCA_032274205.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015659	SAMN33015659	GCA_032275665.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015660	SAMN33015660	GCA_032276425.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015661	SAMN33015661	GCA_032277225.1	ZAF	2015.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015662	SAMN33015662	GCA_032278065.1	ZAF	2016.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015663	SAMN33015663	GCA_032278865.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015664	SAMN33015664	GCA_032279645.1	ZAF	2017.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015665	SAMN33015665	GCA_032280565.1	ZAF	2018.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015666	SAMN33015666	GCA_032281485.1	ZAF	2018.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015667	SAMN33015667	GCA_032282385.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015668	SAMN33015668	GCA_032283205.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015669	SAMN33015669	GCA_032284125.1	ZAF	2015.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015670	SAMN33015670	GCA_032284905.1	ZAF	2016.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015671	SAMN33015671	GCA_032285665.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015672	SAMN33015672	GCA_032286425.1	ZAF	2018.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015673	SAMN33015673	GCA_032287185.1	ZAF	2019.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015674	SAMN33015674	GCA_032288005.1	ZAF	2019.0		PRN+	insufficient_data				biosample		status_unassessable		True
+SAMN33015675	SAMN33015675	GCA_032288525.1	ZAF	2019.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015676	SAMN33015676	GCA_032288865.1	ZAF	2019.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015677	SAMN33015677	GCA_032289745.1	ZAF	2016.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015678	SAMN33015678	GCA_032290225.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015679	SAMN33015679	GCA_032290245.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015681	SAMN33015681	GCA_032290285.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015682	SAMN33015682	GCA_032290305.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015683	SAMN33015683	GCA_032290325.1	ZAF	2015.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SAMN33015684	SAMN33015684	GCA_032290345.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015685	SAMN33015685	GCA_032290365.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015686	SAMN33015686	GCA_032291365.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015687	SAMN33015687	GCA_032291385.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN33015688	SAMN33015688	GCA_032291405.1	ZAF	2015.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN42490576	SAMN42490576	GCA_040969985.1	FRA	2024.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SAMN44480251	SAMN44480251	GCA_046736165.1	AUS	2024.0	PRN-	PRN-	coding_disrupted_is481	IS481	other	other_or_unspecified	biosample		status_concordant	mechanism_discordant	True
+SAMN44480252	SAMN44480252	GCA_046895385.1	AUS	2024.0	PRN-	PRN-	coding_disrupted_is481	IS481	other	other_or_unspecified	biosample		status_concordant	mechanism_discordant	True
+SRS10902074	SAMN22858020	RRASM_SRR16760425	AUS	2009.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS10902086	SAMN22858044	RRASM_SRR16760399	AUS	2008.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SRS10902096	SAMN22858066	RRASM_SRR16760375	AUS	2010.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SRS10902136	SAMN22858115	RRASM_SRR16760321	AUS	2010.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SRS10902159	SAMN22858150	RRASM_SRR16760281	AUS	2012.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SRS10902167	SAMN22858161	RRASM_SRR16760269	AUS	2011.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SRS10902172	SAMN22858166	RRASM_SRR16760264	AUS	2011.0	PRN+	PRN-	intact		other	other_or_unspecified	biosample		status_discordant		True
+SRS10902182	SAMN22858181	RRASM_SRR16760247	AUS	2012.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS10902188	SAMN22857945	RRASM_SRR16760240	AUS	2009.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SRS10902297	SAMN22857989	RRASM_SRR16760177	AUS	2008.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SRS4426916	SAMN08443771	RRASM_SRR8652780	AUS	2016.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426918	SAMN08443772	RRASM_SRR8652779	AUS	2016.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426920	SAMN08443734	RRASM_SRR8652777	AUS	2014.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426928	SAMN08443780	RRASM_SRR8652770	AUS	2017.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426937	SAMN08443709	RRASM_SRR8652760	AUS	2013.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426948	SAMN08443715	RRASM_SRR8652749	AUS	2013.0	PRN+	PRN+	intact				biosample		status_concordant		True
+SRS4426956	SAMN08443742	RRASM_SRR8652742	AUS	2015.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426968	SAMN08443767	RRASM_SRR8652729	AUS	2015.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426972	SAMN08443778	RRASM_SRR8652725	AUS	2017.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1613-1614(IS insertion)	IS481	biosample		status_unassessable		True
+SRS4426979	SAMN08443746	RRASM_SRR8652718	AUS	2014.0		PRN-	uncertain_fragmented_assembly	other_or_unspecified	1598-1599(IS insertion)	IS481	biosample		status_unassessable		True

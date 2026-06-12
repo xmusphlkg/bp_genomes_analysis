@@ -1,0 +1,4 @@
+mechanism_description	mechanism_type	count	percentage_of_disrupted	n_countries	earliest_year	latest_year	example_assembly_accessions
+IS481 insertion	coding_disrupted_is481	382	66.2	8	2009.0	2025.0	GCA_000479535.2; GCA_000479555.2; GCA_000479595.2; GCA_000479655.2; GCA_000479695.2
+Genomic inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	175	30.3	6	2009.0	2024.0	GCA_001307645.1; GCA_001601785.1; GCA_001605055.1; GCA_001605115.1; GCA_001605405.1
+Other disruption	coding_disrupted_other	20	3.5	3	2013.0	2022.0	GCA_000479775.2; GCA_002859785.1; GCA_004007095.1; GCA_022407535.1; GCA_022409155.1

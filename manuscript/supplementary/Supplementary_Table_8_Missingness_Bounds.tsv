@@ -1,0 +1,65 @@
+analysis_scope	unit_id	scenario	country_iso3	country_name	year	n_total	n_interpretable	n_uninterpretable_or_uncertain	n_disrupted_observed	observed_interpretable_prevalence	lower_if_all_uninterpretable_intact	upper_if_all_uninterpretable_disrupted	ap_exposure_v2_log_or	ap_exposure_v2_ci_lower	ap_exposure_v2_ci_upper	ap_exposure_v2_p_value	interpretation
+global_prn_prevalence_bounds	retained_cohort					2406	1325	1081	577	0.4355	0.2398	0.6891					Retained-cohort disruption prevalence is highly sensitive to how uninterpretable loci are assigned.
+mechanism_class_bounds	coding_disrupted_inversion_or_rearrangement					2406	1325	1081	175	0.3033	0.0727	0.5220					Known mechanism composition is defined for interpretable disrupted genomes; upper bounds assign all uninterpretable loci to this class one class at a time.
+mechanism_class_bounds	coding_disrupted_is481					2406	1325	1081	382	0.6620	0.1588	0.6081					Known mechanism composition is defined for interpretable disrupted genomes; upper bounds assign all uninterpretable loci to this class one class at a time.
+mechanism_class_bounds	coding_disrupted_other					2406	1325	1081	20	0.0347	0.0083	0.4576					Known mechanism composition is defined for interpretable disrupted genomes; upper bounds assign all uninterpretable loci to this class one class at a time.
+country_prn_prevalence_bounds	ARG		ARG	ARG		11	0	11	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	AUS		AUS	AUS		61	14	47	3	0.2143	0.0492	0.8197					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	BRA		BRA	Brazil		13	8	5	8	1.0000	0.6154	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	CAN		CAN	CAN		17	0	17	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	CHN		CHN	China		856	155	701	13	0.0839	0.0152	0.8341					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	CZE		CZE	CZE		14	14	0	0	0.0000	0.0000	0.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	DNK		DNK	DNK		9	0	9	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	ESP		ESP	ESP		9	1	8	0	0.0000	0.0000	0.8889					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	FIN		FIN	FIN		20	4	16	0	0.0000	0.0000	0.8000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	FRA		FRA	France		22	11	11	1	0.0909	0.0455	0.5455					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	GBR		GBR	United Kingdom		34	14	20	0	0.0000	0.0000	0.5882					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	GTM		GTM	Guatemala		5	5	0	0	0.0000	0.0000	0.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	HKG		HKG	HKG		5	0	5	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	HTI		HTI	HTI		1	1	0	0	0.0000	0.0000	0.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	IND		IND	IND		11	7	4	0	0.0000	0.0000	0.3636					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	ITA		ITA	ITA		15	0	15	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	JPN		JPN	Japan		85	46	39	2	0.0435	0.0235	0.4824					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	KEN		KEN	KEN		12	0	12	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	MEX		MEX	MEX		4	0	4	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	NLD		NLD	NLD		26	6	20	1	0.1667	0.0385	0.8077					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	NOR		NOR	NOR		1	1	0	0	0.0000	0.0000	0.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	NZL		NZL	New Zealand		63	63	0	23	0.3651	0.3651	0.3651					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	POL		POL	POL		8	0	8	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	RUS		RUS	RUS		2	0	2	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	SWE		SWE	SWE		20	2	18	1	0.5000	0.0500	0.9500					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	TWN		TWN	TWN		23	0	23	0		0.0000	1.0000					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	USA		USA	United States		951	890	61	517	0.5809	0.5436	0.6078					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_prn_prevalence_bounds	ZAF		ZAF	South Africa		32	31	1	0	0.0000	0.0000	0.0312					Country-level prevalence bound from extreme assignment of uninterpretable loci.
+country_year_prn_prevalence_bounds	BRA:2024		BRA	Brazil	2024	8	8	0	8	1.0000	1.0000	1.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	CHN:2021		CHN	China	2021	56	21	35	0	0.0000	0.0000	0.6250					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	CHN:2022		CHN	China	2022	52	25	27	10	0.4000	0.1923	0.7115					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	CHN:2023		CHN	China	2023	48	18	30	3	0.1667	0.0625	0.6875					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	FRA:2024		FRA	France	2024	6	6	0	0	0.0000	0.0000	0.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	GBR:2012		GBR	United Kingdom	2012	8	8	0	0	0.0000	0.0000	0.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	GTM:2014		GTM	Guatemala	2014	5	5	0	0	0.0000	0.0000	0.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	JPN:2024		JPN	Japan	2024	9	6	3	1	0.1667	0.1111	0.4444					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	NZL:2012		NZL	New Zealand	2012	10	10	0	10	1.0000	1.0000	1.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	NZL:2017		NZL	New Zealand	2017	7	7	0	6	0.8571	0.8571	0.8571					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2000		USA	United States	2000	19	15	4	0	0.0000	0.0000	0.2105					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2001		USA	United States	2001	12	10	2	0	0.0000	0.0000	0.1667					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2002		USA	United States	2002	13	12	1	0	0.0000	0.0000	0.0769					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2003		USA	United States	2003	13	9	4	0	0.0000	0.0000	0.3077					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2004		USA	United States	2004	9	6	3	0	0.0000	0.0000	0.3333					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2005		USA	United States	2005	14	12	2	0	0.0000	0.0000	0.1429					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2007		USA	United States	2007	8	8	0	0	0.0000	0.0000	0.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2008		USA	United States	2008	5	5	0	0	0.0000	0.0000	0.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2010		USA	United States	2010	38	38	0	4	0.1053	0.1053	0.1053					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2011		USA	United States	2011	44	44	0	16	0.3636	0.3636	0.3636					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2012		USA	United States	2012	87	84	3	43	0.5119	0.4943	0.5287					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2013		USA	United States	2013	56	56	0	42	0.7500	0.7500	0.7500					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2014		USA	United States	2014	130	130	0	88	0.6769	0.6769	0.6769					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2015		USA	United States	2015	63	62	1	45	0.7258	0.7143	0.7302					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2016		USA	United States	2016	86	85	1	39	0.4588	0.4535	0.4651					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2017		USA	United States	2017	99	99	0	90	0.9091	0.9091	0.9091					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2018		USA	United States	2018	68	66	2	50	0.7576	0.7353	0.7647					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	USA:2020		USA	United States	2020	20	16	4	16	1.0000	0.8000	1.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+country_year_prn_prevalence_bounds	ZAF:2015		ZAF	South Africa	2015	21	21	0	0	0.0000	0.0000	0.0000					Primary ecology-panel country-year response bound under extreme missing-locus assignment.
+ecology_coefficient_missingness_sensitivity	ap_exposure_v2_score_z	observed_interpretable_only				892	892	122	471				2.0337	1.5510	2.5165	1.49e-16	Sensitivity refit of the same four-covariate ecology structure using an extreme uninterpretable-locus assignment; not a replacement for the IPW primary model.
+ecology_coefficient_missingness_sensitivity	ap_exposure_v2_score_z	all_uninterpretable_intact				1014	892	122	471				2.2535	1.8843	2.6228	5.66e-33	Sensitivity refit of the same four-covariate ecology structure using an extreme uninterpretable-locus assignment; not a replacement for the IPW primary model.
+ecology_coefficient_missingness_sensitivity	ap_exposure_v2_score_z	all_uninterpretable_disrupted				1014	892	122	593				0.6722	0.4470	0.8974	4.93e-09	Sensitivity refit of the same four-covariate ecology structure using an extreme uninterpretable-locus assignment; not a replacement for the IPW primary model.

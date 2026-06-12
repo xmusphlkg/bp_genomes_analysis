@@ -1,0 +1,38 @@
+=== Version Snapshot 2026-05-08T13:29:05+08:00 ===
+
+--- python ---
+Python 3.10.14
+--- conda ---
+# packages in environment at /home/ctm/miniforge3/envs/pertussis-bio-tools:
+#
+# Name                                   Version            Build                  Channel
+_openmp_mutex                            4.5                20_gnu                 conda-forge
+_python_abi3_support                     1.0                hd8ed1ab_2             conda-forge
+aioeasywebdav                            2.4.0              pyha770c72_0           conda-forge
+aiohappyeyeballs                         2.6.1              pyhd8ed1ab_0           conda-forge
+aiohttp                                  3.13.5             py310h31b6992_0        conda-forge
+aiosignal                                1.4.0              pyhd8ed1ab_0           conda-forge
+alsa-lib                                 1.2.11             hd590300_1             conda-forge
+amply                                    0.1.6              pyhd8ed1ab_1           conda-forge
+annotated-doc                            0.0.4              pyhcf101f3_0           conda-forge
+annotated-types                          0.7.0              pyhd8ed1ab_1           conda-forge
+any2fasta                                0.8.1              hdfd78af_0             bioconda
+appdirs                                  1.4.4              pyhd8ed1ab_1           conda-forge
+argparse-dataclass                       2.0.0              pyhd8ed1ab_1           conda-forge
+argtable2                                2.13               hd590300_1004          conda-forge
+aria2                                    1.37.0             h347180d_1             conda-forge
+async-timeout                            5.0.1              pyhcf101f3_2           conda-forge
+attrs                                    26.1.0             pyhcf101f3_0           conda-forge
+bcftools                                 1.21               h8b25389_0             bioconda
+bcrypt                                   5.0.0              py310hd8f68c5_1        conda-forge
+bedtools                                 2.31.1             hf5e1c6e_2             bioconda
+biopython                                1.87               py310h7c4b9e2_0        conda-forge
+blast                                    2.16.0             hc155240_3             bioconda
+blast-legacy                             2.2.26             hf7ff83a_5             bioconda
+boto3                                    1.42.89            pyhd8ed1ab_0           conda-forge
+botocore                                 1.42.89            pyhd8ed1ab_0           conda-forge
+brotli                                   1.2.0              hed03a55_1             conda-forge
+brotli-bin                               1.2.0              hb03c661_1             conda-forge
+
+--- git ---
+260b89e Refactor Figure 1 generation script: - Removed unused ggrepel library. - Added world region lookup for ISO3 codes. - Introduced fortify_world_map function for better map handling. - Updated map plotting logic to include bi-class mapping for countries. - Enhanced heatmap data processing to include all countries with interpretable genomes. - Added a new score plot for selection scorecard data. - Adjusted layout to accommodate new plot and improved aesthetics. - Added cache statistics and deleted files tracking for BFG report. - Included object ID mapping for old and new references. - Added new BFG jar file.

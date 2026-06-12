@@ -1,0 +1,9 @@
+KEY STATISTICS
+======================================================================
+
+Extraction Date: 2026-05-29T23:21:40.972285
+
+Source: state/manifest/manifest.tsv
+Total Genomes: 2,406
+Countries/Territories: 30
+Time Span: 1920 - 2025

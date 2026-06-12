@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-03-30T11:42:12.229521",
+  "n_countries": 5,
+  "n_years": 10,
+  "seed": 42,
+  "files": [
+    "synthetic_cases.tsv",
+    "synthetic_covariates.tsv"
+  ]
+}

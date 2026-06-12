@@ -1,0 +1,59 @@
+{
+  "fixed_effects": {
+    "coefficients": {
+      "Intercept": -0.05191817861765343,
+      "dtp3_coverage": -4.575961971194994e-05,
+      "birth_rate": -0.00019353361101772363,
+      "pop_density": -2.4872639098751995e-06,
+      "log_gdp_per_capita": 0.0024929193304140114,
+      "physician_density": 0.00790815087285727,
+      "surveillance_quality": 0.06231750752276792
+    },
+    "std_errors": {
+      "Intercept": 0.07466673668311613,
+      "dtp3_coverage": 0.0011980636495488599,
+      "birth_rate": 0.0026072582475815793,
+      "pop_density": 2.5447728662996666e-05,
+      "log_gdp_per_capita": 0.003226761878236829,
+      "physician_density": 0.003974200846442143,
+      "surveillance_quality": 0.01728824527097519
+    },
+    "p_values": {
+      "Intercept": 0.48684720363191714,
+      "dtp3_coverage": 0.9695324878378888,
+      "birth_rate": 0.9408283421764775,
+      "pop_density": 0.922138661379666,
+      "log_gdp_per_capita": 0.4397732525625273,
+      "physician_density": 0.04660504065198825,
+      "surveillance_quality": 0.00031261326750761995
+    },
+    "rsquared": 0.05884039880601466,
+    "rsquared_adj": -0.0897637487509304,
+    "n_obs": 45,
+    "formula": "log_re ~ dtp3_coverage + birth_rate + pop_density + log_gdp_per_capita + physician_density + surveillance_quality"
+  },
+  "random_effects": {
+    "error": "Singular matrix"
+  },
+  "autoregressive": {
+    "coefficients": {
+      "Intercept": 0.1281183045845384,
+      "dtp3_coverage": -0.0003839342738974874,
+      "lagged_re": -0.08140960925129936
+    },
+    "std_errors": {
+      "Intercept": 0.1268449300327173,
+      "dtp3_coverage": 0.001111325965328068,
+      "lagged_re": 0.11612018957753469
+    },
+    "p_values": {
+      "Intercept": 0.3124766873870233,
+      "dtp3_coverage": 0.7297380213896535,
+      "lagged_re": 0.48325273228977494
+    },
+    "rsquared": 0.019411012153730978,
+    "durbin_watson": 2.160268006214703,
+    "formula": "log_re ~ dtp3_coverage + lagged_re"
+  },
+  "stratified": {}
+}

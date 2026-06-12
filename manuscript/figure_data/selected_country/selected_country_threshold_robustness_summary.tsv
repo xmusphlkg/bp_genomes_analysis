@@ -1,0 +1,145 @@
+combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	bound_width_max	confidence_policy	mechanism_anchor_required	package_level_anchor_required	n_stage1_countries	stage1_countries	n_triangulated_countries	triangulated_countries	n_stage1_only_countries	stage1_only_countries	n_fails_stage1_countries	fails_stage1_countries	usa_status	nzl_status	jpn_status	aus_status
+1	6	2	wide	1.0	high_or_medium	False	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+2	6	2	wide	1.0	high_or_medium	True	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+3	6	2	wide	1.0	high_or_medium	True	True	5	AUS;GBR;JPN;NZL;USA	1	USA	4	AUS;GBR;JPN;NZL	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+4	6	2	wide	1.0	high_only	False	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+5	6	2	wide	1.0	high_only	True	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+6	6	2	wide	1.0	high_only	True	True	4	AUS;GBR;NZL;USA	1	USA	3	AUS;GBR;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+7	6	2	medium	0.67	high_or_medium	False	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+8	6	2	medium	0.67	high_or_medium	True	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+9	6	2	medium	0.67	high_or_medium	True	True	5	AUS;GBR;JPN;NZL;USA	1	USA	4	AUS;GBR;JPN;NZL	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+10	6	2	medium	0.67	high_only	False	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+11	6	2	medium	0.67	high_only	True	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+12	6	2	medium	0.67	high_only	True	True	4	AUS;GBR;NZL;USA	1	USA	3	AUS;GBR;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+13	6	2	strict	0.5	high_or_medium	False	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+14	6	2	strict	0.5	high_or_medium	True	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+15	6	2	strict	0.5	high_or_medium	True	True	5	AUS;GBR;JPN;NZL;USA	1	USA	4	AUS;GBR;JPN;NZL	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+16	6	2	strict	0.5	high_only	False	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+17	6	2	strict	0.5	high_only	True	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+18	6	2	strict	0.5	high_only	True	True	4	AUS;GBR;NZL;USA	1	USA	3	AUS;GBR;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+19	6	3	wide	1.0	high_or_medium	False	False	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+20	6	3	wide	1.0	high_or_medium	True	False	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+21	6	3	wide	1.0	high_or_medium	True	True	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+22	6	3	wide	1.0	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+23	6	3	wide	1.0	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+24	6	3	wide	1.0	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+25	6	3	medium	0.67	high_or_medium	False	False	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+26	6	3	medium	0.67	high_or_medium	True	False	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+27	6	3	medium	0.67	high_or_medium	True	True	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+28	6	3	medium	0.67	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+29	6	3	medium	0.67	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+30	6	3	medium	0.67	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+31	6	3	strict	0.5	high_or_medium	False	False	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+32	6	3	strict	0.5	high_or_medium	True	False	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+33	6	3	strict	0.5	high_or_medium	True	True	1	USA	1	USA	0		11	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL	triangulated_upward	fails_stage1	fails_stage1	fails_stage1
+34	6	3	strict	0.5	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+35	6	3	strict	0.5	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+36	6	3	strict	0.5	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+37	8	2	wide	1.0	high_or_medium	False	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+38	8	2	wide	1.0	high_or_medium	True	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+39	8	2	wide	1.0	high_or_medium	True	True	5	AUS;GBR;JPN;NZL;USA	1	USA	4	AUS;GBR;JPN;NZL	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+40	8	2	wide	1.0	high_only	False	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+41	8	2	wide	1.0	high_only	True	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+42	8	2	wide	1.0	high_only	True	True	4	AUS;GBR;NZL;USA	1	USA	3	AUS;GBR;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+43	8	2	medium	0.67	high_or_medium	False	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+44	8	2	medium	0.67	high_or_medium	True	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+45	8	2	medium	0.67	high_or_medium	True	True	5	AUS;GBR;JPN;NZL;USA	1	USA	4	AUS;GBR;JPN;NZL	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+46	8	2	medium	0.67	high_only	False	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+47	8	2	medium	0.67	high_only	True	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+48	8	2	medium	0.67	high_only	True	True	4	AUS;GBR;NZL;USA	1	USA	3	AUS;GBR;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+49	8	2	strict	0.5	high_or_medium	False	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+50	8	2	strict	0.5	high_or_medium	True	False	5	AUS;GBR;JPN;NZL;USA	4	AUS;JPN;NZL;USA	1	GBR	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+51	8	2	strict	0.5	high_or_medium	True	True	5	AUS;GBR;JPN;NZL;USA	1	USA	4	AUS;GBR;JPN;NZL	7	BRA;CHN;CZE;ESP;FIN;FRA;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+52	8	2	strict	0.5	high_only	False	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+53	8	2	strict	0.5	high_only	True	False	4	AUS;GBR;NZL;USA	3	AUS;NZL;USA	1	GBR	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+54	8	2	strict	0.5	high_only	True	True	4	AUS;GBR;NZL;USA	1	USA	3	AUS;GBR;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+55	8	3	wide	1.0	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+56	8	3	wide	1.0	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+57	8	3	wide	1.0	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+58	8	3	wide	1.0	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+59	8	3	wide	1.0	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+60	8	3	wide	1.0	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+61	8	3	medium	0.67	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+62	8	3	medium	0.67	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+63	8	3	medium	0.67	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+64	8	3	medium	0.67	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+65	8	3	medium	0.67	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+66	8	3	medium	0.67	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+67	8	3	strict	0.5	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+68	8	3	strict	0.5	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+69	8	3	strict	0.5	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+70	8	3	strict	0.5	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+71	8	3	strict	0.5	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+72	8	3	strict	0.5	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+73	10	2	wide	1.0	high_or_medium	False	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+74	10	2	wide	1.0	high_or_medium	True	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+75	10	2	wide	1.0	high_or_medium	True	True	4	AUS;JPN;NZL;USA	1	USA	3	AUS;JPN;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+76	10	2	wide	1.0	high_only	False	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+77	10	2	wide	1.0	high_only	True	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+78	10	2	wide	1.0	high_only	True	True	3	AUS;NZL;USA	1	USA	2	AUS;NZL	9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+79	10	2	medium	0.67	high_or_medium	False	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+80	10	2	medium	0.67	high_or_medium	True	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+81	10	2	medium	0.67	high_or_medium	True	True	4	AUS;JPN;NZL;USA	1	USA	3	AUS;JPN;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+82	10	2	medium	0.67	high_only	False	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+83	10	2	medium	0.67	high_only	True	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+84	10	2	medium	0.67	high_only	True	True	3	AUS;NZL;USA	1	USA	2	AUS;NZL	9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+85	10	2	strict	0.5	high_or_medium	False	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+86	10	2	strict	0.5	high_or_medium	True	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+87	10	2	strict	0.5	high_or_medium	True	True	4	AUS;JPN;NZL;USA	1	USA	3	AUS;JPN;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+88	10	2	strict	0.5	high_only	False	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+89	10	2	strict	0.5	high_only	True	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+90	10	2	strict	0.5	high_only	True	True	3	AUS;NZL;USA	1	USA	2	AUS;NZL	9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+91	10	3	wide	1.0	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+92	10	3	wide	1.0	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+93	10	3	wide	1.0	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+94	10	3	wide	1.0	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+95	10	3	wide	1.0	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+96	10	3	wide	1.0	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+97	10	3	medium	0.67	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+98	10	3	medium	0.67	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+99	10	3	medium	0.67	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+100	10	3	medium	0.67	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+101	10	3	medium	0.67	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+102	10	3	medium	0.67	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+103	10	3	strict	0.5	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+104	10	3	strict	0.5	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+105	10	3	strict	0.5	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+106	10	3	strict	0.5	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+107	10	3	strict	0.5	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+108	10	3	strict	0.5	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+109	12	2	wide	1.0	high_or_medium	False	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+110	12	2	wide	1.0	high_or_medium	True	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+111	12	2	wide	1.0	high_or_medium	True	True	4	AUS;JPN;NZL;USA	1	USA	3	AUS;JPN;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+112	12	2	wide	1.0	high_only	False	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+113	12	2	wide	1.0	high_only	True	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+114	12	2	wide	1.0	high_only	True	True	3	AUS;NZL;USA	1	USA	2	AUS;NZL	9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+115	12	2	medium	0.67	high_or_medium	False	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+116	12	2	medium	0.67	high_or_medium	True	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+117	12	2	medium	0.67	high_or_medium	True	True	4	AUS;JPN;NZL;USA	1	USA	3	AUS;JPN;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+118	12	2	medium	0.67	high_only	False	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+119	12	2	medium	0.67	high_only	True	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+120	12	2	medium	0.67	high_only	True	True	3	AUS;NZL;USA	1	USA	2	AUS;NZL	9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+121	12	2	strict	0.5	high_or_medium	False	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+122	12	2	strict	0.5	high_or_medium	True	False	4	AUS;JPN;NZL;USA	4	AUS;JPN;NZL;USA	0		8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	triangulated_upward	triangulated_downward	triangulated_downward
+123	12	2	strict	0.5	high_or_medium	True	True	4	AUS;JPN;NZL;USA	1	USA	3	AUS;JPN;NZL	8	BRA;CHN;CZE;ESP;FIN;FRA;GBR;NLD	triangulated_upward	stage1_only_upward	stage1_only_downward	stage1_only_downward
+124	12	2	strict	0.5	high_only	False	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+125	12	2	strict	0.5	high_only	True	False	3	AUS;NZL;USA	3	AUS;NZL;USA	0		9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	triangulated_upward	fails_stage1	triangulated_downward
+126	12	2	strict	0.5	high_only	True	True	3	AUS;NZL;USA	1	USA	2	AUS;NZL	9	BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD	triangulated_upward	stage1_only_upward	fails_stage1	stage1_only_downward
+127	12	3	wide	1.0	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+128	12	3	wide	1.0	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+129	12	3	wide	1.0	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+130	12	3	wide	1.0	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+131	12	3	wide	1.0	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+132	12	3	wide	1.0	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+133	12	3	medium	0.67	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+134	12	3	medium	0.67	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+135	12	3	medium	0.67	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+136	12	3	medium	0.67	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+137	12	3	medium	0.67	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+138	12	3	medium	0.67	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+139	12	3	strict	0.5	high_or_medium	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+140	12	3	strict	0.5	high_or_medium	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+141	12	3	strict	0.5	high_or_medium	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+142	12	3	strict	0.5	high_only	False	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+143	12	3	strict	0.5	high_only	True	False	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1
+144	12	3	strict	0.5	high_only	True	True	0		0		0		12	AUS;BRA;CHN;CZE;ESP;FIN;FRA;GBR;JPN;NLD;NZL;USA	fails_stage1	fails_stage1	fails_stage1	fails_stage1

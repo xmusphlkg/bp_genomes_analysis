@@ -1,0 +1,163 @@
+# Snakemake Workflow for Pertussis PRN Global Analysis
+# 方案二: Mechanism + Epidemiology Enhancement
+#
+# This Snakefile orchestrates the upgraded analysis pipeline.
+# It wraps existing pipeline scripts and adds new bioinformatics modules.
+
+import csv
+import os
+from pathlib import Path
+
+REPO_ROOT = Path.cwd().resolve()
+CONFIG_PATH = REPO_ROOT / "config" / "workflow" / "workflow.yaml"
+
+configfile: "config/workflow/workflow.yaml"
+
+PROJECT_DATA_ROOT = Path(
+    os.environ.get("PERTUSSIS_PROJECT_DATA_ROOT", str(REPO_ROOT / "pertussis_data" / "pertussis_gene"))
+)
+
+# ── Paths ────────────────────────────────────────────────────────────────────
+WORK       = config.get("workdir", str(PROJECT_DATA_ROOT / "workflow"))
+MANIFEST   = config.get("manifest", str(REPO_ROOT / "state" / "manifest" / "manifest.tsv"))
+REF_GENOME = config.get(
+    "reference_genome",
+    str(REPO_ROOT / "pertussis_data" / "bp_genomes_qc" / "reference" / "tohama_i.fasta"),
+)
+PRN_REF    = config.get(
+    "prn_reference",
+    str(PROJECT_DATA_ROOT / "step4_prn_validation" / "references" / "is_elements" / "bp_is_reference.fasta"),
+)
+
+
+def _read_tsv_rows(path_like):
+    """Read a small TSV at parse time so sample lists are available to rule inputs."""
+    if not path_like:
+        return []
+    path = Path(path_like)
+    if not path.is_file():
+        return []
+    with path.open(newline="") as handle:
+        return list(csv.DictReader(handle, delimiter="\t"))
+
+
+def _ordered_unique(values):
+    seen = set()
+    ordered = []
+    for value in values:
+        if not value or value in seen:
+            continue
+        seen.add(value)
+        ordered.append(value)
+    return ordered
+
+
+def _is_true(value):
+    return (value or "").strip().lower() == "true"
+
+
+def _has_value(value):
+    return (value or "").strip() != ""
+
+
+def _build_sample_sets():
+    step4_rows = _read_tsv_rows(config.get("step4_mechanism_calls", ""))
+    step5_rows = _read_tsv_rows(config.get("step5_phylo_balanced", ""))
+
+    all_samples = _ordered_unique(
+        row.get("sample_id_canonical", "") for row in step4_rows
+    )
+    phylo_samples = _ordered_unique(
+        row.get("sample_id_canonical", "") for row in step5_rows
+    )
+
+    # Fall back to the phylogeny subset if Step4 is unavailable.
+    if not all_samples:
+        all_samples = phylo_samples.copy()
+
+    samples_with_reads = _ordered_unique(
+        row.get("sample_id_canonical", "")
+        for row in step5_rows
+        if _is_true(row.get("raw_reads_available"))
+        or _has_value(row.get("sra_run_accession"))
+    )
+
+    if phylo_samples:
+        read_set = set(samples_with_reads)
+        samples_contigs_only = [sample for sample in phylo_samples if sample not in read_set]
+    else:
+        read_set = set(samples_with_reads)
+        samples_contigs_only = [sample for sample in all_samples if sample not in read_set]
+
+    return all_samples, samples_with_reads, samples_contigs_only
+
+
+ALL_SAMPLES, SAMPLES_WITH_READS, SAMPLES_CONTIGS_ONLY = _build_sample_sets()
+
+# ── Module includes ──────────────────────────────────────────────────────────
+include: "rules/manifest.smk"
+include: "rules/reads_qc.smk"
+include: "rules/assembly_qc.smk"
+include: "rules/snippy.smk"
+include: "rules/recomb_filter.smk"
+include: "rules/ml_tree.smk"
+include: "rules/asr.smk"
+include: "rules/is_detection.smk"
+include: "rules/epi_models.smk"
+
+# ── Default target ───────────────────────────────────────────────────────────
+rule all:
+    input:
+        # M0: Foundation
+        f"{WORK}/manifest/manifest.tsv",
+        f"{WORK}/versions.txt",
+        # M1: Reads availability (Go/No-Go)
+        f"{WORK}/checkpoints/gate_a_reads_availability.json",
+        # M2: QC
+        f"{WORK}/qc/multiqc_report.html",
+        f"{WORK}/qc/assembly_qc_report.tsv",
+        f"{WORK}/qc/missingness_model.json",
+        # M4: Phylogeny
+        f"{WORK}/phylo/core.full.aln",
+        f"{WORK}/phylo/recomb_filtered.aln",
+        f"{WORK}/phylo/iqtree2/ml_tree.treefile",
+        # M5: ASR
+        f"{WORK}/asr/origin_events.tsv",
+        # M6: Step4 read-backed prn validation
+        str(PROJECT_DATA_ROOT / "step4_prn_validation" / "outputs" / "bp_prn_read_validation.tsv"),
+        str(PROJECT_DATA_ROOT / "step4_prn_validation" / "outputs" / "bp_prn_validation_summary.tsv"),
+        str(PROJECT_DATA_ROOT / "step4_prn_validation" / "outputs" / "bp_prn_is_hotspot_results.tsv"),
+        # M7: Epidemiology
+        f"{WORK}/epi/ap_exposure_index.tsv",
+        f"{WORK}/epi/panel_model_results.tsv",
+
+
+# ── Version snapshot ─────────────────────────────────────────────────────────
+rule version_snapshot:
+    output:
+        f"{WORK}/versions.txt"
+    conda:
+        "config/env/environment_tool.yml"
+    shell:
+        f"""
+        echo "=== Version Snapshot $(date -Iseconds) ===" > {{output}}
+        echo "" >> {{output}}
+        echo "--- conda ---" >> {{output}}
+        conda list 2>/dev/null | head -50 >> {{output}} || true
+        echo "" >> {{output}}
+        echo "--- key tools ---" >> {{output}}
+        python --version 2>&1 >> {{output}} || true
+        R --version 2>&1 | head -1 >> {{output}} || true
+        snippy --version 2>&1 >> {{output}} || echo "snippy: not installed" >> {{output}}
+        iqtree2 --version 2>&1 | head -1 >> {{output}} || echo "iqtree2: not installed" >> {{output}}
+        raxmlng --version 2>&1 | head -1 >> {{output}} || echo "raxmlng: not installed" >> {{output}}
+        gubbins --version 2>&1 >> {{output}} || echo "gubbins: not installed" >> {{output}}
+        fastp --version 2>&1 >> {{output}} || echo "fastp: not installed" >> {{output}}
+        kraken2 --version 2>&1 >> {{output}} || echo "kraken2: not installed" >> {{output}}
+        echo "" >> {{output}}
+        echo "--- git ---" >> {{output}}
+        git log --oneline -1 2>/dev/null >> {{output}} || echo "not a git repo" >> {{output}}
+        echo "" >> {{output}}
+        echo "--- config ---" >> {{output}}
+        cat {CONFIG_PATH} >> {{output}} || true
+        """

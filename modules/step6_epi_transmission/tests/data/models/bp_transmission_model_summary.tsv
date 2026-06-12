@@ -1,0 +1,8 @@
+model	metric	value
+fixed_effects	rsquared	0.05884039880601466
+fixed_effects	rsquared_adj	-0.0897637487509304
+fixed_effects	n_obs	45
+fixed_effects	formula	log_re ~ dtp3_coverage + birth_rate + pop_density + log_gdp_per_capita + physician_density + surveillance_quality
+autoregressive	rsquared	0.019411012153730978
+autoregressive	durbin_watson	2.160268006214703
+autoregressive	formula	log_re ~ dtp3_coverage + lagged_re

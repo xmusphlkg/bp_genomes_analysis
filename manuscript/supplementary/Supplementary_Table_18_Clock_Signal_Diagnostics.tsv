@@ -1,0 +1,3 @@
+tree_frame	n_dated_tips	slope_substitutions_per_year	intercept	r_squared	timing_recommendation	notes
+composition_pruned_reference_rooted_primary	1865	-2.5853551e-07	0.00056143888	0.0292	do_not_force_tip_dated_primary;report_observed_tip_year_ranges	Simple root-to-tip linear diagnostic; not a formal dated phylogeny.
+unpruned_reference_rooted_comparability	1890	-2.2375186e-07	0.00049121283	0.0241	do_not_force_tip_dated_primary;report_observed_tip_year_ranges	Simple root-to-tip linear diagnostic; not a formal dated phylogeny.

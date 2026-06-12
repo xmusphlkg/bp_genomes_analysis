@@ -1,0 +1,365 @@
+panel_id	country_iso3	country_name	year	category	subcategory	metric_name	metric_value	n_genomes	reported_cases	n_genomes_with_raw_reads	fraction_with_raw_reads	analysis_cohort	source_file	notes
+global_country_map	ARG	Argentina				n_retained_genomes	11	11					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	AUS	Australia				n_retained_genomes	61	61					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	BRA	Brazil				n_retained_genomes	13	13					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	CAN	Canada				n_retained_genomes	17	17					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	CHN	China				n_retained_genomes	856	856					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	CZE	Czechia				n_retained_genomes	14	14					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	DNK	Denmark				n_retained_genomes	9	9					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	ESP	Spain				n_retained_genomes	9	9					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	FIN	Finland				n_retained_genomes	20	20					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	FRA	France				n_retained_genomes	22	22					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	GBR	United Kingdom				n_retained_genomes	34	34					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	GTM	Guatemala				n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	HKG	Hong Kong				n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	HTI	Haiti				n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	IND	India				n_retained_genomes	11	11					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	ITA	Italy				n_retained_genomes	15	15					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	JPN	Japan				n_retained_genomes	85	85					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	KEN	Kenya				n_retained_genomes	12	12					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	MEX	Mexico				n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	NLD	Netherlands				n_retained_genomes	26	26					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	NOR	Norway				n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	NZL	New Zealand				n_retained_genomes	63	63					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	POL	Poland				n_retained_genomes	8	8					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	RUS	Russian Federation				n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	SWE	Sweden				n_retained_genomes	20	20					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	TWN	Taiwan				n_retained_genomes	23	23					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	USA	United States				n_retained_genomes	951	951					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+global_country_map	ZAF	South Africa				n_retained_genomes	32	32					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	country totals aggregated across all available years including unknown-year rows
+country_year_heatmap	ARG	Argentina	1969			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2000			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2001			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2003			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2005			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2006			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2007			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ARG	Argentina	2008			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1971			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1974			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1977			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1978			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1982			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1989			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1990			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1995			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1996			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1997			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	1998			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2000			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2002			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2004			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2006			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2007			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2008			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2009			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2010			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2011			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2012			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2013			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2014			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2015			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2016			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2017			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	AUS	Australia	2024			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	BRA	Brazil	2004			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	BRA	Brazil	2008			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	BRA	Brazil	2011			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	BRA	Brazil	2013			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	BRA	Brazil	2024			n_retained_genomes	8	8					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	1994			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	1995			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	2000			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	2001			n_retained_genomes	7	7					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	2002			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	2004			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CAN	Canada	2005			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	1951			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	1957			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	1970			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	1980			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	1983			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	1997			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2001			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2013			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2014			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2015			n_retained_genomes	9	9					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2016			n_retained_genomes	10	10					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2017			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2018			n_retained_genomes	34	34					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2019			n_retained_genomes	93	93					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2020			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2021			n_retained_genomes	60	60					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2022			n_retained_genomes	64	64					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2023			n_retained_genomes	59	59					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CHN	China	2024			n_retained_genomes	506	506					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CZE	Czechia	1954			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CZE	Czechia	2008			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CZE	Czechia	2012			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CZE	Czechia	2014			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	CZE	Czechia	2015			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	1962			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	1968			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	1974			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	2001			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	2002			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	2005			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	DNK	Denmark	2007			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ESP	Spain	2010			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ESP	Spain	2023			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ESP	Spain	2024			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1953			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1964			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1965			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1977			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1982			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1991			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1994			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1996			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	1999			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	2002			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	2003			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	2004			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	2006			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	2014			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FIN	Finland	2016			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	1993			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	1995			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	1996			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	1999			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2000			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2002			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2004			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2005			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2007			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2008			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2009			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2014			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	FRA	France	2024			n_retained_genomes	6	6					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1920			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1942			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1946			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1947			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1949			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1950			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1964			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1967			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1979			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1982			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1983			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	1998			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2001			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2003			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2004			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2005			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2006			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2007			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2008			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GBR	United Kingdom	2012			n_retained_genomes	8	8					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	GTM	Guatemala	2014			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	HKG	Hong Kong	2002			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	HKG	Hong Kong	2004			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	HKG	Hong Kong	2006			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	HTI	Haiti	2014			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	IND	India	1977			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	IND	India	2017			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	IND	India	2018			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	IND	India	2019			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	IND	India	2023			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ITA	Italy	1994			n_retained_genomes	12	12					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ITA	Italy	1995			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ITA	Italy	2014			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1950			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1954			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1988			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1991			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1992			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1994			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1995			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1996			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1998			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	1999			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2001			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2002			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2003			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2004			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2006			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2007			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2008			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2009			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2010			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2011			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2012			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2015			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2016			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2018			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2019			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2020			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2024			n_retained_genomes	11	11					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	JPN	Japan	2025			n_retained_genomes	33	33					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	KEN	Kenya	1975			n_retained_genomes	12	12					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	MEX	Mexico	2008			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	MEX	Mexico	2009			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	MEX	Mexico	2012			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	MEX	Mexico	2014			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1949			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1950			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1952			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1954			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1965			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1976			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1977			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1982			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1988			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1990			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1991			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1996			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	1999			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	2000			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	2001			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	2010			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NLD	Netherlands	2012			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NOR	Norway	2009			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1983			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1984			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1985			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1987			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1988			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1989			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1990			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1991			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1993			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1994			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1997			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	1999			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2000			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2001			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2002			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2003			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2004			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2005			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2006			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2007			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2008			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2009			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2010			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2011			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2012			n_retained_genomes	10	10					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2013			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2014			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2015			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2016			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2017			n_retained_genomes	7	7					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	NZL	New Zealand	2018			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	1963			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	1968			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	1974			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	1995			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	1997			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	1999			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	POL	Poland	2000			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	RUS	Russian Federation	2001			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	RUS	Russian Federation	2002			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	1956			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	1970			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	1971			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	1986			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	1998			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	1999			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	2000			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	2002			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	2004			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	2006			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	SWE	Sweden	2009			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	1992			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	1997			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	1998			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	1999			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	2000			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	2003			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	2004			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	2005			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	2006			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	TWN	Taiwan	2007			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1935			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1939			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1946			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1947			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1952			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1955			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1977			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1978			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1986			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1993			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1995			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1997			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1998			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	1999			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2000			n_retained_genomes	19	19					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2001			n_retained_genomes	12	12					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2002			n_retained_genomes	13	13					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2003			n_retained_genomes	13	13					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2004			n_retained_genomes	9	9					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2005			n_retained_genomes	14	14					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2006			n_retained_genomes	2	2					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2007			n_retained_genomes	8	8					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2008			n_retained_genomes	5	5					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2009			n_retained_genomes	8	8					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2010			n_retained_genomes	38	38					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2011			n_retained_genomes	44	44					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2012			n_retained_genomes	87	87					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2013			n_retained_genomes	56	56					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2014			n_retained_genomes	130	130					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2015			n_retained_genomes	63	63					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2016			n_retained_genomes	86	86					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2017			n_retained_genomes	99	99					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2018			n_retained_genomes	68	68					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2019			n_retained_genomes	122	122					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2020			n_retained_genomes	20	20					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2022			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2024			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	USA	United States	2025			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ZAF	South Africa	2015			n_retained_genomes	21	21					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ZAF	South Africa	2016			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ZAF	South Africa	2017			n_retained_genomes	1	1					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ZAF	South Africa	2018			n_retained_genomes	3	3					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+country_year_heatmap	ZAF	South Africa	2019			n_retained_genomes	4	4					step4_prn_validation/outputs/bp_prn_country_year_summary.tsv	
+genomes_per_case_summary	BRA	Brazil	2024			genomes_per_case	0.001076	8	7438			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CHN	China	2018			genomes_per_case	0.001269	28	22057			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CHN	China	2019			genomes_per_case	0.002897	87	30027			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CHN	China	2021			genomes_per_case	0.005827	56	9611			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CHN	China	2022			genomes_per_case	0.001358	52	38295			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CHN	China	2023			genomes_per_case	0.001167	48	41124			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CHN	China	2024			genomes_per_case	0.000996	475	476690			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	CZE	Czechia	2012			genomes_per_case	0.005420	4	738			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	ESP	Spain	2023			genomes_per_case	0.001172	3	2560			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	ESP	Spain	2024			genomes_per_case	0.000161	5	31112			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	FRA	France	2024			genomes_per_case	0.012931	6	464			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	GBR	United Kingdom	2012			genomes_per_case	0.000668	8	11980			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	GTM	Guatemala	2014			genomes_per_case	0.200000	5	25			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	IND	India	2017			genomes_per_case	0.000168	4	23766			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	IND	India	2019			genomes_per_case	0.000253	3	11875			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	JPN	Japan	2024			genomes_per_case	0.002198	9	4095			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	NZL	New Zealand	2012			genomes_per_case	0.001786	10	5598			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	NZL	New Zealand	2017			genomes_per_case	0.003266	7	2143			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	NZL	New Zealand	2018			genomes_per_case	0.001016	3	2952			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2010			genomes_per_case	0.001379	38	27550			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2011			genomes_per_case	0.002351	44	18719			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2012			genomes_per_case	0.001802	87	48277			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2013			genomes_per_case	0.001955	56	28639			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2014			genomes_per_case	0.003943	130	32971			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2015			genomes_per_case	0.003047	63	20679			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2016			genomes_per_case	0.004785	86	17972			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2017			genomes_per_case	0.005217	99	18975			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2018			genomes_per_case	0.004356	68	15609			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	USA	United States	2020			genomes_per_case	0.001074	20	18617			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	ZAF	South Africa	2015			genomes_per_case	0.203883	21	103			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	ZAF	South Africa	2016			genomes_per_case	0.075000	3	40			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	ZAF	South Africa	2018			genomes_per_case	0.003141	3	955			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+genomes_per_case_summary	ZAF	South Africa	2019			genomes_per_case	0.007181	4	557			C	step6_epi_transmission/outputs/bp_country_year_analysis_input.tsv	country-year ecological input row with non-missing reported cases
+raw_read_availability_summary				raw_reads_available	raw_reads_available	n_retained_genomes	1579	1579			0.656276		step1_ingest/outputs/bp_combined_public_plus_raw_read_manifest.tsv	retained genomes after duplicate resolution
+raw_read_availability_summary				raw_reads_available	raw_reads_not_available	n_retained_genomes	827	827			0.343724		step1_ingest/outputs/bp_combined_public_plus_raw_read_manifest.tsv	retained genomes after duplicate resolution
+raw_read_link_status_summary				raw_read_link_status	assembled_from_raw_reads	n_retained_genomes	159	159					step1_ingest/outputs/bp_combined_public_plus_raw_read_manifest.tsv	retained genomes after duplicate resolution
+raw_read_link_status_summary				raw_read_link_status	linked	n_retained_genomes	1420	1420					step1_ingest/outputs/bp_combined_public_plus_raw_read_manifest.tsv	retained genomes after duplicate resolution
+raw_read_link_status_summary				raw_read_link_status	sample_accession_only_no_run_found	n_retained_genomes	24	24					step1_ingest/outputs/bp_combined_public_plus_raw_read_manifest.tsv	retained genomes after duplicate resolution
+raw_read_link_status_summary				raw_read_link_status	unresolved_no_read_runs_found	n_retained_genomes	803	803					step1_ingest/outputs/bp_combined_public_plus_raw_read_manifest.tsv	retained genomes after duplicate resolution

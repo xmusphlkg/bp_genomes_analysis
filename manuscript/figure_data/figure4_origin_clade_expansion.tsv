@@ -1,0 +1,101 @@
+panel_id	origin_id	origin_rank	mechanism_group	dominant_prn_mechanism	country_iso3	country_name	year	relative_year	yearly_disrupted_descendants	cumulative_disrupted_descendants	n_tips_disrupted	n_tips_total	n_countries	first_year	last_year	duration_years	branch_support	origin_support_score	notes
+origin_summary	origin_0018	1	IS481	coding_disrupted_is481	USA	United States					313	323	2	2010.0	2020.0	11.0	98.0	0.96904	cross_country_origin
+origin_summary	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					66	74	1	2010.0	2020.0	11.0	45.0	0.891892	single_country_origin
+origin_summary	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					52	59	1	2015.0	2020.0	6.0	98.0	0.881356	single_country_origin
+origin_summary	origin_0015	4	IS481	coding_disrupted_is481	USA	United States					39	40	1	2011.0	2019.0	9.0	99.0	0.975	single_country_origin
+origin_summary	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					38	109	3	2011.0	2020.0	10.0	31.0	0.348624	cross_country_origin
+origin_summary	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand					9	9	2	2012.0	2017.0	6.0	98.0	1.0	cross_country_origin
+origin_summary	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand					9	9	1	2012.0	2017.0	6.0	100.0	1.0	single_country_origin
+origin_summary	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					3	3	1	2012.0	2018.0	7.0	100.0	1.0	single_country_origin
+origin_summary	origin_0005	9	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					2	2	1	2016.0	2016.0	1.0	100.0	1.0	single_country_origin
+origin_summary	origin_0009	10	IS481	coding_disrupted_is481							2	4	0				44.0	0.5	single_country_origin
+origin_summary	origin_0001	11	IS481	coding_disrupted_is481	FRA	France					1	1	1	2009.0	2009.0	1.0		1.0	single_country_origin
+origin_summary	origin_0006	12	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					1	1	1	2011.0	2011.0	1.0		1.0	single_country_origin
+origin_summary	origin_0007	13	IS481	coding_disrupted_is481	USA	United States					1	1	1	2013.0	2013.0	1.0		1.0	single_country_origin
+origin_summary	origin_0010	14	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					1	1	1	2016.0	2016.0	1.0		1.0	single_country_origin
+origin_summary	origin_0012	15	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	SWE	Sweden					1	1	1	2009.0	2009.0	1.0		1.0	single_country_origin
+origin_summary	origin_0013	16	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States					1	1	1	2009.0	2009.0	1.0		1.0	single_country_origin
+origin_summary	origin_0016	17	IS481	coding_disrupted_is481	NZL	New Zealand					1	1	1	2012.0	2012.0	1.0		1.0	single_country_origin
+origin_summary	origin_0021	18	IS481	coding_disrupted_is481	USA	United States					1	1	1	2012.0	2012.0	1.0		1.0	single_country_origin
+origin_summary	origin_0022	19	IS481	coding_disrupted_is481	NLD	Netherlands (Kingdom of the)					1	1	1	2010.0	2010.0	1.0		1.0	single_country_origin
+origin_summary	origin_0023	20	IS481	coding_disrupted_is481	USA	United States					1	1	1	2012.0	2012.0	1.0		1.0	single_country_origin
+origin_summary	origin_0003	21	IS481	coding_disrupted_is481							1	1	0					1.0	single_country_origin
+origin_summary	origin_0004	22	IS481	coding_disrupted_is481							1	1	0					1.0	single_country_origin
+origin_summary	origin_0017	23	IS481	coding_disrupted_is481							1	1	0					1.0	single_country_origin
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2010.0	0.0	2.0	2.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2011.0	1.0	4.0	6.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2012.0	2.0	23.0	29.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2013.0	3.0	22.0	51.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2014.0	4.0	54.0	105.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2015.0	5.0	34.0	139.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2016.0	6.0	21.0	160.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2017.0	7.0	67.0	227.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2018.0	8.0	31.0	258.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2019.0	9.0	52.0	310.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0018	1	IS481	coding_disrupted_is481	USA	United States	2020.0	10.0	2.0	312.0	313	323	2	2010.0	2020.0	11.0	98.0	0.96904	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2010.0	0.0	2.0	2.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2011.0	1.0	5.0	7.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2012.0	2.0	5.0	12.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2013.0	3.0	10.0	22.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2014.0	4.0	10.0	32.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2015.0	5.0	5.0	37.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2016.0	6.0	7.0	44.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2017.0	7.0	11.0	55.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2018.0	8.0	2.0	57.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2019.0	9.0	6.0	63.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0014	2	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2020.0	10.0	1.0	64.0	66	74	1	2010.0	2020.0	11.0	45.0	0.891892	filled_origin_duration_window
+origin_year	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2015.0	0.0	1.0	1.0	52	59	1	2015.0	2020.0	6.0	98.0	0.881356	filled_origin_duration_window
+origin_year	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2016.0	1.0	0.0	1.0	52	59	1	2015.0	2020.0	6.0	98.0	0.881356	filled_origin_duration_window
+origin_year	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2017.0	2.0	13.0	14.0	52	59	1	2015.0	2020.0	6.0	98.0	0.881356	filled_origin_duration_window
+origin_year	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2018.0	3.0	17.0	31.0	52	59	1	2015.0	2020.0	6.0	98.0	0.881356	filled_origin_duration_window
+origin_year	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2019.0	4.0	15.0	46.0	52	59	1	2015.0	2020.0	6.0	98.0	0.881356	filled_origin_duration_window
+origin_year	origin_0011	3	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2020.0	5.0	6.0	52.0	52	59	1	2015.0	2020.0	6.0	98.0	0.881356	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2011.0	0.0	4.0	4.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2012.0	1.0	7.0	11.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2013.0	2.0	7.0	18.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2014.0	3.0	16.0	34.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2015.0	4.0	1.0	35.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2016.0	5.0	0.0	35.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2017.0	6.0	1.0	36.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2018.0	7.0	0.0	36.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0015	4	IS481	coding_disrupted_is481	USA	United States	2019.0	8.0	3.0	39.0	39	40	1	2011.0	2019.0	9.0	99.0	0.975	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2011.0	0.0	1.0	1.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2012.0	1.0	4.0	5.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2013.0	2.0	1.0	6.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2014.0	3.0	4.0	10.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2015.0	4.0	2.0	12.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2016.0	5.0	9.0	21.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2017.0	6.0	0.0	21.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2018.0	7.0	1.0	22.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2019.0	8.0	7.0	29.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0008	5	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2020.0	9.0	7.0	36.0	38	109	3	2011.0	2020.0	10.0	31.0	0.348624	filled_origin_duration_window
+origin_year	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand	2012.0	0.0	6.0	6.0	9	9	2	2012.0	2017.0	6.0	98.0	1.0	filled_origin_duration_window
+origin_year	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand	2013.0	1.0	0.0	6.0	9	9	2	2012.0	2017.0	6.0	98.0	1.0	filled_origin_duration_window
+origin_year	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand	2014.0	2.0	0.0	6.0	9	9	2	2012.0	2017.0	6.0	98.0	1.0	filled_origin_duration_window
+origin_year	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand	2015.0	3.0	2.0	8.0	9	9	2	2012.0	2017.0	6.0	98.0	1.0	filled_origin_duration_window
+origin_year	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand	2016.0	4.0	0.0	8.0	9	9	2	2012.0	2017.0	6.0	98.0	1.0	filled_origin_duration_window
+origin_year	origin_0019	6	IS481	coding_disrupted_is481	NZL	New Zealand	2017.0	5.0	1.0	9.0	9	9	2	2012.0	2017.0	6.0	98.0	1.0	filled_origin_duration_window
+origin_year	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand	2012.0	0.0	2.0	2.0	9	9	1	2012.0	2017.0	6.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand	2013.0	1.0	2.0	4.0	9	9	1	2012.0	2017.0	6.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand	2014.0	2.0	2.0	6.0	9	9	1	2012.0	2017.0	6.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand	2015.0	3.0	0.0	6.0	9	9	1	2012.0	2017.0	6.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand	2016.0	4.0	0.0	6.0	9	9	1	2012.0	2017.0	6.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0020	7	IS481	coding_disrupted_is481	NZL	New Zealand	2017.0	5.0	3.0	9.0	9	9	1	2012.0	2017.0	6.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2012.0	0.0	1.0	1.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2013.0	1.0	0.0	1.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2014.0	2.0	0.0	1.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2015.0	3.0	1.0	2.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2016.0	4.0	0.0	2.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2017.0	5.0	0.0	2.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0002	8	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2018.0	6.0	1.0	3.0	3	3	1	2012.0	2018.0	7.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0005	9	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2016.0	0.0	2.0	2.0	2	2	1	2016.0	2016.0	1.0	100.0	1.0	filled_origin_duration_window
+origin_year	origin_0001	11	IS481	coding_disrupted_is481	FRA	France	2009.0	0.0	1.0	1.0	1	1	1	2009.0	2009.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0006	12	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2011.0	0.0	1.0	1.0	1	1	1	2011.0	2011.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0007	13	IS481	coding_disrupted_is481	USA	United States	2013.0	0.0	1.0	1.0	1	1	1	2013.0	2013.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0010	14	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2016.0	0.0	1.0	1.0	1	1	1	2016.0	2016.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0012	15	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	SWE	Sweden	2009.0	0.0	1.0	1.0	1	1	1	2009.0	2009.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0013	16	Inversion/rearrangement	coding_disrupted_inversion_or_rearrangement	USA	United States	2009.0	0.0	1.0	1.0	1	1	1	2009.0	2009.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0016	17	IS481	coding_disrupted_is481	NZL	New Zealand	2012.0	0.0	1.0	1.0	1	1	1	2012.0	2012.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0021	18	IS481	coding_disrupted_is481	USA	United States	2012.0	0.0	1.0	1.0	1	1	1	2012.0	2012.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0022	19	IS481	coding_disrupted_is481	NLD	Netherlands (Kingdom of the)	2010.0	0.0	1.0	1.0	1	1	1	2010.0	2010.0	1.0		1.0	filled_origin_duration_window
+origin_year	origin_0023	20	IS481	coding_disrupted_is481	USA	United States	2012.0	0.0	1.0	1.0	1	1	1	2012.0	2012.0	1.0		1.0	filled_origin_duration_window

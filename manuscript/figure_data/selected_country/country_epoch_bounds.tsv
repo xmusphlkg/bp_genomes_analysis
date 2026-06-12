@@ -1,0 +1,20 @@
+country_iso3	country_name	epoch_id	epoch_label	start_year	end_year	n_retained_genomes	n_prn_interpretable	n_prn_uninterpretable_or_uncertain	bound_lower_prevalence	bound_upper_prevalence	bound_width	stable_bounds_epoch	eligibility_status
+AUS	Australia	aus_wp_only	Whole-cell era	1945	1996	16	13	3	0.5	0.6875	0.1875	True	stage1_primary_epoch
+AUS	Australia	aus_transition_mixed	Booster-only acellular transition period	1997	1998	7	5	2	0.42857142857142855	0.7142857142857143	0.28571428571428575	True	boundary_epoch
+AUS	Australia	aus_ap_with_prn	All-dose acellular era with PRN exposure	1999	2025	38	25	13	0.21052631578947367	0.5526315789473685	0.3421052631578948	True	stage1_primary_epoch
+BRA	Brazil	bra_mixed_prn	Mixed PRN-containing acellular / booster era	2014	2024	8	8	0	1.0	1.0	0.0	True	stage1_primary_epoch
+CHN	China	chn_wp_only	Whole-cell routine vaccination era	1978	2004	4	0	4	0.0	1.0	1.0	False	boundary_epoch
+CHN	China	chn_transition_mixed	DTaP introduction and mixed transition period	2005	2011	0	0	0				False	boundary_epoch
+CHN	China	chn_ap_mixed	Post-switch acellular era with mixed PRN exposure	2012	2025	847	710	137	0.015348288075560802	0.1770956316410862	0.1617473435655254	True	stage1_primary_epoch
+CZE	Czechia	cze_ap_prn_positive	PRN-positive acellular era	2007	2017	9	9	0	0.0	0.0	0.0	True	stage1_primary_epoch
+FRA	France	fra_wp_only	Whole-cell routine vaccination era	1959	1997	4	0	4	0.0	1.0	1.0	False	boundary_epoch
+FRA	France	fra_ap_mixed	Mixed-brand acellular era	1998	2024	18	11	7	0.05555555555555555	0.4444444444444444	0.38888888888888884	True	stage1_primary_epoch
+GBR	United Kingdom	gbr_wp_only	Whole-cell routine vaccination era	1950	2003	14	8	6	0.0	0.42857142857142855	0.42857142857142855	True	stage1_primary_epoch
+GBR	United Kingdom	gbr_ap_prn_positive	Acellular routine vaccination era with PRN exposure	2004	2024	15	8	7	0.0	0.4666666666666667	0.4666666666666667	False	stage1_primary_epoch
+JPN	Japan	jpn_pre2012_mixed_ap	Historical acellular era with mixed PRN exposure	1981	2011	30	23	7	0.16666666666666666	0.4	0.23333333333333336	True	stage1_primary_epoch
+JPN	Japan	jpn_ap_without_prn	Post-switch acellular era without PRN	2012	2025	52	28	24	0.038461538461538464	0.5	0.46153846153846156	False	stage1_primary_epoch
+NZL	New Zealand	nzl_wp_only	Long whole-cell schedule era	1958	1999	12	12	0	0.0	0.0	0.0	True	stage1_primary_epoch
+NZL	New Zealand	nzl_ap_with_prn	Acellular schedule era with PRN-containing products	2000	2025	51	51	0	0.45098039215686275	0.45098039215686275	0.0	True	stage1_primary_epoch
+USA	United States	usa_wp_only	Whole-cell routine vaccination era	1935	1996	23	21	2	0.2608695652173913	0.34782608695652173	0.08695652173913043	True	stage1_primary_epoch
+USA	United States	usa_transition_mixed	DTaP-preferred transition period	1997	1999	9	6	3	0.2222222222222222	0.5555555555555556	0.33333333333333337	True	boundary_epoch
+USA	United States	usa_ap_prn_background	Sustained acellular background with PRN exposure	2000	2025	919	896	23	0.5723612622415669	0.5973884657236126	0.02502720348204568	True	stage1_primary_epoch

@@ -1,0 +1,34 @@
+{
+  "build_date": "2026-06-10T10:11:14.460622",
+  "total_samples": 2406,
+  "n_prn_interpretable": 2033,
+  "n_prn_disrupted": 601,
+  "n_has_reads": 1505,
+  "pct_has_reads": 62.6,
+  "n_countries": 30,
+  "missing_country": 53,
+  "missing_year": 76,
+  "evidence_tier_counts": {
+    "assembly_low": 2406
+  },
+  "mechanism_counts": {
+    "intact": 1431,
+    "coding_disrupted_is481": 371,
+    "uncertain_fragmented_assembly": 277,
+    "coding_disrupted_inversion_or_rearrangement": 172,
+    "insufficient_data": 136,
+    "coding_disrupted_other": 19
+  },
+  "confidence_counts": {
+    "rule_high": 1797,
+    "rule_low": 413,
+    "rule_medium": 196
+  },
+  "n_rescued_overrides": 107,
+  "n_legacy_gap_pending": 0,
+  "data_origin_counts": {
+    "public_genome_assembly": 2140,
+    "public_raw_read_assembly": 159,
+    "public_read_rescue": 107
+  }
+}

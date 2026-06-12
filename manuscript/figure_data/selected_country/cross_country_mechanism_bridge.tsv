@@ -1,0 +1,10 @@
+country_iso3	country_name	stage1_primary_default	stage2_triangulated_default	selection_state	dominant_disrupted_mechanism	n_distinct_disrupted_events	n_major_recurrent_architecture_events	n_local_origin_packages	n_local_origin_packages_with_hard_anchor	n_local_rooted_consistent_packages	n_validated_events	n_same_country_validated_events	country_mechanism_anchor	mechanism_bridge_status
+AUS	Australia	True	True	primary_and_triangulated	IS481 insertion	3	2	0	0	0	2	0	recurrent_architecture	architecture_support_only
+JPN	Japan	True	True	primary_and_triangulated	IS481 insertion	2	1	0	0	0	1	0	recurrent_architecture	architecture_support_only
+NZL	New Zealand	True	True	primary_and_triangulated	IS481 insertion	4	2	2	0	0	2	0	recurrent_architecture	architecture_support_only
+USA	United States	True	True	primary_and_triangulated	IS481 insertion	9	3	5	1	1	3	3	package_level	package_and_structure_support
+GBR	United Kingdom	True	False	primary_only	none_observed	0	0	0	0	0	0	0	none	limited_mechanism_support
+BRA	Brazil	False	False	context_only	IS481 insertion	2	2	0	0	0	1	0	recurrent_architecture	architecture_support_only
+CHN	China	False	False	context_only	IS481 insertion	5	2	0	0	0	2	0	recurrent_architecture	architecture_support_only
+CZE	Czechia	False	False	context_only	none_observed	0	0	0	0	0	0	0	none	limited_mechanism_support
+FRA	France	False	False	context_only	IS481 insertion	1	1	0	0	1	1	0	package_level	package_and_structure_support

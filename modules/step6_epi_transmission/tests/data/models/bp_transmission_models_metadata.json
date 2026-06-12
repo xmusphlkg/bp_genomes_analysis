@@ -1,0 +1,7 @@
+{
+  "run_timestamp": "2026-03-30T11:43:28.708732",
+  "re_input": "test_data/re_output/bp_country_year_re_trajectories.tsv",
+  "n_countries": 5,
+  "n_years": 11,
+  "synthetic_covariates": true
+}

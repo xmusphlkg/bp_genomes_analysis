@@ -1,0 +1,39 @@
+row_type	model_variant	country_iso3	country_name	feature	feature_definition	calibration_bin	bin_n	bin_predicted_mean	bin_observed_mean	labeled_samples_total	model_samples_complete	model_accuracy	model_auc	model_brier	cv_model_accuracy	cv_model_auc	cv_model_brier	calibration_intercept	calibration_slope	brier_reliability	brier_resolution	brier_uncertainty	standardized_coefficient	direction_of_association_with_interpretable_call	mean	std	notes
+feature_coefficient	full_model			year	Collection year of the genome record					2406.0	2170.0	0.951	0.991										-0.0964	Negative	2013.7876	13.2013	Workflow-frozen standardized coefficient from the original missingness model export.
+feature_coefficient	full_model			has_reads	Raw-read linkage available for the assembly					2406.0	2170.0	0.951	0.991										2.3045	Positive	0.6364	0.481	Workflow-frozen standardized coefficient from the original missingness model export.
+feature_coefficient	full_model			log_total_length	Log-transformed assembly total length					2406.0	2170.0	0.951	0.991										1.9773	Positive	6.5949	0.0472	Workflow-frozen standardized coefficient from the original missingness model export.
+feature_coefficient	full_model			log_n_contigs	Log-transformed contig count as a fragmentation proxy					2406.0	2170.0	0.951	0.991										-3.1868	Negative	1.291	1.2894	Workflow-frozen standardized coefficient from the original missingness model export.
+model_diagnostic	assembly_only									2330.0	2330.0	0.8965665236051502	0.8932445247170321	0.08126365259097423	0.8957081545064378	0.8860998404440996	0.08162984088909236	-0.04032538342699396	1.046955938774207	0.000754206774416732	0.04731879792224445	0.13033745325940796					In-sample metrics on the labeled manifest after median imputation and missingness indicators.
+model_diagnostic	full_minus_reads									2330.0	2330.0	0.8965665236051502	0.8997871645828298	0.08043344534797343	0.896137339055794	0.893692524897928	0.08088667210158255	-0.0532834524092783	1.05985635963052	0.00030051696235664725	0.047837880251033124	0.13033745325940796					In-sample metrics on the labeled manifest after median imputation and missingness indicators.
+model_diagnostic	full_model									2330.0	2330.0	0.8931330472103004	0.9001701552737535	0.08063227608557778	0.8939914163090129	0.894592765009066	0.08112371315089034	-0.04930975479785835	1.055481551236062	0.0002223123799215705	0.047760274432683575	0.13033745325940796					In-sample metrics on the labeled manifest after median imputation and missingness indicators.
+model_diagnostic	reads_only									2330.0	2330.0	0.8459227467811159	0.5572987991616603	0.1293784805727332	0.8459227467811159	0.5429076766314909	0.129502593929784	6.5607241861442844e-15	1.0000000000000215	3.0006735486222766e-25	0.0	0.13033745325940796					In-sample metrics on the labeled manifest after median imputation and missingness indicators.
+model_diagnostic	year_only									2330.0	2330.0	0.8394849785407725	0.581089445991953	0.12507337734590285	0.8390557939914163	0.5789208142014645	0.12524851747353105	-5.134399849726634e-13	1.0000000000000244	0.007045391642162132	0.014406944337184879	0.13033745325940796					In-sample metrics on the labeled manifest after median imputation and missingness indicators.
+calibration_bin	assembly_only					1.0	233.0	0.2757508368864794	0.2575107296137339																		
+calibration_bin	assembly_only					2.0	233.0	0.733382262267875	0.776824034334764																		
+calibration_bin	assembly_only					3.0	233.0	0.8133086602490929	0.7553648068669528																		
+calibration_bin	assembly_only					4.0	233.0	0.827263433112992	0.8154506437768241																		
+calibration_bin	assembly_only					5.0	300.0	0.852350830908535	0.89																		
+calibration_bin	assembly_only					6.0	1098.0	0.998950423815799	0.9990892531876139																		
+calibration_bin	full_minus_reads					1.0	233.0	0.2737830251864736	0.2575107296137339																		
+calibration_bin	full_minus_reads					2.0	233.0	0.7306401509392515	0.7296137339055794																		
+calibration_bin	full_minus_reads					3.0	233.0	0.8116287979397752	0.8025751072961373																		
+calibration_bin	full_minus_reads					4.0	233.0	0.8244883562999975	0.7982832618025751																		
+calibration_bin	full_minus_reads					5.0	249.0	0.852940499364567	0.8955823293172691																		
+calibration_bin	full_minus_reads					6.0	1149.0	0.9941588222600475	0.9965187119234117																		
+calibration_bin	full_model					1.0	233.0	0.2750361509518058	0.26180257510729615																		
+calibration_bin	full_model					2.0	233.0	0.7280659896985062	0.703862660944206																		
+calibration_bin	full_model					3.0	233.0	0.8087695047946724	0.8068669527896996																		
+calibration_bin	full_model					4.0	233.0	0.825535361309618	0.8197424892703863																		
+calibration_bin	full_model					5.0	250.0	0.8558725123995912	0.892																		
+calibration_bin	full_model					6.0	1148.0	0.9942814876518428	0.9965156794425087																		
+calibration_bin	reads_only					1.0	2330.0	0.8459227467805681	0.8459227467811159																		
+calibration_bin	year_only					1.0	240.0	0.6746203825456956	0.5625																		
+calibration_bin	year_only					2.0	265.0	0.8167876066927999	0.7622641509433963																		
+calibration_bin	year_only					3.0	231.0	0.8465412271562481	0.9567099567099567																		
+calibration_bin	year_only					4.0	253.0	0.8560819187936479	0.9407114624505929																		
+calibration_bin	year_only					5.0	221.0	0.8643093381569088	0.9592760180995475																		
+calibration_bin	year_only					6.0	336.0	0.8721710920779424	0.9345238095238095																		
+calibration_bin	year_only					7.0	148.0	0.8812556231872537	0.918918918918919																		
+calibration_bin	year_only					8.0	602.0	0.8897768775971198	0.8039867109634552																		
+calibration_bin	year_only					9.0	34.0	0.8932141255554739	0.8529411764705882																		
+overall_summary	full_model			observed_interpretable_fraction	Observed fraction of genomes with interpretable PRN calls in the labeled manifest.					2330.0	2330.0												0.8459227467811159		0.8459227467811159	0.3610227877287083	Included so the supplementary table carries the manifest-wide interpretability base rate.

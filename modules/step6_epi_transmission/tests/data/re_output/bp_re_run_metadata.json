@@ -1,0 +1,10 @@
+{
+  "run_timestamp": "2026-03-30T11:42:26.406331",
+  "input_file": "test_data/synthetic_cases.tsv",
+  "gi_mean": 17.0,
+  "gi_sd": 6.0,
+  "disaggregation_method": "uniform",
+  "n_countries": 5,
+  "n_years": 10,
+  "year_range": "2000-2009"
+}

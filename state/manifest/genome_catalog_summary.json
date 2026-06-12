@@ -1,0 +1,28 @@
+{
+  "data_origin_counts": {
+    "public_genome_assembly": 2140,
+    "public_raw_read_assembly": 159,
+    "public_read_rescue": 107
+  },
+  "filesystem_backfill_rows": 0,
+  "genome_file_class_counts": {
+    "direct_public_assembly_fasta": 2247,
+    "local_raw_read_assembly_fasta": 159
+  },
+  "manifest_rows": 2406,
+  "missing_path_rows": 0,
+  "output": "state/manifest/genome_catalog.tsv",
+  "public_path_rows": 2247,
+  "public_registry_lookup_counts": {
+    "hit": 2247,
+    "miss": 0
+  },
+  "public_registry_status_counts": {
+    "ok": 2247
+  },
+  "raw_path_rows": 530,
+  "registry_counts": {
+    "bp_step1_raw_read_step3_genome_paths": 159,
+    "bp_step2_public_genome_paths_qc": 2247
+  }
+}

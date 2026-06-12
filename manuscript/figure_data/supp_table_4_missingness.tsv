@@ -1,0 +1,13 @@
+country_iso3	country_name	n_total	n_interpretable	n_uninterpretable	frac_uninterpretable	n_prn_disrupted	naive_freq	ipw_adjusted_freq
+BRA	Brazil	8	8	0	0	8	1	1
+CHN	China	184	65	119	0.6467	13	0.2	0.0466
+CZE	Czech Republic	4	4	0	0	0	0	0
+ESP	Spain	8	0	8	1	---	---	---
+FRA	France	6	6	0	0	0	0	0
+GBR	United Kingdom	8	8	0	0	0	0	0
+GTM	Guatemala	5	5	0	0	0	0	0
+IND	India	7	5	2	0.2857	0	0	0
+JPN	Japan	30	8	22	0.7333	2	0.25	0.4583
+NZL	New Zealand	20	20	0	0	18	0.9	0.8413
+USA	United States	813	788	25	0.0308	516	0.6548	0.6481
+ZAF	South Africa	31	30	1	0.0323	0	0	0

@@ -1,0 +1,4 @@
+event_type	country_iso3	country_name	event_year	observed_relative_years	pre_window_mean_ipw_prevalence	post_window_mean_ipw_prevalence	post_minus_pre_ipw_prevalence	event_year_ipw_prevalence	year_plus3_ipw_prevalence	peak_origin_clade_descendants	peak_origin_clades_active	amplification_pattern	notes
+first_local_origin	FRA	France	2009	3	0.0			1.0		1.0	1.0	insufficient_local_origin_window	event_centered_window
+first_local_origin	NZL	New Zealand	2012	7	0.0	0.8333577030795268	0.8333577030795268	1.0	0.5000731092385804	10.0	4.0	clear_post-origin_amplification	event_centered_window
+first_local_origin	USA	United States	2009	7	0.0	0.333607577420155	0.333607577420155	0.1323596831645796	0.5406603383398287	41.0	7.0	clear_post-origin_amplification	event_centered_window

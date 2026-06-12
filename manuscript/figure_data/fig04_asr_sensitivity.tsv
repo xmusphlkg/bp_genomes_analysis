@@ -1,0 +1,6 @@
+method	n_origins	mean_val	sd_val	min_val	max_val	n_tips_used
+Intact-biased Fitch (default)	34	---	---	---	---	234
+Disrupted-biased Fitch	34	---	---	---	---	234
+Random tie-breaking (100 replicates)	---	34	0	34	34	234
+Binary collapse (intact vs disrupted)	34	---	---	---	---	232
+Random tie-breaking, binary (100 replicates)	---	34	0	34	34	232

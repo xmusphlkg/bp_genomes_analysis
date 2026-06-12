@@ -1,0 +1,7 @@
+prn_mechanism_call	sample_count	event_count	country_count	year_min	year_max	is_interpretable	is_definitive_disrupted	is_uncertain_fragmented	sample_fraction_all	sample_fraction_within_mechanism
+coding_disrupted_inversion_or_rearrangement	172	4	7	1975	2024	True	True	False	0.071488	0.086302
+coding_disrupted_is481	371	5	8	2009	2025	True	True	False	0.154198	0.186152
+coding_disrupted_other	19	6	3	2014	2022	True	True	False	0.007897	0.009533
+insufficient_data	136	2	19	1920	2024	False	False	False	0.056525	
+intact	1431	1	28	1935	2025	True	False	False	0.594763	0.718013
+uncertain_fragmented_assembly	277	1	17	1939	2025	False	False	True	0.115129	

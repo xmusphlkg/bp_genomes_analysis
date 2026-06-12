@@ -1,0 +1,8 @@
+event_type	country_iso3	country_name	event_year	observed_relative_years	pre_window_mean_ipw_prevalence	post_window_mean_ipw_prevalence	post_minus_pre_ipw_prevalence	event_year_ipw_prevalence	year_plus3_ipw_prevalence	peak_origin_clade_descendants	peak_origin_clades_active	amplification_pattern	notes
+first_prn_detection	AUS	Australia	1971	2		0.0		0.5788973297901572	0.0			insufficient_detection_window	event_centered_window
+first_prn_detection	BRA	Brazil	2024	1				1.0				insufficient_detection_window	event_centered_window
+first_prn_detection	CHN	China	2022	6	0.0	0.0524022147868777	0.0524022147868777	0.2391505773732234				limited_or_nonpersistent_post-detection_change	event_centered_window
+first_prn_detection	FRA	France	2009	3	0.0			1.0		1.0	1.0	insufficient_detection_window	event_centered_window
+first_prn_detection	JPN	Japan	1988	2		0.0		1.0	0.0			insufficient_detection_window	event_centered_window
+first_prn_detection	NZL	New Zealand	2012	7	0.0	0.8333577030795268	0.8333577030795268	1.0	0.5000731092385804	10.0	4.0	clear_post-detection_amplification	event_centered_window
+first_prn_detection	USA	United States	1939	1				0.6285905693128689				insufficient_detection_window	event_centered_window

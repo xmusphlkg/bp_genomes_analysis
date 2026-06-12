@@ -1,0 +1,1709 @@
+{
+  "assessment": "vaccine_variable_coverage",
+  "date": "2026-05-08T13:29:04.637978",
+  "countries_with_ap_info": 193,
+  "countries_with_prn_formulation": 0,
+  "countries_with_prn_formulation_from_master": 0,
+  "countries_with_prn_formulation_added_by_curation": 0,
+  "countries_with_dtp3": 208,
+  "threshold_ap": 15,
+  "threshold_prn_form": 5,
+  "ap_info_ready": true,
+  "prn_formulation_ready": false,
+  "decision": "PROCEED_V1_ONLY",
+  "recommendation": "aP intro data sufficient (193 countries). Prn formulation data insufficient (0/5). Proceed with V1 exposure index only. Prioritize Prn formulation curation for V2.",
+  "prn_curation_file": "/mnt/nas/likangguo/pertussis_data/pertussis_gene/public_health/inputs/curation/vaccine_formulation_curation.tsv",
+  "prn_curation_file_exists": false,
+  "prn_curation_rows_loaded": 0,
+  "prn_curation_rows_applied": 0,
+  "country_detail": {
+    "ABW": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 63
+    },
+    "AFG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "AGO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "AIA": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 108
+    },
+    "ALB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "AND": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ARE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ARG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ARM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ASM": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 63
+    },
+    "ATG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "AUS": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "AUT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 243
+    },
+    "AZE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BDI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BEL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "BEN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BFA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BGD": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BGR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 234
+    },
+    "BHR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BHS": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BIH": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BLR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BLZ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BMU": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 126
+    },
+    "BOL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BRA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BRB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 234
+    },
+    "BRN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BTN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "BWA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CAF": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CAN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CHE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CHL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CHN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CIV": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CMR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "COG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "COK": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "COL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "COM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CPV": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CRI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CUB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CUW": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 27
+    },
+    "CYM": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 99
+    },
+    "CYP": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "CZE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 243
+    },
+    "DEU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "DJI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "DMA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "DNK": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "DOM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "DZA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ECU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "EGY": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ERI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ESP": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "EST": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ETH": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "FIN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "FJI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "FRA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "FSM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GAB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GBR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "GEO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GHA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GIN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GMB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GNB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GNQ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GRC": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "GRD": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GTM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "GUM": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 162
+    },
+    "GUY": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "HKG": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": false,
+      "n_country_years": 18
+    },
+    "HND": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "HRV": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "HTI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "HUN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 243
+    },
+    "IDN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "IND": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "IRL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 243
+    },
+    "IRN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "IRQ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ISL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "ISR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ITA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 234
+    },
+    "JAM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "JOR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "JPN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KAZ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KEN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KGZ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KHM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KIR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KNA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KOR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "KWT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LAO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LBN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LBR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LBY": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LCA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LKA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LSO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LTU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "LUX": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "LVA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MAR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MCO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MDA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MDG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MDV": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MEX": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MHL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MKD": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MLI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MLT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MMR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MNE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 171
+    },
+    "MNG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MNP": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 171
+    },
+    "MOZ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MRT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MSR": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 90
+    },
+    "MUS": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MWI": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "MYS": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NAM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NCL": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 171
+    },
+    "NER": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NGA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NIC": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NIU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NLD": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": false,
+      "n_country_years": 252
+    },
+    "NOR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 234
+    },
+    "NPL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NRU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "NZL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "OMN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PAK": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PAN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PER": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PHL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PLW": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PNG": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "POL": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 243
+    },
+    "PRK": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PRT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "PRY": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "PSE": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": false,
+      "n_country_years": 18
+    },
+    "PYF": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 189
+    },
+    "QAT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ROU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "RUS": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "RWA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SAU": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SDN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SEN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SGP": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SLB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SLE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SLV": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SMR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SOM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SRB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SSD": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 162
+    },
+    "STP": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SUR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SVK": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 234
+    },
+    "SVN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "SWE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 252
+    },
+    "SWZ": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SXM": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 18
+    },
+    "SYC": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "SYR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TCA": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 99
+    },
+    "TCD": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TGO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "THA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TJK": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TKL": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 198
+    },
+    "TKM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TLS": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 207
+    },
+    "TON": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TTO": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TUN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TUR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TUV": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "TZA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "UGA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "UKR": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "URY": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "USA": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "UZB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "VCT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "VEN": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "VGB": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 99
+    },
+    "VNM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "VUT": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "WLF": {
+      "has_ap_info": false,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 99
+    },
+    "WSM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "YEM": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ZAF": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ZMB": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    },
+    "ZWE": {
+      "has_ap_info": true,
+      "has_prn_form": false,
+      "has_prn_form_master": false,
+      "has_prn_form_curation": false,
+      "has_dtp3": true,
+      "n_country_years": 225
+    }
+  }
+}

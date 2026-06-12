@@ -1,0 +1,2 @@
+run_timestamp	full_run	smoke_run	manuscript_supported	simmap_model	simmap_model_mode	fixed_er_rate	primary_nsim	secondary_nsim	resampling_nsim	scenario_count	output_summary_path	output_replicate_path	notes
+2026-06-10T10:31:54+0800	TRUE	FALSE	FALSE	fixed_ER_Q_rate_20000_root_equal	fixed_er	20000	1000	500	200	24	/home/ctm/pertussis/pertussis_gene/manuscript/figure_data/asr_stochastic_mapping_summary.tsv	/home/ctm/pertussis/pertussis_gene/manuscript/figure_data/asr_stochastic_mapping_replicates.tsv	canonical_manuscript_facing_full_registered_run

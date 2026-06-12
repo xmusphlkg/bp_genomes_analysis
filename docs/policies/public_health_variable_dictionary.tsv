@@ -1,0 +1,28 @@
+variable_name	dataset	level	type	required	unit_or_encoding	source_priority	description	notes
+country_iso3	all	country-year	string	yes	ISO3	derived	Canonical country key used for joins	Normalize before merge
+country_name	all	country-year	string	yes	free text	official	Human-readable country name	Retain original source name separately if needed
+year	all	country-year	integer	yes	Gregorian year	official	Observation year	No partial-year encoding in final tables
+reported_cases	ph_country_year_master	country-year	integer	yes	case count	WHO/CDC/ECDC	Official reported pertussis case count	Prefer official yearly totals
+incidence_per_100k	ph_country_year_master	country-year	float	yes	cases per 100000	WHO/CDC/ECDC	Standardized incidence value	Convert from per million when needed
+dtp3_coverage	ph_country_year_master	country-year	float	yes	percent	WUENIC	DTP3 coverage indicator	Store as numeric percent not fraction
+booster_coverage	ph_country_year_master	country-year	float	no	percent	WUENIC or official national source	Booster coverage when available	May be sparse
+post_covid_period	ph_country_year_master	country-year	integer	yes	0/1	derived	Indicator for post-May-2023 analytic period	Define exactly in codebook
+vaccine_program_type	ph_country_program_metadata	country-period	string	yes	categorical	official program documents	High-level program label	Examples: wP-dominant, aP-dominant, mixed
+acellular_vs_whole_cell	ph_country_program_metadata	country-period	string	yes	categorical	official program documents	Whether routine program is primarily aP or wP	Allow mixed and unknown
+prn_in_vaccine	ph_country_program_metadata	country-period	string	yes	yes/no/partial/unknown	official program documents	Whether PRN is included in routine vaccine products	Use unknown if unresolved
+booster_schedule	ph_country_program_metadata	country-period	string	no	free text	official program documents	Short description of booster timing	Keep normalized summary plus note field
+program_change_year	ph_country_program_metadata	country-period	integer	no	year	official program documents	Year of relevant program change	Can be interval start
+macrolide_use_ddd_per_1000_per_day	ph_country_year_master	country-year	float	no	DDD per 1000 inhabitants per day	GLASS or ESAC-Net	Country-level macrolide use metric	Keep source-specific origin
+total_antibiotic_use_ddd_per_1000_per_day	ph_country_year_master	country-year	float	no	DDD per 1000 inhabitants per day	GLASS or ESAC-Net	Country-level total systemic antibiotic use metric	Secondary covariate
+genomes_count	ph_country_year_master	country-year	integer	yes	genome count	internal genomic summary	Number of genomes retained in that country-year	Derived from genomic pipeline
+genomes_per_case	ph_country_year_master	country-year	float	yes	ratio	derived	Genomic sampling density relative to reported burden	Key bias metric
+n_genomes_prn_interpretable	bp_country_year_analysis_input	country-year	integer	yes	genome count	internal genomic summary	Genomes with interpretable `prn` status	Used as denominator
+n_prn_disrupted	bp_country_year_analysis_input	country-year	integer	yes	genome count	internal genomic summary	Number of disrupted `prn` genomes	Response count
+frac_prn_disrupted	bp_country_year_analysis_input	country-year	float	yes	fraction	internal genomic summary	Proportion disrupted among interpretable genomes	Primary response
+n_read_supported_prn_disrupted	bp_country_year_analysis_input	country-year	integer	no	genome count	internal genomic summary	Number of read-supported disrupted events	Validation-aware summary
+n_mr_marked	bp_country_year_analysis_input	country-year	integer	no	genome count	internal genomic summary	Number of genomes carrying the 23S resistance marker	Secondary descriptive variable
+frac_23s_A2047G	bp_country_year_analysis_input	country-year	float	no	fraction	internal genomic summary	Fraction carrying the 23S A2047G marker	Secondary descriptive variable
+surveillance_source	ph_country_year_master	country-year	string	yes	free text	official	Name of surveillance source used for cases	Audit column
+source_release_date	all	record	date	yes	YYYY-MM-DD	official	Release or publication date of source	Versioning field
+data_freeze_date	all	record	date	yes	YYYY-MM-DD	derived	Date when the repository froze the source snapshot	Do not overwrite between freezes
+notes	all	record	string	no	free text	derived	Free-text curation or caveat field	Keep short and factual

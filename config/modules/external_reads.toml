@@ -1,0 +1,174 @@
+[ena]
+taxon_query = "tax_tree(520)"
+timeout_seconds = 180
+max_retries = 3
+sleep_seconds = 1.0
+run_metadata_batch_size = 200
+
+[compatibility]
+supported_short_read_platforms = ["ILLUMINA", "DNBSEQ"]
+required_library_layout = "PAIRED"
+required_library_source = "GENOMIC"
+required_library_strategy = "WGS"
+required_fastq_files = 2
+allow_missing_library_source = true
+allow_missing_library_strategy = true
+
+[gapfill]
+auto_exclude_globs = [
+  "pertussis_data/pertussis_gene/step1_ingest/outputs/bp_targeted_external_raw_reads_plan*.tsv",
+  "pertussis_data/pertussis_gene/step1_ingest/outputs/bp_targeted_raw_read_assembly_manifest*.tsv",
+  "pertussis_data/pertussis_gene/step1_ingest/outputs/bp_raw_read_assembly_qc_pass*.tsv",
+]
+auto_exclude_files = [
+  "pertussis_data/pertussis_gene/step4_prn_validation/inputs/bp_raw_reads_download_plan.tsv",
+  "pertussis_data/pertussis_gene/workflow/reads_plan/reads_download_plan.tsv",
+]
+
+[download_plan]
+selection_metric = "largest_estimated_total_bytes"
+
+[[targeted.targets]]
+label = "JPN_historical_1982_2014"
+country_iso3 = "JPN"
+country_name = "Japan"
+study_accession = "PRJEB18624"
+max_per_year = 1
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "JPN_longitudinal_2000_2025"
+country_iso3 = "JPN"
+country_name = "Japan"
+study_accession = "PRJDB7578"
+max_per_year = 1
+max_samples = 8
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "JPN_recent_okinawa_2025"
+country_iso3 = "JPN"
+country_name = "Japan"
+study_accession = "PRJDB37898"
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "JPN_recent_tottori_2024_2025"
+country_iso3 = "JPN"
+country_name = "Japan"
+study_accession = "PRJDB34249"
+max_per_year = 4
+max_samples = 8
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "JPN_recent_shimane_2025"
+country_iso3 = "JPN"
+country_name = "Japan"
+study_accession = "PRJDB39872"
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "AUS_transition_2008_2012"
+country_iso3 = "AUS"
+country_name = "Australia"
+study_accession = "PRJNA562796"
+max_per_year = 2
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "AUS_transition_2013_2017"
+country_iso3 = "AUS"
+country_name = "Australia"
+study_accession = "PRJNA432286"
+max_per_year = 2
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "FIN_modern_2014_2016"
+country_iso3 = "FIN"
+country_name = "Finland"
+study_accession = "PRJEB45681"
+country_filter = "Finland"
+max_per_year = 2
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "FIN_historical"
+country_iso3 = "FIN"
+country_name = "Finland"
+study_accession = "PRJNA262480"
+country_filter = "Finland"
+max_samples = 6
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_historical_1956_2007"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA263311"
+max_per_year = 1
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_early_2012_2015"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA489102"
+max_per_year = 3
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_shenzhen_2015_2016"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA393244"
+max_per_year = 6
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_multicity_2017_2019"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA770762"
+max_per_year = 2
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_shanghai_2018_2022"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA908268"
+max_per_year = 2
+max_samples = 12
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_guangdong_2020_2024"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA1193776"
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_shanghai_2016_2024_large"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA1071282"
+max_per_year = 2
+max_samples = 18
+sort_mode = "smallest_bytes"
+
+[[targeted.targets]]
+label = "CHN_tianjin_2023"
+country_iso3 = "CHN"
+country_name = "China"
+study_accession = "PRJNA1297067"
+sort_mode = "smallest_bytes"

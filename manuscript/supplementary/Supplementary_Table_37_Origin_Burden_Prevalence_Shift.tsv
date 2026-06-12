@@ -1,0 +1,10 @@
+country_iso3	country_name	final_interpretation_tier	prevalence_direction	bounds_stability	n_local_origin_packages	n_origin_packages_ge3_descendants	total_package_descendants	max_package_descendants	median_package_follow_up_years	n_hard_anchor_packages	post_minus_pre_ipw_prevalence	amplification_pattern	peak_origin_clade_descendants	peak_origin_clades_active	shift_source	has_local_origin_package	packages_per_peak_descendant
+AUS	Australia	biologically interesting but uncertain	downward	bounds_narrow	0	0	0	0		0		insufficient_detection_window			first_prn_detection	False	
+JPN	Japan	compatible but bounded	downward	bounds_mixed	0	0	0	0		0		insufficient_detection_window			first_prn_detection	False	
+NZL	New Zealand	compatible but bounded	upward	bounds_narrow	2	2	18	9	6.0	0	0.8333577030795268	clear_post-origin_amplification	10.0	4.0	first_local_origin	True	0.2
+USA	United States	strongly selection-compatible	upward	bounds_narrow	5	4	421	322	7.0	1	0.333607577420155	clear_post-origin_amplification	41.0	7.0	first_local_origin	True	0.12195121951219512
+GBR	United Kingdom	epidemiologically estimable but not triangulated	uncertain_or_single_epoch_only	bounds_mixed	0	0	0	0		0		not_observed			not_estimable_no_anchor	False	
+BRA	Brazil	context only	uncertain_or_single_epoch_only	bounds_mixed	0	0	0	0		0		insufficient_detection_window			first_prn_detection	False	
+CHN	China	context only	uncertain_or_single_epoch_only	bounds_mixed	0	0	0	0		0	0.0524022147868777	limited_or_nonpersistent_post-detection_change			first_prn_detection	False	
+CZE	Czechia	context only	uncertain_or_single_epoch_only	bounds_mixed	0	0	0	0		0		not_observed			not_estimable_no_anchor	False	
+FRA	France	context only	uncertain_or_single_epoch_only	bounds_mixed	0	0	0	0		0		insufficient_local_origin_window	1.0	1.0	first_local_origin	False	0.0

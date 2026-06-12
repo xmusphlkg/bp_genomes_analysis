@@ -1,0 +1,90 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Workflow Configuration — 方案二 Pertussis PRN Global Analysis
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Paths ────────────────────────────────────────────────────────────────────
+workdir: "pertussis_data/pertussis_gene/workflow"
+manifest: "state/manifest/manifest.tsv"
+
+# Reference genome: B. pertussis Tohama I
+reference_genome: "pertussis_data/bp_genomes_qc/reference/tohama_i.fasta"
+
+# IS reference library (from Step4)
+is_reference: "pertussis_data/pertussis_gene/step4_prn_validation/references/is_elements/bp_is_reference.fasta"
+
+# ── Existing pipeline inputs ─────────────────────────────────────────────────
+step1_metadata: "pertussis_data/pertussis_gene/step1_ingest/bp_metadata_clean.csv"
+step2_qc_table: "pertussis_data/pertussis_gene/step2_typing/outputs/bp_qc_merged_mlst_markers.tsv"
+step2_typing_manifest: "pertussis_data/pertussis_gene/step2_typing/outputs/bp_genotype_manifest.tsv"
+step3_prn_calls: "pertussis_data/pertussis_gene/step3_prn_scan/outputs/bp_prn_disruption_calls.tsv"
+step4_mechanism_calls: "pertussis_data/pertussis_gene/step4_prn_validation/outputs/bp_prn_mechanism_calls.tsv"
+step4_is_hits: "pertussis_data/pertussis_gene/step4_prn_validation/outputs/bp_prn_is_hits.tsv"
+step5_phylo_balanced: "pertussis_data/pertussis_gene/step5_phylogeny_asr/outputs/bp_phylogeny_manifest_balanced.tsv"
+step5_origins: "pertussis_data/pertussis_gene/step5_phylogeny_asr/outputs/bp_prn_independent_origins.tsv"
+step6_models: "pertussis_data/pertussis_gene/step6_epi_transmission/bp_country_year_association_models.tsv"
+ph_master: "pertussis_data/pertussis_gene/public_health/ph_country_year_master.tsv"
+ph_program_metadata: "pertussis_data/pertussis_gene/public_health/ph_country_program_metadata.tsv"
+supp_table1: "manuscript/supplementary/Supplementary_Table_1_genome_metadata.tsv"
+
+# ── Genome downloads ─────────────────────────────────────────────────────────
+genome_fasta_dir: "pertussis_data/bp_genomes_qc/assemblies"
+
+# ── Readiness thresholds ────────────────────────────────────────────────────
+reads_availability_min_pct: 30     # Minimum % of genomes with traceable reads
+vaccine_variable_min_countries: 15  # Minimum countries with aP intro data
+vaccine_variable_min_prn_formulation: 5  # Minimum countries with aP-contains-Prn data
+
+# ── QC thresholds ────────────────────────────────────────────────────────────
+qc:
+  min_assembly_length: 3800000    # bp (expect ~4.1 Mb)
+  max_assembly_length: 4600000
+  max_contigs: 400
+  min_n50: 10000
+  max_contamination_pct: 5        # Kraken2 non-Bordetella fraction
+  min_mean_depth: 20              # for reads samples
+  min_q30_pct: 80
+
+# ── Snippy ───────────────────────────────────────────────────────────────────
+snippy:
+  mincov: 10
+  minfrac: 0.9
+  mapqual: 60
+  basequal: 13
+  cpus: 4
+
+# ── Recombination filtering ─────────────────────────────────────────────────
+recomb_filter:
+  gubbins_iterations: 5
+  clonalframeml_emsim: 100
+
+# ── ML tree ──────────────────────────────────────────────────────────────────
+ml_tree:
+  iqtree2_model: "GTR+G4"  # or "MFP" for model finder
+  iqtree2_bootstrap: 1000  # UFBoot2 replicates
+  raxmlng_model: "GTR+G"
+  raxmlng_bootstrap: 200   # Felsenstein bootstrap
+
+# ── ASR ──────────────────────────────────────────────────────────────────────
+asr:
+  parsimony_method: "fitch"
+  likelihood_tool: "pastml"
+  pastml_model: "F81"   # or MPPA
+  missing_scenarios:
+    - mask           # Treat unknown tips as missing
+    - conservative   # Bias toward intact
+    - model_impute   # Use missingness model probabilities
+  min_bootstrap_threshold: 70  # Minimum support for origin event
+
+# ── IS detection ─────────────────────────────────────────────────────────────
+is_detection:
+  ismapper_min_support: 5
+  panisa_min_support: 3
+  hotspot_permutations: 10000
+  hotspot_fdr_threshold: 0.05
+
+# ── Epidemiology ─────────────────────────────────────────────────────────────
+epi:
+  exposure_index_version: "v1"  # v1 (DTP3+years_since) or v2 (with PrnInForm)
+  exposure_lambda_range: [0.5, 1.0, 2.0]
+  exposure_gamma_range: [0.0, 0.5, 1.0]
+  ipw_weight_truncation: 20  # Max allowed IP weight

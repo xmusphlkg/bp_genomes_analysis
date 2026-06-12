@@ -1,0 +1,125 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+/lib/
+/lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rapp.history
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+env/
+/env
+venv/
+ENV/
+.env
+.venv/
+.venvs/
+config/runtime_envs.local.env
+config/runtime/runtime_envs.local.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large data files (keep in Git LFS or external storage)
+*.fastq.gz
+*.fq.gz
+*.bam
+*.bai
+*.vcf
+outputs/*/intermediate/*
+modules/*/inputs/raw/*
+
+
+# Logs
+logs/
+*.log
+.pytest_cache/
+.snakemake/
+/logs/
+/tmp/
+/outputs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Local workflow scratch and reporter outputs
+/..bfg-report/
+/bfg.jar
+# Historical run archives are excluded, but the small literature reference
+# cache can remain trackable for internal review. Check redistribution rights
+# before including full-text PDFs in a public archive.
+/archive/*
+!/archive/docs/
+/archive/docs/*
+!/archive/docs/references/
+/archive/docs/references/*
+!/archive/docs/references/refer/
+!/archive/docs/references/refer/**
+/fastp.html
+/fastp.json
+manuscript/**/_archive/
+modules/**/archive/
+modules/*/outputs/
+modules/*/work/
+modules/step1_ingest/outputs/*.lock
+modules/step1_ingest/outputs/qc_targeted_country_gapfill_*/
+modules/step1_ingest/outputs/work_*/
+
+bp_genomes_qc/*
+modules/step1_ingest/outputs/bp_genomes_month_ready/ncbi_dataset/data
+modules/step1_ingest/outputs/bp_genomes_month_ready/ncbi_dataset/data/*
+modules/step1_ingest/outputs/assemblies/
+modules/step1_ingest/outputs/raw_read_qc_work_*/
+modules/step1_ingest/work/
+modules/step3_prn_scan/outputs/bp_phylo_genomes
+modules/step3_prn_scan/outputs/bp_phylo_genomes/*
+modules/step4_prn_validation/inputs/shards/
+modules/step4_prn_validation/inputs/external_gapfill_shards*/
+outputs/workflow/reads
+outputs/workflow/reads_clean
+outputs/workflow/qc
+outputs/workflow/snippy
+outputs/workflow/linked_reads_validation
+outputs/workflow/snippy_ctg
+outputs/workflow/snippy_ctg/*
+outputs/workflow/phylo
+outputs/workflow/phylo/*
+outputs/workflow/phylo_balanced_ml
+outputs/workflow/phylo_balanced_ml/*
+outputs/workflow/local_rooted_package_trees
+outputs/workflow/local_rooted_package_trees/*
+modules/step4_prn_validation/work/read_validation
+tmp*

@@ -1,0 +1,11 @@
+diagnostic_scope	country_iso3	metric	value	n	n_interpretable	n_missing_outcomes	unweighted_interpretable_mean	target_retained_cohort_mean	weighted_interpretable_mean	max_ipw_weight	notes
+missingness_model_performance		training_only_accuracy	0.9512	2170							Computed from training-scope fitted probabilities only; not a held-out generalization metric.
+missingness_model_performance		training_only_brier_score	0.0359	2170							Lower is better, but this row is training-only unless an out-of-fold probability column is staged.
+covariate_balance		year_numeric	2010.1185	1346			2012.3633	2013.7867	2010.1185		IPW-weighted interpretable mean is reported against the retained-cohort target mean as a diagnostic, not a pass/fail rule.
+covariate_balance		has_reads_numeric	0.8809	1400			0.9029	0.6255	0.8809		IPW-weighted interpretable mean is reported against the retained-cohort target mean as a diagnostic, not a pass/fail rule.
+covariate_balance		log_total_length	15.1884	342			15.2075	15.1549	15.1884		IPW-weighted interpretable mean is reported against the retained-cohort target mean as a diagnostic, not a pass/fail rule.
+covariate_balance		log_n_contigs	3.7517	342			2.4991	4.1180	3.7517		IPW-weighted interpretable mean is reported against the retained-cohort target mean as a diagnostic, not a pass/fail rule.
+country_year_overlap	CHN	country_year_rows_with_genomes	19	856	155	701				20.0000	Country-level overlap diagnostic for high-leverage focal countries.
+country_year_overlap	JPN	country_year_rows_with_genomes	28	85	54	31				20.0000	Country-level overlap diagnostic for high-leverage focal countries.
+country_year_overlap	USA	country_year_rows_with_genomes	38	951	923	28				20.0000	Country-level overlap diagnostic for high-leverage focal countries.
+weight_distribution		max_ipw_weight_global	20.0000	297							Weights are truncated at the workflow-specified upper bound.

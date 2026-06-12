@@ -1,0 +1,4 @@
+mechanism_group	n_disrupted_samples	n_with_validation_rows	n_supported_like	n_no_signal	n_unresolved_or_not_run	representative_validation_level	representative_sample_id_canonical	representative_supporting_evidence
+IS481 insertion	382	382	7	0	375	read_backed_supported	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA
+Inversion / rearrangement	175	175	5	0	170	read_backed_supported	SAMN03854490	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA
+Other disruptions	49	49	13	1	35	read_backed_supported	SAMN08136991	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA

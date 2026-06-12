@@ -1,0 +1,16 @@
+analysis_layer	group_variable	group_value	n_records	n_prn_interpretable	n_prn_disrupted	prn_disrupted_fraction_among_interpretable	n_gap1043	n_ptxP3	n_fim3_1	interpretation
+published_overlap	prn_status_concordance	overall	1174							1092 of 1174 compared rows were concordant (fraction 0.930).
+published_overlap	prn_mechanism_broad_concordance	overall	1405							311 of 515 compared rows were concordant (fraction 0.604). Broad comparison collapses published mechanism calls to IS481 versus other_or_unspecified.
+published_overlap	published_PRN_status_rows	overall	1405							Rows with a published PRN-status annotation; concordance is restricted to the compared subset rather than all annotated rows.
+internal_genome_context	marker_23s_status	MS	1418	1279	600	0.469116	368	1200	879	Internal 23S-marker stratum; used as support-only AMR context and not as a primary causal adjustment.
+internal_genome_context	marker_23s_status	MR_A2047G	140	58	0	0.000000	0	58	140	Internal 23S-marker stratum; used as support-only AMR context and not as a primary causal adjustment.
+internal_genome_context	marker_23s_status	other_23S_allele	3	0	0		0	2	3	Internal 23S-marker stratum; used as support-only AMR context and not as a primary causal adjustment.
+internal_genome_context	marker_23s_status	unassigned	845	63	17	0.269841	2	12	10	Internal 23S-marker stratum; used as support-only AMR context and not as a primary causal adjustment.
+internal_genome_context	published_sublineage	United States Sublineage 1	285	277	274	0.989170	247	285	280	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	ptxP3/fim3-1	377	334	113	0.338323	55	373	367	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	ptxP3/fim3-2	347	309	103	0.333333	8	346	0	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	MR-MT28-others	55	49	0	0.000000	0	55	55	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	MR-MT28-PG1	19	15	15	1.000000	9	19	19	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	MR-MT28-PG2	19	10	0	0.000000	0	19	19	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	MS-MT28	12	12	0	0.000000	0	12	12	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.
+internal_genome_context	published_sublineage	unassigned	1001	226	95	0.420354	51	156	0	Published-lineage stratum; used to check whether prn disruption is simply a single AMR or lineage label.

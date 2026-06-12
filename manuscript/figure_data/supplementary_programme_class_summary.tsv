@@ -1,0 +1,5 @@
+program_formulation_class	n_period_rows	n_countries	country_iso3_list	total_interpretable_genomes	total_prn_disrupted	pooled_naive_prevalence	pooled_ipw_prevalence	mean_period_ipw_prevalence	median_period_ipw_prevalence	high_confidence_rows	rows_with_precedence_conflict	transition_flagged_rows	lagged_class_available_rows	year_window
+wp_only_or_pre_ap	2	2	GTM,IND	12	0	0.0	0.0	0.0	0.0	2	0	0	2	2010-2019
+routine_ap_prn_negative	2	2	JPN,ZAF	38	1	0.02631578947368421	0.016021955951251436	0.017366137723403	0.017366137723403	1	0	0	2	2015-2024
+routine_ap_mixed	3	3	BRA,CHN,FRA	78	21	0.2692307692307692	0.39023461015877237	0.3942217815761988	0.1826653447285964	0	0	0	3	2020-2024
+routine_ap_prn_positive	11	4	CZE,GBR,NZL,USA	942	540	0.5732484076433121	0.4790650326994211	0.33134828626652185	0.0157160425028021	10	3	0	9	2000-2024

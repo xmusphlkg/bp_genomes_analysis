@@ -1,0 +1,27 @@
+country_iso3	prn_event_id	prn_mechanism_call	country_sample_count	country_total_disrupted	country_name	sample_count	country_count	origin_package_burden	major_recurrent_architecture	dominant_after_origin_collapse	validation_level	hard_anchor	country_sample_share_within_disrupted
+AUS	prn_evt_insufficient__not_available_current_step3	insufficient_data	16	19	Australia								0.8421052631578947
+AUS	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	2	19	Australia	370.0	8.0	9.0	True	True	read_backed_supported	True	0.10526315789473684
+AUS	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	1	19	Australia	109.0	4.0	3.0	True	False	read_backed_supported	True	0.05263157894736842
+BRA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	5	8	Brazil	370.0	8.0	9.0	True	True	read_backed_supported	True	0.625
+BRA	prn_evt_rearrangement__within_contig__cov91	coding_disrupted_inversion_or_rearrangement	3	8	Brazil	65.0	3.0	1.0	True	False	read_backed_supported	True	0.375
+CHN	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	7	13	China	370.0	8.0	9.0	True	True	read_backed_supported	True	0.5384615384615384
+CHN	prn_evt_other_disruption__insertion_like__gap1042	coding_disrupted_other	3	13	China	10.0	2.0	0.0	False	False	read_backed_supported	True	0.23076923076923078
+CHN	prn_evt_other_disruption__insertion_like__gap1044	coding_disrupted_other	1	13	China	1.0	1.0	0.0	False	False	read_validation_unresolved	False	0.07692307692307693
+CHN	prn_evt_other_disruption__insertion_like__gap1045	coding_disrupted_other	1	13	China	1.0	1.0	0.0	False	False	read_validation_unresolved	False	0.07692307692307693
+CHN	prn_evt_rearrangement__within_contig__cov91	coding_disrupted_inversion_or_rearrangement	1	13	China	65.0	3.0	1.0	True	False	read_backed_supported	True	0.07692307692307693
+FRA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	1	1	France	370.0	8.0	9.0	True	True	read_backed_supported	True	1.0
+JPN	prn_evt_insufficient__not_available_current_step3	insufficient_data	5	7	Japan								0.7142857142857143
+JPN	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	2	7	Japan	370.0	8.0	9.0	True	True	read_backed_supported	True	0.2857142857142857
+NZL	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	17	23	New Zealand	370.0	8.0	9.0	True	True	read_backed_supported	True	0.7391304347826086
+NZL	prn_evt_coding_disrupted_is481__is481__gap1041	coding_disrupted_is481	3	23	New Zealand	3.0	1.0	0.0	False	False	public_longread_or_hybrid_assembly	True	0.13043478260869565
+NZL	prn_evt_other_disruption__insertion_like__gap1040	coding_disrupted_other	2	23	New Zealand	3.0	2.0	0.0	False	False	read_backed_supported	True	0.08695652173913043
+NZL	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	1	23	New Zealand	109.0	4.0	3.0	True	False	read_backed_supported	True	0.043478260869565216
+USA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	330	534	United States	370.0	8.0	9.0	True	True	read_backed_supported	True	0.6179775280898876
+USA	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	106	534	United States	109.0	4.0	3.0	True	False	read_backed_supported	True	0.19850187265917604
+USA	prn_evt_rearrangement__within_contig__cov91	coding_disrupted_inversion_or_rearrangement	61	534	United States	65.0	3.0	1.0	True	False	read_backed_supported	True	0.11423220973782772
+USA	prn_evt_insufficient__not_available_current_step3	insufficient_data	17	534	United States								0.031835205992509365
+USA	prn_evt_coding_disrupted_is481__is481__gap1042	coding_disrupted_is481	7	534	United States	7.0	1.0	0.0	False	False	public_longread_or_hybrid_assembly	True	0.013108614232209739
+USA	prn_evt_other_disruption__insertion_like__gap1042	coding_disrupted_other	7	534	United States	10.0	2.0	0.0	False	False	read_backed_supported	True	0.013108614232209739
+USA	prn_evt_other_disruption__insertion_like__gap1041	coding_disrupted_other	4	534	United States	4.0	1.0	0.0	False	False	read_backed_supported	True	0.00749063670411985
+USA	prn_evt_other_disruption__insertion_like__gap1040	coding_disrupted_other	1	534	United States	3.0	2.0	0.0	False	False	read_backed_supported	True	0.0018726591760299626
+USA	prn_evt_rearrangement__within_contig__cov94	coding_disrupted_inversion_or_rearrangement	1	534	United States	1.0	1.0	0.0	False	False	public_longread_or_hybrid_assembly	True	0.0018726591760299626

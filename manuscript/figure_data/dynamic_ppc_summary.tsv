@@ -1,0 +1,4 @@
+country_iso3	country_name	analysis_id	component	status	note
+USA	United States	usa_full_mechanistic	monthly_cases	not_run	optimizer_failed_to_converge
+CHN	China	chn_full_mechanistic	monthly_cases	not_run	optimizer_failed_to_converge
+JPN	Japan	jpn_full_mechanistic	monthly_cases	not_run	full_mechanistic_fit_not_attempted_or_not_passing

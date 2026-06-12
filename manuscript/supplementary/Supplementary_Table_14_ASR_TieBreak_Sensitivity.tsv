@@ -1,0 +1,5 @@
+tree_frame	scenario	iterations	fitch_origin_events	origin_count_min	origin_count_median	origin_count_max	tip_count	disrupted_tip_count	notes
+composition_pruned_reference_rooted_primary	intact_biased_primary	1	23	23	23	23	1919	571	Deterministic Fitch uppass tie rule.
+composition_pruned_reference_rooted_primary	disrupted_biased_pessimistic	1	23	23	23	23	1919	571	Deterministic Fitch uppass tie rule.
+composition_pruned_reference_rooted_primary	insufficient_biased_diagnostic	1	23	23	23	23	1919	571	Deterministic Fitch uppass tie rule.
+composition_pruned_reference_rooted_primary	random_unbiased_tie_break_seed42_1000	1000	23.00	23	23.0	23	1919	571	Randomly selects among candidate states when parent state is not admissible; fixed seed series 42..1041.

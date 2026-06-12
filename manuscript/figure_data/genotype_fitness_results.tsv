@@ -1,0 +1,26 @@
+record_type	model_id	metric_name	metric_value	selected_as_primary	n_country_year_cells	n_countries	notes	era	genotype_background
+model_comparison	no_era_time_trend	aic	1287.1909921205129	True	88	23			
+model_comparison	no_era_time_trend	bic	1403.0999273884559	True	88	23			
+model_comparison	no_era_time_trend	heldout_log_likelihood	-797.3519050521334	True	88	23	Leave-one-country-year-out predictive comparison.		
+model_comparison	no_era_time_trend	heldout_prediction_coverage	0.8977272727272727	True	88	23	Fraction of leave-one-country-year-out rows with non-missing predictions.		
+model_comparison	no_era_time_trend	heldout_adjusted_poisson_deviance	1464.0118639115544	True	88	23	Poisson deviance divided by prediction coverage.		
+model_comparison	no_era_time_trend	heldout_poisson_deviance	1314.2833778296908	True	88	23	Lower is better.		
+model_comparison	any_ap_switch_time_trend	aic	1205.1175196135782	False	88	23			
+model_comparison	any_ap_switch_time_trend	bic	1340.3446107595116	False	88	23			
+model_comparison	any_ap_switch_time_trend	heldout_log_likelihood	-30261.953608532905	False	88	23	Leave-one-country-year-out predictive comparison.		
+model_comparison	any_ap_switch_time_trend	heldout_prediction_coverage	0.8977272727272727	False	88	23	Fraction of leave-one-country-year-out rows with non-missing predictions.		
+model_comparison	any_ap_switch_time_trend	heldout_adjusted_poisson_deviance	67106.66882356492	False	88	23	Poisson deviance divided by prediction coverage.		
+model_comparison	any_ap_switch_time_trend	heldout_poisson_deviance	60243.48678479124	False	88	23	Lower is better.		
+model_comparison	formulation_aware_time_trend	fit_status		False	61	16	model_fit_failed:NaN, inf or invalid value detected in weights, estimation infeasible.		
+annual_relative_fitness	no_era_time_trend	annual_relative_fitness	1.10908141987994	True	88	23		pooled	ptxP3/PRN-
+annual_relative_fitness	no_era_time_trend	annual_relative_fitness	1.0252452679738424	True	88	23		pooled	ptxP3/PRN+
+annual_relative_fitness	no_era_time_trend	annual_relative_fitness	1.0038209499574866	True	88	23		pooled	non-ptxP3/PRN-
+annual_relative_fitness	no_era_time_trend	annual_relative_fitness	1.0	True	88	23		pooled	non-ptxP3/PRN+
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	1.0344025812182176	False	88	23		wP_or_pre_ap	ptxP3/PRN-
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	1.0388731614495101	False	88	23		wP_or_pre_ap	ptxP3/PRN+
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	0.9658779515972983	False	88	23		wP_or_pre_ap	non-ptxP3/PRN-
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	1.0	False	88	23		wP_or_pre_ap	non-ptxP3/PRN+
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	0.978959343228296	False	88	23		routine_ap_any	ptxP3/PRN-
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	0.855056310774431	False	88	23		routine_ap_any	ptxP3/PRN+
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	0.8538111646368148	False	88	23		routine_ap_any	non-ptxP3/PRN-
+annual_relative_fitness	any_ap_switch_time_trend	annual_relative_fitness	1.0	False	88	23		routine_ap_any	non-ptxP3/PRN+

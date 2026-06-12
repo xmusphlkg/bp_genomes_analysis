@@ -1,0 +1,12 @@
+country_iso3	country_name	eligible_rows	country_row_share	program_formulation_classes	high_confidence_rows	rows_with_precedence_conflict	transition_flagged_rows	lagged_class_available_rows	total_interpretable_genomes	total_prn_disrupted	pooled_naive_prevalence	pooled_ipw_prevalence	mean_period_ipw_prevalence	period_labels	dominance_flag
+USA	United States	5	0.2777777777777778	routine_ap_prn_positive	5	2	0	4	877	517	0.5895096921322691	0.5173608869083237	0.4296506574110287	2000-2004,2005-2009,2010-2014,2015-2019,2020-2024	largest_country_contributor
+NZL	New Zealand	4	0.2222222222222222	routine_ap_prn_positive	4	1	0	3	51	23	0.45098039215686275	0.46726676238669274	0.37414446546914903	2000-2004,2005-2009,2010-2014,2015-2019	
+BRA	Brazil	1	0.0555555555555555	routine_ap_mixed	0	0	0	1	8	8	1.0	1.0	1.0	2020-2024	
+CHN	China	1	0.0555555555555555	routine_ap_mixed	0	0	0	1	64	13	0.203125	0.1826653447285964	0.1826653447285964	2020-2024	
+CZE	Czechia	1	0.0555555555555555	routine_ap_prn_positive	0	0	0	1	6	0	0.0	0.0	0.0	2010-2014	
+FRA	France	1	0.0555555555555555	routine_ap_mixed	0	0	0	1	6	0	0.0	0.0	0.0	2020-2024	
+GBR	United Kingdom	1	0.0555555555555555	routine_ap_prn_positive	1	0	0	1	8	0	0.0	0.0	0.0	2010-2014	
+GTM	Guatemala	1	0.0555555555555555	wp_only_or_pre_ap	1	0	0	1	5	0	0.0	0.0	0.0	2010-2014	
+IND	India	1	0.0555555555555555	wp_only_or_pre_ap	1	0	0	1	7	0	0.0	0.0	0.0	2015-2019	
+JPN	Japan	1	0.0555555555555555	routine_ap_prn_negative	1	0	0	1	7	1	0.14285714285714285	0.03473227544680607	0.034732275446806	2020-2024	
+ZAF	South Africa	1	0.0555555555555555	routine_ap_prn_negative	0	0	0	1	31	0	0.0	0.0	0.0	2015-2019	
