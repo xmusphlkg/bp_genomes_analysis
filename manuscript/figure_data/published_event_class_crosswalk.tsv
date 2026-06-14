@@ -1,0 +1,27 @@
+rank	published_prn_mechanism_raw	repo_prn_event_id	n_rows
+1	1613-1614(IS insertion)	prn_evt_coding_disrupted_is481__is481__gap1043	279
+2	1613-1614(IS insertion)	prn_evt_rearrangement__within_contig__cov58	88
+3	245-246(IS insertion)	prn_evt_rearrangement__within_contig__cov91	45
+4	other	prn_evt_coding_disrupted_is481__is481__gap1043	33
+5	other	prn_evt_insufficient__not_available_current_step3	19
+6	other	prn_evt_rearrangement__within_contig__cov91	8
+7	1613-1614(IS insertion)	prn_evt_coding_disrupted_is481__is481__gap1042	7
+8	1613-1614(IS insertion)	prn_evt_other_disruption__insertion_like__gap1042	5
+9	other	prn_evt_rearrangement__within_contig__cov58	5
+10	1613-1614(IS insertion)	prn_evt_other_disruption__insertion_like__gap1041	4
+11	1598-1599(IS insertion)	prn_evt_rearrangement__within_contig__cov58	3
+12	other	prn_evt_other_disruption__insertion_like__gap1042	3
+13	1613-1614(IS insertion)	prn_evt_insufficient__not_available_current_step3	2
+14	1628-1629(IS insertion)	prn_evt_coding_disrupted_is481__is481__gap1043	2
+15	1141-1142(IS insertion)	prn_evt_coding_disrupted_is481__is481__gap1043	1
+16	1583-1584(IS insertion)	prn_evt_other_disruption__insertion_like__gap1042	1
+17	1598-1599(IS insertion)	prn_evt_coding_disrupted_is481__is481__gap1043	1
+18	1613-1614(IS insertion)	prn_evt_other_disruption__insertion_like__gap1040	1
+19	245-246(IS insertion)	prn_evt_coding_disrupted_is481__is481__gap1043	1
+20	245-246(IS insertion)	prn_evt_insufficient__not_available_current_step3	1
+21	801-802(IS insertion)	prn_evt_rearrangement__within_contig__cov58	1
+22	other	prn_evt_coding_disrupted_is481__is481__gap1045	1
+23	other	prn_evt_other_disruption__insertion_like__gap1044	1
+24	other	prn_evt_other_disruption__insertion_like__gap1045	1
+25	other	prn_evt_other_disruption__insertion_like__gap204	1
+26	other	prn_evt_rearrangement__within_contig__cov94	1

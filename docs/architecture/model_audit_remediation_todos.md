@@ -43,15 +43,15 @@ The default policy is:
   - Fix: remove invalid grouped-binomial-plus-`var_weights` combinations, correct method labels, and keep only statistically coherent robustness paths.
   - Verify: script outputs no longer advertise HC3 when it is not used and do not normalize grouped-binomial likelihood weights arbitrarily.
 
-- [ ] Selected-country evidence summary pseudo-replication
+- [x] Selected-country evidence summary pseudo-replication
   - Files: `manuscript/scripts/diagnostics/ms_12_build_submission_evidence_summary.py`
-  - Fix: replace expanded pseudo-genome rows with grouped or clustered country-year inference; align USA lag analyses with the temporal resolution of the genomic covariate.
-  - Verify: no pseudo-row expansion remains in primary ecology robustness outputs.
+  - Fix: keep primary ecology robustness at the grouped country-year scale, relabel it as frequentist GLM diagnostics rather than posterior or mixed-effect output, and fail/diagnostic-label unstable rows.
+  - Verify: no pseudo-row expansion remains in primary ecology robustness outputs; generated tables use `estimate`/`standard_error` and diagnostic status fields.
 
-- [ ] Selected-country DR / AIPW sidecar
+- [x] Selected-country DR / AIPW sidecar
   - Files: `manuscript/scripts/sidecars/ms_16_build_analysis_upgrade_sidecars.py`
-  - Fix: use out-of-fold nuisance predictions where feasible, relabel exploratory estimators clearly, and avoid overfit in-sample DR claims.
-  - Verify: tests cover cross-validated probability generation and missingness summaries remain stable on fixtures.
+  - Fix: use out-of-fold nuisance predictions where feasible, relabel exploratory estimators clearly, and fail-close augmented estimates that leave the probability scale.
+  - Verify: tests cover bounded AIPW helper behavior and generated missingness summaries carry estimator-status fields.
 
 ## Medium
 
@@ -60,7 +60,7 @@ The default policy is:
   - Fix: separate immutable analysis-input construction from model-fitting output writes.
   - Verify: sensitivity runs cannot silently rebuild manuscript inputs without explicit invocation.
 
-- [ ] Missingness-model optimism
+- [x] Missingness-model optimism
   - Files: `workflow/lib/missingness_model.py`, `manuscript/scripts/diagnostics/ms_10_build_submission_diagnostics.py`
   - Fix: distinguish training diagnostics from out-of-fold calibration and ensure downstream summaries do not present in-sample metrics as generalization evidence.
   - Verify: tests still pass and diagnostics tables label metric provenance.
@@ -70,12 +70,12 @@ The default policy is:
   - Fix: replace ad hoc min/max CI fusion with a bootstrap-native interval summary and guard empty replicate tables.
   - Verify: empty or partially failed bootstrap runs write coherent diagnostic outputs instead of crashing.
 
-- [ ] aP exposure index transparency
+- [x] aP exposure index transparency
   - Files: `workflow/lib/build_ap_exposure_index.py`
   - Fix: tighten availability flags, clarify arbitrary scoring components, and surface parameterization coverage in outputs.
   - Verify: V3 availability matches all required metadata components.
 
-- [ ] ASR representativeness resampling metadata
+- [x] ASR representativeness resampling metadata
   - Files: `workflow/lib/run_m5_asr_resampling.py`
   - Fix: stop depending on archived inventory metadata and make stratified resampling explicitly stress-test-only.
   - Verify: active manifests drive block assignments.
@@ -92,15 +92,15 @@ The default policy is:
 
 ## Low / Reporting
 
-- [ ] Multiple-testing labels
+- [x] Multiple-testing labels
   - Files: `workflow/lib/panel_model.py`, `run_programme_surveillance_models.py`, `modules/step6_epi_transmission/bin/step6_03_fit_primary_models.py`
   - Fix: avoid implying manuscript-wide FDR control when adjustment is only local to a term family.
 
-- [ ] Remote fallback reproducibility
+- [x] Remote fallback reproducibility
   - Files: `manuscript/scripts/sidecars/ms_05_build_focal_country_dynamics.py`
   - Fix: prefer pinned local snapshots for contact/population priors and label any network fallback as non-canonical.
 
-- [ ] Study-dependence audit wording
+- [x] Study-dependence audit wording
   - Files: `manuscript/scripts/diagnostics/ms_18_build_study_dependence_audit.py`
   - Fix: keep heuristic calls clearly labeled as heuristic and not formal inferential tests.
 
@@ -113,8 +113,16 @@ The default policy is:
   - IPW programme models no longer treat pseudo-denominators as binomial trial counts.
   - `ms_05` jointly estimates basis and auxiliary parameters and propagates full-parameter uncertainty.
   - `ms_21` now defaults to empirical ARD stochastic mapping, requires explicit smoke-mode opt-in, and writes smoke outputs to dev-only paths.
+  - `ms_16` now fail-closes out-of-range AIPW prevalence estimates and exposes raw augmented estimates only as diagnostics.
+  - `ms_12` ecology robustness output now uses frequentist estimate fields and diagnostic/failure status labels.
   - Step6 ecology / sensitivity outputs now use country-cluster-robust covariance with HC1 fallback and explicit covariance metadata in notes.
   - Invalid weighted grouped-binomial robustness variants were removed from Step6 mixed-effects outputs.
   - Step6 CV no longer silently fabricates synthetic data or mismatches prediction/actual vectors.
   - AMU exploratory standard GLM fitting is now skipped below the minimum exploratory overlap threshold.
   - Two-stage uncertainty summaries now report bootstrap-native propagated intervals and tolerate empty replicate tables.
+  - Missingness diagnostics now prefer out-of-fold probabilities when available and label training-scope metrics explicitly.
+  - aP exposure V2/V3 availability now requires complete required components and reports parameter-grid/provenance fields.
+  - ASR resampling outputs now carry stress-test-only inference scope and active-manifest block-assignment provenance through figure data and audit ledgers.
+  - Model result tables now carry structured `q_value_scope` fields for local BH adjustment scope, including workflow panel, programme, Step6 primary, and Step6 sensitivity outputs.
+  - `ms_05` contact priors now prefer a pinned local `epydemix-data v1.1.0` snapshot, record `source_access_mode` / `source_canonicality`, and require explicit opt-in for non-canonical network fallback.
+  - Study-dependence outputs now carry `diagnostic_inference_scope` fields, and heuristic bootstrap/permutation wording no longer presents sensitivity screens as formal hypothesis tests.

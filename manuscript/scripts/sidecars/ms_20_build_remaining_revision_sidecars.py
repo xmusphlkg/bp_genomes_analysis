@@ -503,6 +503,10 @@ def build_asr_representativeness_summary(manifest: pd.DataFrame) -> pd.DataFrame
                     "min_fitch_origin_events": "",
                     "max_fitch_origin_events": "",
                     "proportion_rejecting_one_global_clone": "",
+                    "resampling_design_purpose": "",
+                    "resampling_inference_scope": "",
+                    "block_assignment_metadata_source": "",
+                    "block_assignment_inventory_source": "",
                     "notes": "Tree-subset representativeness audit against the full PRN-interpretable cohort.",
                 }
             )
@@ -524,6 +528,10 @@ def build_asr_representativeness_summary(manifest: pd.DataFrame) -> pd.DataFrame
                     "min_fitch_origin_events": row.fitch_origin_events_min,
                     "max_fitch_origin_events": row.fitch_origin_events_max,
                     "proportion_rejecting_one_global_clone": "",
+                    "resampling_design_purpose": getattr(row, "resampling_design_purpose", ""),
+                    "resampling_inference_scope": getattr(row, "resampling_inference_scope", ""),
+                    "block_assignment_metadata_source": getattr(row, "block_assignment_metadata_source", ""),
+                    "block_assignment_inventory_source": getattr(row, "block_assignment_inventory_source", ""),
                     "notes": "Balanced ASR resampling summary used as the representativeness-aware robustness layer.",
                 }
             )
@@ -547,6 +555,10 @@ def build_asr_representativeness_summary(manifest: pd.DataFrame) -> pd.DataFrame
                     "min_fitch_origin_events": float(fitch.min(skipna=True)) if fitch.notna().any() else "",
                     "max_fitch_origin_events": float(fitch.max(skipna=True)) if fitch.notna().any() else "",
                     "proportion_rejecting_one_global_clone": float(rejects.mean()) if len(rejects) else "",
+                    "resampling_design_purpose": "",
+                    "resampling_inference_scope": "",
+                    "block_assignment_metadata_source": "",
+                    "block_assignment_inventory_source": "",
                     "notes": "Registered ASR scenario distribution before stochastic-mapping augmentation.",
                 }
             )

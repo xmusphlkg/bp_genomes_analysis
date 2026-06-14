@@ -63,7 +63,7 @@ ROWS = [
         "supplementary",
         [
             "manuscript/figure_data/fig01_prn_country_year_summary.tsv",
-            "manuscript/supplementary/Supplementary_Table_7_Cohort_Flow_and_Tree_Selection.tsv",
+            "manuscript/supplementary/Supplementary_Table_4_Cohort_Flow_and_Tree_Selection.tsv",
         ],
     ),
     row(
@@ -145,7 +145,7 @@ ROWS = [
     row(
         "Figure 4",
         "A",
-        "Aligned country programme timelines",
+        "Aligned country archive-context timelines",
         "main",
         [
             "manuscript/figure_data/selected_country/country_program_history_manifest.tsv",
@@ -176,51 +176,40 @@ ROWS = [
     row(
         "Figure 4",
         "D",
-        "Architecture turnover between programme epochs",
+        "Architecture turnover between archive epochs",
         "main",
         ["manuscript/figure_data/selected_country/country_epoch_architecture_turnover_summary.tsv"],
     ),
     row(
         "Figure 5",
         "A",
+        "Nested evidence chain and denominator flow",
+        "main",
+        ["manuscript/figure_data/fig05_evidence_chain_summary.tsv"],
+    ),
+    row(
+        "Figure 5",
+        "B",
         "prn- and comparator-locus specificity",
         "main",
         ["manuscript/figure_data/selected_country/prn_specificity_negative_control.tsv"],
     ),
     row(
         "Figure 5",
-        "B",
-        "Published PRN phenotype bridge",
-        "main",
-        ["manuscript/figure_data/biology_bridge_external_context.tsv"],
-    ),
-    row(
-        "Figure 5",
         "C",
-        "AMR and lineage-background overlay",
+        "Published PRN phenotype bridge and route-family tiers",
         "main",
-        ["manuscript/figure_data/biology_bridge_internal_sensitivity.tsv"],
+        [
+            "manuscript/figure_data/biology_bridge_external_context.tsv",
+            "manuscript/supplementary/Supplementary_Table_10_Event_Class_Phenotype_Evidence_Tiers.tsv",
+        ],
     ),
     row(
         "Figure 5",
         "D",
-        "Missingness-estimator percentage-point contrasts",
+        "Validation evidence stack",
         "main",
-        ["manuscript/figure_data/selected_country/selected_country_dr_missingness_summary.tsv"],
-    ),
-    row(
-        "Figure 5",
-        "E",
-        "Country glyph synthesis",
-        "main",
-        ["manuscript/figure_data/selected_country/cross_country_evidence_grid.tsv"],
-    ),
-    row(
-        "Figure 5",
-        "F",
-        "Identifiability ledger",
-        "main",
-        ["manuscript/figure_data/selected_country/cross_country_evidence_grid.tsv"],
+        ["manuscript/figure_data/caller_validation_sensitivity_summary.tsv"],
     ),
     row(
         "Supplementary Figure 1",
@@ -228,7 +217,7 @@ ROWS = [
         "Sample-frame reconciliation and country-readiness audit",
         "supplementary",
         [
-            "manuscript/supplementary/Supplementary_Table_33_Sample_Frame_Reconciliation.tsv",
+            "manuscript/submission_data/audit_ledgers/supplementary_table_sources/Supplementary_Table_33_Sample_Frame_Reconciliation.tsv",
             "manuscript/figure_data/selected_country/country_selection_scorecard.tsv",
             "manuscript/figure_data/selected_country/country_epoch_eligibility.tsv",
         ],
@@ -327,6 +316,30 @@ ROWS = [
         "prn-locus structural signal specificity audit",
         "supplementary",
         ["manuscript/figure_data/selected_country/prn_specificity_negative_control.tsv"],
+    ),
+    row(
+        "Supplementary Figure 14",
+        "A-D",
+        "Structural recurrence evidence compendium",
+        "supplementary",
+        [
+            "manuscript/figure_data/event_definition_hierarchy_sensitivity.tsv",
+            "manuscript/figure_data/structural_grammar_evidence.tsv",
+            "manuscript/figure_data/event_specific_acquisition_summary.tsv",
+            "manuscript/figure_data/prn_junction_confidence_matrix.tsv",
+        ],
+    ),
+    row(
+        "Supplementary Figure 15",
+        "A-D",
+        "Validation and caller-sensitivity compendium",
+        "supplementary",
+        [
+            "manuscript/figure_data/published_overlap_concordance.tsv",
+            "manuscript/figure_data/caller_validation_sensitivity_summary.tsv",
+            "manuscript/figure_data/prn_threshold_grid_full.tsv",
+            "manuscript/figure_data/biology_bridge_external_context.tsv",
+        ],
     ),
 ]
 

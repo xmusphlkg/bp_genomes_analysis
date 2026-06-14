@@ -24,7 +24,7 @@ library(readr)
 library(scales)
 library(tidyr)
 
-frame <- safe_load(file.path(BASE_DIR, "manuscript", "supplementary", "Supplementary_Table_33_Sample_Frame_Reconciliation.tsv"), "sample-frame reconciliation") %>%
+frame <- safe_load(file.path(BASE_DIR, "manuscript", "submission_data", "audit_ledgers", "supplementary_table_sources", "Supplementary_Table_33_Sample_Frame_Reconciliation.tsv"), "sample-frame reconciliation") %>%
   mutate(
     n_total = as.numeric(n_total),
     n_prn_interpretable = as.numeric(n_prn_interpretable),

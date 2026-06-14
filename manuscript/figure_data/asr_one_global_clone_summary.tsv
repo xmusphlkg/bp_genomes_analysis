@@ -1,8 +1,8 @@
 scenario_class	n_scenarios	n_reject_one_global_clone_fitch	min_fitch_origin_events	median_fitch_origin_events	max_fitch_origin_events	median_largest_disrupted_clade_share	min_mk_lower_95	n_reject_one_global_clone_mk95
-overall	25	23	1.0	22.0	24.0	0.5534420289855073	25.0	4
+overall	25	23	1.0	22.0	25.0	0.5534420289855073	25.0	4
 primary	1	1	24.0	24.0	24.0	0.5456171735241503	25.0	1
 resampling_country_balanced	4	4	6.0	8.0	9.0	0.3731481481481481		0
 resampling_study_block_balanced	10	10	22.0	22.0	22.0	0.5561594202898551		0
 resampling_time_balanced	4	3	1.0	3.5	4.0	0.6428571428571428		0
-rooting	4	3	23.0	23.0	23.0	0.5462478184991274	25.0	3
+rooting	4	3	24.0	25.0	25.0	0.5436720142602496	25.0	3
 support_threshold	2	2	21.0	21.0	21.0	0.5436720142602496		0

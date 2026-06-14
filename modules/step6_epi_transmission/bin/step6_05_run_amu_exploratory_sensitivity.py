@@ -36,6 +36,7 @@ MODEL_OUTPUT_COLUMNS = [
     "ci_upper",
     "p_value",
     "q_value",
+    "q_value_scope",
     "sensitivity_label",
     "notes",
 ]
@@ -77,6 +78,7 @@ OVERLAP_MANIFEST_COLUMNS = [
 
 RIDGE_ALPHAS = [0.01, 0.1, 1.0]
 MIN_EXPLORATORY_OBS = 8
+AMU_Q_VALUE_SCOPE = "not_applicable_penalized_ridge_no_wald_p_values"
 
 
 def repo_root() -> Path:
@@ -351,6 +353,7 @@ def main() -> int:
                                     "ci_upper": "",
                                     "p_value": "",
                                     "q_value": "",
+                                    "q_value_scope": AMU_Q_VALUE_SCOPE,
                                     "sensitivity_label": sensitivity_label,
                                     "notes": ";".join(row_notes),
                                 }

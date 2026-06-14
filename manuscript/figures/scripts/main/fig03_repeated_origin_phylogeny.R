@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
-# Figure 3: repeated-origin phylogeny reconstructed from frozen tree tables
+# Figure 3: repeated-acquisition phylogeny reconstructed from frozen tree tables
 # Layout: AAB / AAC / AAD (Nature double-column, 3-row composite)
-# A = fan phylogeny with annotation rings
-# B = ASR Fitch origin count by scenario (range plot)
-# C = Stochastic mapping origin count (range plot)
-# D = Scatter: Fitch origins vs largest disrupted clade share
+# A = optimized fan phylogeny with annotation rings
+# B = ASR Fitch package count by scenario (range plot)
+# C = Stochastic mapping package count (range plot)
+# D = Event-specific minimum tree-level package burden for recurrent architectures
 
 # function --------------------------------------------------------
 
@@ -126,7 +126,31 @@ simmap <- safe_load(file.path(FIGURE_DATA_DIR, "asr_stochastic_mapping_summary.t
           scenario_class = scenario_label(str_replace_all(scenario_class, "_", " "))
      )
 
-# tree construction ---------------------------------------------------
+event_specific <- safe_load(file.path(FIGURE_DATA_DIR, "event_specific_acquisition_summary.tsv"), "event-specific acquisition summary") %>%
+     mutate(
+          sample_count = as.numeric(sample_count),
+          n_country_year_cells = as.numeric(n_country_year_cells),
+          n_mlst_st = as.numeric(n_mlst_st),
+          acquisition_package_count = as.numeric(acquisition_package_count),
+          non_singleton_package_count = as.numeric(non_singleton_package_count),
+          largest_package_disrupted_tips = as.numeric(largest_package_disrupted_tips),
+          rank_by_genome_burden = as.numeric(rank_by_genome_burden)
+     )
+
+within_origin <- safe_load(file.path(FIGURE_DATA_DIR, "within_origin_structural_concentration.tsv"), "within-origin structural concentration") %>%
+     mutate(
+          n_disrupted_descendant_tips = as.numeric(n_disrupted_descendant_tips),
+          n_unique_events = as.numeric(n_unique_events),
+          dominant_event_count = as.numeric(dominant_event_count),
+          dominant_event_share = as.numeric(dominant_event_share),
+          top3_event_share = as.numeric(top3_event_share),
+          country_count = as.numeric(country_count),
+          mlst_st_count = as.numeric(mlst_st_count),
+          year_min = as.numeric(year_min),
+          year_max = as.numeric(year_max)
+     )
+
+# panel A: optimized fan phylogeny with annotation rings ----------------
 
 build_phylo <- function(node_table) {
      tips <- node_table %>% filter(node_type == "tip") %>% arrange(y_order, label)
@@ -253,7 +277,7 @@ if (length(missing_track_values) > 0) {
 pA_tree <- p_tree_base %<+% tree_meta +
      geom_tippoint(aes(colour = tip_state), size = 0.82, alpha = 0.96, na.rm = TRUE) +
      geom_point2(
-          aes(subset = is_fitch_origin, shape = "Fitch origin"),
+          aes(subset = is_fitch_origin, shape = "Fitch package"),
           size = 1.75,
           stroke = 0.42,
           fill = "white",
@@ -261,7 +285,7 @@ pA_tree <- p_tree_base %<+% tree_meta +
           na.rm = TRUE
      ) +
      scale_colour_manual(values = prn_colors, na.value = FIGURE_GREY, name = "Tip state") +
-     scale_shape_manual(values = c("Fitch origin" = 21), name = NULL) +
+     scale_shape_manual(values = c("Fitch package" = 21), name = NULL) +
      guides(
           colour = guide_legend(order = 1, override.aes = list(size = 2)),
           shape = guide_legend(
@@ -286,7 +310,7 @@ pA_body <- ggtree::gheatmap(
 panel_a_key_rows <- bind_rows(
      tibble::tibble(
           track = "State",
-          label = c("intact", "disrupt.", "insuff.", "ref.", "origin"),
+          label = c("intact", "disrupt.", "insuff.", "ref.", "package"),
           fill = c(unname(prn_colors["Intact"]), unname(prn_colors["Disrupted"]), unname(prn_colors["Insufficient data"]), unname(prn_colors["Reference"]), "white"),
           stroke = c(rep(FIGURE_INK, 4), unname(npg_colors["red"])),
           shape = c(rep(22, 4), 21),
@@ -353,7 +377,7 @@ pA_key <- ggplot(panel_a_key_rows, aes(x = x, y = y)) +
 pA_composite <- pA_body / pA_key + plot_layout(heights = c(1, 0.26))
 pA <- wrap_elements(full = pA_composite)
 
-# panel B: ASR Fitch origin count by scenario --------------------------
+# panel B: ASR Fitch package count by scenario -------------------------
 
 asr_summary <- asr %>%
      filter(!is.na(fitch_origin_events)) %>%
@@ -372,11 +396,11 @@ pB <- ggplot(asr_summary, aes(median_origin, scenario_class)) +
      geom_segment(aes(x = min_origin, xend = max_origin, yend = scenario_class), colour = FIGURE_GREY, linewidth = 0.68) +
      geom_point(size = 2.5, fill = npg_colors["red"], shape = 21, colour = FIGURE_INK, stroke = 0.18) +
      scale_x_continuous(expand = expansion(mult = c(0.02, 0.04))) +
-     labs(x = "Fitch origin count", y = NULL) +
+     labs(x = "Fitch package count", y = NULL) +
      theme_nature(base_size = fig3_base_size) +
      theme(axis.text.y = element_text(size = 4.9))
 
-# panel C: Stochastic mapping origin count -----------------------------
+# panel C: Stochastic mapping package count ----------------------------
 
 simmap_summary <- simmap %>%
      group_by(scenario_class) %>%
@@ -392,40 +416,47 @@ pC <- ggplot(simmap_summary, aes(median, scenario_class)) +
      geom_vline(xintercept = 1, linetype = "dashed", linewidth = 0.25, colour = FIGURE_MID_GREY) +
      geom_segment(aes(x = lower, xend = upper, yend = scenario_class), colour = FIGURE_GREY, linewidth = 0.68) +
      geom_point(size = 2.5, fill = npg_colors["purple"], shape = 21, colour = FIGURE_INK, stroke = 0.18) +
-     labs(x = "Stochastic-map origin count (95% CI)", y = NULL) +
+     labs(x = "Stochastic-map package count (95% CI)", y = NULL) +
      theme_nature(base_size = fig3_base_size) +
      theme(axis.text.y = element_text(size = 4.9))
 
-# panel D: Scatter - Fitch origins vs clade share ----------------------
+# panel D: Event-specific acquisition packages ------------------------
 
-scenario_scatter <- asr %>%
-     filter(!is.na(fitch_origin_events), !is.na(largest_disrupted_clade_share)) %>%
-     mutate(class_short = case_when(
-          str_detect(scenario_class, "Study") ~ "Study-balanced",
-          str_detect(scenario_class, "Country") ~ "Country-balanced",
-          str_detect(scenario_class, "Time") ~ "Time-balanced stress",
-          str_detect(scenario_class, "Primary|Rooting|Support") ~ "Registered",
-          TRUE ~ "Other"
-     ))
+event_package_plot <- event_specific %>%
+     filter(rank_by_genome_burden <= 3) %>%
+     arrange(desc(sample_count)) %>%
+     mutate(
+          event_display = .env$event_label(prn_event_id),
+          event_display = factor(event_display, levels = rev(unique(event_display))),
+          package_label = paste0(
+               acquisition_package_count, " pkg; ",
+               n_country_year_cells, " cells\n",
+               comma(sample_count), " genomes; ",
+               n_mlst_st, " ST"
+          ),
+          label_x = acquisition_package_count + 0.48
+     )
 
-pD <- ggplot(scenario_scatter, aes(fitch_origin_events, largest_disrupted_clade_share, fill = class_short)) +
+pD <- ggplot(event_package_plot, aes(acquisition_package_count, event_display)) +
      geom_vline(xintercept = 1, linetype = "dashed", linewidth = 0.25, colour = FIGURE_MID_GREY) +
-     geom_hline(yintercept = 0.5, linetype = "dotted", linewidth = 0.2, colour = FIGURE_GREY) +
-     geom_point(shape = 21, size = 2.2, colour = FIGURE_INK, stroke = 0.16, alpha = 0.9) +
-     scale_y_continuous(labels = percent, limits = c(0, 1), expand = expansion(mult = c(0.02, 0.05))) +
-     scale_fill_manual(values = c(
-          "Registered" = unname(npg_colors["red"]),
-          "Study-balanced" = unname(npg_colors["green"]),
-          "Country-balanced" = unname(npg_colors["blue"]),
-          "Time-balanced stress" = unname(npg_colors["peach"]),
-          "Other" = FIGURE_GREY
-     ), name = "Scenario class") +
-     labs(x = "Fitch origins", y = "Largest disrupted\nclade share") +
+     geom_segment(aes(x = 0, xend = acquisition_package_count, yend = event_display),
+                  colour = FIGURE_RULE_COLOUR, linewidth = 0.58) +
+     geom_point(aes(size = sample_count, fill = event_display),
+                shape = 21, colour = FIGURE_INK, stroke = 0.20, alpha = 0.96) +
+     geom_text(aes(x = label_x, label = package_label),
+               hjust = 0, size = 1.45, lineheight = 0.82, colour = FIGURE_MUTED_TEXT) +
+     scale_x_continuous(limits = c(0, max(event_package_plot$label_x, na.rm = TRUE) + 4.3),
+                        breaks = 0:9,
+                        expand = expansion(mult = c(0.02, 0.02))) +
+     scale_size_area(max_size = 4.2, guide = "none") +
+     scale_fill_manual(values = architecture_colors, guide = "none") +
+     labs(x = "Minimum tree-level\nacquisition packages", y = NULL) +
+     coord_cartesian(clip = "off") +
      theme_nature(base_size = fig3_base_size) +
-     theme(legend.position = "bottom",
-           legend.justification.bottom = 'right',
-           legend.title.position = 'left') +
-     guides(fill = guide_legend(ncol = 2))
+     theme(
+          axis.text.y = element_text(size = 5.2, face = "bold"),
+          plot.margin = margin(3, 18, 3, 3)
+     )
 
 # assembly: multi-panel evidence layout --------------------------------
 
@@ -436,18 +467,18 @@ AAD
 "
 
 fig3 <- free(pA) + pB + pC + free(pD) +
-  plot_layout(
-    design = fig3_layout,
-    widths = c(1, 1, 0.78),
-    heights = c(0.9, 0.9, 0.9)
-  ) +
-  plot_annotation(tag_levels = "a") &
-  theme(
-    plot.tag = element_text(face = "bold", size = fig3_tag_size, colour = FIGURE_TEXT_COLOUR),
-    plot.tag.position = c(0, 1),
-    plot.title.position = "plot",
-    plot.margin = margin(3, 3, 3, 3)
-  )
+     plot_layout(
+          design = fig3_layout,
+          widths = c(1, 1, 0.78),
+          heights = c(0.9, 0.9, 0.9)
+     ) +
+     plot_annotation(tag_levels = "a") &
+     theme(
+          plot.tag = element_text(face = "bold", size = fig3_tag_size, colour = FIGURE_TEXT_COLOUR),
+          plot.tag.position = c(0, 1),
+          plot.title.position = "plot",
+          plot.margin = margin(3, 3, 3, 3)
+     )
 
-save_nc_pdf(fig3, "fig03_repeated_origin_phylogeny.pdf", height = NC_MAX_HEIGHT)
-save_nc_png(fig3, "fig03_repeated_origin_phylogeny.png", height = NC_MAX_HEIGHT)
+save_nc_pdf(fig3, "fig03_repeated_origin_phylogeny.pdf", height = 5.5)
+save_nc_png(fig3, "fig03_repeated_origin_phylogeny.png", height = 5.5)

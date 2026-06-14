@@ -40,9 +40,9 @@ cat("  PERTUSSIS MANUSCRIPT FIGURE PIPELINE\n")
 cat("========================================\n")
 
 required_pkgs <- c(
-  "ggplot2", "cowplot", "scales", "RColorBrewer",
+  "ggplot2", "ggforce", "cowplot", "scales", "RColorBrewer",
   "dplyr", "readr", "tidyr", "lubridate", "stringr",
-  "maps", "ggrepel", "patchwork", "ape", "ggtree", "ggnewscale"
+  "maps", "ggrepel", "patchwork", "ape", "ggtree"
 )
 for (pkg in required_pkgs) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
@@ -59,9 +59,9 @@ cat("Shared libraries loaded.\n")
 figures <- list(
   list(label = "Figure 1", script = "main/fig01_public_genome_atlas.R", name = "Public-Genome Atlas"),
   list(label = "Figure 2", script = "main/fig02_prn_structural_solution_space.R", name = "PRN Structural Solution Space"),
-  list(label = "Figure 3", script = "main/fig03_repeated_origin_phylogeny.R", name = "Repeated-Origin Phylogeny"),
-  list(label = "Figure 4", script = "main/fig04_country_programme_amplification.R", name = "Country-Programme Amplification Environments"),
-  list(label = "Figure 5", script = "main/fig05_validation_synthesis.R", name = "Validation, Specificity and Identifiability Synthesis")
+  list(label = "Figure 3", script = "main/fig03_repeated_origin_phylogeny.R", name = "Repeated-Acquisition Phylogeny"),
+  list(label = "Figure 4", script = "main/fig04_country_programme_amplification.R", name = "Archive Context and Sampling Heterogeneity"),
+  list(label = "Figure 5", script = "main/fig05_validation_synthesis.R", name = "Validation, Specificity and Phenotype Synthesis")
 )
 
 results <- vector("list", length(figures))

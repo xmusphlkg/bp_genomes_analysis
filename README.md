@@ -3,7 +3,7 @@
 This repository contains the analysis code, small curated inputs, frozen figure data,
 and manuscript-facing reproducibility package for the study:
 
-**Public genomes define recurrent pertactin disruption routes in Bordetella pertussis**
+**Recurrent structural routes to pertactin gene disruption in Bordetella pertussis**
 
 The public release is designed to support two levels of reuse:
 

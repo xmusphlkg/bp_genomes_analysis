@@ -3,21 +3,22 @@
 
 Evidence ledgers that are needed for interpretation are rendered as readable
 markdown tables in the Supplementary Information. Wide ledgers are reduced to
-reader-facing columns while the complete TSV files remain available for
-reproducibility. Figure-source or diagnostic TSVs are tracked in a disposition
-manifest rather than repeated in the SI text.
+reader-facing columns for the SI text. Figure-source or diagnostic TSVs are
+tracked in a disposition manifest rather than repeated in the SI text.
 """
 
 from __future__ import annotations
 
 import csv
 import re
+import shutil
 from pathlib import Path
 from typing import Dict, Iterable, List
 
 ROOT = Path(__file__).resolve().parents[3]
 MANUSCRIPT_DIR = ROOT / "manuscript"
 SUPPLEMENTARY_DIR = MANUSCRIPT_DIR / "supplementary"
+AUDIT_LEDGER_DIR = MANUSCRIPT_DIR / "submission_data" / "audit_ledgers" / "supplementary_table_sources"
 TEXT_DIR = MANUSCRIPT_DIR / "text"
 TEMPLATE_DIR = TEXT_DIR / "templates"
 TABLE_TEMPLATE = TEMPLATE_DIR / "supplementary_table_temp.md"
@@ -39,7 +40,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "branch_support",
         "origin_support_score",
     ],
-    "Supplementary_Table_9_prn_Event_Definitions.tsv": [
+    "Supplementary_Table_5_prn_Event_Definitions.tsv": [
         "prn_event_id",
         "mechanism_call",
         "event_subcategory",
@@ -53,22 +54,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "validation_level",
         "validation_status",
     ],
-    "Supplementary_Table_24_Origin_Evidence_Completeness.tsv": [
-        "origin_id",
-        "dominant_prn_mechanism",
-        "dominant_prn_event_id",
-        "origin_n_disrupted_tips",
-        "tree_representative_country_iso3",
-        "tree_representative_year",
-        "tree_representative_validation_level",
-        "representative_validation_level",
-        "dominant_event_validation_level",
-        "followup_class",
-        "public_data_recovery_status",
-        "evidence_alignment",
-        "validation_priority",
-    ],
-    "Supplementary_Table_44_ASR_Scenario_Registry.tsv": [
+    "Supplementary_Table_6_ASR_Scenario_Registry.tsv": [
         "scenario_id",
         "scenario_class",
         "analysis_frame",
@@ -84,22 +70,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "rejects_one_global_clone_fitch",
         "rejects_one_global_clone_mk95",
     ],
-    "Supplementary_Table_45_Origin_Confidence_Tiers.tsv": [
-        "origin_id",
-        "origin_confidence_tier",
-        "origin_evidence_class",
-        "primary_use_in_manuscript",
-        "n_tips_disrupted",
-        "n_countries",
-        "first_year",
-        "last_year",
-        "major_mlst_st",
-        "dominant_prn_event_id",
-        "dominant_event_validation_level",
-        "origin_package_hard_anchor",
-        "dominant_event_hard_anchor",
-    ],
-    "Supplementary_Table_62_Event_Class_Phenotype_Evidence_Tiers.tsv": [
+    "Supplementary_Table_10_Event_Class_Phenotype_Evidence_Tiers.tsv": [
         "prn_event_id",
         "mechanism_call",
         "event_subcategory",
@@ -112,7 +83,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "phenotype_inference",
         "caution_note",
     ],
-    "Supplementary_Table_58_Junction_Confidence_Matrix.tsv": [
+    "Supplementary_Table_8_Junction_Confidence_Matrix.tsv": [
         "prn_event_id",
         "event_label",
         "mechanism_call",
@@ -128,7 +99,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "confidence_tier",
         "junction_interpretation",
     ],
-    "Supplementary_Table_59_IS481_Target_Site_Accessibility.tsv": [
+    "Supplementary_Table_9_IS481_Target_Site_Accessibility.tsv": [
         "locus",
         "locus_label",
         "analysis_role",
@@ -144,7 +115,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "distance_from_observed_breakpoint_to_nearest_exact_target_bp",
         "interpretation_note",
     ],
-    "Supplementary_Table_64_Recurrent_Event_Lineage_Country_Year_Anchors.tsv": [
+    "Supplementary_Table_11_Recurrent_Event_Lineage_Country_Year_Anchors.tsv": [
         "prn_event_id",
         "event_subcategory",
         "mechanism_call",
@@ -158,6 +129,22 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "top_ptxP_labels",
         "top_country_year_cells",
         "anchor_interpretation",
+    ],
+    "Supplementary_Table_12_Event_Specific_Acquisition_Packages.tsv": [
+        "prn_event_id",
+        "mechanism_call",
+        "sample_count",
+        "country_count",
+        "n_country_year_cells",
+        "n_mlst_st",
+        "top_mlst_st",
+        "top_country_year_cells",
+        "acquisition_package_count",
+        "non_singleton_package_count",
+        "largest_package_disrupted_tips",
+        "validation_level",
+        "representative_tsd_direct_repeats",
+        "event_specific_interpretation",
     ],
 }
 
@@ -177,82 +164,82 @@ PUBLISHED_TABLES: List[Dict[str, str]] = [
     {
         "pub_no": "3",
         "source_file": "Supplementary_Table_3_independent_origins.tsv",
-        "title": "Phylogenetic evidence for independent prn-disruption origins",
-        "rationale": "compact evidence ledger for the central recurrent-origin claim",
+        "title": "Phylogenetic evidence for minimum tree-level prn-disruption acquisition packages",
+        "rationale": "compact evidence ledger for the central tree-level recurrence claim",
+    },
+    {
+        "pub_no": "4",
+        "source_file": "Supplementary_Table_4_Cohort_Flow_and_Tree_Selection.tsv",
+        "title": "Cohort-flow filters and tree-selection criteria",
+        "rationale": "compact audit trail linking raw genomes to the analysis tree",
+        "legacy_source_file": "Supplementary_Table_7_Cohort_Flow_and_Tree_Selection.tsv",
+    },
+    {
+        "pub_no": "5",
+        "source_file": "Supplementary_Table_5_prn_Event_Definitions.tsv",
+        "title": "Operational definitions for recurrent prn events",
+        "rationale": "definition table required to reproduce event classification rules",
+        "legacy_source_file": "Supplementary_Table_9_prn_Event_Definitions.tsv",
+    },
+    {
+        "pub_no": "6",
+        "source_file": "Supplementary_Table_6_ASR_Scenario_Registry.tsv",
+        "title": "Ancestral-state reconstruction scenarios",
+        "rationale": "compact sensitivity registry bounding ancestral-state reconstruction choices",
+        "legacy_source_file": "Supplementary_Table_44_ASR_Scenario_Registry.tsv",
     },
     {
         "pub_no": "7",
-        "source_file": "Supplementary_Table_7_Cohort_Flow_and_Tree_Selection.tsv",
-        "title": "Cohort-flow filters and tree-selection criteria",
-        "rationale": "compact audit trail linking raw genomes to the analysis tree",
+        "source_file": "Supplementary_Table_7_Published_Overlap_Concordance.tsv",
+        "title": "Concordance with published prn-status annotations",
+        "rationale": "external concordance evidence that is not fully conveyed in figures",
+        "legacy_source_file": "Supplementary_Table_55_Published_Overlap_Concordance.tsv",
+    },
+    {
+        "pub_no": "8",
+        "source_file": "Supplementary_Table_8_Junction_Confidence_Matrix.tsv",
+        "title": "Junction-level support for recurrent prn-disruption events",
+        "rationale": "technical confidence table separating read-supported and inferred events",
+        "legacy_source_file": "Supplementary_Table_58_Junction_Confidence_Matrix.tsv",
     },
     {
         "pub_no": "9",
-        "source_file": "Supplementary_Table_9_prn_Event_Definitions.tsv",
-        "title": "Operational definitions for recurrent prn events",
-        "rationale": "definition table required to reproduce event classification rules",
+        "source_file": "Supplementary_Table_9_IS481_Target_Site_Accessibility.tsv",
+        "title": "Comparator-locus context and IS481 target-site accessibility",
+        "rationale": "compact sequence-context evidence for comparator matching and IS481-associated event opportunities",
+        "legacy_source_file": "Supplementary_Table_59_IS481_Target_Site_Accessibility.tsv",
     },
     {
-        "pub_no": "24",
-        "source_file": "Supplementary_Table_24_Origin_Evidence_Completeness.tsv",
-        "title": "Completeness of origin-level validation evidence",
-        "rationale": "reader-facing uncertainty audit for origin-level evidence completeness",
-    },
-    {
-        "pub_no": "44",
-        "source_file": "Supplementary_Table_44_ASR_Scenario_Registry.tsv",
-        "title": "Ancestral-state reconstruction scenarios",
-        "rationale": "compact sensitivity registry bounding ancestral-state reconstruction choices",
-    },
-    {
-        "pub_no": "45",
-        "source_file": "Supplementary_Table_45_Origin_Confidence_Tiers.tsv",
-        "title": "Confidence tiers for reconstructed prn-disruption origins",
-        "rationale": "compact reviewer-facing confidence-tier summary for reconstructed origins",
-    },
-    {
-        "pub_no": "55",
-        "source_file": "Supplementary_Table_55_Published_Overlap_Concordance.tsv",
-        "title": "Concordance with published prn-status annotations",
-        "rationale": "external concordance evidence that is not fully conveyed in figures",
-    },
-    {
-        "pub_no": "57",
-        "source_file": "Supplementary_Table_57_Structural_Grammar_Evidence.tsv",
-        "title": "Evidence for recurrent IS481-associated structural grammar",
-        "rationale": "compact biology-facing evidence ledger for recurrent structural grammar",
-    },
-    {
-        "pub_no": "58",
-        "source_file": "Supplementary_Table_58_Junction_Confidence_Matrix.tsv",
-        "title": "Junction-level support for recurrent prn-disruption events",
-        "rationale": "technical confidence table separating read-supported and inferred events",
-    },
-    {
-        "pub_no": "59",
-        "source_file": "Supplementary_Table_59_IS481_Target_Site_Accessibility.tsv",
-        "title": "Reference-context accessibility of IS481 target sites",
-        "rationale": "compact sequence-context evidence for IS481-associated event opportunities",
-    },
-    {
-        "pub_no": "62",
-        "source_file": "Supplementary_Table_62_Event_Class_Phenotype_Evidence_Tiers.tsv",
+        "pub_no": "10",
+        "source_file": "Supplementary_Table_10_Event_Class_Phenotype_Evidence_Tiers.tsv",
         "title": "Phenotype-evidence tiers for recurrent prn event classes",
         "rationale": "compact biology bridge while keeping causal language bounded",
+        "legacy_source_file": "Supplementary_Table_62_Event_Class_Phenotype_Evidence_Tiers.tsv",
     },
     {
-        "pub_no": "64",
-        "source_file": "Supplementary_Table_64_Recurrent_Event_Lineage_Country_Year_Anchors.tsv",
+        "pub_no": "11",
+        "source_file": "Supplementary_Table_11_Recurrent_Event_Lineage_Country_Year_Anchors.tsv",
         "title": "Lineage, country and year anchors for recurrent prn events",
         "rationale": "compact anchor table for recurrent event interpretation",
+        "legacy_source_file": "Supplementary_Table_64_Recurrent_Event_Lineage_Country_Year_Anchors.tsv",
+    },
+    {
+        "pub_no": "12",
+        "source_file": "Supplementary_Table_12_Event_Specific_Acquisition_Packages.tsv",
+        "title": "Event-specific minimum tree-level acquisition package support for recurrent prn events",
+        "rationale": "compact event-specific recurrence summary supporting the revised Fig. 3d",
+        "legacy_source_file": "Supplementary_Table_65_Event_Specific_Acquisition_Packages.tsv",
     },
 ]
 
 COLUMN_RENAMES: Dict[str, str] = {
+    "acquisition_package_count": "No. acquisition packages",
+    "acquisition_package_ids": "Acquisition package IDs",
     "analysis_frame": "Analysis frame",
     "analysis_role": "Analysis role",
     "anchor_interpretation": "Anchor interpretation",
     "ancestral_state": "Ancestral state",
+    "audit_section": "Audit section",
     "bp_category": "Breakpoint category",
     "branch_support": "Branch support",
     "breakpoint_coordinate_basis": "Breakpoint coordinate basis",
@@ -264,6 +251,7 @@ COLUMN_RENAMES: Dict[str, str] = {
     "collapse_or_weighting_rule": "Collapse or weighting rule",
     "confidence_tier": "Confidence tier",
     "concordance_fraction": "Concordance fraction",
+    "comparison_or_risk": "Comparison or risk",
     "country_count": "No. countries",
     "country_iso3": "Country (ISO3)",
     "definition_limitations": "Definition limitations",
@@ -287,6 +275,7 @@ COLUMN_RENAMES: Dict[str, str] = {
     "event_count": "No. events",
     "event_definition_rule": "Event definition rule",
     "event_label": "Event label",
+    "event_specific_interpretation": "Event-specific interpretation",
     "event_subcategory": "Event subcategory",
     "evidence_alignment": "Evidence alignment",
     "evidence_flags": "Evidence flags",
@@ -302,11 +291,12 @@ COLUMN_RENAMES: Dict[str, str] = {
     "example_sequencing_tech": "Example sequencing technology",
     "exemplar_replacement_applied": "Exemplar replacement applied",
     "exemplar_selection_rule": "Exemplar selection rule",
-    "fitch_origin_events": "Fitch origin events",
+    "fitch_origin_events": "Fitch acquisition packages",
     "first_year": "First year",
     "followup_class": "Follow-up class",
     "hamming_distance_le1_to_ACTAGG_or_reverse_complement_count": "Sites within one mismatch of ACTAGG or reverse complement",
     "hamming_distance_le1_to_ACTAGG_or_reverse_complement_per_kb": "Sites within one mismatch per kb",
+    "hsp_min_pident": "Minimum HSP identity (%)",
     "hit_orientation": "Hit orientation",
     "hit_support_tier": "Hit support tier",
     "inference_method": "Inference method",
@@ -316,14 +306,17 @@ COLUMN_RENAMES: Dict[str, str] = {
     "is_definitive_disrupted": "Definitive disrupted call",
     "is_element_name": "Insertion sequence element",
     "is_interpretable": "Interpretable call",
+    "is_support_profile": "IS support profile",
     "is_uncertain_fragmented": "Uncertain or fragmented call",
     "junction_interpretation": "Junction interpretation",
     "largest_disrupted_clade_share": "Largest disrupted-clade share",
     "last_year": "Last year",
     "latest_year": "Latest year",
+    "largest_package_disrupted_tips": "Largest package disrupted tips",
     "locus": "Locus",
     "locus_label": "Locus label",
     "locus_length_bp": "Locus length (bp)",
+    "locus_qcov_threshold": "Locus coverage threshold (%)",
     "longread_exemplar": "Long-read exemplar",
     "major_23s_status": "Major 23S status",
     "major_background_label": "Major background label",
@@ -331,15 +324,17 @@ COLUMN_RENAMES: Dict[str, str] = {
     "major_fim3_label": "Major fim3 label",
     "major_lineage": "Major lineage",
     "major_lineage_source": "Major lineage source",
+    "main_result": "Main result",
     "major_mlst_st": "Major MLST sequence type",
     "major_ptxP_label": "Major ptxP label",
-    "max_disrupted_tips_per_origin": "Maximum disrupted tips per origin",
+    "max_disrupted_tips_per_origin": "Maximum disrupted tips per package",
     "max_total_clipped_reads": "Maximum clipped reads",
+    "median_package_disrupted_tips": "Median package disrupted tips",
     "mechanism_call": "Mechanism call",
     "metric_name": "Metric",
-    "mk_origin_count_lower_95": "Mk origin count lower 95% CI",
-    "mk_origin_count_mean": "Mk origin count mean",
-    "mk_origin_count_upper_95": "Mk origin count upper 95% CI",
+    "mk_origin_count_lower_95": "Mk package lower 95% CI",
+    "mk_origin_count_mean": "Mk package mean",
+    "mk_origin_count_upper_95": "Mk package upper 95% CI",
     "n_background_profiles": "No. background profiles",
     "n_compared_rows": "No. compared records",
     "n_concordant": "No. concordant records",
@@ -348,18 +343,26 @@ COLUMN_RENAMES: Dict[str, str] = {
     "n_country_year_cells": "No. country-year cells",
     "n_fim3_labels": "No. fim3 labels",
     "n_genomes": "No. genomes",
+    "n_insufficient": "No. insufficient calls",
+    "n_is481": "No. IS481-disrupted calls",
     "n_mlst_st": "No. MLST sequence types",
+    "n_missing_year": "No. records missing year",
     "n_overlap_rows": "No. overlapping records",
+    "n_other_disruption": "No. other-disruption calls",
     "n_prn_disrupted": "No. prn-disrupted genomes",
     "n_prn_intact": "No. prn-intact genomes",
     "n_ptxP_labels": "No. ptxP labels",
     "n_published_sublineages": "No. published sublineages",
+    "n_rearrangement": "No. rearrangement calls",
     "n_reference_IS481_features_within_10kb": "No. reference IS481 features within 10 kb",
     "n_reference_IS481_features_within_50kb": "No. reference IS481 features within 50 kb",
     "n_rows": "No. records",
+    "n_structural_disrupted": "No. structural disrupted calls",
+    "n_supporting_rows": "No. supporting records",
     "n_tips_disrupted": "No. disrupted tips",
     "n_tips_total": "No. tips",
     "nearest_reference_IS481_distance_bp": "Nearest reference IS481 distance (bp)",
+    "non_singleton_package_count": "No. non-singleton packages",
     "notes": "Notes",
     "observed_breakpoint_flanking_sequence_25bp": "Observed breakpoint flanking sequence (25 bp)",
     "observed_gap1043_breakpoint_left": "Observed gap1043 left breakpoint",
@@ -372,7 +375,7 @@ COLUMN_RENAMES: Dict[str, str] = {
     "origin_n_disrupted_tips": "No. disrupted tips in origin",
     "origin_package_hard_anchor": "Origin package hard anchor",
     "origin_support_score": "Origin support score",
-    "pastml_origin_events": "PastML origin events",
+    "pastml_origin_events": "PastML acquisition packages",
     "phenotype_evidence_tier": "Phenotype evidence tier",
     "phenotype_inference": "Phenotype inference",
     "phylo_tree_id": "Phylogenetic tree ID",
@@ -382,6 +385,7 @@ COLUMN_RENAMES: Dict[str, str] = {
     "prn_event_id": "prn event ID",
     "prn_mechanism_call": "prn mechanism call",
     "public_data_recovery_status": "Public-data recovery status",
+    "rank_by_genome_burden": "Rank by genome burden",
     "read_locus_end": "Read-locus end",
     "read_locus_start": "Read-locus start",
     "read_reference_record": "Read reference record",
@@ -411,14 +415,17 @@ COLUMN_RENAMES: Dict[str, str] = {
     "sample_count": "No. samples",
     "sample_fraction_all": "Fraction of all samples",
     "sample_fraction_within_mechanism": "Fraction within mechanism class",
+    "sample_share_among_structurally_resolved": "Share among structurally resolved disruptions",
     "scenario_class": "Scenario class",
     "scenario_id": "Scenario ID",
     "scenario_source": "Scenario source",
     "sequencing_tech": "Sequencing technology",
     "sister_clade_id": "Sister clade ID",
+    "singleton_package_count": "No. singleton packages",
     "source_file": "Source file",
     "stage_id": "Stage ID",
     "stage_name": "Stage name",
+    "status_changed_vs_manuscript_fraction": "Status changed versus manuscript fraction",
     "strand": "Strand",
     "structural_match_class": "Structural match class",
     "summary_level": "Summary level",
@@ -783,7 +790,7 @@ def humanize_value(value: str) -> str:
         return "Yes"
     if value in {"False", "FALSE", "false"}:
         return "No"
-    if "/" in value and not value.startswith(("http://", "https://")):
+    if "/" in value and " " not in value and not value.startswith(("http://", "https://")):
         return humanize_source_path(value)
     if is_official_identifier(value):
         return value
@@ -831,9 +838,7 @@ def render_markdown_table(source_file: str) -> str:
         return "_No rows in source TSV._"
 
     raw_header = rows[0]
-    original_col_count = len(raw_header)
     optimized_columns = OPTIMIZED_COLUMN_SUBSETS.get(source_file)
-    optimized_note = ""
     if optimized_columns:
         missing = [column for column in optimized_columns if column not in raw_header]
         if missing:
@@ -844,11 +849,6 @@ def render_markdown_table(source_file: str) -> str:
             for row in rows
         ]
         raw_header = rows[0]
-        optimized_note = (
-            f"\n\n_Reader-facing columns are shown; the complete "
-            f"{max(len(rows) - 1, 0)}-row, {original_col_count}-column TSV file "
-            f"`{source_file}` retains all fields for reproducibility._"
-        )
 
     header = [escape_markdown_cell(humanize_header(cell)) for cell in raw_header]
     if len(header) > PDF_TABLE_COLUMN_LIMIT:
@@ -880,7 +880,83 @@ def render_markdown_table(source_file: str) -> str:
     ]
     for row in normalized_rows:
         lines.append("| " + " | ".join(row) + " |")
-    return "\n".join(lines) + optimized_note
+    return "\n".join(lines)
+
+
+def official_table_filenames() -> set[str]:
+    return {table["source_file"] for table in PUBLISHED_TABLES}
+
+
+def source_candidates_for_table(table: Dict[str, str]) -> list[Path]:
+    source_file = table["source_file"]
+    legacy_file = table.get("legacy_source_file", source_file)
+    candidates = [
+        SUPPLEMENTARY_DIR / source_file,
+        SUPPLEMENTARY_DIR / legacy_file,
+        AUDIT_LEDGER_DIR / source_file,
+        AUDIT_LEDGER_DIR / legacy_file,
+    ]
+    return candidates
+
+
+def copy_submission_table(source: Path, target: Path) -> None:
+    """Copy a table into the official submission namespace.
+
+    Historical audit ledgers may have trailing blank TSV fields. The official
+    machine-readable tables use explicit NA cells so Git whitespace checks stay
+    clean without changing the archived source ledgers.
+    """
+
+    rows = read_tsv(source)
+    if not rows:
+        target.write_text("", encoding="utf-8")
+        return
+
+    width = len(rows[0])
+    normalized_rows: list[list[str]] = []
+    for row in rows:
+        row = row[:width] + [""] * max(width - len(row), 0)
+        normalized_rows.append([cell if cell != "" else "NA" for cell in row])
+
+    with target.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
+        writer.writerows(normalized_rows)
+
+
+def prepare_curated_table_namespace() -> None:
+    """Keep only official submission tables at the supplementary root.
+
+    Upstream sidecar scripts still emit many machine-readable audit ledgers
+    using historical Supplementary_Table_* names. For submission packaging,
+    those wide ledgers are retained under submission_data/audit_ledgers and
+    the supplementary root is repopulated with the compact official tables.
+    """
+
+    AUDIT_LEDGER_DIR.mkdir(parents=True, exist_ok=True)
+    official_files = official_table_filenames()
+
+    for path in sorted(SUPPLEMENTARY_DIR.glob("Supplementary_Table_*.tsv"), key=extract_table_number):
+        if path.name in official_files:
+            continue
+        target = AUDIT_LEDGER_DIR / path.name
+        if target.exists():
+            target.unlink()
+        shutil.move(str(path), str(target))
+
+    for table in PUBLISHED_TABLES:
+        target = SUPPLEMENTARY_DIR / table["source_file"]
+        candidates = [path for path in source_candidates_for_table(table) if path.exists()]
+        if not candidates:
+            raise FileNotFoundError(
+                f"No source found for official {table['source_file']} "
+                f"(legacy={table.get('legacy_source_file', table['source_file'])})"
+            )
+        source = candidates[0]
+        if source.resolve() != target.resolve():
+            copy_submission_table(source, target)
+        else:
+            copy_submission_table(source, target.with_suffix(".tmp.tsv"))
+            target.with_suffix(".tmp.tsv").replace(target)
 
 
 def fill_table_template() -> str:
@@ -931,7 +1007,7 @@ def write_disposition_manifest() -> None:
         "rationale",
     ]
     with DISPOSITION_OUT.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames, delimiter="\t")
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, delimiter="\t", lineterminator="\n")
         writer.writeheader()
         for path in source_files:
             table_number = extract_table_number(path)
@@ -979,11 +1055,12 @@ def assert_unique_sources(tables: Iterable[Dict[str, str]]) -> None:
 
 def main() -> None:
     assert_unique_sources(PUBLISHED_TABLES)
+    prepare_curated_table_namespace()
     tables_md = fill_table_template()
 
     final_md = (
         figure_markdown_without_old_table_note().rstrip()
-        + "\n\n\\newpage\n\n"
+        + '\n\n<div style="page-break-after: always;"></div>\n\n'
         + tables_md.rstrip()
         + "\n"
     )

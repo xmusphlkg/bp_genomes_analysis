@@ -412,8 +412,18 @@ def test_build_missingness_dr_summary_adds_aipw_and_identifiability() -> None:
     usa = summary.loc[summary["country_iso3"] == "USA"].iloc[0]
     assert pd.notna(usa["delta_aipw_prevalence"])
     assert pd.notna(usa["delta_ipw_untruncated_prevalence"])
-    assert usa["dr_estimator_label"] == "aipw_with_crossfit_when_available"
+    assert usa["dr_estimator_label"] == "aipw_crossfit_bounded_fail_closed"
+    assert usa["aipw_estimator_status"] == "ok"
     assert bool(usa["sign_stable_across_estimators"]) is True
 
     contrast_row = augmented.loc[augmented["country_iso3"] == "USA"].iloc[0]
     assert contrast_row["identifiability_tier"] in {"stable", "bounded"}
+
+
+def test_aipw_probability_helpers_fail_closed() -> None:
+    module = load_module(MS16, "ms_16_build_analysis_upgrade_sidecars")
+
+    assert np.isnan(module.probability_or_nan(-0.1))
+    assert np.isnan(module.probability_or_nan(1.1))
+    assert module.probability_or_nan(0.4) == 0.4
+    assert module.estimator_status([0.1, 1.2]) == "failed_out_of_bounds"

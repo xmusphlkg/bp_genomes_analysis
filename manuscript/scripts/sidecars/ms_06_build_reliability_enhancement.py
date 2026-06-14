@@ -28,6 +28,8 @@ REPRESENTATIVE_VALIDATION_MATRIX_PATH = FIGURE_DATA_DIR / "representative_valida
 HITCHHIKER_BACKGROUND_AUDIT = FIGURE_DATA_DIR / "hitchhiker_background_audit.tsv"
 STRUCTURAL_EVENT_CONCENTRATION = FIGURE_DATA_DIR / "structural_event_concentration.tsv"
 ORIGIN_PACKAGE_CONTEXT = FIGURE_DATA_DIR / "origin_package_context.tsv"
+ORIGIN_EXPANSION_P_VALUE_SCOPE = "within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment"
+ORIGIN_EXPANSION_INFERENCE_SCOPE = "exploratory_origin_expansion_diagnostic_not_claim_generating"
 
 TARGET_GENOTYPES = [
     "ptxP3/PRN-",
@@ -566,7 +568,19 @@ def cross_validate_country_year(frame: pd.DataFrame, formula: str) -> pd.DataFra
                         "cv_error": str(error),
                     }
                 )
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    if "p_value" in out.columns:
+        out["p_value_scope"] = np.where(
+            out["p_value"].notna() & out["p_value"].astype(str).str.strip().ne(""),
+            ORIGIN_EXPANSION_P_VALUE_SCOPE,
+            "",
+        )
+        out["inference_scope"] = np.where(
+            out["record_type"].astype(str).eq("model_term"),
+            ORIGIN_EXPANSION_INFERENCE_SCOPE,
+            "",
+        )
+    return out
 
 
 def relative_fitness_from_model(
@@ -1015,7 +1029,19 @@ def summarize_origin_frame(
                 "established_ge2_followup_years": int(max(follow_up_years, 1) >= 2),
             }
         )
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    if "p_value" in out.columns:
+        out["p_value_scope"] = np.where(
+            out["p_value"].notna() & out["p_value"].astype(str).str.strip().ne(""),
+            ORIGIN_EXPANSION_P_VALUE_SCOPE,
+            "",
+        )
+        out["inference_scope"] = np.where(
+            out["record_type"].astype(str).eq("model_term"),
+            ORIGIN_EXPANSION_INFERENCE_SCOPE,
+            "",
+        )
+    return out
 
 
 def build_origin_event_inputs(annotation: pd.DataFrame, exposure: pd.DataFrame) -> dict[str, pd.DataFrame]:
@@ -1331,7 +1357,19 @@ def build_origin_expansion_output(origin_inputs: dict[str, pd.DataFrame]) -> pd.
             }
         )
 
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    if "p_value" in out.columns:
+        out["p_value_scope"] = np.where(
+            out["p_value"].notna() & out["p_value"].astype(str).str.strip().ne(""),
+            ORIGIN_EXPANSION_P_VALUE_SCOPE,
+            "",
+        )
+        out["inference_scope"] = np.where(
+            out["record_type"].astype(str).eq("model_term"),
+            ORIGIN_EXPANSION_INFERENCE_SCOPE,
+            "",
+        )
+    return out
 
 
 def gini_coefficient(values: pd.Series | np.ndarray) -> float:
@@ -1529,6 +1567,12 @@ def summarize_event_counts(counts: pd.Series) -> dict[str, float | int | str]:
         "effective_number": float(np.exp(shannon)) if np.isfinite(shannon) else np.nan,
         "gini": gini_from_counts(counts),
     }
+
+
+def is_structurally_resolved_event_id(series: pd.Series) -> pd.Series:
+    event = series.fillna("").astype(str).str.strip().str.casefold()
+    unresolved_pattern = r"insufficient|fragmented|uncertain"
+    return event.ne("") & ~event.str.contains(unresolved_pattern, regex=True)
 
 
 def summarize_event_draws(
@@ -1790,7 +1834,7 @@ def build_structural_event_concentration(annotation: pd.DataFrame) -> pd.DataFra
     ].copy()
     frame["repo_prn_mechanism_group"] = frame["repo_prn_mechanism_group"].fillna("").astype(str)
     frame["prn_event_id"] = frame["prn_event_id"].fillna("").astype(str)
-    frame = frame.loc[frame["prn_event_id"].astype(str).str.strip().ne("")]
+    frame = frame.loc[is_structurally_resolved_event_id(frame["prn_event_id"])]
     frame["lineage_or_st_stratum"] = frame.apply(make_lineage_proxy, axis=1)
     frame["country_year_stratum"] = frame.apply(make_country_year_stratum, axis=1)
 
@@ -1827,7 +1871,7 @@ def build_structural_event_concentration(annotation: pd.DataFrame) -> pd.DataFra
                     seed=42 + len(rows),
                 ),
                 {},
-                "interpretable_disrupted_genomes_only;baseline_equal_probability_null_over_observed_event_catalogue",
+                "structurally_resolved_disrupted_genomes_only;baseline_equal_probability_null_over_observed_event_catalogue",
             ),
             (
                 simulate_accessibility_weighted_null(
@@ -1840,7 +1884,7 @@ def build_structural_event_concentration(annotation: pd.DataFrame) -> pd.DataFra
                     seed=1042 + len(rows),
                 ),
                 {},
-                "interpretable_disrupted_genomes_only;approximate_accessibility_weights:IS481_hotspot_high,rearrangement_intermediate,other_low",
+                "structurally_resolved_disrupted_genomes_only;approximate_accessibility_weights:IS481_hotspot_high,rearrangement_intermediate,other_low",
             ),
         ]
 

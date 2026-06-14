@@ -85,6 +85,8 @@ def test_build_predictions_includes_out_of_fold_probabilities() -> None:
     metadata, predictions = module.build_predictions(frame)
 
     assert "prob_interpretable_oof" in predictions.columns
+    assert "prediction_probability_scope" in predictions.columns
+    assert "oof_probability_scope" in predictions.columns
     assert predictions["prob_interpretable_oof"].notna().sum() > 0
     assert "out_of_fold_metrics" in metadata["full_model"]
 
@@ -114,4 +116,6 @@ def test_run_model_writes_missingness_sidecar_tables(tmp_path: Path) -> None:
     summary_text = (tmp_path / "missingness_model_summary.txt").read_text(encoding="utf-8")
 
     assert "prob_interpretable_oof" in predictions.columns
+    assert "prediction_probability_scope" in predictions.columns
+    assert "oof_probability_scope" in predictions.columns
     assert "Out-of-fold Accuracy:" in summary_text

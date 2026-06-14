@@ -13,6 +13,7 @@ import sys
 import warnings
 from pathlib import Path
 import urllib.request
+import urllib.parse
 
 import numpy as np
 import pandas as pd
@@ -38,6 +39,7 @@ STEP6_OUTPUT_DIR = project_module_data_root("step6_epi_transmission") / "outputs
 AUDIT_MD = REPO_ROOT / "manuscript" / "focal_country_dynamics_audit.md"
 STEP6_AUDIT_MD = STEP6_OUTPUT_DIR / "bp_focal_country_dynamics_audit.md"
 MS05_ALLOW_NETWORK_CONTACT_FALLBACK_ENV = "MS05_ALLOW_NETWORK_CONTACT_FALLBACK"
+MS05_EPYDEMIX_SNAPSHOT_DIR_ENV = "MS05_EPYDEMIX_SNAPSHOT_DIR"
 
 PUBLIC_HEALTH_OUTPUT_DIR = project_module_data_root("public_health") / "outputs"
 STEP1_OUTPUT_DIR = project_module_data_root("step1_ingest") / "outputs"
@@ -68,6 +70,11 @@ WPP_POPULATION = (
     / "wpp"
     / "unpopulation_dataportal_20260408111357.csv"
 )
+EPYDEMIX_DEFAULT_SNAPSHOT_DIR_CANDIDATES = [
+    REPO_ROOT / "modules" / "public_health" / "inputs" / "raw" / "epydemix-data" / "v1.1.0",
+    DATA_HOME / "snapshots" / "epydemix-data" / "v1.1.0",
+    DATA_HOME / "public_health" / "epydemix-data" / "v1.1.0",
+]
 
 MONTHLY_OUTPUT = FIGURE_DATA_DIR / "focal_country_monthly_cases.tsv"
 AGE_OUTPUT = FIGURE_DATA_DIR / "focal_country_age_stratified_cases.tsv"
@@ -147,6 +154,8 @@ PREM_TO_PROJECT_MAPPING = {
 }
 MS05_MAX_WORKERS_ENV = "MS05_MAX_WORKERS"
 MS05_DEFAULT_MAX_WORKERS = 16
+DIAGNOSTIC_P_VALUE_SCOPE = "within_diagnostic_model_wald_p_values_no_multiplicity_adjustment"
+DIAGNOSTIC_INFERENCE_SCOPE = "archive_context_diagnostic_not_claim_generating"
 
 
 def write_tsv(path: Path, df: pd.DataFrame) -> None:
@@ -157,6 +166,15 @@ def write_tsv(path: Path, df: pd.DataFrame) -> None:
 def write_dual_tsv(manuscript_path: Path, step6_path: Path, df: pd.DataFrame) -> None:
     write_tsv(manuscript_path, df)
     write_tsv(step6_path, df)
+
+
+def add_diagnostic_p_value_scope(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.copy()
+    if "p_value" not in out.columns:
+        return out
+    out["p_value_scope"] = DIAGNOSTIC_P_VALUE_SCOPE
+    out["inference_scope"] = DIAGNOSTIC_INFERENCE_SCOPE
+    return out
 
 
 def write_dual_text(manuscript_path: Path, step6_path: Path, text: str) -> None:
@@ -247,27 +265,99 @@ def theta_noise_scale(basis_size: int) -> np.ndarray:
     return np.concatenate([beta_scale, tail_scale])
 
 
-def read_csv_with_remote_fallback(path_or_url: str, **kwargs) -> pd.DataFrame:
-    """Read CSV data, allowing remote fallback only when explicitly enabled."""
+def epydemix_url_relative_path(url: str) -> Path:
+    parsed = urllib.parse.urlparse(url)
+    parts = [part for part in parsed.path.split("/") if part]
+    if "v1.1.0" in parts:
+        start = parts.index("v1.1.0") + 1
+        return Path(*parts[start:])
+    if "data" in parts:
+        start = parts.index("data")
+        return Path(*parts[start:])
+    return Path(*parts[-3:])
 
-    try:
-        return pd.read_csv(path_or_url, **kwargs)
-    except Exception:
-        text = str(path_or_url)
-        if not text.startswith("http"):
-            raise
-        if str(os.environ.get(MS05_ALLOW_NETWORK_CONTACT_FALLBACK_ENV, "")).strip().lower() not in {
-            "1",
-            "true",
-            "yes",
-        }:
-            raise RuntimeError(
-                f"Remote contact fallback disabled for manuscript-facing runs; set "
-                f"{MS05_ALLOW_NETWORK_CONTACT_FALLBACK_ENV}=1 only for explicit noncanonical recovery."
-            )
-        with urllib.request.urlopen(text) as response:
-            payload = response.read()
-        return pd.read_csv(io.BytesIO(payload), **kwargs)
+
+def epydemix_snapshot_dir_candidates() -> list[Path]:
+    configured = str(os.environ.get(MS05_EPYDEMIX_SNAPSHOT_DIR_ENV, "")).strip()
+    roots: list[Path] = []
+    if configured:
+        roots.append(Path(configured).expanduser())
+    roots.extend(EPYDEMIX_DEFAULT_SNAPSHOT_DIR_CANDIDATES)
+    return roots
+
+
+def resolve_epydemix_snapshot_path(url: str) -> Path | None:
+    relative = epydemix_url_relative_path(url)
+    for root in epydemix_snapshot_dir_candidates():
+        candidates = [
+            root / relative,
+            root / "data" / relative if relative.parts and relative.parts[0] != "data" else root / relative,
+        ]
+        for candidate in candidates:
+            if candidate.exists():
+                return candidate
+    return None
+
+
+def read_csv_with_source_metadata(path_or_url: str, **kwargs) -> tuple[pd.DataFrame, dict[str, str]]:
+    """Read CSV data with explicit canonical/noncanonical provenance."""
+
+    text = str(path_or_url)
+    if not text.startswith("http"):
+        return pd.read_csv(path_or_url, **kwargs), {
+            "source_access_mode": "local_file",
+            "source_canonicality": "canonical_local_input",
+            "source_file": rel_source(Path(text)),
+            "source_url": "",
+        }
+
+    snapshot_path = resolve_epydemix_snapshot_path(text)
+    if snapshot_path is not None:
+        return pd.read_csv(snapshot_path, **kwargs), {
+            "source_access_mode": "pinned_local_snapshot",
+            "source_canonicality": "canonical_pinned_snapshot",
+            "source_file": rel_source(snapshot_path),
+            "source_url": text,
+        }
+
+    if str(os.environ.get(MS05_ALLOW_NETWORK_CONTACT_FALLBACK_ENV, "")).strip().lower() not in {
+        "1",
+        "true",
+        "yes",
+    }:
+        raise RuntimeError(
+            f"Remote contact fallback disabled for manuscript-facing runs; provide a pinned epydemix-data "
+            f"snapshot via {MS05_EPYDEMIX_SNAPSHOT_DIR_ENV} or set {MS05_ALLOW_NETWORK_CONTACT_FALLBACK_ENV}=1 "
+            f"only for explicit noncanonical recovery."
+        )
+    with urllib.request.urlopen(text) as response:
+        payload = response.read()
+    return pd.read_csv(io.BytesIO(payload), **kwargs), {
+        "source_access_mode": "network_fallback_explicit",
+        "source_canonicality": "noncanonical_network_recovery",
+        "source_file": "",
+        "source_url": text,
+    }
+
+
+def read_csv_with_remote_fallback(path_or_url: str, **kwargs) -> pd.DataFrame:
+    """Backward-compatible reader; manuscript code should prefer metadata-aware reads."""
+
+    frame, _metadata = read_csv_with_source_metadata(path_or_url, **kwargs)
+    return frame
+
+
+def summarize_source_metadata(sources: list[dict[str, str]]) -> dict[str, str]:
+    access_modes = sorted({source.get("source_access_mode", "") for source in sources if source.get("source_access_mode")})
+    canonicalities = sorted({source.get("source_canonicality", "") for source in sources if source.get("source_canonicality")})
+    source_files = sorted({source.get("source_file", "") for source in sources if source.get("source_file")})
+    source_urls = sorted({source.get("source_url", "") for source in sources if source.get("source_url")})
+    return {
+        "source_access_mode": ";".join(access_modes),
+        "source_canonicality": ";".join(canonicalities),
+        "source_file": ";".join(source_files),
+        "source_url": ";".join(source_urls),
+    }
 
 
 def rel_source(path: Path) -> str:
@@ -730,7 +820,8 @@ def build_contact_ledger() -> tuple[pd.DataFrame, pd.DataFrame]:
         contact_source = meta["epydemix_contact_source"]
         try:
             demographic_path = epypop._get_demographic_path(base_url, "age", location, True)
-            raw_demographic = read_csv_with_remote_fallback(demographic_path)
+            raw_demographic, demographic_source = read_csv_with_source_metadata(demographic_path)
+            country_sources = [demographic_source]
             raw_demographic["group_name"] = raw_demographic["group_name"].astype(str)
             raw_demographic["value"] = pd.to_numeric(raw_demographic["value"], errors="coerce")
 
@@ -762,7 +853,9 @@ def build_contact_ledger() -> tuple[pd.DataFrame, pd.DataFrame]:
 
             for layer_name in EPYDEMIX_LAYERS:
                 matrix_path = epypop._get_contact_matrix_path(base_url, "age", location, contact_source, layer_name, True)
-                matrix = read_csv_with_remote_fallback(matrix_path, header=None).values
+                matrix_frame, matrix_source = read_csv_with_source_metadata(matrix_path, header=None)
+                country_sources.append(matrix_source)
+                matrix = matrix_frame.values
                 expanded_matrix = expand_prem_matrix_with_infant_split(matrix, infant_share)
                 project_matrix = epypop.aggregate_matrix(
                     expanded_matrix,
@@ -787,13 +880,17 @@ def build_contact_ledger() -> tuple[pd.DataFrame, pd.DataFrame]:
                                 "contact_rate": float(project_matrix[from_age_idx, to_age_idx]),
                                 "prior_status": "available_epydemix_prem_2017_with_infant_split_assumption",
                                 "source_name": "epydemix-data v1.1.0",
-                                "source_url": f"{base_url}data/{location}/contact_matrices/{contact_source}/",
+                                "source_url": matrix_source["source_url"],
+                                "source_file": matrix_source["source_file"],
+                                "source_access_mode": matrix_source["source_access_mode"],
+                                "source_canonicality": matrix_source["source_canonicality"],
                                 "value_or_family": contact_source,
                                 "usable_for_full_mechanistic": "true",
                                 "notes": PROJECT_AGE_BIN_NOTE,
                             }
                         )
 
+            source_summary = summarize_source_metadata(country_sources)
             summary_rows.append(
                 {
                     "country_iso3": country_iso3,
@@ -802,7 +899,10 @@ def build_contact_ledger() -> tuple[pd.DataFrame, pd.DataFrame]:
                     "contact_prior_status": "available_epydemix_prem_2017_with_infant_split_assumption",
                     "contact_prior_usable_for_full_mechanistic": True,
                     "contact_source_name": "epydemix-data v1.1.0",
-                    "contact_source_url": f"{base_url}data/{location}/contact_matrices/{contact_source}/",
+                    "contact_source_url": source_summary["source_url"],
+                    "contact_source_file": source_summary["source_file"],
+                    "contact_source_access_mode": source_summary["source_access_mode"],
+                    "contact_source_canonicality": source_summary["source_canonicality"],
                     "notes": PROJECT_AGE_BIN_NOTE,
                 }
             )
@@ -827,6 +927,13 @@ def build_contact_ledger() -> tuple[pd.DataFrame, pd.DataFrame]:
                     "prior_status": failure_status,
                     "source_name": "epydemix-data v1.1.0",
                     "source_url": "",
+                    "source_file": "",
+                    "source_access_mode": "failed",
+                    "source_canonicality": (
+                        "noncanonical_network_recovery_blocked"
+                        if failure_status == "contact_loading_failed_noncanonical_remote_disabled"
+                        else "not_available"
+                    ),
                     "value_or_family": meta["epydemix_contact_source"],
                     "usable_for_full_mechanistic": "false",
                     "notes": failure_text,
@@ -841,6 +948,13 @@ def build_contact_ledger() -> tuple[pd.DataFrame, pd.DataFrame]:
                     "contact_prior_usable_for_full_mechanistic": False,
                     "contact_source_name": "epydemix-data v1.1.0",
                     "contact_source_url": "",
+                    "contact_source_file": "",
+                    "contact_source_access_mode": "failed",
+                    "contact_source_canonicality": (
+                        "noncanonical_network_recovery_blocked"
+                        if failure_status == "contact_loading_failed_noncanonical_remote_disabled"
+                        else "not_available"
+                    ),
                     "notes": failure_text,
                 }
             )
@@ -3381,6 +3495,8 @@ def main() -> int:
     monthly_cases = attach_monthly_annotations(monthly, overlap_years, ident, timeline)
     model_input = build_dynamic_model_input(monthly_cases)
     transmission = build_transmission_advantage_outputs(model_input, ident)
+    fit = add_diagnostic_p_value_scope(fit)
+    transmission["summary"] = add_diagnostic_p_value_scope(transmission["summary"])
     counterfactual = build_counterfactual_summary(transmission, ident)
 
     write_dual_tsv(MONTHLY_OUTPUT, STEP6_MONTHLY_OUTPUT, monthly_cases)

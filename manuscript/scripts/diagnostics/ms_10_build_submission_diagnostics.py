@@ -45,10 +45,32 @@ from project_paths import project_module_data_root  # noqa: E402
 from asr_parsimony import Node, assign_node_ids, parse_newick  # noqa: E402
 
 STEP4_OUTPUTS = project_module_data_root("step4_prn_validation") / "outputs"
+AUDIT_LEDGER_DIR = ROOT / "manuscript" / "submission_data" / "audit_ledgers" / "supplementary_table_sources"
+
+
+def first_existing_path(*paths: Path) -> Path:
+    for path in paths:
+        if path.exists():
+            return path
+    return paths[0]
+
+
+EVENT_DEFINITIONS = first_existing_path(
+    SUPP_DIR / "Supplementary_Table_5_prn_Event_Definitions.tsv",
+    SUPP_DIR / "Supplementary_Table_9_prn_Event_Definitions.tsv",
+    AUDIT_LEDGER_DIR / "Supplementary_Table_9_prn_Event_Definitions.tsv",
+)
+TARGETED_VALIDATION_FOLLOWUP = first_existing_path(
+    SUPP_DIR / "Supplementary_Table_12_Targeted_Validation_Followup.tsv",
+    AUDIT_LEDGER_DIR / "Supplementary_Table_12_Targeted_Validation_Followup.tsv",
+    STEP4_OUTPUTS / "bp_prn_targeted_validation_followup_queue.tsv",
+)
 
 
 STATE_ORDER = ["intact", "disrupted", "insufficient_data", "uncertain"]
 LONGREAD_RE = re.compile(r"nanopore|pacbio|hifi|rsii|sequel|minion|promethion", re.I)
+GENOTYPE_ENRICHMENT_P_VALUE_SCOPE = "within_exploratory_feature_enrichment_fisher_tests_no_multiplicity_adjustment"
+GENOTYPE_ENRICHMENT_INFERENCE_SCOPE = "exploratory_background_enrichment_diagnostic_not_causal"
 
 
 def clean_text(value: Any) -> str:
@@ -591,7 +613,7 @@ def tsd_or_flank_status(row: dict[str, Any]) -> str:
 
 
 def extend_event_evidence_manifest() -> None:
-    path = SUPP_DIR / "Supplementary_Table_9_prn_Event_Definitions.tsv"
+    path = EVENT_DEFINITIONS
     rows = read_tsv(path)
     read_by_event = aggregate_read_validation_by_event()
     tsd = pd.read_csv(STEP4_OUTPUTS / "bp_prn_read_validation_tsd.tsv", sep="\t", dtype=str).fillna("")
@@ -783,7 +805,7 @@ def build_is481_event_evidence_audit() -> None:
 
 
 def enrich_validation_followup_queue() -> None:
-    path = SUPP_DIR / "Supplementary_Table_12_Targeted_Validation_Followup.tsv"
+    path = TARGETED_VALIDATION_FOLLOWUP
     rows = read_tsv(path)
     enriched: list[dict[str, Any]] = []
     for row in rows:
@@ -957,7 +979,7 @@ def choose_package_validation_exemplar(origin_rows: list[dict[str, str]]) -> dic
 
 def build_origin_evidence_completeness_audit() -> None:
     origin_rows = read_tsv(FIGURE_DATA_DIR / "fig03_independent_origins.tsv")
-    followup_rows = read_tsv(SUPP_DIR / "Supplementary_Table_12_Targeted_Validation_Followup.tsv")
+    followup_rows = read_tsv(TARGETED_VALIDATION_FOLLOWUP)
     event_rows = read_tsv(PRN_EVENT_EVIDENCE_MANIFEST)
 
     followup_by_origin: dict[str, list[dict[str, str]]] = {}
@@ -1099,13 +1121,28 @@ def weighted_mean(values: pd.Series, weights: pd.Series) -> float:
     return float(np.average(values.loc[keep], weights=weights.loc[keep]))
 
 
+def resolve_existing_path(candidates: list[Path], label: str) -> Path:
+    for path in candidates:
+        if path.exists():
+            return path
+    candidate_text = ", ".join(str(path) for path in candidates)
+    raise FileNotFoundError(f"No {label} found at any configured path: {candidate_text}")
+
+
+def missingness_prediction_path_candidates() -> list[Path]:
+    return [
+        ROOT / "outputs" / "workflow" / "qc" / "missingness_model_predictions.tsv",
+        ROOT / "outputs" / "workflow" / "missingness_model" / "missingness_model_predictions.tsv",
+    ]
+
+
 def build_ipw_diagnostics() -> None:
     manifest = pd.read_csv(ROOT / "outputs" / "workflow" / "manifest" / "manifest.tsv", sep="\t", dtype=str)
-    predictions = pd.read_csv(
-        ROOT / "outputs" / "workflow" / "missingness_model" / "missingness_model_predictions.tsv",
-        sep="\t",
-        dtype=str,
+    predictions_path = resolve_existing_path(
+        missingness_prediction_path_candidates(),
+        "missingness-model prediction table",
     )
+    predictions = pd.read_csv(predictions_path, sep="\t", dtype=str)
     ipw = pd.read_csv(ROOT / "outputs" / "workflow" / "epi" / "ipw_prevalence.tsv", sep="\t", dtype=str)
     rows: list[dict[str, Any]] = []
 
@@ -1143,6 +1180,9 @@ def build_ipw_diagnostics() -> None:
                 "metric": "out_of_fold_accuracy" if metric_scope == "out_of_fold_predictions" else "training_only_accuracy",
                 "value": fmt(accuracy),
                 "n": len(perf),
+                "metric_provenance": metric_scope,
+                "probability_column": metric_probability_column,
+                "source_table": str(predictions_path.relative_to(ROOT)),
                 "notes": (
                     "Computed from staged missingness_model_predictions.tsv rows with out-of-fold probabilities."
                     if metric_scope == "out_of_fold_predictions"
@@ -1156,6 +1196,9 @@ def build_ipw_diagnostics() -> None:
                 "metric": "out_of_fold_brier_score" if metric_scope == "out_of_fold_predictions" else "training_only_brier_score",
                 "value": fmt(brier),
                 "n": len(perf),
+                "metric_provenance": metric_scope,
+                "probability_column": metric_probability_column,
+                "source_table": str(predictions_path.relative_to(ROOT)),
                 "notes": (
                     "Lower is better; complements out-of-fold discrimination if available."
                     if metric_scope == "out_of_fold_predictions"
@@ -1186,6 +1229,9 @@ def build_ipw_diagnostics() -> None:
                 "unweighted_interpretable_mean": fmt(interp_mean),
                 "target_retained_cohort_mean": fmt(all_mean),
                 "weighted_interpretable_mean": fmt(weighted),
+                "metric_provenance": "ipw_covariate_balance_using_training_scope_fitted_probabilities",
+                "probability_column": "prob_interpretable",
+                "source_table": str(predictions_path.relative_to(ROOT)),
                 "notes": "IPW-weighted interpretable mean is reported against the retained-cohort target mean as a diagnostic, not a pass/fail rule.",
             }
         )
@@ -1206,6 +1252,7 @@ def build_ipw_diagnostics() -> None:
                 "n_interpretable": int(subset["n_genomes_prn_interpretable"].sum()),
                 "n_missing_outcomes": int(subset["n_missing_outcomes"].sum()),
                 "max_ipw_weight": fmt(subset["max_ipw_weight"].max()),
+                "metric_provenance": "country_year_overlap_diagnostic",
                 "notes": "Country-level overlap diagnostic for high-leverage focal countries.",
             }
         )
@@ -1217,6 +1264,7 @@ def build_ipw_diagnostics() -> None:
             "metric": "max_ipw_weight_global",
             "value": fmt(ipw["max_ipw_weight"].max()),
             "n": int(len(ipw)),
+            "metric_provenance": "workflow_ipw_weight_distribution",
             "notes": "Weights are truncated at the workflow-specified upper bound.",
         }
     )
@@ -1232,6 +1280,9 @@ def build_ipw_diagnostics() -> None:
         "target_retained_cohort_mean",
         "weighted_interpretable_mean",
         "max_ipw_weight",
+        "metric_provenance",
+        "probability_column",
+        "source_table",
         "notes",
     ]
     write_tsv(SUPP_DIR / "Supplementary_Table_16_IPW_Diagnostics.tsv", fieldnames, rows)
@@ -1261,7 +1312,7 @@ def fisher_or_not_testable(origin_pos: int, origin_total: int, baseline_pos: int
 def build_genotype_background_enrichment() -> None:
     annotation = pd.read_csv(FIGURE_DATA_DIR / "published_overlap_annotation.tsv", sep="\t", dtype=str).fillna("")
     annotation = feature_flags(annotation)
-    followup = pd.read_csv(SUPP_DIR / "Supplementary_Table_12_Targeted_Validation_Followup.tsv", sep="\t", dtype=str).fillna("")
+    followup = pd.read_csv(TARGETED_VALIDATION_FOLLOWUP, sep="\t", dtype=str).fillna("")
     origin_accessions = set(
         followup.loc[followup["is_priority_origin_exemplar"].map(as_bool), "assembly_accession"].astype(str)
     )
@@ -1294,6 +1345,8 @@ def build_genotype_background_enrichment() -> None:
                     "baseline_total": baseline_total,
                     "odds_ratio": odds_ratio,
                     "p_value": p_value,
+                    "p_value_scope": GENOTYPE_ENRICHMENT_P_VALUE_SCOPE if p_value else "",
+                    "inference_scope": GENOTYPE_ENRICHMENT_INFERENCE_SCOPE,
                     "test_status": status,
                     "notes": "Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.",
                 }
@@ -1307,10 +1360,13 @@ def build_genotype_background_enrichment() -> None:
         "baseline_total",
         "odds_ratio",
         "p_value",
+        "p_value_scope",
+        "inference_scope",
         "test_status",
         "notes",
     ]
     write_tsv(SUPP_DIR / "Supplementary_Table_17_Genotype_Background_Enrichment.tsv", fieldnames, rows)
+    write_tsv(AUDIT_LEDGER_DIR / "Supplementary_Table_17_Genotype_Background_Enrichment.tsv", fieldnames, rows)
 
 
 def root_to_tip_clock_row(tree_path: Path, tip_path: Path, frame: str) -> dict[str, Any]:

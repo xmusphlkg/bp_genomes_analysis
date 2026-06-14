@@ -169,6 +169,7 @@ run_cmd project_env_python bio_tools "${ROOT}/manuscript/scripts/sidecars/ms_16_
 run_cmd project_env_python bio_tools "${ROOT}/manuscript/scripts/diagnostics/ms_18_build_study_dependence_audit.py"
 run_cmd project_env_python bio_tools "${ROOT}/manuscript/scripts/sidecars/ms_22_build_external_public_read_inventory.py"
 run_cmd project_env_rscript r "${ROOT}/manuscript/scripts/sidecars/ms_24_build_epidemiology_revision_sidecars.R"
+run_cmd project_env_python bio_tools "${ROOT}/manuscript/scripts/source_data/ms_25_build_supplementary_information_md.py"
 run_cmd project_env_python bio_tools "${ROOT}/manuscript/scripts/source_data/ms_14_build_source_data_manifest.py"
 run_cmd project_env_python bio_tools "${ROOT}/manuscript/scripts/source_data/ms_17_build_source_data_workbook.py"
 if [[ "$RENDER_FIGURES" -eq 1 ]]; then

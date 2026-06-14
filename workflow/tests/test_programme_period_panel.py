@@ -63,6 +63,53 @@ def test_apply_formulation_curation_prefers_curated_conflicting_ap_rows() -> Non
     assert row["exposure_precedence_rule"] == "curated_formulation_preferred_over_program_phase"
 
 
+def test_apply_formulation_curation_requires_complete_v2_components() -> None:
+    module = load_module(REPO_ROOT / "workflow" / "lib" / "build_ap_exposure_index.py", "build_ap_exposure_index_v2_components")
+
+    merged = pd.DataFrame(
+        [
+            {
+                "country_iso3": "FIX",
+                "year": 2020,
+                "dtp3_coverage": 95.0,
+                "vaccine_program_type_effective": "ap_introduced_routine_or_mixed",
+                "program_metadata_acellular_vs_whole_cell": "mixed_or_acellular",
+                "booster_flag": 0,
+                "first_any_ap_year": float("nan"),
+                "first_routine_ap_year": float("nan"),
+            }
+        ]
+    )
+    curation = pd.DataFrame(
+        [
+            {
+                "country_iso3": "FIX",
+                "year_start": 2019,
+                "year_end": 2021,
+                "ap_timing_anchor_year": float("nan"),
+                "primary_series_formulation": "ap_prn_positive",
+                "booster_formulation": "none_recorded",
+                "prn_in_vaccine_curated": "yes",
+                "prn_in_vaccine_source_class": "direct_product_insert",
+                "formulation_confidence": "high",
+                "source_name": "fixture",
+                "source_url": "https://example.org",
+                "source_release_date": "2026-01-01",
+                "notes": "fixture",
+            }
+        ]
+    )
+
+    resolved = module.apply_formulation_curation(merged, curation)
+    row = resolved.iloc[0]
+
+    assert bool(row["ap_exposure_v2_prn_component_available"]) is True
+    assert bool(row["ap_exposure_v2_dtp3_component_available"]) is True
+    assert bool(row["ap_exposure_v2_timing_component_available"]) is False
+    assert bool(row["ap_exposure_v2_available"]) is False
+    assert row["ap_exposure_v2_component_status"] == "missing_timing_component"
+
+
 def test_apply_product_metadata_uses_role_specific_rows_over_coarse_booster_fallback() -> None:
     module = load_module(REPO_ROOT / "workflow" / "lib" / "build_ap_exposure_index.py", "build_ap_exposure_index")
 
@@ -358,6 +405,10 @@ def test_build_index_requires_booster_metadata_for_v3_when_booster_flag_present(
     assert bool(row["ap_exposure_v3_available"]) is False
     assert row["ap_exposure_v3_component_status"] == "missing_booster_role_specific_product_component"
     assert row["exposure_score_interpretation"] == "heuristic_global_z_score_composite_not_absolute_biologic_scale"
+    assert row["exposure_parameterization_role"] == "primary_parameterization"
+    assert int(row["exposure_parameterization_grid_size"]) == 1
+    assert row["exposure_version_effective"] == "v2_curated"
+    assert row["exposure_component_availability_status"] == "complete_v2_components"
 
 
 def test_build_programme_period_panel_aggregates_to_country_period_rows() -> None:

@@ -1,5 +1,5 @@
 country_iso3	prn_event_id	prn_mechanism_call	country_sample_count	country_name	event_validation_level	support_country_iso3	support_year	support_sample_id_canonical	supporting_read_or_public_longread	support_scope
-AUS	prn_evt_insufficient__not_available_current_step3	insufficient_data	16	Australia						none
+AUS	prn_evt_fragmented_contigs	uncertain_fragmented_assembly	16	Australia						none
 AUS	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	2	Australia	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
 AUS	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	1	Australia	read_backed_supported	USA	2009.0	SAMN03854490	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
 BRA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	5	Brazil	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
@@ -10,18 +10,19 @@ CHN	prn_evt_other_disruption__insertion_like__gap1044	coding_disrupted_other	1	C
 CHN	prn_evt_other_disruption__insertion_like__gap1045	coding_disrupted_other	1	China						none
 CHN	prn_evt_rearrangement__within_contig__cov91	coding_disrupted_inversion_or_rearrangement	1	China						none
 FRA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	1	France	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
-JPN	prn_evt_insufficient__not_available_current_step3	insufficient_data	5	Japan						none
+JPN	prn_evt_fragmented_contigs	uncertain_fragmented_assembly	5	Japan						none
 JPN	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	2	Japan	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
 NZL	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	17	New Zealand	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
 NZL	prn_evt_coding_disrupted_is481__is481__gap1041	coding_disrupted_is481	3	New Zealand						none
 NZL	prn_evt_other_disruption__insertion_like__gap1040	coding_disrupted_other	2	New Zealand						none
 NZL	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	1	New Zealand	read_backed_supported	USA	2009.0	SAMN03854490	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	cross_country
-USA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	330	United States	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	same_country
-USA	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	106	United States	read_backed_supported	USA	2009.0	SAMN03854490	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	same_country
-USA	prn_evt_rearrangement__within_contig__cov91	coding_disrupted_inversion_or_rearrangement	61	United States						none
-USA	prn_evt_insufficient__not_available_current_step3	insufficient_data	17	United States						none
+USA	prn_evt_coding_disrupted_is481__is481__gap1043	coding_disrupted_is481	319	United States	read_backed_supported	USA	2010.0	SAMN03455350	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	same_country
+USA	prn_evt_rearrangement__within_contig__cov58	coding_disrupted_inversion_or_rearrangement	105	United States	read_backed_supported	USA	2009.0	SAMN03854490	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	same_country
+USA	prn_evt_rearrangement__within_contig__cov91	coding_disrupted_inversion_or_rearrangement	58	United States						none
+USA	prn_evt_fragmented_contigs	uncertain_fragmented_assembly	14	United States						none
 USA	prn_evt_coding_disrupted_is481__is481__gap1042	coding_disrupted_is481	7	United States						none
-USA	prn_evt_other_disruption__insertion_like__gap1042	coding_disrupted_other	7	United States	read_backed_supported	USA	2013.0	SAMN08136991	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	same_country
+USA	prn_evt_other_disruption__insertion_like__gap1042	coding_disrupted_other	6	United States	read_backed_supported	USA	2013.0	SAMN08136991	ismapper:IS481@1099682-1099688:F; panisa:IS481@1099683-1099688:NA	same_country
 USA	prn_evt_other_disruption__insertion_like__gap1041	coding_disrupted_other	4	United States						none
+USA	prn_evt_insufficient__partial	insufficient_data	2	United States						none
 USA	prn_evt_other_disruption__insertion_like__gap1040	coding_disrupted_other	1	United States						none
-USA	prn_evt_rearrangement__within_contig__cov94	coding_disrupted_inversion_or_rearrangement	1	United States						none
+USA	prn_evt_rearrangement__within_contig__cov66	coding_disrupted_inversion_or_rearrangement	1	United States						none

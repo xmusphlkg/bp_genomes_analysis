@@ -1,6 +1,0 @@
-scenario	tip_count	disrupted_tip_count	insufficient_or_ambiguous_tip_count	fitch_origin_events	notes
-third_state_primary	1952	573	761	23	Primary Fitch coding with insufficient_data retained as an explicit third state.
-insufficient_as_missing_ambiguous	1952	573	761	25	Insufficient-data tips treated as ambiguous between intact and disrupted.
-insufficient_as_intact	1952	573	0	32	Insufficient-data tips assigned to intact.
-insufficient_as_disrupted	1952	1334	0	63	Insufficient-data tips assigned to disrupted.
-insufficient_pruned	1191	573	0	25	Insufficient-data tips pruned from the rooted tree before Fitch counting.

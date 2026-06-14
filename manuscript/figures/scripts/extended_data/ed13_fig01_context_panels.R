@@ -41,10 +41,16 @@ prn_year_focus <- prn_year %>%
      filter(!is.na(year), year >= focus_year_min)
 
 flow <- safe_load(
-     file.path(BASE_DIR, "manuscript", "supplementary", "Supplementary_Table_7_Cohort_Flow_and_Tree_Selection.tsv"),
+     file.path(BASE_DIR, "manuscript", "supplementary", "Supplementary_Table_4_Cohort_Flow_and_Tree_Selection.tsv"),
      "cohort flow"
 ) %>%
      mutate(n_rows = as.numeric(n_rows))
+
+mechanism_summary <- safe_load(
+     file.path(BASE_DIR, "manuscript", "supplementary", "Supplementary_Table_2_prn_mechanism_classification.tsv"),
+     "prn mechanism classification"
+) %>%
+     mutate(sample_count = as.numeric(sample_count))
 
 stage_n <- function(id) {
      value <- flow %>% filter(stage_id == id) %>% pull(n_rows)
@@ -110,9 +116,9 @@ pD <- ggplot(pD_dat, aes(frac_noninterpretable, frac_disrupted_plot)) +
           name = "Retained\ngenomes"
      ) +
      scale_fill_gradientn(
-          colours = blue_seq,
+          colours = c("white", blue_seq),
           trans = scales::log1p_trans(),
-          breaks = c(0, 1, 10, 50, 100, 500),
+          breaks = c(0, 1, 10, 50, 200, 500),
           labels = comma,
           name = "Interpretable\ngenomes"
      ) +
@@ -142,7 +148,7 @@ layer_dat <- tibble::tribble(
 ) %>%
      mutate(
           n = case_when(
-               layer == "Disrupted prn" ~ 617,
+               layer == "Disrupted prn" ~ 577,
                layer == "Structurally resolved" ~ 577,
                TRUE ~ vapply(stage_id, stage_n, numeric(1))
           ),
@@ -167,23 +173,19 @@ pE <- ggplot(layer_dat, aes(layer, fraction, group = 1)) +
 
 # panel G: Non-interpretable composition ---------------------------------
 
-noninterp_dat <- prn_year_focus %>%
-     group_by(country_iso3) %>%
-     summarise(
-          Interpretable = sum(n_genomes_prn_interpretable, na.rm = TRUE),
-          Fragmented = sum(n_prn_uncertain_fragmented, na.rm = TRUE),
-          Insufficient = sum(n_prn_insufficient, na.rm = TRUE),
-          .groups = "drop"
+noninterp_dat <- mechanism_summary %>%
+     transmute(
+          category = case_when(
+               as.character(is_interpretable) %in% c("TRUE", "True", "true") ~ "Interpretable",
+               prn_mechanism_call == "uncertain_fragmented_assembly" ~ "Fragmented",
+               prn_mechanism_call == "insufficient_data" ~ "Insufficient",
+               TRUE ~ "Other"
+          ),
+          n = sample_count
      ) %>%
-     mutate(
-          Total = Interpretable + Fragmented + Insufficient,
-          Other = pmax(0, Total - Interpretable - Fragmented - Insufficient)
-     ) %>%
-     filter(Total > 0) %>%
-     select(country_iso3, Interpretable, Fragmented, Insufficient) %>%
-     pivot_longer(cols = -country_iso3, names_to = "category", values_to = "n") %>%
      group_by(category) %>%
      summarise(n = sum(n, na.rm = TRUE), .groups = "drop") %>%
+     filter(category %in% c("Interpretable", "Fragmented", "Insufficient")) %>%
      mutate(
           category = factor(category, levels = c("Interpretable", "Fragmented", "Insufficient")),
           frac = n / sum(n),

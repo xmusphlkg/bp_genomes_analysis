@@ -39,15 +39,30 @@ from project_paths import project_module_data_root  # noqa: E402
 ROOT = Path(__file__).resolve().parents[3]
 FIGURE_DATA_DIR = ROOT / "manuscript" / "figure_data"
 SUPP_DIR = ROOT / "manuscript" / "supplementary"
+AUDIT_LEDGER_DIR = ROOT / "manuscript" / "submission_data" / "audit_ledgers" / "supplementary_table_sources"
+
+
+def first_existing_path(*paths: Path) -> Path:
+    for path in paths:
+        if path.exists():
+            return path
+    return paths[0]
 
 STEP4_OUTPUTS = project_module_data_root("step4_prn_validation") / "outputs"
 STEP6_OUTPUTS = project_module_data_root("step6_epi_transmission") / "outputs"
 
 MECHANISM_CALLS = STEP4_OUTPUTS / "bp_prn_mechanism_calls.tsv"
-EVENT_DEFINITIONS = ROOT / "manuscript" / "supplementary" / "Supplementary_Table_9_prn_Event_Definitions.tsv"
+EVENT_DEFINITIONS = first_existing_path(
+    SUPP_DIR / "Supplementary_Table_5_prn_Event_Definitions.tsv",
+    SUPP_DIR / "Supplementary_Table_9_prn_Event_Definitions.tsv",
+    AUDIT_LEDGER_DIR / "Supplementary_Table_9_prn_Event_Definitions.tsv",
+)
 ORIGIN_TABLE = ROOT / "manuscript" / "supplementary" / "Supplementary_Table_3_independent_origins.tsv"
 ORIGIN_EVIDENCE = ROOT / "manuscript" / "figure_data" / "origin_evidence_completeness_audit.tsv"
-EXTENDED_ASR = ROOT / "manuscript" / "supplementary" / "Supplementary_Table_23_ASR_Extended_Frame.tsv"
+EXTENDED_ASR = first_existing_path(
+    ROOT / "manuscript" / "supplementary" / "Supplementary_Table_23_ASR_Extended_Frame.tsv",
+    ROOT / "manuscript" / "figure_data" / "asr_extended_frame_summary.tsv",
+)
 LOCAL_NEIGHBORHOOD_TIPS = ROOT / "manuscript" / "figure_data" / "figure3_local_neighborhood_tip_selection.tsv"
 LOCAL_NEIGHBORHOOD_ORIGINS = ROOT / "manuscript" / "figure_data" / "figure3_local_neighborhood_origin_events.tsv"
 COUNTRY_YEAR_PANEL = STEP6_OUTPUTS / "bp_country_year_analysis_input.tsv"
@@ -67,7 +82,7 @@ FORMULATION_MANIFEST_OUT = FIGURE_DATA_DIR / "expanded_formulation_aware_country
 ECOLOGY_ROBUSTNESS_OUT = FIGURE_DATA_DIR / "hierarchical_ecology_robustness.tsv"
 USA_LAG_OUT = FIGURE_DATA_DIR / "usa_lag_sensitivity_model_comparison.tsv"
 SUMMARY_OUT = FIGURE_DATA_DIR / "submission_evidence_summary.tsv"
-REVIEWER_RISK_LEDGER_OUT = FIGURE_DATA_DIR / "reviewer_risk_ledger.tsv"
+CLAIM_EVIDENCE_DENOMINATOR_LEDGER_OUT = FIGURE_DATA_DIR / "claim_evidence_denominator_ledger.tsv"
 COHORT_FLOW = ROOT / "manuscript" / "submission_data" / "cohort" / "master_cohort_flow_summary.tsv"
 LIVE_MANIFEST_BUILD_REPORT = ROOT / "state" / "manifest" / "manifest_build_report.json"
 
@@ -79,9 +94,22 @@ SUPP29 = SUPP_DIR / "Supplementary_Table_29_Hierarchical_Ecology_Robustness.tsv"
 SUPP30 = SUPP_DIR / "Supplementary_Table_30_USA_Lag_Sensitivity.tsv"
 SUPP31 = SUPP_DIR / "Supplementary_Table_31_Lineage_Collapse_Sensitivity.tsv"
 SUPP38 = SUPP_DIR / "Supplementary_Table_38_PRN_Specificity_Negative_Control.tsv"
-SUPP54 = SUPP_DIR / "Supplementary_Table_54_Study_Weighted_Structure_and_ASR.tsv"
-SUPP62 = SUPP_DIR / "Supplementary_Table_62_Event_Class_Phenotype_Evidence_Tiers.tsv"
-SUPP63 = SUPP_DIR / "Supplementary_Table_63_Country_Year_Interpretability_Study_Block_Audit.tsv"
+SUPP54 = first_existing_path(
+    SUPP_DIR / "Supplementary_Table_54_Study_Weighted_Structure_and_ASR.tsv",
+    AUDIT_LEDGER_DIR / "Supplementary_Table_54_Study_Weighted_Structure_and_ASR.tsv",
+)
+SUPP62 = first_existing_path(
+    SUPP_DIR / "Supplementary_Table_10_Event_Class_Phenotype_Evidence_Tiers.tsv",
+    SUPP_DIR / "Supplementary_Table_62_Event_Class_Phenotype_Evidence_Tiers.tsv",
+    AUDIT_LEDGER_DIR / "Supplementary_Table_62_Event_Class_Phenotype_Evidence_Tiers.tsv",
+)
+SUPP63 = first_existing_path(
+    FIGURE_DATA_DIR / "epidemiology_revision_country_year_audit.tsv",
+    SUPP_DIR / "Supplementary_Table_63_Country_Year_Interpretability_Study_Block_Audit.tsv",
+    AUDIT_LEDGER_DIR / "Supplementary_Table_63_Country_Year_Interpretability_Study_Block_Audit.tsv",
+)
+USA_LAG_P_VALUE_SCOPE = "within_usa_lag_negative_binomial_diagnostic_no_multiplicity_adjustment"
+USA_LAG_INFERENCE_SCOPE = "archive_context_lag_sensitivity_diagnostic_not_claim_generating"
 
 DEFAULT_TOTAL_DISRUPTED = 577
 HARD_ANCHOR_LEVELS = {"read_backed_supported", "public_longread_or_hybrid_assembly"}
@@ -152,6 +180,22 @@ def write_tsv(path: Path, rows: list[dict[str, Any]]) -> None:
             writer.writerow({field: row.get(field, "") for field in fieldnames})
 
 
+def to_bool(series: pd.Series) -> pd.Series:
+    return (
+        series.fillna("")
+        .astype(str)
+        .str.strip()
+        .str.casefold()
+        .isin({"true", "1", "yes", "y", "t"})
+    )
+
+
+def is_structurally_resolved_event_id(series: pd.Series) -> pd.Series:
+    event = series.fillna("").astype(str).str.strip().str.casefold()
+    unresolved_pattern = r"insufficient|fragmented|uncertain"
+    return event.ne("") & ~event.str.contains(unresolved_pattern, regex=True)
+
+
 def parse_origin_ids(value: Any) -> list[str]:
     text = clean_text(value)
     if not text:
@@ -194,8 +238,16 @@ def zscore(series: pd.Series) -> pd.Series:
 
 
 def load_disrupted_mechanism_calls() -> pd.DataFrame:
-    df = pd.read_csv(MECHANISM_CALLS, sep="\t", dtype=str)
-    df = df[df["prn_mechanism_call"].fillna("").str.startswith("coding_disrupted_")].copy()
+    if GENOTYPE_ANNOTATION.exists():
+        df = pd.read_csv(GENOTYPE_ANNOTATION, sep="\t", dtype=str, keep_default_na=False)
+        df = df.loc[
+            to_bool(df["prn_interpretable"])
+            & to_bool(df["prn_disrupted"])
+            & is_structurally_resolved_event_id(df["prn_event_id"])
+        ].copy()
+    else:
+        df = pd.read_csv(MECHANISM_CALLS, sep="\t", dtype=str)
+        df = df[df["prn_mechanism_call"].fillna("").str.startswith("coding_disrupted_")].copy()
     df["country_iso3"] = df["country_iso3"].fillna("UNK")
     df["mlst_st"] = df["mlst_st"].fillna("NA")
     if MANIFEST_PATH.exists():
@@ -648,6 +700,11 @@ def fit_grouped_component_model(
         sd = float(fit.bse[name])
         ci_lower = float(mean - 1.96 * sd)
         ci_upper = float(mean + 1.96 * sd)
+        row_status = "ok"
+        if warning_messages:
+            row_status = "diagnostic_warning"
+        if not np.isfinite(sd) or not np.isfinite(ci_lower) or not np.isfinite(ci_upper) or abs(mean) > 20:
+            row_status = "failed_instability_or_diagnostic_only"
         rows.append(
             {
                 "analysis_id": (
@@ -657,26 +714,27 @@ def fit_grouped_component_model(
                 ),
                 "leave_out_country_iso3": leave_out_country_iso3,
                 "term": name,
-                "posterior_mean": f"{float(mean):.6f}",
-                "posterior_sd": f"{float(sd):.6f}",
+                "estimate": f"{float(mean):.6f}",
+                "standard_error": f"{float(sd):.6f}",
                 "approx_ci_lower": f"{ci_lower:.6f}",
                 "approx_ci_upper": f"{ci_upper:.6f}",
                 "direction": "positive" if mean > 0 else ("negative" if mean < 0 else "zero"),
                 "n_country_year_rows": str(int(working[["country_iso3", "year"]].drop_duplicates().shape[0])),
                 "n_countries": str(int(working["country_iso3"].nunique())),
                 "n_genome_level_trials": str(int(working["n_genomes_prn_interpretable"].sum())),
-                "model_status": "warning" if warning_messages else "ok",
+                "model_status": row_status,
                 "warning_messages": " | ".join(warning_messages),
                 "notes": (
                     "grouped_binomial_country_year_fraction_model_without_genome_row_expansion;"
                     f"covariance_type={covariance_type};"
-                    "country_cluster_robust_inference_used_when_available"
+                    "country_cluster_robust_inference_used_when_available;"
+                    "frequentist_glm_diagnostic_not_bayesian_or_mixed_effects"
                 ),
             }
         )
     return pd.DataFrame(rows), warning_messages
 
-def fit_component_mixed_logit(manifest: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]:
+def fit_component_clustered_fractional_logit(manifest: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]:
     rows: list[pd.DataFrame] = []
     main_rows, main_warnings = fit_grouped_component_model(manifest)
     if not main_rows.empty:
@@ -786,6 +844,8 @@ def build_usa_lag_sensitivity() -> pd.DataFrame:
                 "rate_ratio_ci_lower": f"{rr_ci_lower:.6f}",
                 "rate_ratio_ci_upper": f"{rr_ci_upper:.6f}",
                 "p_value": f"{float(full_fit.pvalues[f'{lag_column}_z']):.6f}",
+                "p_value_scope": USA_LAG_P_VALUE_SCOPE,
+                "inference_scope": USA_LAG_INFERENCE_SCOPE,
                 "full_aic": f"{float(full_fit.aic):.6f}",
                 "null_aic": f"{float(null_fit.aic):.6f}",
                 "delta_aic_vs_null": f"{float(null_fit.aic - full_fit.aic):.6f}",
@@ -814,6 +874,8 @@ def build_usa_lag_sensitivity() -> pd.DataFrame:
                 "rate_ratio_ci_lower": clean_text(summary_row.get("effect_ratio_ci_lower")),
                 "rate_ratio_ci_upper": clean_text(summary_row.get("effect_ratio_ci_upper")),
                 "p_value": clean_text(summary_row.get("p_value")),
+                "p_value_scope": USA_LAG_P_VALUE_SCOPE if clean_text(summary_row.get("p_value")) else "",
+                "inference_scope": USA_LAG_INFERENCE_SCOPE,
                 "full_aic": clean_text(summary_row.get("aic")),
                 "null_aic": clean_text(summary_row.get("null_aic")),
                 "delta_aic_vs_null": clean_text(summary_row.get("delta_aic")),
@@ -1084,11 +1146,11 @@ def build_frozen_live_frame_note() -> str:
             f"live_prn_disrupted={live.get('n_prn_disrupted', '')};"
             f"live_build_date={live.get('build_date', '')}"
         )
-    return f"{frozen_note}|{live_note}"
+    return f"{frozen_note}|{live_note}|release_contract=frozen_submission_package"
 
 
-def build_reviewer_risk_ledger(decision_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Translate internal decision gates into reviewer-facing risk controls."""
+def build_claim_evidence_denominator_ledger(decision_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Translate internal decision gates into claim, evidence and denominator controls."""
 
     decisions = {row["decision_id"]: row for row in decision_rows}
     study_weighted = optional_read_tsv(SUPP54)
@@ -1105,6 +1167,10 @@ def build_reviewer_risk_ledger(decision_rows: list[dict[str, Any]]) -> list[dict
             fragments.append(
                 "study_block_equalized_largest_share="
                 f"{clean_text(equalized.iloc[0].get('dominant_event_share'))}"
+            )
+            fragments.append(
+                "study_block_equalized_top3_share="
+                f"{clean_text(equalized.iloc[0].get('top3_share'))}"
             )
         if not drop_largest.empty:
             fragments.append(
@@ -1146,90 +1212,90 @@ def build_reviewer_risk_ledger(decision_rows: list[dict[str, Any]]) -> list[dict
 
     rows = [
         {
-            "risk_id": "frozen_vs_live_state",
-            "reviewer_concern": "Frozen manuscript denominators may differ from the live workflow state after later refreshes.",
-            "resolution_status": "release_boundary_required",
+            "claim_boundary_id": "frozen_vs_live_state",
+            "claim_or_denominator_concern": "Live workflow manifests can differ from the frozen submission-facing manuscript frame after later development refreshes.",
+            "resolution_status": "resolved_by_release_freeze_contract",
             "evidence_source": "manuscript/submission_data/cohort/master_cohort_flow_summary.tsv;state/manifest/manifest_build_report.json",
             "diagnostic_value": build_frozen_live_frame_note(),
-            "manuscript_control": "Tie manuscript claims and Source Data to the frozen submission-facing package, not incidental live state summaries.",
-            "residual_boundary": "Before public release, either synchronize live state to the frozen package or label live-state reports as post-freeze development outputs.",
-            "minimum_safe_claim": "All manuscript numbers refer to the frozen Communications Biology analysis frame.",
+            "manuscript_control": "Treat Supplementary Tables, Source Data and submission-facing ledgers as the frozen manuscript contract; state/manifest reports are post-freeze development diagnostics unless the submission package is regenerated.",
+            "residual_boundary": "Any future live-state update must regenerate all manuscript tables, source-data workbooks and text before changing manuscript denominators.",
+            "minimum_safe_claim": "All manuscript numbers refer to the frozen Communications Biology analysis frame, not incidental post-freeze live manifest summaries.",
         },
         {
-            "risk_id": "archive_ascertainment",
-            "reviewer_concern": "Public genomes may not estimate circulation-wide prevalence.",
+            "claim_boundary_id": "archive_ascertainment",
+            "claim_or_denominator_concern": "Public genomes may not estimate circulation-wide prevalence.",
             "resolution_status": "bounded_in_claim",
-            "evidence_source": "Supplementary Fig. 11;Supplementary Table 63",
+            "evidence_source": "Supplementary Fig. 11;Supplementary Fig. 12;Source Data",
             "diagnostic_value": country_year_note,
             "manuscript_control": "Use recoverable-locus disruption in observed public genomes as the principal estimand.",
             "residual_boundary": "Population prevalence requires denser catchment-defined sampling.",
             "minimum_safe_claim": "Archive-level recoverable-locus disruption, not circulation-wide prevalence.",
         },
         {
-            "risk_id": "study_block_amplification",
-            "reviewer_concern": "A dominant accession block could inflate the apparent leading event.",
+            "claim_boundary_id": "study_block_amplification",
+            "claim_or_denominator_concern": "A dominant accession block could inflate the apparent leading event.",
             "resolution_status": "stress_tested_bounded",
-            "evidence_source": "Supplementary Tables 52 and 54",
+            "evidence_source": "Supplementary Fig. 14;Source Data",
             "diagnostic_value": study_block_note,
-            "manuscript_control": "Report both attenuation under equal block weighting and residual dominance after dropping the largest block.",
+            "manuscript_control": "Report attenuation under equal block weighting and keep study-weighted dominance as a stress test rather than a primary event-ranking estimator.",
             "residual_boundary": "Study uploads still amplify event burden and should not be treated as unbiased population counts.",
-            "minimum_safe_claim": "Structural reuse persists beyond one accession block, but public uploads amplify it.",
+            "minimum_safe_claim": "Structural reuse persists after block-weighting stress tests, but public uploads amplify it.",
         },
         {
-            "risk_id": "repeated_origin_specificity",
-            "reviewer_concern": "Repeated origins could be an artefact of tree frame choice.",
+            "claim_boundary_id": "repeated_origin_specificity",
+            "claim_or_denominator_concern": "Repeated origins could be an artefact of tree frame choice.",
             "resolution_status": clean_text(repeated_decision.get("status", "not_available")),
-            "evidence_source": "Fig. 3;Supplementary Tables 20, 44, 47 and 54",
+            "evidence_source": "Fig. 3;Supplementary Table 6;Supplementary Figs. 6 and 14;Source Data",
             "diagnostic_value": clean_text(repeated_decision.get("observed_value", "")),
             "manuscript_control": "Interpret origin counts as scenario-level evidence against a one-clone explanation.",
             "residual_boundary": "Exact historical transition counts require denser sampling and direct transmission context.",
             "minimum_safe_claim": "Repeated emergence is supported qualitatively; exact counts are not historical truth claims.",
         },
         {
-            "risk_id": "orthogonal_validation",
-            "reviewer_concern": "Assembly-side event calls need independent structural support.",
+            "claim_boundary_id": "orthogonal_validation",
+            "claim_or_denominator_concern": "Assembly-side event calls need independent structural support.",
             "resolution_status": clean_text(validation_decision.get("status", "not_available")),
-            "evidence_source": "Supplementary Tables 21, 24, 26, 27, 57 and 58",
+            "evidence_source": "Supplementary Table 8;Supplementary Fig. 14;Source Data",
             "diagnostic_value": clean_text(validation_decision.get("observed_value", "")),
             "manuscript_control": "Keep read-backed and long-read/hybrid anchors separate from assembly-only event calls.",
             "residual_boundary": "Low-frequency or assembly-only classes remain lower-confidence until further read-backed validation.",
             "minimum_safe_claim": "Major recurrent architectures are anchored; rare classes remain bounded genome-defined disruptions.",
         },
         {
-            "risk_id": "protein_expression_boundary",
-            "reviewer_concern": "Genome-defined disruption could be mistaken for direct PRN protein non-expression.",
+            "claim_boundary_id": "protein_expression_boundary",
+            "claim_or_denominator_concern": "Genome-defined disruption could be mistaken for direct PRN protein non-expression.",
             "resolution_status": "tiered_not_genome_by_genome",
-            "evidence_source": "Fig. 5b;Supplementary Tables 61 and 62",
+            "evidence_source": "Fig. 5c;Supplementary Table 10;Supplementary Fig. 15;Source Data",
             "diagnostic_value": phenotype_note,
             "manuscript_control": "Use phenotype tiers and state that protein expression is a separate measurement layer.",
             "residual_boundary": "Universal PRN non-expression requires paired expression assays.",
             "minimum_safe_claim": "Genome-defined disruption with lesion-class phenotype plausibility, not universal protein proof.",
         },
         {
-            "risk_id": "comparator_specificity",
-            "reviewer_concern": "The *prn* signal could reflect generic marker loss or assembly fragmentation.",
+            "claim_boundary_id": "comparator_specificity",
+            "claim_or_denominator_concern": "The *prn* signal could reflect generic marker loss or assembly fragmentation.",
             "resolution_status": "specificity_audited",
-            "evidence_source": "Fig. 5a;Supplementary Table 38;Supplementary Fig. 10",
+            "evidence_source": "Fig. 5b;Supplementary Fig. 10;Source Data",
             "diagnostic_value": specificity_note,
             "manuscript_control": "Use matched marker-recovery logic across *prn* and comparator loci.",
             "residual_boundary": "The audit addresses gross locus loss, not every possible event-specific technical artefact.",
             "minimum_safe_claim": "The *prn* signal is much stronger than comparator marker-loss proxies.",
         },
         {
-            "risk_id": "programme_causality",
-            "reviewer_concern": "Country-programme contrasts could be read as causal vaccine-effect estimates.",
+            "claim_boundary_id": "programme_causality",
+            "claim_or_denominator_concern": "Country-programme contrasts could be read as causal vaccine-effect estimates.",
             "resolution_status": clean_text(ecology_decision.get("status", "not_available")),
-            "evidence_source": "Fig. 4;Supplementary Figs. 7, 8, 11 and 12;Supplementary Tables 33-43, 53 and 63",
+            "evidence_source": "Fig. 4;Supplementary Figs. 7, 8, 11 and 12;Source Data",
             "diagnostic_value": clean_text(ecology_decision.get("observed_value", "")),
             "manuscript_control": "Keep country-programme contrasts descriptive and frame models as sensitivity/context only.",
             "residual_boundary": "Product-level exposure metadata and catchment-defined sampling are needed for causal inference.",
             "minimum_safe_claim": "Country-programme settings amplify observable archive patterns unevenly.",
         },
         {
-            "risk_id": "usa_dynamics",
-            "reviewer_concern": "Dynamic incidence models may overstate transmission relevance.",
+            "claim_boundary_id": "usa_dynamics",
+            "claim_or_denominator_concern": "Dynamic incidence models may overstate transmission relevance.",
             "resolution_status": clean_text(usa_decision.get("status", "not_available")),
-            "evidence_source": "Supplementary Fig. 9;Supplementary Table 30",
+            "evidence_source": "Supplementary Fig. 9;Source Data",
             "diagnostic_value": clean_text(usa_decision.get("observed_value", "")),
             "manuscript_control": "Keep USA dynamics supplementary and do not make it a main-text pillar.",
             "residual_boundary": "Transmission dynamics need denser epidemiologic and genomic overlap.",
@@ -1249,7 +1315,7 @@ def main() -> None:
 
     formulation_manifest = build_formulation_manifest()
     explicit_ge3 = formulation_manifest[formulation_manifest["eligible_component_model_ge3"]].copy()
-    ecology_robustness, ecology_summary = fit_component_mixed_logit(explicit_ge3)
+    ecology_robustness, ecology_summary = fit_component_clustered_fractional_logit(explicit_ge3)
     usa_lag_df = build_usa_lag_sensitivity()
     decision_rows = build_submission_summary(
         lineage_rows=lineage_rows,
@@ -1261,7 +1327,7 @@ def main() -> None:
         ecology_summary=ecology_summary,
         usa_lag_df=usa_lag_df,
     )
-    reviewer_risk_rows = build_reviewer_risk_ledger(decision_rows)
+    claim_ledger_rows = build_claim_evidence_denominator_ledger(decision_rows)
 
     write_tsv(LINEAGE_COLLAPSED_OUT, lineage_rows)
     write_tsv(LINEAGE_COLLAPSE_SENSITIVITY_OUT, collapse_sensitivity_rows)
@@ -1271,7 +1337,7 @@ def main() -> None:
     write_tsv(ECOLOGY_ROBUSTNESS_OUT, ecology_robustness.to_dict("records"))
     write_tsv(USA_LAG_OUT, usa_lag_df.to_dict("records"))
     write_tsv(SUMMARY_OUT, decision_rows)
-    write_tsv(REVIEWER_RISK_LEDGER_OUT, reviewer_risk_rows)
+    write_tsv(CLAIM_EVIDENCE_DENOMINATOR_LEDGER_OUT, claim_ledger_rows)
 
     write_tsv(SUPP25, lineage_rows)
     write_tsv(SUPP26, origin_rows)
@@ -1279,6 +1345,7 @@ def main() -> None:
     write_tsv(SUPP28, formulation_manifest.to_dict("records"))
     write_tsv(SUPP29, ecology_robustness.to_dict("records"))
     write_tsv(SUPP30, usa_lag_df.to_dict("records"))
+    write_tsv(AUDIT_LEDGER_DIR / "Supplementary_Table_30_USA_Lag_Sensitivity.tsv", usa_lag_df.to_dict("records"))
     write_tsv(SUPP31, collapse_sensitivity_rows)
 
 

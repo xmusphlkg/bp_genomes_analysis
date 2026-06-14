@@ -56,7 +56,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 3: Rooted workflow phylogeny of prn states
 
 - File: `figure_data/figure3_workflow_tree_nodes.tsv`
-- Rows: `0`
+- Rows: `3837`
 - Purpose: Node-position and annotation table for the composition-pruned 158-tip maximum-likelihood tree used for the primary ASR quality frame.
 - Provenance:
   - `outputs/workflow/asr_sensitivity/composition_filtered/rooted_ml_tree.reference_rooted.nwk`
@@ -71,7 +71,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 3: Rooted workflow phylogeny of prn states
 
 - File: `figure_data/figure3_workflow_tree_segments.tsv`
-- Rows: `0`
+- Rows: `5754`
 - Purpose: Plot-ready segment table for drawing the composition-pruned 158-tip ML tree without re-laying out the topology during figure rendering.
 - Provenance:
   - `outputs/workflow/asr_sensitivity/composition_filtered/rooted_ml_tree.reference_rooted.nwk`
@@ -83,7 +83,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 3: Primary independent-origin ledger
 
 - File: `figure_data/figure3_workflow_origin_events.tsv`
-- Rows: `0`
+- Rows: `24`
 - Purpose: One row per composition-pruned primary ASR origin event, including support, dominant mechanism, descendant burden, and origin timing fields.
 - Provenance:
   - `outputs/workflow/asr_sensitivity/composition_filtered/origin_events.tsv`
@@ -97,7 +97,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 3: Balanced ASR resampling summary
 
 - File: `figure_data/figure3_workflow_asr_resampling.tsv`
-- Rows: `0`
+- Rows: `3`
 - Purpose: Scheme-level distribution summary for country-balanced and time-balanced ASR reruns.
 - Provenance:
   - `outputs/workflow/asr_resampling/resampling_summary.tsv`
@@ -110,7 +110,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 3: Primary ASR sensitivity summary
 
 - File: `figure_data/figure3_workflow_asr_sensitivity.tsv`
-- Rows: `0`
+- Rows: `4`
 - Purpose: Composition-pruned primary, unpruned comparability, and branch-support-filtered ASR scenarios used in Figure 3 and cross-referenced against Supplementary Table 3.
 - Provenance:
   - `outputs/workflow/asr_sensitivity/sensitivity_summary.tsv`
@@ -136,7 +136,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 4: Origin-clade expansion
 
 - File: `figure_data/figure4_origin_clade_expansion.tsv`
-- Rows: `0`
+- Rows: `100`
 - Purpose: Top-level origin summaries and year-by-year cumulative disrupted descendant counts used to show that repeated origins are followed by uneven local expansion.
 - Provenance:
   - `outputs/workflow/asr/origin_events.tsv`
@@ -149,7 +149,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 4: Country-level event-centered amplification
 
 - File: `figure_data/figure4_event_centered_country.tsv`
-- Rows: `0`
+- Rows: `98`
 - Purpose: Country-year prevalence and origin-clade context aligned on first local origin or first disrupted detection, used to separate emergence from later amplification.
 - Provenance:
   - `outputs/workflow/epi/ipw_prevalence.tsv`
@@ -162,7 +162,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 4: Pooled event-centered summaries
 
 - File: `figure_data/figure4_event_centered_pooled.tsv`
-- Rows: `0`
+- Rows: `68`
 - Purpose: Relative-year pooled means/medians and pre/post paired differences derived from the country-level event-centered table, used to summarize post-origin amplification without invoking a global mechanistic transmission claim.
 - Provenance:
   - `manuscript/figure_data/figure4_event_centered_country.tsv`
@@ -174,7 +174,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Focal-country monthly cases
 
 - File: `figure_data/focal_country_monthly_cases.tsv`
-- Rows: `0`
+- Rows: `396`
 - Purpose: Monthly case trajectories retained for supplementary audit trails after the focal-country mechanistic branch was removed from the manuscript headline.
 - Provenance:
   - `public_health/outputs/ph_highres_cases.tsv`
@@ -189,7 +189,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Focal-country age-stratified case ledger
 
 - File: `figure_data/focal_country_age_stratified_cases.tsv`
-- Rows: `0`
+- Rows: `108`
 - Purpose: Harmonized annual age-stratified case counts for the focal countries, together with exact-versus-nonexact mapping status to the project age bins.
 - Provenance:
   - `modules/public_health/inputs/raw/report_cases/Pertussis case year age.xlsx`
@@ -202,7 +202,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Focal-country population age structure
 
 - File: `figure_data/focal_country_population_age_structure.tsv`
-- Rows: `0`
+- Rows: `132`
 - Purpose: WPP-derived focal-country population age structure aggregated to the project bins, with explicit notation when the 0-4 population bin is fractionally split into infant and ages 1-4 components.
 - Provenance:
   - `modules/public_health/inputs/raw/wpp/unpopulation_dataportal_20260408111357.csv`
@@ -215,7 +215,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Focal-country vaccine programme timeline
 
 - File: `figure_data/focal_country_program_timeline.tsv`
-- Rows: `0`
+- Rows: `75`
 - Purpose: Country-year vaccine programme and curated formulation table used to contextualize focal-country dynamics.
 - Provenance:
   - `public_health/outputs/ph_country_year_master.tsv`
@@ -228,21 +228,23 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Focal-country contact-prior ledger
 
 - File: `figure_data/focal_country_contact_prior_ledger.tsv`
-- Rows: `0`
-- Purpose: Projected 4x4 focal-country contact-prior matrices derived from epydemix-data with an explicit infant-versus-1-4 split assumption applied to the original 0-4 contact block.
+- Rows: `192`
+- Purpose: Projected 4x4 focal-country contact-prior matrices derived from a pinned local epydemix-data v1.1.0 snapshot, with an explicit infant-versus-1-4 split assumption applied to the original 0-4 contact block.
 - Provenance:
-  - `https://raw.githubusercontent.com/epistorm/epydemix-data/v1.1.0/locations.csv`
-  - `https://raw.githubusercontent.com/epistorm/epydemix-data/v1.1.0/data/<location>/contact_matrices/prem_2017/`
+  - `manuscript/submission_data/audit_ledgers/epydemix_snapshot_manifest.tsv`
+  - `modules/public_health/inputs/raw/epydemix-data/v1.1.0/snapshot_manifest.tsv`
+  - `modules/public_health/inputs/raw/epydemix-data/v1.1.0/data/<location>/contact_matrices/prem_2017/`
   - `manuscript/scripts/sidecars/ms_05_build_focal_country_dynamics.py`
 - Key Columns:
   - `layer_name`, `from_age_group`, and `to_age_group`: long-format representation of the projected contact matrices.
   - `contact_rate`: contact rate retained for the manuscript-facing prior ledger.
+  - `source_access_mode`, `source_canonicality`, and `source_file`: explicit provenance labels distinguishing pinned local snapshots from non-canonical recovery paths.
   - `notes`: explicit statement that the infant split is assumption-based rather than directly observed.
 
 ## Supplementary package: Focal-country genomic overlap
 
 - File: `figure_data/focal_country_genomic_overlap.tsv`
-- Rows: `0`
+- Rows: `33`
 - Purpose: Year-level overlap table linking high-resolution case windows to interpretable genomic depth and annual PRN- prevalence.
 - Provenance:
   - `public_health/outputs/ph_highres_cases.tsv`
@@ -257,7 +259,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Focal-country recovery summary
 
 - File: `figure_data/focal_country_recovery_summary.tsv`
-- Rows: `0`
+- Rows: `33`
 - Purpose: Country-year recovery and gapfill-priority audit linking the paper comparison metadata to the external gapfill plan and manifest reconciliation layer.
 - Provenance:
   - `outputs/paper_dataset_compare_20260330/paper_included_comparison.tsv`
@@ -273,7 +275,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Dynamic-model input matrix
 
 - File: `figure_data/dynamic_model_input.tsv`
-- Rows: `0`
+- Rows: `396`
 - Purpose: Shared monthly analysis matrix retained for supplementary focal-country analyses rather than the main repeated-origin narrative.
 - Provenance:
   - `manuscript/figure_data/focal_country_monthly_cases.tsv`
@@ -286,7 +288,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Dynamic branch summary
 
 - File: `figure_data/dynamic_fit_summary.tsv`
-- Rows: `0`
+- Rows: `6`
 - Purpose: Compact fit summary for the downgraded high-resolution branches and the United States full mechanistic branch.
 - Provenance:
   - `manuscript/figure_data/dynamic_model_input.tsv`
@@ -299,7 +301,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Dynamic posterior predictive summary
 
 - File: `figure_data/dynamic_ppc_summary.tsv`
-- Rows: `0`
+- Rows: `3`
 - Purpose: Posterior predictive checks for the focal-country mechanistic branch, including monthly case and annual genomic-prevalence coverage.
 - Provenance:
   - `manuscript/figure_data/dynamic_fit_summary.tsv`
@@ -312,7 +314,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Dynamic counterfactual placeholder summary
 
 - File: `figure_data/dynamic_counterfactual_summary.tsv`
-- Rows: `0`
+- Rows: `9`
 - Purpose: Explicit statement that counterfactuals are reserved for the full mechanistic branch and are emitted as a not-run placeholder in this manuscript freeze.
 - Provenance:
   - `manuscript/scripts/sidecars/ms_05_build_focal_country_dynamics.py`
@@ -323,7 +325,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Supplementary package: Dynamic identifiability report
 
 - File: `figure_data/dynamic_identifiability_report.tsv`
-- Rows: `0`
+- Rows: `3`
 - Purpose: Country-level readiness report governing whether the manuscript is allowed to claim full mechanistic transmission inference.
 - Provenance:
   - `public_health/outputs/ph_highres_overlap_summary.tsv`
@@ -337,7 +339,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 5: Exposure-model comparison panels
 
 - File: `figure_data/figure5_association_model_panels.tsv`
-- Rows: `315`
+- Rows: `314`
 - Purpose: Primary V3/V2/V1/DTP3 effect rows, leave-one-country-out summaries, formulation and product-metadata coverage context, diagnostics, and AMU exploratory rows retained as an external-consistency bridge with explicit headline-eligibility flags.
 - Provenance:
   - `outputs/workflow/epi/panel_model_results.tsv`
@@ -350,12 +352,12 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 - Key Columns:
   - `panel_id`: `primary_exposure_comparison`, `cluster_robust_v3`, `cluster_robust_v2`, `leave_one_country_out`, `coverage_summary`, `formulation_country_summary`, `sensitivity_diagnostics`, or `amu_exploratory_summary`.
   - `focal_exposure_family`: distinguishes `v3`, `v2`, `v1`, and `dtp3` rows within the same plot-ready table.
-  - `stability_label` and `headline_eligibility`: manuscript-facing annotations showing when exposure effects become country-dependent and therefore remain support-only.
+  - `stability_label` and `headline_eligibility`: manuscript-facing annotations showing archive-context diagnostics and country-dependent sensitivity; these rows are not headline causal evidence.
 
 ## Figure 5: Leave-one-country-out focal rows
 
 - File: `figure_data/figure5_leave_one_country_out_summary.tsv`
-- Rows: `36`
+- Rows: `35`
 - Purpose: Direct export of focal leave-one-country-out coefficients for V3, V2, V1, and DTP3 comparison models.
 - Provenance:
   - `outputs/workflow/epi/panel_model_leave_one_country_out.tsv`
@@ -381,7 +383,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 5: Event-class detectability audit summary
 
 - File: `figure_data/prn_event_class_detectability.tsv`
-- Rows: `0`
+- Rows: `6`
 - Purpose: Empirical event-class recovery audit separating recovered, true-nonrecovery, and compatibility-excluded rows for the Figure 5 detectability panel.
 - Provenance:
   - `step4_prn_validation/outputs/bp_prn_validation_subset.tsv`
@@ -396,7 +398,7 @@ These TSVs are manuscript-facing frozen extracts meant to avoid repeated hidden 
 ## Figure 5: Event-class detectability detail ledger
 
 - File: `figure_data/prn_event_class_detectability_detail.tsv`
-- Rows: `0`
+- Rows: `93`
 - Purpose: Row-level empirical and matched-downsampling detectability ledger used to audit event-class-specific callability across read fractions.
 - Provenance:
   - `step4_prn_validation/outputs/bp_prn_validation_subset.tsv`

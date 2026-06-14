@@ -70,6 +70,18 @@ concentration <- safe_load(file.path(FIGURE_DATA_DIR, "structural_event_concentr
   mutate(across(c(dominant_event_share, top3_share, effective_number,
                   null_dominant_event_share_mean, null_top3_share_mean, null_effective_number_mean), as.numeric))
 
+event_definition_hierarchy <- safe_load(
+  file.path(FIGURE_DATA_DIR, "event_definition_hierarchy_sensitivity.tsv"),
+  "event-definition hierarchy sensitivity"
+) %>%
+  mutate(
+    n_genomes = as.numeric(n_genomes),
+    n_event_definitions = as.numeric(n_event_definitions),
+    dominant_definition_count = as.numeric(dominant_definition_count),
+    dominant_definition_share = as.numeric(dominant_definition_share),
+    top3_definition_share = as.numeric(top3_definition_share)
+  )
+
 study_weight <- safe_load(file.path(FIGURE_DATA_DIR, "study_dependence", "structure_reuse_block_reweighted.tsv"), "study reweighted structure reuse") %>%
   mutate(
     dominant_event_share = as.numeric(dominant_event_share),
@@ -186,18 +198,34 @@ gap1043_conf <- junction_confidence %>%
   filter(prn_event_id == "prn_evt_coding_disrupted_is481__is481__gap1043") %>%
   slice_head(n = 1)
 
+gap1043_orientation_value <- if (nrow(gap1043_conf) > 0) gap1043_conf$orientation[[1]] else NA_character_
+gap1043_orientation <- if (!is.na(gap1043_orientation_value) && nzchar(gap1043_orientation_value)) {
+  gap1043_orientation_value
+} else {
+  "unresolved"
+}
+
+gap1043_reads <- if (nrow(gap1043_conf) > 0) {
+  as.character(gap1043_conf$supporting_read_count[[1]])
+} else {
+  "NA"
+}
+
 target_callout <- target_site %>%
   filter(locus == "prn") %>%
   slice_head(n = 1) %>%
   mutate(
+    breakpoint_left_cds = observed_gap1043_breakpoint_left - reference_start_1based + 1,
+    breakpoint_right_cds = observed_gap1043_breakpoint_right - reference_start_1based + 1,
+    codon_start = floor((breakpoint_left_cds - 1) / 3) + 1,
+    codon_end = floor((breakpoint_right_cds - 1) / 3) + 1,
     junction_x = ((observed_gap1043_breakpoint_left + observed_gap1043_breakpoint_right) / 2) -
       reference_start_1based + 1,
     callout_label = paste0(
-      "ACTAGG/TSD\n",
-      distance_from_observed_breakpoint_to_nearest_exact_target_bp,
-      " bp; ",
-      if_else(nrow(gap1043_conf) > 0, as.character(gap1043_conf$supporting_read_count[[1]]), "NA"),
-      " reads"
+      "IS481 ", gap1043_orientation, "; ACTAGG TSD\n",
+      "nt ", comma(round(breakpoint_left_cds)), "-", comma(round(breakpoint_right_cds)),
+      "; codons ", codon_start, "-", codon_end, "\n",
+      "coding interruption; ", gap1043_reads, " reads"
     )
   )
 
@@ -260,9 +288,7 @@ axis_tracks <- event_tracks %>%
   transmute(track_y, track_label)
 
 target_callout_a <- target_callout %>%
-  mutate(callout_label = paste0("ACTAGG TSD\n", distance_from_observed_breakpoint_to_nearest_exact_target_bp, " bp; ",
-                                if_else(nrow(gap1043_conf) > 0, as.character(gap1043_conf$supporting_read_count[[1]]), "NA"),
-                                " reads"))
+  mutate(callout_label = callout_label)
 
 pA <- ggplot() +
   geom_segment(
@@ -293,8 +319,8 @@ pA <- ggplot() +
   ) +
   geom_label(
     data = target_callout_a,
-    aes(x = 2010, y = 4.68, label = callout_label),
-    inherit.aes = FALSE, size = 1.48, lineheight = 0.78,
+    aes(x = 1910, y = 4.70, label = callout_label),
+    inherit.aes = FALSE, size = 1.36, lineheight = 0.78,
     linewidth = 0.12, label.padding = unit(1.0, "pt"),
     fill = "white", colour = FIGURE_INK
   ) +
@@ -320,7 +346,7 @@ pA <- ggplot() +
     NULL,
     breaks = axis_tracks$track_y,
     labels = axis_tracks$track_label,
-    limits = c(1.12, 4.82),
+    limits = c(1.12, 5.08),
     expand = c(0, 0)
   ) +
   scale_x_continuous(
@@ -456,14 +482,15 @@ null_base <- concentration %>%
          null_dominant_event_share_mean, null_top3_share_mean) %>%
   distinct()
 
-observed_metric <- null_base %>%
+observed_metric <- event_definition_hierarchy %>%
+  filter(event_definition_tier == "exact_breakpoint_orientation_tsd") %>%
   slice_head(n = 1) %>%
-  select(dominant_event_share, top3_share) %>%
+  select(dominant_definition_share, top3_definition_share) %>%
   pivot_longer(everything(), names_to = "metric_raw", values_to = "value") %>%
   mutate(
     metric = recode(metric_raw,
-      dominant_event_share = "Dominant event",
-      top3_share = "Top-three events"
+      dominant_definition_share = "Dominant event",
+      top3_definition_share = "Top-three events"
     ),
     metric = factor(metric, levels = c("Dominant event", "Top-three events"))
   )
@@ -508,7 +535,7 @@ pD <- ggplot() +
   scale_shape_manual(values = c("Equal-event" = 21, "Accessibility-weighted" = 24), name = "Null model") +
   scale_colour_manual(values = fig2_null_model_colors, name = "Null model") +
   guides(colour = guide_legend(override.aes = list(fill = "white"))) +
-  labs(x = "Share of resolved disrupted genomes", y = NULL) +
+  labs(x = "Share of structurally resolved disrupted genomes", y = NULL) +
   theme_nature(base_size = fig2_base_size) +
   theme(
     legend.position = "bottom",
@@ -543,6 +570,7 @@ weight_metric <- study_weight %>%
     label_vjust = case_when(
       metric == "Top-three events" & row_type == "Naive" ~ 1.55,
       metric == "Top-three events" & row_type == "Drop largest block" ~ -1.15,
+      metric == "Dominant event" & row_type == "Drop largest block" ~ 1.65,
       TRUE ~ -1.1
     ),
     label_hjust = case_when(
@@ -552,12 +580,12 @@ weight_metric <- study_weight %>%
     )
   )
 
-study_weight_note <- structural_grammar %>%
-  filter(evidence_layer == "study_block_stress_test",
-         collapse_or_weighting_rule == "study_block_equalized") %>%
+study_weight_note <- study_weight %>%
+  filter(scope == "overall", mechanism_group == "all",
+         row_type == "study_block_equalized") %>%
   slice_head(n = 1) %>%
   mutate(
-    note = paste0("study-weighted\ntop: ", event_label(dominant_event_id))
+    note = "equal block\ntop: tied low-burden events"
   )
 
 pE <- ggplot(weight_metric, aes(value, metric, fill = row_type)) +
@@ -566,7 +594,7 @@ pE <- ggplot(weight_metric, aes(value, metric, fill = row_type)) +
   geom_text(aes(label = percent(value, accuracy = 1), vjust = label_vjust, hjust = label_hjust), size = fig2_annot_size) +
   geom_label(
     data = study_weight_note,
-    aes(x = 0.30, y = "Top-three events", label = note),
+    aes(x = 0.44, y = "Top-three events", label = note),
     inherit.aes = FALSE, size = 1.55, lineheight = 0.78,
     linewidth = 0.12, label.padding = unit(1.0, "pt"),
     fill = "white", colour = FIGURE_MUTED_TEXT
@@ -576,7 +604,7 @@ pE <- ggplot(weight_metric, aes(value, metric, fill = row_type)) +
     values = fig2_study_weight_colors,
     name = NULL
   ) +
-  labs(x = "Share of resolved disrupted genomes", y = NULL) +
+  labs(x = "Share of structurally resolved disrupted genomes", y = NULL) +
   theme_nature(base_size = fig2_base_size) +
   theme(
     legend.position = "bottom",

@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# Figure 4: vaccine-program histories as heterogeneous amplification environments
+# Figure 4: archive context and sampling heterogeneity
 # Restructured: unified typography, no panel subtitles, Nature Portfolio compliant
 
 get_script_dir <- function() {
@@ -19,7 +19,6 @@ source(file.path(script_dir, "..", "lib", "data_utils.R"))
 source(file.path(script_dir, "..", "lib", "manuscript_rebuild_helpers.R"))
 
 library(dplyr)
-library(ggnewscale)
 library(ggplot2)
 library(patchwork)
 library(readr)
@@ -36,7 +35,7 @@ focus_countries <- c("USA", "NZL", "JPN", "AUS", "GBR", "CHN", "FRA", "BRA")
 focus_year_min <- 1980
 
 fig4_event_colors <- c(
-  "Local origin" = figure_discrete_at(1),
+  "First acquisition" = figure_discrete_at(1),
   "First detection" = figure_discrete_at(4)
 )
 
@@ -76,7 +75,7 @@ relative <- safe_load(data_paths$rr_relative_year_plot_data, "relative-year plot
     ipw_prevalence = as.numeric(ipw_prevalence),
     n_genomes_prn_interpretable = as.numeric(n_genomes_prn_interpretable),
     n_origin_clades_active = as.numeric(n_origin_clades_active),
-    event_type = recode(event_type, first_local_origin = "Local origin", first_prn_detection = "First detection")
+    event_type = recode(event_type, first_local_origin = "First acquisition", first_prn_detection = "First detection")
   )
 
 pooled_relative <- safe_load(file.path(FIGURE_DATA_DIR, "figure4_event_centered_pooled.tsv"), "pooled event-centered data") %>%
@@ -85,7 +84,7 @@ pooled_relative <- safe_load(file.path(FIGURE_DATA_DIR, "figure4_event_centered_
     mean_value = as.numeric(mean_value),
     median_value = as.numeric(median_value),
     n_countries = as.numeric(n_countries),
-    event_type = recode(event_type, first_local_origin = "Local origin", first_prn_detection = "First detection")
+    event_type = recode(event_type, first_local_origin = "First acquisition", first_prn_detection = "First detection")
   )
 
 prn_year <- safe_load(data_paths$prn_country_year, "country-year PRN summary") %>%
@@ -153,7 +152,7 @@ timeline_point_dat <- timeline_dat %>%
 
 event_years <- event_years %>%
   left_join(country_track_lookup, by = "country_iso3") %>%
-  mutate(event_y = country_y - 0.20 + if_else(event_type == "Local origin", 0.16, -0.16))
+  mutate(event_y = country_y - 0.20 + if_else(event_type == "First acquisition", 0.16, -0.16))
 
 programme_backbone <- tibble::tibble(
   country_iso3 = country_track_levels,
@@ -172,21 +171,17 @@ pA <- ggplot() +
                   colour = FIGURE_PANEL_FILL, linewidth = 2.7, lineend = "butt") +
      geom_segment(data = rail_history,
                   aes(x = start_plot, xend = end_plot, y = rail_y, yend = rail_y, colour = epoch_class),
-                  linewidth = 2.1, lineend = "butt", alpha = 0.98) +
+                  linewidth = 2.1, lineend = "butt", alpha = 0.72) +
      scale_colour_manual(values = programme_epoch_colors,
                          drop = TRUE,
-                         name = "Vaccine",
+                         name = "Archive context\nannotation",
                          guide = guide_legend(ncol = 1, override.aes = list(linewidth = 3.0))) +
-     ggnewscale::new_scale_colour() +
      geom_point(data = timeline_point_dat,
                 aes(x = year, y = signal_y, size = n_genomes_prn_interpretable, fill = frac_prn_disrupted),
                 shape = 21, colour = FIGURE_INK, stroke = 0.16, alpha = 0.96) +
      geom_point(data = event_years,
-                aes(x = event_year, y = event_y, shape = event_type, colour = event_type),
-                fill = "white", size = 1.75, stroke = 0.48) +
-     scale_colour_manual(values = fig4_event_colors,
-                         name = "Event",
-                         guide = guide_legend(ncol = 1, override.aes = list(fill = "white", size = 2.0))) +
+                aes(x = event_year, y = event_y, shape = event_type),
+                colour = FIGURE_INK, fill = "white", size = 1.75, stroke = 0.48) +
      scale_fill_gradientn(colours = red_seq,
                           limits = c(0, 1),
                           breaks = c(0, 0.5, 1),
@@ -198,7 +193,7 @@ pA <- ggplot() +
                             name = "Genomes\nper year",
                             guide = guide_legend(override.aes = list(fill = unname(npg_colors["teal"]), colour = NA, size = 3))) +
      scale_size_area(max_size = 3.4, guide = "none") +
-     scale_shape_manual(values = c("Local origin" = 24, "First detection" = 21),
+     scale_shape_manual(values = c("First acquisition" = 24, "First detection" = 21),
                         name = "Event",
                         guide = guide_legend(ncol = 1)) +
      scale_x_continuous(breaks = seq(1980, 2020, 5), expand = c(0, 0)) +
@@ -259,6 +254,8 @@ pB <- ggplot(epoch_bounds_dat) +
     linewidth = 0.46, alpha = 0.88, lineend = "round", na.rm = TRUE) +
   geom_point(aes(x = ipw_prevalence, y = country_y_plot, size = n_prn_interpretable, fill = epoch_class),
     shape = 21, colour = FIGURE_INK, stroke = 0.18, alpha = 0.96, na.rm = TRUE) +
+  annotate("text", x = 0.03, y = 0.72, label = "diagnostic only",
+    hjust = 0, size = 1.55, colour = FIGURE_MUTED_TEXT, fontface = "italic") +
   scale_x_continuous(labels = percent, limits = c(0, 1), breaks = c(0, 0.5, 1),
                      expand = expansion(mult = c(0.02, 0.04))) +
   scale_y_continuous(breaks = seq_along(country_order_b), labels = rev(country_order_b),
@@ -267,7 +264,7 @@ pB <- ggplot(epoch_bounds_dat) +
   scale_colour_manual(values = programme_epoch_colors, guide = "none") +
   scale_fill_manual(values = programme_epoch_colors, guide = "none") +
   labs(
-    x = "Adjusted disrupted fraction",
+    x = "Archive-frame disrupted fraction sensitivity estimate",
     y = NULL
   ) +
   theme_nature(base_size = fig4_base_size) +
@@ -293,7 +290,8 @@ pooled_label_dat <- pooled_dat %>%
   slice_head(n = 1) %>%
   ungroup() %>%
   mutate(
-    label_x = relative_year + 0.20,
+    label_x = relative_year - 0.10,
+    label_hjust = 1,
     label_y = pmax(median_value, 0.055)
   )
 
@@ -311,15 +309,15 @@ pC <- ggplot() +
     aes(relative_year, median_value, fill = event_type),
     shape = 21, size = 2.15, colour = FIGURE_INK, stroke = 0.18, alpha = 0.95, na.rm = TRUE) +
   geom_text(data = pooled_label_dat,
-    aes(label_x, label_y, label = event_type, colour = event_type),
-    hjust = 0, size = 1.65, fontface = "bold", show.legend = FALSE) +
+    aes(label_x, label_y, label = event_type, colour = event_type, hjust = label_hjust),
+    size = 1.65, fontface = "bold", show.legend = FALSE) +
   scale_colour_manual(values = fig4_event_colors, guide = "none") +
   scale_fill_manual(values = fig4_event_colors, guide = "none") +
   scale_y_continuous(labels = percent, limits = c(0, 1), expand = expansion(mult = c(0.02, 0.08))) +
   scale_x_continuous(breaks = -3:3) +
   labs(
-    x = "Years from event (0 = origin/detection)",
-    y = "Median adjusted disrupted fraction"
+    x = "Years from archive marker",
+    y = "Median archive-frame disrupted fraction"
   ) +
   coord_cartesian(xlim = c(-3, 3.62), clip = "off") +
   theme_nature(base_size = fig4_base_size) +

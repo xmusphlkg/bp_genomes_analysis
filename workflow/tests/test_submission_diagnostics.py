@@ -177,3 +177,81 @@ def test_ipw_diagnostics_label_training_only_missingness_metrics(tmp_path: Path)
 
     assert {row["metric"] for row in metric_rows} == {"training_only_accuracy", "training_only_brier_score"}
     assert any("training-only" in row["notes"] for row in metric_rows)
+    assert {row["metric_provenance"] for row in metric_rows} == {"training_only_predictions"}
+    assert {row["probability_column"] for row in metric_rows} == {"prob_interpretable"}
+
+
+def test_ipw_diagnostics_prefer_out_of_fold_missingness_metrics(tmp_path: Path) -> None:
+    module = load_module(DIAGNOSTICS, "ms_10_build_submission_diagnostics_oof_metrics")
+
+    workflow_root = tmp_path / "outputs" / "workflow"
+    (workflow_root / "manifest").mkdir(parents=True)
+    (workflow_root / "qc").mkdir(parents=True)
+    (workflow_root / "missingness_model").mkdir(parents=True)
+    (workflow_root / "epi").mkdir(parents=True)
+
+    pd.DataFrame(
+        [
+            {
+                "sample_id_canonical": "S1",
+                "prn_interpretable": "True",
+                "has_reads": "True",
+                "year": "2010",
+                "total_sequence_length": "4000000",
+                "n_contigs": "20",
+            },
+            {
+                "sample_id_canonical": "S2",
+                "prn_interpretable": "False",
+                "has_reads": "False",
+                "year": "2011",
+                "total_sequence_length": "3900000",
+                "n_contigs": "40",
+            },
+        ]
+    ).to_csv(workflow_root / "manifest" / "manifest.tsv", sep="\t", index=False)
+
+    pd.DataFrame(
+        [
+            {
+                "sample_id_canonical": "S1",
+                "y_actual": "1",
+                "prob_interpretable": "0.9",
+                "prob_interpretable_oof": "0.7",
+                "in_model": "True",
+            },
+            {
+                "sample_id_canonical": "S2",
+                "y_actual": "0",
+                "prob_interpretable": "0.1",
+                "prob_interpretable_oof": "0.3",
+                "in_model": "True",
+            },
+        ]
+    ).to_csv(workflow_root / "qc" / "missingness_model_predictions.tsv", sep="\t", index=False)
+
+    pd.DataFrame(
+        [
+            {
+                "country_iso3": "USA",
+                "n_genomes_total": "2",
+                "n_genomes_prn_interpretable": "1",
+                "n_missing_outcomes": "1",
+                "mean_ipw_weight": "1.2",
+                "max_ipw_weight": "2.0",
+            }
+        ]
+    ).to_csv(workflow_root / "epi" / "ipw_prevalence.tsv", sep="\t", index=False)
+
+    module.ROOT = tmp_path
+    module.SUPP_DIR = tmp_path / "supplementary"
+    module.SUPP_DIR.mkdir(parents=True, exist_ok=True)
+
+    module.build_ipw_diagnostics()
+
+    rows = read_tsv(module.SUPP_DIR / "Supplementary_Table_16_IPW_Diagnostics.tsv")
+    metric_rows = [row for row in rows if row["diagnostic_scope"] == "missingness_model_performance"]
+
+    assert {row["metric"] for row in metric_rows} == {"out_of_fold_accuracy", "out_of_fold_brier_score"}
+    assert {row["metric_provenance"] for row in metric_rows} == {"out_of_fold_predictions"}
+    assert {row["probability_column"] for row in metric_rows} == {"prob_interpretable_oof"}

@@ -112,6 +112,10 @@ def test_programme_models_parallel_matches_serial() -> None:
             parallel_results[column].to_numpy(dtype=float),
             equal_nan=True,
         )
+    coefficient_scope = serial_results.loc[serial_results["result_type"].eq("coefficient"), "q_value_scope"]
+    assert set(coefficient_scope) == {"within_model_term_family_bh_not_manuscript_wide_fdr"}
+    non_test_scope = serial_results.loc[~serial_results["result_type"].eq("coefficient"), "q_value_scope"]
+    assert set(non_test_scope) == {"not_applicable_no_multiplicity_adjustment"}
 
 
 def test_programme_uncertainty_build_replicate_seeds_is_stable() -> None:

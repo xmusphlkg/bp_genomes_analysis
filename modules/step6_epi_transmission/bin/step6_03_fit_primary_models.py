@@ -34,6 +34,7 @@ MODEL_OUTPUT_COLUMNS = [
     "ci_upper",
     "p_value",
     "q_value",
+    "q_value_scope",
     "sensitivity_label",
     "notes",
 ]
@@ -262,6 +263,7 @@ def build_model_outputs(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]
                 "ci_upper": f"{float(conf_int[index, 1]):.6f}",
                 "p_value": f"{p_values[index]:.6g}",
                 "q_value": f"{q_values[index]:.6g}",
+                "q_value_scope": "within_primary_model_reported_terms_bh_not_analysis_wide_fdr",
                 "sensitivity_label": "primary_core",
                 "notes": notes,
             }

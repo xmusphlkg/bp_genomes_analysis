@@ -167,3 +167,46 @@ def test_build_tip_level_block_assignment_uses_active_manifest_not_archive(tmp_p
     assert row1["subblock_id"].startswith("PRJ1::week=")
     assert row2["base_block_id"].startswith("singleton:S2")
     assert row2["subblock_id"] == f"{row2['base_block_id']}::month=3"
+    assert set(assignment["block_assignment_metadata_source"]) == {"active_manifest_only"}
+    assert set(assignment["block_assignment_inventory_source"]) == {"archived_inventory_not_used"}
+
+
+def test_parse_run_summary_marks_resampling_as_diagnostic_stress_test(tmp_path: Path) -> None:
+    module = load_module(RESAMPLING, "run_m5_asr_resampling_summary_scope")
+
+    run_dir = tmp_path / "replicate_01"
+    write_tsv(
+        pd.DataFrame(
+            [
+                {"tree_tip_label": "Reference", "sample_id_canonical": "REF", "prn_state": "intact", "country_iso3": "", "year": ""},
+                {"tree_tip_label": "tip_1", "sample_id_canonical": "S1", "prn_state": "disrupted", "country_iso3": "USA", "year": "2014"},
+            ]
+        ),
+        run_dir / "tip_states.tsv",
+    )
+    write_tsv(pd.DataFrame([{"origin_id": "origin_0001"}]), run_dir / "origin_events.tsv")
+    write_tsv(pd.DataFrame([{"origin_confidence": "strict"}]), run_dir / "pastml_origin_events.tsv")
+
+    selected_tip_frame = pd.DataFrame(
+        [
+            {
+                "tree_tip_label": "tip_1",
+                "base_block_id": "PRJ1",
+                "subblock_id": "PRJ1::week=2014-W01",
+            }
+        ]
+    )
+
+    row = module.parse_run_summary(
+        run_dir,
+        "study_block_balanced",
+        1,
+        "fixture",
+        selected_tip_frame,
+        metadata_source="active_manifest_only",
+    )
+
+    assert row["resampling_design_purpose"] == "representativeness_stress_test_only"
+    assert row["resampling_inference_scope"] == "diagnostic_stress_test_not_unbiased_population_resample"
+    assert row["block_assignment_metadata_source"] == "active_manifest_only"
+    assert row["block_assignment_inventory_source"] == "archived_inventory_not_used"

@@ -276,6 +276,16 @@ def build_predictions(frame: pd.DataFrame) -> tuple[dict[str, object], pd.DataFr
         (predictions["prob_interpretable_oof"] >= 0.5).astype(int),
         np.nan,
     )
+    predictions["prediction_probability_scope"] = np.where(
+        predictions["prediction_source"].eq("fallback"),
+        "fallback_marginal_probability",
+        "training_scope_fitted_probability",
+    )
+    predictions["oof_probability_scope"] = np.where(
+        predictions["prob_interpretable_oof"].notna(),
+        "out_of_fold_probability",
+        "not_available",
+    )
     predictions["in_model"] = predictions["prediction_source"].isin(["full_model", "reduced_model"])
     predictions["y_actual"] = predictions["prn_interpretable_numeric"].astype(int)
 
@@ -309,6 +319,8 @@ def build_predictions(frame: pd.DataFrame) -> tuple[dict[str, object], pd.DataFr
             "mean_probability": float(predictions["prob_interpretable"].mean()),
             "min_probability": float(predictions["prob_interpretable"].min()),
             "max_probability": float(predictions["prob_interpretable"].max()),
+            "training_probability_scope": "training_scope_fitted_probability",
+            "out_of_fold_probability_scope": "out_of_fold_probability_when_available",
         },
     }
     return metadata, predictions
@@ -376,6 +388,8 @@ def write_sidecar_outputs(model_path: Path, metadata: dict[str, object], predict
             "in_model",
             "prediction_source",
             "oof_prediction_source",
+            "prediction_probability_scope",
+            "oof_probability_scope",
         ]
     ].copy()
     prediction_frame.to_csv(predictions_out, sep="\t", index=False)
@@ -392,9 +406,11 @@ def write_sidecar_outputs(model_path: Path, metadata: dict[str, object], predict
                     "feature_mean": row["feature_mean"],
                     "feature_scale": row["feature_scale"],
                     "fit_method": model_payload["metrics"]["fit_method"],
+                    "training_metric_provenance": "training_scope_fitted_probabilities",
                     "training_accuracy": model_payload["metrics"]["training_accuracy"],
                     "training_auc": model_payload["metrics"]["training_auc"],
                     "training_brier": model_payload["metrics"]["training_brier"],
+                    "oof_metric_provenance": "stratified_out_of_fold_probabilities",
                     "oof_accuracy": model_payload["out_of_fold_metrics"]["accuracy"],
                     "oof_auc": model_payload["out_of_fold_metrics"]["auc"],
                     "oof_brier": model_payload["out_of_fold_metrics"]["brier"],

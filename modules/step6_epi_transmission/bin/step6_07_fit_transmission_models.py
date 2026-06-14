@@ -53,6 +53,9 @@ MODEL_SPECS = [
     },
 ]
 
+TRANSMISSION_P_VALUE_SCOPE = "within_exploratory_transmission_model_wald_p_values_no_multiplicity_adjustment"
+TRANSMISSION_INFERENCE_SCOPE = "exploratory_transmission_diagnostic_not_claim_generating"
+
 
 def standardize_series(series: pd.Series) -> pd.Series:
     numeric = pd.to_numeric(series, errors="coerce")
@@ -348,6 +351,8 @@ def build_coefficient_table(results: Dict[str, Dict]) -> pd.DataFrame:
                     "estimate": estimate,
                     "std_error": std_errors.get(term),
                     "p_value": p_values.get(term),
+                    "p_value_scope": TRANSMISSION_P_VALUE_SCOPE,
+                    "inference_scope": TRANSMISSION_INFERENCE_SCOPE,
                     "ci_lower": bounds[0],
                     "ci_upper": bounds[1],
                     "formula": result.get("formula", ""),

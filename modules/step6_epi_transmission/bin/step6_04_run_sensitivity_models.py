@@ -39,9 +39,12 @@ MODEL_OUTPUT_COLUMNS = [
     "ci_upper",
     "p_value",
     "q_value",
+    "q_value_scope",
     "sensitivity_label",
     "notes",
 ]
+
+SENSITIVITY_Q_VALUE_SCOPE = "within_sensitivity_model_reported_terms_bh_not_analysis_wide_fdr"
 
 DIAGNOSTIC_COLUMNS = [
     "model_id",
@@ -358,6 +361,7 @@ def fit_labeled_glm(
     notes.append(f"country_cluster_robust_covariance={covariance_type}")
     notes.append(f"country_cluster_count={n_clusters}")
     notes.append(f"sensitivity_label={sensitivity_label}")
+    notes.append(f"q_value_scope={SENSITIVITY_Q_VALUE_SCOPE}")
     note_text = ";".join(note for note in notes if note)
 
     model_rows: list[dict[str, str]] = []
@@ -382,6 +386,7 @@ def fit_labeled_glm(
                 "ci_upper": f"{float(conf_int[index, 1]):.6f}",
                 "p_value": f"{p_values[index]:.6g}",
                 "q_value": f"{q_values[index]:.6g}",
+                "q_value_scope": SENSITIVITY_Q_VALUE_SCOPE,
                 "sensitivity_label": sensitivity_label,
                 "notes": note_text,
             }

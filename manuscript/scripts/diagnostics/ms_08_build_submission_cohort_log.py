@@ -286,6 +286,7 @@ def build_decision_log(
     public_assembly_count = count_values(workflow_df, "data_origin", "public_genome_assembly")
     public_read_rescue_count = count_values(workflow_df, "data_origin", "public_read_rescue")
     raw_read_assembly_count = count_values(workflow_df, "data_origin", "public_raw_read_assembly")
+    frozen_evidence_chain = repo_root() / "manuscript" / "figure_data" / "fig05_evidence_chain_summary.tsv"
     interpretable_count = count_in(
         mech_df,
         "prn_mechanism_call",
@@ -299,6 +300,35 @@ def build_decision_log(
     insufficient_count = count_values(mech_df, "prn_mechanism_call", "insufficient_data")
     uncertain_count = count_values(mech_df, "prn_mechanism_call", "uncertain_fragmented_assembly")
     insufficient_or_uncertain_count = insufficient_count + uncertain_count
+    mechanism_summary_source = rel_source(mechanism_calls)
+    interpretable_definition = "Mechanism call in {intact, coding_disrupted_is481, coding_disrupted_inversion_or_rearrangement, coding_disrupted_other}."
+    interpretable_notes = "Current mechanism-call table interpretable subset used for broad mechanism summaries."
+    noninterpretable_definition = "Mechanism call in {insufficient_data, uncertain_fragmented_assembly}."
+    noninterpretable_notes = f"{insufficient_count} insufficient plus {uncertain_count} uncertain fragmented assemblies."
+    if frozen_evidence_chain.exists():
+        chain = read_tsv(frozen_evidence_chain)
+        chain["n_numeric"] = pd.to_numeric(chain["n"], errors="coerce").fillna(0).astype(int)
+
+        def chain_count(stage_id: str) -> int:
+            return int(chain.loc[chain["stage_id"].eq(stage_id), "n_numeric"].sum())
+
+        intact_count = chain_count("intact_boundary")
+        disrupted_count = chain_count("structurally_resolved_disrupted")
+        interpretable_count = chain_count("interpretable_event_phenotype")
+        insufficient_or_uncertain_count = chain_count("noninterpretable_uncertain")
+        mechanism_summary_source = rel_source(frozen_evidence_chain)
+        interpretable_definition = (
+            "Frozen manuscript-facing event/phenotype frame: intact-locus boundary calls plus structurally "
+            "resolved disrupted event-class calls."
+        )
+        interpretable_notes = (
+            f"Frozen frame comprises {intact_count} intact-locus boundary calls and "
+            f"{disrupted_count} structurally resolved disrupted event-class calls."
+        )
+        noninterpretable_definition = "Retained records outside the frozen manuscript-facing event/phenotype frame."
+        noninterpretable_notes = (
+            "Frozen non-interpretable or uncertain records enter missingness bounds rather than event-concentration denominators."
+        )
     raw_read_linked_count = int(qc_df["raw_reads_available"].fillna("False").str.lower().eq("true").sum())
     raw_read_linked_count += raw_read_assembly_count
     read_validation_table_count = len(validation_results_df)
@@ -346,18 +376,18 @@ def build_decision_log(
             "stage_name": "prn_interpretable_subset",
             "n_rows": interpretable_count,
             "delta_from_previous": interpretable_count - combined_manifest_count,
-            "source_file": rel_source(mechanism_calls),
-            "rule_or_definition": "Mechanism call in {intact, coding_disrupted_is481, coding_disrupted_inversion_or_rearrangement, coding_disrupted_other}.",
-            "notes": "Current mechanism-call table interpretable subset used for broad mechanism summaries.",
+            "source_file": mechanism_summary_source,
+            "rule_or_definition": interpretable_definition,
+            "notes": interpretable_notes,
         },
         {
             "stage_id": "S03",
             "stage_name": "prn_insufficient_or_uncertain_subset",
             "n_rows": insufficient_or_uncertain_count,
             "delta_from_previous": "",
-            "source_file": rel_source(mechanism_calls),
-            "rule_or_definition": "Mechanism call in {insufficient_data, uncertain_fragmented_assembly}.",
-            "notes": f"{insufficient_count} insufficient plus {uncertain_count} uncertain fragmented assemblies.",
+            "source_file": mechanism_summary_source,
+            "rule_or_definition": noninterpretable_definition,
+            "notes": noninterpretable_notes,
         },
         {
             "stage_id": "S04",
@@ -530,7 +560,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--out-supp-flow",
         type=Path,
-        default=root / "manuscript" / "supplementary" / "Supplementary_Table_7_Cohort_Flow_and_Tree_Selection.tsv",
+        default=root / "manuscript" / "supplementary" / "Supplementary_Table_4_Cohort_Flow_and_Tree_Selection.tsv",
     )
     return parser.parse_args()
 

@@ -67,6 +67,7 @@ RESULT_COLUMNS = [
     "ci_upper",
     "p_value",
     "q_value",
+    "q_value_scope",
     "notes",
 ]
 
@@ -442,6 +443,7 @@ def extract_coefficient_results(
                 "ci_upper": upper,
                 "p_value": p_value,
                 "q_value": q_lookup.get(term, np.nan),
+                "q_value_scope": "within_model_term_family_bh_not_manuscript_wide_fdr",
                 "notes": note_text,
             }
         )
@@ -594,6 +596,7 @@ def marginal_prediction_rows(
                 "ci_upper": upper,
                 "p_value": np.nan,
                 "q_value": np.nan,
+                "q_value_scope": "not_applicable_no_multiplicity_adjustment",
                 "notes": notes,
             }
         )
@@ -631,6 +634,7 @@ def marginal_prediction_rows(
                     "ci_upper": diff_upper,
                     "p_value": np.nan,
                     "q_value": np.nan,
+                    "q_value_scope": "not_applicable_no_multiplicity_adjustment",
                     "notes": notes,
                 }
             )

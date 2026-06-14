@@ -70,7 +70,7 @@ pB <- models %>%
   geom_segment(aes(x = ci_lower, xend = ci_upper, yend = model_label), colour = FIGURE_GREY, linewidth = 0.8) +
   geom_point(aes(fill = focal_exposure_family), shape = 21, size = 2.6, colour = FIGURE_INK, stroke = 0.22) +
   scale_fill_manual(values = c(v1 = unname(npg_colors["blue"]), v2 = unname(npg_colors["peach"]), v3 = unname(npg_colors["green"]), dtp3 = FIGURE_GREY), name = "Exposure") +
-  labs(x = "Log-odds effect", y = NULL) +
+  labs(x = "Log-odds model coefficient", y = NULL) +
   theme_nature() +
   theme(legend.position = "bottom")
 
@@ -81,7 +81,7 @@ pC <- loo %>%
   geom_col(width = 0.65, colour = "white", linewidth = 0.15) +
   geom_vline(xintercept = 0, linetype = "dashed", linewidth = 0.25, colour = FIGURE_MID_GREY) +
   scale_fill_manual(values = c(`TRUE` = unname(npg_colors["green"]), `FALSE` = unname(npg_colors["red"])), name = "Same direction") +
-  labs(x = "Leave-one-country-out V3 effect", y = "Excluded country") +
+  labs(x = "Leave-one-country-out V3 coefficient", y = "Excluded country") +
   theme_nature() +
   theme(legend.position = "bottom")
 

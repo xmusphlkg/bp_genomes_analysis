@@ -204,7 +204,24 @@ def build_tip_level_block_assignment(
     subblock_assignment = assignment.apply(choose_subblock, axis=1, result_type="expand")
     assignment["subblock_level"] = subblock_assignment[0]
     assignment["subblock_id"] = subblock_assignment[1]
-    return assignment.loc[:, ["sample_id_canonical", "base_block_id", "base_block_level", "subblock_id", "subblock_level"]]
+    assignment["block_assignment_metadata_source"] = (
+        "active_manifest_plus_optional_collection_metadata"
+        if collection_metadata_path is not None and collection_metadata_path.exists()
+        else "active_manifest_only"
+    )
+    assignment["block_assignment_inventory_source"] = "archived_inventory_not_used"
+    return assignment.loc[
+        :,
+        [
+            "sample_id_canonical",
+            "base_block_id",
+            "base_block_level",
+            "subblock_id",
+            "subblock_level",
+            "block_assignment_metadata_source",
+            "block_assignment_inventory_source",
+        ],
+    ]
 
 
 def build_selected_tip_labels(
@@ -255,6 +272,7 @@ def parse_run_summary(
     replicate_id: int,
     notes: str,
     selected_tip_frame: pd.DataFrame | None = None,
+    metadata_source: str = "active_manifest_only",
 ) -> dict[str, object]:
     tip_states = pd.read_csv(run_dir / "tip_states.tsv", sep="\t", dtype=str)
     origin_events = pd.read_csv(run_dir / "origin_events.tsv", sep="\t", dtype=str)
@@ -286,6 +304,9 @@ def parse_run_summary(
         "pastml_strict_origin_events": strict_count,
         "pastml_compatible_origin_events": compatible_count,
         "resampling_design_purpose": "representativeness_stress_test_only",
+        "resampling_inference_scope": "diagnostic_stress_test_not_unbiased_population_resample",
+        "block_assignment_metadata_source": metadata_source,
+        "block_assignment_inventory_source": "archived_inventory_not_used",
         "notes": notes,
     }
 
@@ -320,6 +341,11 @@ def write_summary_tables(replicate_rows: list[dict[str, object]], outdir: Path) 
             row[f"{metric}_q25"] = float(values.quantile(0.25))
             row[f"{metric}_q75"] = float(values.quantile(0.75))
         row["resampling_design_purpose"] = "representativeness_stress_test_only"
+        row["resampling_inference_scope"] = "diagnostic_stress_test_not_unbiased_population_resample"
+        row["block_assignment_metadata_source"] = ";".join(
+            sorted(set(group.get("block_assignment_metadata_source", pd.Series(dtype=str)).astype(str)))
+        )
+        row["block_assignment_inventory_source"] = "archived_inventory_not_used"
         row["notes"] = ";".join(sorted(set(group["notes"].astype(str))))
         summary_rows.append(row)
 
@@ -426,7 +452,28 @@ def run_resampling(
                 )
 
             selected_tip_frame = tip_states.loc[tip_states["tree_tip_label"].isin(selected_labels)].copy()
-            replicate_rows.append(parse_run_summary(run_dir, scheme, replicate_id, notes, selected_tip_frame))
+            metadata_source = ";".join(
+                sorted(
+                    set(
+                        selected_tip_frame.get(
+                            "block_assignment_metadata_source",
+                            pd.Series("active_manifest_only", index=selected_tip_frame.index),
+                        )
+                        .fillna("active_manifest_only")
+                        .astype(str)
+                    )
+                )
+            )
+            replicate_rows.append(
+                parse_run_summary(
+                    run_dir,
+                    scheme,
+                    replicate_id,
+                    notes,
+                    selected_tip_frame,
+                    metadata_source=metadata_source or "active_manifest_only",
+                )
+            )
 
     return write_summary_tables(replicate_rows, outdir)
 

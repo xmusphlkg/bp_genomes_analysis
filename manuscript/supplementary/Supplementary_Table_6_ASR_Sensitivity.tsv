@@ -1,5 +1,0 @@
-scenario	excluded_tip_count	tip_count	disrupted_tip_count	fitch_origin_events	pastml_origin_events	pastml_strict_origin_events	pastml_compatible_origin_events	notes
-composition_pruned_primary_quality_frame	33	1919	559	24	2	1	1	Primary ASR quality frame; prunes the 33 nonreference IQ-TREE composition-failed tips
-unpruned_reference_rooted_comparability	0	1952	561	25	4	3	1	Original Reference/Tohama I rooted unpruned tree retained as comparability sensitivity
-unpruned_support_ge_70	0	1952	561	21	4	3	1	Fitch restricted to branches with support >= 70 on the unpruned comparability frame
-unpruned_support_ge_90	0	1952	561	21	4	3	1	Fitch restricted to branches with support >= 90 on the unpruned comparability frame

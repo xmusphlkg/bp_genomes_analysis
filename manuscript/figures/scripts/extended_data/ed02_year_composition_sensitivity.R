@@ -37,7 +37,10 @@ model <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "prn_interpret
   mutate(across(c(model_auc, cv_model_auc, standardized_coefficient), as.numeric))
 
 dr <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "selected_country_dr_missingness_summary.tsv"), "DR missingness") %>%
-  mutate(across(starts_with("delta_"), as.numeric))
+  mutate(
+    across(starts_with("delta_"), as.numeric),
+    aipw_estimator_status = coalesce(aipw_estimator_status, "not_reported")
+  )
 
 tipping <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "selected_country_missingness_tipping_summary.tsv"), "tipping summary") %>%
   mutate(
@@ -111,9 +114,10 @@ pD <- model %>%
   theme_nature()
 
 dr_long <- dr %>%
-  select(country_iso3, starts_with("delta_")) %>%
-  pivot_longer(-country_iso3, names_to = "estimator", values_to = "delta") %>%
-  filter(!is.na(delta)) %>%
+  select(country_iso3, aipw_estimator_status, starts_with("delta_")) %>%
+  pivot_longer(cols = starts_with("delta_"), names_to = "estimator", values_to = "delta") %>%
+  filter(!is.na(delta), delta >= -1, delta <= 1) %>%
+  filter(estimator != "delta_aipw_prevalence" | aipw_estimator_status == "ok") %>%
   mutate(country_iso3 = factor(country_iso3, levels = country_order))
 
 pE <- ggplot(dr_long, aes(delta, country_iso3)) +

@@ -86,6 +86,7 @@ def test_panel_run_models_parallel_matches_serial(tmp_path: Path) -> None:
 
     for column in ["effect_estimate", "ci_lower", "ci_upper", "p_value", "q_value"]:
         assert np.allclose(serial_results[column].to_numpy(dtype=float), parallel_results[column].to_numpy(dtype=float))
+    assert set(serial_results["q_value_scope"]) == {"within_model_reported_terms_bh_not_manuscript_wide_fdr"}
 
 
 def test_panel_run_models_emits_explicit_exclusion_sensitivities(tmp_path: Path) -> None:

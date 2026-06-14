@@ -146,15 +146,17 @@ disrupted_event_defs <- event_defs %>%
     evidence_type,
     tsd_or_flank_sequence_status,
     phenotype_evidence_tier = case_when(
-      event_subcategory == "IS481 insertion" ~ "Tier 1 lesion-class bridge",
-      event_subcategory == "Inversion / rearrangement" ~ "Tier 1 lesion-class bridge",
+      event_subcategory %in% c("IS481 insertion", "Inversion / rearrangement") &
+        validation_level == "read_backed_supported" &
+        tsd_or_flank_sequence_status == "target_site_duplication_recovered" ~ "Tier 1a junction-class phenotype bridge",
+      event_subcategory %in% c("IS481 insertion", "Inversion / rearrangement") ~ "Tier 1b lesion-class bridge only",
       tsd_or_flank_sequence_status == "target_site_duplication_recovered" ~ "Tier 2 genome-disruption plausible",
       validation_level %in% c("read_backed_supported", "public_longread_or_hybrid_assembly") ~ "Tier 2 genome-disruption plausible",
       TRUE ~ "Tier 3 genome-only disruption"
     ),
     phenotype_inference = case_when(
-      event_subcategory == "IS481 insertion" ~ "Exact event class is not protein-tested here, but recurrent IS481-mediated prn lesions are repeatedly linked to PRN non-expression in external isolate collections.",
-      event_subcategory == "Inversion / rearrangement" ~ "Rearrangement or inversion lesion classes are externally phenotype-bridged, but the present event labels remain genome-defined structural classes rather than direct expression measurements.",
+      phenotype_evidence_tier == "Tier 1a junction-class phenotype bridge" ~ "Read-backed junction or event-class evidence places this architecture within lesion classes repeatedly linked to PRN non-expression, but the present archive still lacks genome-by-genome expression assays.",
+      phenotype_evidence_tier == "Tier 1b lesion-class bridge only" ~ "The lesion class is externally linked to PRN non-expression, but this exact event class is not protein-tested here and has weaker junction-level support in the present archive summary.",
       phenotype_evidence_tier == "Tier 2 genome-disruption plausible" ~ "Coding disruption is structurally compatible with PRN loss and has strong genome evidence, but no exact event-class expression bridge was identified for this archive summary.",
       TRUE ~ "Genome architecture supports disruption, but phenotype inference remains indirect and event-specific protein evidence is currently absent."
     ),
@@ -164,8 +166,8 @@ disrupted_event_defs <- event_defs %>%
       TRUE ~ "External phenotype bridge supports the broader disrupted-locus interpretation rather than this exact event label"
     ),
     caution_note = case_when(
-      event_subcategory == "IS481 insertion" ~ "Treat as lesion-class bridged, not event-by-event protein proven.",
-      event_subcategory == "Inversion / rearrangement" ~ "Treat as lesion-class bridged, not event-by-event protein proven.",
+      phenotype_evidence_tier == "Tier 1a junction-class phenotype bridge" ~ "Treat as junction-class bridged, not genome-by-genome protein proven.",
+      phenotype_evidence_tier == "Tier 1b lesion-class bridge only" ~ "Treat as lesion-class bridged only; prioritize read-backed or expression validation.",
       TRUE ~ "Retain as genome-defined disruption until paired PRN expression assays are available."
     )
   )
@@ -202,7 +204,8 @@ phenotype_tiers <- bind_rows(
     factor(
       phenotype_evidence_tier,
       levels = c(
-        "Tier 1 lesion-class bridge",
+        "Tier 1a junction-class phenotype bridge",
+        "Tier 1b lesion-class bridge only",
         "Tier 2 genome-disruption plausible",
         "Tier 3 genome-only disruption",
         "Boundary only, not expression-proven"

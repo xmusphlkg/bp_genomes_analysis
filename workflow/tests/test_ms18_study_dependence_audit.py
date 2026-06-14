@@ -164,3 +164,15 @@ def test_block_equalized_prevalence_matches_naive_when_blocks_are_singletons() -
     assert summary["previous_naive_prevalence"] == summary["previous_block_equalized_prevalence"]
     assert summary["next_naive_prevalence"] == summary["next_block_equalized_prevalence"]
     assert summary["delta_naive_prevalence"] == summary["delta_block_equalized_prevalence"]
+
+
+def test_study_dependence_notes_downgrade_formal_test_language() -> None:
+    module = load_module(MS18, "ms_18_build_study_dependence_audit_note_scope")
+
+    revised = module.downgrade_formal_test_language(
+        "event_labels_permuted_across_fixed_country_year_strata;"
+        "tests_sampling_burst_robustness_not_genome_burden"
+    )
+
+    assert "tests_" not in revised
+    assert "diagnostic_screen_sampling_burst_robustness_not_genome_burden" in revised

@@ -46,6 +46,14 @@ def make_step6_rows() -> list[dict[str, str]]:
     return rows
 
 
+def make_step6_amu_rows() -> list[dict[str, str]]:
+    rows = make_step6_rows()
+    for idx, row in enumerate(rows, start=1):
+        row["macrolide_use_ddd_per_1000_per_day"] = f"{1.0 + idx * 0.2:.3f}"
+        row["total_antibiotic_use_ddd_per_1000_per_day"] = f"{5.0 + idx * 0.4:.3f}"
+    return rows
+
+
 def test_step6_primary_models_use_country_cluster_covariance() -> None:
     module = load_module(
         REPO_ROOT / "modules" / "step6_epi_transmission" / "bin" / "step6_03_fit_primary_models.py",
@@ -59,6 +67,9 @@ def test_step6_primary_models_use_country_cluster_covariance() -> None:
     assert model_rows[0]["model_family"] == "statsmodels_glm_binomial_country_cluster_covariance"
     assert "country_cluster_robust_covariance=country_cluster" in model_rows[0]["notes"]
     assert "country_cluster_count=3" in diagnostic_rows[0]["notes"]
+    assert {row["q_value_scope"] for row in model_rows} == {
+        "within_primary_model_reported_terms_bh_not_analysis_wide_fdr"
+    }
 
 
 def test_step6_sensitivity_models_use_country_cluster_covariance() -> None:
@@ -80,6 +91,48 @@ def test_step6_sensitivity_models_use_country_cluster_covariance() -> None:
     assert model_rows[0]["model_family"] == "statsmodels_glm_binomial_country_cluster_covariance"
     assert "country_cluster_count=3" in model_rows[0]["notes"]
     assert "country_cluster_robust_covariance=country_cluster" in diagnostic_rows[0]["notes"]
+    assert {row["q_value_scope"] for row in model_rows} == {
+        "within_sensitivity_model_reported_terms_bh_not_analysis_wide_fdr"
+    }
+
+
+def test_step6_amu_exploratory_models_mark_q_values_not_applicable(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    module = load_module(
+        REPO_ROOT / "modules" / "step6_epi_transmission" / "bin" / "step6_05_run_amu_exploratory_sensitivity.py",
+        "step6_05_run_amu_exploratory_sensitivity",
+    )
+
+    input_path = tmp_path / "amu_input.tsv"
+    pd.DataFrame(make_step6_amu_rows()).to_csv(input_path, sep="\t", index=False)
+    out_path = tmp_path / "amu_models.tsv"
+    diagnostics_path = tmp_path / "amu_diagnostics.tsv"
+    overlap_path = tmp_path / "amu_overlap.tsv"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "step6_05_run_amu_exploratory_sensitivity.py",
+            "--core-input",
+            str(input_path),
+            "--balanced-input",
+            str(input_path),
+            "--full-input",
+            str(input_path),
+            "--out",
+            str(out_path),
+            "--diagnostics-out",
+            str(diagnostics_path),
+            "--overlap-manifest-out",
+            str(overlap_path),
+        ],
+    )
+
+    assert module.main() == 0
+    model_rows = pd.read_csv(out_path, sep="\t", dtype=str, keep_default_na=False)
+    assert not model_rows.empty
+    assert set(model_rows["p_value"]) == {""}
+    assert set(model_rows["q_value"]) == {""}
+    assert set(model_rows["q_value_scope"]) == {module.AMU_Q_VALUE_SCOPE}
 
 
 def test_step6_cross_validation_requires_explicit_synthetic_flag(tmp_path: Path) -> None:

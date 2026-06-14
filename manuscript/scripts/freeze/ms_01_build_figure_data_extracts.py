@@ -131,6 +131,7 @@ FIGURE5_COLUMNS = [
     "ci_upper",
     "p_value",
     "q_value",
+    "q_value_scope",
     "stability_label",
     "headline_eligibility",
     "country_filter",
@@ -1624,11 +1625,7 @@ def build_figure5_rows(
             if family_signflip_lookup.get(focal_family, False)
             else "stable_under_leave_one_country_out"
         )
-        headline_eligibility = (
-            "support_only_country_dependent"
-            if family_signflip_lookup.get(focal_family, False)
-            else "headline_eligible"
-        )
+        headline_eligibility = "diagnostic_only_archive_context"
         rows.append(
             {
                 "panel_id": panel_id,
@@ -1644,6 +1641,7 @@ def build_figure5_rows(
                 "ci_upper": normalize_text(row.get("ci_upper", "")),
                 "p_value": normalize_text(row.get("p_value", "")),
                 "q_value": normalize_text(row.get("q_value", "")),
+                "q_value_scope": normalize_text(row.get("q_value_scope", "")),
                 "stability_label": stability_label,
                 "headline_eligibility": headline_eligibility,
                 "country_filter": normalize_text(row.get("country_filter", "")),
@@ -1684,13 +1682,12 @@ def build_figure5_rows(
                 "ci_upper": normalize_text(row.get("ci_upper", "")),
                 "p_value": normalize_text(row.get("p_value", "")),
                 "q_value": normalize_text(row.get("q_value", "")),
+                "q_value_scope": normalize_text(row.get("q_value_scope", "")),
                 "stability_label": (
                     "direction_flip" if same_direction == "false" else "matches_primary_direction"
                 ),
                 "headline_eligibility": (
-                    "support_only_country_dependent"
-                    if family_signflip_lookup.get(focal_family, False)
-                    else "headline_eligible"
+                    "diagnostic_only_archive_context"
                 ),
                 "country_filter": normalize_text(row.get("country_filter", "")),
                 "year_window": normalize_text(row.get("year_window", "")),
@@ -1775,6 +1772,7 @@ def build_figure5_rows(
                 "n_obs": normalize_text(row.get("n_obs", "")),
                 "n_countries": normalize_text(row.get("n_countries", "")),
                 "standard_glm_warning_types": normalize_text(row.get("standard_glm_warning_types", "")),
+                "q_value_scope": "not_applicable_penalized_ridge_no_wald_p_values",
                 "stability_label": "support_only_sparse_overlap",
                 "headline_eligibility": "support_only_sparse_overlap",
                 "ridge_effect_alpha_0p01": normalize_text(row.get("ridge_effect_alpha_0p01", "")),
@@ -1849,6 +1847,82 @@ def build_figure6_rows(
     return rows
 
 
+def build_figure5_extracts(outdir: Path, workflow_epi_root: Path, legacy_workflow_epi_root: Path) -> None:
+    step6_outputs = project_module_data_root("step6_epi_transmission") / "outputs"
+    panel_model_results_path = resolve_existing_path(
+        workflow_epi_root / "panel_model_results.tsv",
+        legacy_workflow_epi_root / "panel_model_results.tsv",
+    )
+    panel_model_diagnostics_path = resolve_existing_path(
+        workflow_epi_root / "panel_model_diagnostics.tsv",
+        legacy_workflow_epi_root / "panel_model_diagnostics.tsv",
+    )
+    panel_model_leave_one_out_path = resolve_existing_path(
+        workflow_epi_root / "panel_model_leave_one_country_out.tsv",
+        legacy_workflow_epi_root / "panel_model_leave_one_country_out.tsv",
+    )
+    panel_model_coverage_path = resolve_existing_path(
+        workflow_epi_root / "panel_model_coverage_report.tsv",
+        legacy_workflow_epi_root / "panel_model_coverage_report.tsv",
+    )
+    formulation_summary_path = resolve_existing_path(
+        workflow_epi_root / "formulation_curation_summary.tsv",
+        legacy_workflow_epi_root / "formulation_curation_summary.tsv",
+    )
+    product_summary_path = resolve_existing_path(
+        workflow_epi_root / "product_metadata_summary.tsv",
+        legacy_workflow_epi_root / "product_metadata_summary.tsv",
+    )
+    amu_model_path = step6_outputs / "bp_country_year_amu_exploratory_models.tsv"
+    amu_diagnostic_path = step6_outputs / "bp_country_year_amu_exploratory_diagnostics.tsv"
+    amu_overlap_path = step6_outputs / "bp_country_year_amu_exploratory_overlap_manifest.tsv"
+
+    require_files(
+        [
+            panel_model_results_path,
+            panel_model_diagnostics_path,
+            panel_model_leave_one_out_path,
+            panel_model_coverage_path,
+            formulation_summary_path,
+            product_summary_path,
+            amu_model_path,
+            amu_diagnostic_path,
+            amu_overlap_path,
+        ],
+        "Figure 5 source",
+    )
+
+    amu_summaries = summarize_amu_exploratory(
+        load_tsv_rows(amu_model_path),
+        load_tsv_rows(amu_diagnostic_path),
+    )
+    formulation_coverage_rows = build_figure5_coverage_rows(
+        load_tsv_rows(formulation_summary_path),
+        load_tsv_rows(product_summary_path),
+    )
+    figure5_rows = build_figure5_rows(
+        load_tsv_rows(panel_model_results_path),
+        load_tsv_rows(panel_model_diagnostics_path),
+        load_tsv_rows(panel_model_leave_one_out_path),
+        load_tsv_rows(panel_model_coverage_path),
+        load_tsv_rows(formulation_summary_path),
+        amu_summaries,
+    )
+
+    write_tsv(outdir / "figure_data" / "figure5_association_model_panels.tsv", FIGURE5_COLUMNS, figure5_rows)
+    write_tsv(
+        outdir / "figure_data" / "figure5_formulation_coverage.tsv",
+        FIGURE5_COVERAGE_COLUMNS,
+        formulation_coverage_rows,
+    )
+    write_tsv(outdir / "figure_data" / "figure5_amu_exploratory_summary.tsv", AMU_SUMMARY_COLUMNS, amu_summaries)
+    write_tsv(
+        outdir / "figure_data" / "figure5_amu_overlap_manifest.tsv",
+        AMU_OVERLAP_COLUMNS,
+        build_amu_overlap_rows(load_tsv_rows(amu_overlap_path)),
+    )
+
+
 def build_supp_table_3_read_validation_rows(
     validation_summary_rows: list[dict[str, str]],
 ) -> list[dict[str, str]]:
@@ -1903,6 +1977,17 @@ def build_data_dictionary(
     output_dir: Path,
     row_counts: dict[str, int],
 ) -> str:
+    def dataset_row_count(relative_file: str) -> int:
+        if relative_file in row_counts:
+            return row_counts[relative_file]
+        path = output_dir / relative_file
+        if not path.exists():
+            return 0
+        with path.open(newline="", encoding="utf-8") as handle:
+            reader = csv.reader(handle, delimiter="\t")
+            next(reader, None)
+            return sum(1 for _ in reader)
+
     datasets = [
         {
             "file": "figure_data/figure1_data_landscape.tsv",
@@ -2161,15 +2246,17 @@ def build_data_dictionary(
             "file": "figure_data/focal_country_contact_prior_ledger.tsv",
             "figure": "Supplementary package",
             "title": "Focal-country contact-prior ledger",
-            "purpose": "Projected 4x4 focal-country contact-prior matrices derived from epydemix-data with an explicit infant-versus-1-4 split assumption applied to the original 0-4 contact block.",
+            "purpose": "Projected 4x4 focal-country contact-prior matrices derived from a pinned local epydemix-data v1.1.0 snapshot, with an explicit infant-versus-1-4 split assumption applied to the original 0-4 contact block.",
             "provenance": [
-                "https://raw.githubusercontent.com/epistorm/epydemix-data/v1.1.0/locations.csv",
-                "https://raw.githubusercontent.com/epistorm/epydemix-data/v1.1.0/data/<location>/contact_matrices/prem_2017/",
+                "manuscript/submission_data/audit_ledgers/epydemix_snapshot_manifest.tsv",
+                "modules/public_health/inputs/raw/epydemix-data/v1.1.0/snapshot_manifest.tsv",
+                "modules/public_health/inputs/raw/epydemix-data/v1.1.0/data/<location>/contact_matrices/prem_2017/",
                 "manuscript/scripts/sidecars/ms_05_build_focal_country_dynamics.py",
             ],
             "columns": [
                 "`layer_name`, `from_age_group`, and `to_age_group`: long-format representation of the projected contact matrices.",
                 "`contact_rate`: contact rate retained for the manuscript-facing prior ledger.",
+                "`source_access_mode`, `source_canonicality`, and `source_file`: explicit provenance labels distinguishing pinned local snapshots from non-canonical recovery paths.",
                 "`notes`: explicit statement that the infant split is assumption-based rather than directly observed.",
             ],
         },
@@ -2299,7 +2386,7 @@ def build_data_dictionary(
             "columns": [
                 "`panel_id`: `primary_exposure_comparison`, `cluster_robust_v3`, `cluster_robust_v2`, `leave_one_country_out`, `coverage_summary`, `formulation_country_summary`, `sensitivity_diagnostics`, or `amu_exploratory_summary`.",
                 "`focal_exposure_family`: distinguishes `v3`, `v2`, `v1`, and `dtp3` rows within the same plot-ready table.",
-                "`stability_label` and `headline_eligibility`: manuscript-facing annotations showing when exposure effects become country-dependent and therefore remain support-only.",
+                "`stability_label` and `headline_eligibility`: manuscript-facing annotations showing archive-context diagnostics and country-dependent sensitivity; these rows are not headline causal evidence.",
             ],
         },
         {
@@ -2449,7 +2536,7 @@ def build_data_dictionary(
                 f"## {dataset['figure']}: {dataset['title']}",
                 "",
                 f"- File: `{dataset['file']}`",
-                f"- Rows: `{row_counts.get(dataset['file'], 0)}`",
+                f"- Rows: `{dataset_row_count(dataset['file'])}`",
                 f"- Purpose: {dataset['purpose']}",
                 "- Provenance:",
             ]
@@ -2488,6 +2575,7 @@ def main() -> int:
     workflow_epi_root = project_workflow_root() / "epi"
     legacy_workflow_epi_root = root / "outputs" / "workflow" / "epi"
     step4_outputs = project_module_data_root("step4_prn_validation") / "outputs"
+    build_figure5_extracts(outdir, workflow_epi_root, legacy_workflow_epi_root)
 
     source_map = {
         "figure_data/fig01_prn_country_year_summary.tsv": step4_outputs / "bp_prn_country_year_summary.tsv",

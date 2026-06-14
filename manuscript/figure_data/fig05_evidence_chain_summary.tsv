@@ -1,0 +1,8 @@
+stage_id	stage_label	n	parent_stage_id	parent_n	interpretive_role	manuscript_use
+retained_archive	Retained public-genome archive	2406	NA	NA	Complete retained archive after accession, QC and provenance filters	Defines archive composition and missingness bounds
+interpretable_event_phenotype	Interpretable event/phenotype frame	1325	retained_archive	2406	Records with either structurally resolved disruption or intact-locus boundary call	Main manuscript-facing event and phenotype frame
+noninterpretable_uncertain	Non-interpretable or uncertain records	1081	retained_archive	2406	Records without a supported interpretable prn endpoint	Enter missingness bounds rather than event-concentration denominators
+structurally_resolved_disrupted	Structurally resolved disrupted event calls	577	interpretable_event_phenotype	1325	Resolved disrupted prn calls assigned to 14 frozen event classes	Event-concentration and recurrent-route denominator
+intact_boundary	Intact-locus boundary calls	748	interpretable_event_phenotype	1325	Genome-intact prn boundary without direct protein-expression proof	Phenotype-tier comparison boundary
+tier1a_phenotype_bridge	Tier 1a junction-class phenotype bridge	544	structurally_resolved_disrupted	577	Read-backed event classes linked to published PRN non-expression-compatible lesion classes	Highest phenotype-plausibility bridge in the present genome calls
+other_disrupted_phenotype_tiers	Tier 1b-3 disrupted phenotype tiers	33	structurally_resolved_disrupted	577	Disrupted event classes with lesion-class-only, plausible genome-disruption or genome-only phenotype support	Lower phenotype-plausibility disrupted calls retained as bounded genome evidence

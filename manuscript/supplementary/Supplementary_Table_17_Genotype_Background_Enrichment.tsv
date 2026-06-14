@@ -1,9 +1,0 @@
-baseline_frame	feature	origin_positive	origin_total	baseline_positive	baseline_total	odds_ratio	p_value	test_status	notes
-composition_pruned_tree_nonreference	ptxP3	9	10	1050	1918	7.4400	0.02722	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-composition_pruned_tree_nonreference	fim2_present	10	10	1187	1918		0.01672	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-composition_pruned_tree_nonreference	fim3_present	10	10	1187	1918		0.01672	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-composition_pruned_tree_nonreference	ptxP3_fim2_fim3	9	10	1050	1918	7.4400	0.02722	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-full_interpretable_retained_cohort	ptxP3	9	10	1056	1400	2.9318	0.4664	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-full_interpretable_retained_cohort	fim2_present	10	10	1194	1400		0.3741	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-full_interpretable_retained_cohort	fim3_present	10	10	1194	1400		0.3741	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.
-full_interpretable_retained_cohort	ptxP3_fim2_fim3	9	10	1056	1400	2.9318	0.4664	fisher_exact	Exploratory enrichment among priority origin exemplars; not interpreted as causal mechanism.

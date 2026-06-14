@@ -37,6 +37,7 @@ STRUCTURAL_CONCENTRATION_PATH = FIGURE_DATA_DIR / "structural_event_concentratio
 ASR_TIP_STATES_PATH = REPO_ROOT / "outputs" / "workflow" / "asr" / "tip_states.tsv"
 ASR_RESAMPLING_REPLICATE_PATH = REPO_ROOT / "outputs" / "workflow" / "asr_resampling" / "resampling_replicates.tsv"
 ASR_RESAMPLING_SUMMARY_PATH = REPO_ROOT / "outputs" / "workflow" / "asr_resampling" / "resampling_summary.tsv"
+PUBLISHED_OVERLAP_ANNOTATION_PATH = FIGURE_DATA_DIR / "published_overlap_annotation.tsv"
 
 BLOCK_ASSIGNMENT_PATH = STUDY_DIR / "study_block_assignment.tsv"
 LOO_PATH = STUDY_DIR / "selected_country_block_leave_one_out.tsv"
@@ -51,6 +52,8 @@ SUPP54_PATH = SUPP_DIR / "Supplementary_Table_54_Study_Weighted_Structure_and_AS
 
 N_BOOTSTRAP = 1000
 BOOTSTRAP_SEED = 20260419
+STUDY_DEPENDENCE_DIAGNOSTIC_SCOPE = "heuristic_study_dependence_diagnostic_not_formal_hypothesis_test"
+STRUCTURE_REUSE_DIAGNOSTIC_SCOPE = "heuristic_structure_reuse_diagnostic_not_formal_hypothesis_test"
 SELECTED_COUNTRIES = ("USA", "NZL", "AUS", "JPN")
 PRIMARY_COUNTRY_PAIRS = {
     "USA": ("usa_wp_only", "usa_ap_prn_background"),
@@ -76,6 +79,17 @@ def clean_text(value: object) -> str:
         return ""
     text = str(value).strip()
     return "" if text.casefold() in {"", "nan", "none", "na", "not available"} else text
+
+
+def downgrade_formal_test_language(value: object) -> str:
+    text = clean_text(value)
+    replacements = {
+        "tests_independent_reuse_not_genome_burden": "diagnostic_screen_independent_reuse_not_genome_burden",
+        "tests_sampling_burst_robustness_not_genome_burden": "diagnostic_screen_sampling_burst_robustness_not_genome_burden",
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
 
 
 def normalize_text_series(series: pd.Series) -> pd.Series:
@@ -146,7 +160,6 @@ def prepare_manifest() -> pd.DataFrame:
 
 
 def prepare_inventory() -> pd.DataFrame:
-    inventory = read_tsv(INVENTORY_PATH)
     keep_columns = [
         "sample_id_canonical",
         "biosample_accession",
@@ -160,6 +173,10 @@ def prepare_inventory() -> pd.DataFrame:
         "isolate",
         "strain",
     ]
+    if not INVENTORY_PATH.exists():
+        return pd.DataFrame(columns=keep_columns)
+
+    inventory = read_tsv(INVENTORY_PATH)
     inventory = inventory.loc[:, [column for column in keep_columns if column in inventory.columns]].copy()
     for column in inventory.columns:
         inventory[column] = normalize_text_series(inventory[column])
@@ -480,6 +497,8 @@ def build_selected_country_block_audit(study_frame: pd.DataFrame) -> tuple[pd.Da
             "delta_block_equalized_sign": sign_label(observed["delta_block_equalized_prevalence"]),
             "direction_matches_observed_naive": True,
             "direction_matches_observed_block_equalized": True,
+            "diagnostic_inference_scope": STUDY_DEPENDENCE_DIAGNOSTIC_SCOPE,
+            "notes": "Observed comparison row for the heuristic study-dependence diagnostic; not a formal hypothesis test.",
         }
         leave_one_out_rows.append(observed_row)
 
@@ -510,6 +529,8 @@ def build_selected_country_block_audit(study_frame: pd.DataFrame) -> tuple[pd.Da
                             int(epoch_frame.loc[epoch_frame["prn_interpretable_bool"], "prn_disrupted_bool"].sum()),
                         ),
                         "block_is_dominant": False,
+                        "diagnostic_inference_scope": STUDY_DEPENDENCE_DIAGNOSTIC_SCOPE,
+                        "notes": "Descriptive study-block dominance summary; not a formal hypothesis test.",
                     }
                 )
             if not block_rows:
@@ -564,6 +585,8 @@ def build_selected_country_block_audit(study_frame: pd.DataFrame) -> tuple[pd.Da
                     "direction_matches_observed_block_equalized": (
                         sign_label(leave_summary["delta_block_equalized_prevalence"]) == observed_row["delta_block_equalized_sign"]
                     ),
+                    "diagnostic_inference_scope": STUDY_DEPENDENCE_DIAGNOSTIC_SCOPE,
+                    "notes": "Leave-one-study-block-out sensitivity diagnostic; not a formal hypothesis test.",
                 }
             )
 
@@ -672,7 +695,12 @@ def build_selected_country_block_audit(study_frame: pd.DataFrame) -> tuple[pd.Da
                 "dominant_block_removed_delta_naive_prevalence": dominant_naive,
                 "dominant_block_removed_delta_block_equalized_prevalence": dominant_block,
                 "study_dependence_call": study_call,
-                "notes": "Subblock bootstrap uses metadata-defined outbreak proxy blocks sampled with replacement within each epoch.",
+                "diagnostic_inference_scope": STUDY_DEPENDENCE_DIAGNOSTIC_SCOPE,
+                "notes": (
+                    "Subblock resampling is a heuristic study-dependence diagnostic using metadata-defined "
+                    "outbreak proxy blocks sampled with replacement within each epoch; intervals are empirical "
+                    "sensitivity ranges, not formal confidence intervals."
+                ),
             }
         )
 
@@ -715,15 +743,66 @@ def concentration_metrics_from_weights(weights: pd.Series) -> dict[str, object]:
     }
 
 
+def is_structurally_resolved_event_id(series: pd.Series) -> pd.Series:
+    event = series.fillna("").astype(str).str.strip().str.casefold()
+    unresolved_pattern = r"insufficient|fragmented|uncertain"
+    return event.ne("") & ~event.str.contains(unresolved_pattern, regex=True)
+
+
+def overlay_frozen_structural_endpoint(study_frame: pd.DataFrame) -> pd.DataFrame:
+    frame = study_frame.copy()
+    frame["structure_prn_interpretable_bool"] = frame["prn_interpretable_bool"]
+    frame["structure_prn_disrupted_bool"] = frame["prn_disrupted_bool"]
+    frame["structure_prn_event_id"] = frame["prn_event_id"]
+    if not PUBLISHED_OVERLAP_ANNOTATION_PATH.exists():
+        return frame
+
+    annotation = read_tsv(PUBLISHED_OVERLAP_ANNOTATION_PATH)
+    keep_columns = ["sample_id_canonical", "prn_interpretable", "prn_disrupted", "prn_event_id"]
+    if not set(keep_columns).issubset(annotation.columns):
+        return frame
+
+    annotation = (
+        annotation.loc[:, keep_columns]
+        .drop_duplicates(subset=["sample_id_canonical"])
+        .rename(
+            columns={
+                "prn_interpretable": "frozen_prn_interpretable",
+                "prn_disrupted": "frozen_prn_disrupted",
+                "prn_event_id": "frozen_prn_event_id",
+            }
+        )
+    )
+    frame = frame.merge(annotation, on="sample_id_canonical", how="left")
+    has_frozen_status = normalize_text_series(frame["frozen_prn_interpretable"]).ne("")
+    frame["structure_prn_interpretable_bool"] = to_bool(frame["frozen_prn_interpretable"]).where(
+        has_frozen_status, frame["prn_interpretable_bool"]
+    )
+    frame["structure_prn_disrupted_bool"] = to_bool(frame["frozen_prn_disrupted"]).where(
+        has_frozen_status, frame["prn_disrupted_bool"]
+    )
+    frozen_event = normalize_text_series(frame["frozen_prn_event_id"])
+    frame["structure_prn_event_id"] = frozen_event.where(has_frozen_status, frame["prn_event_id"])
+    return frame
+
+
 def build_structure_reweighting(study_frame: pd.DataFrame) -> pd.DataFrame:
-    disrupted = study_frame.loc[study_frame["prn_interpretable_bool"] & study_frame["prn_disrupted_bool"]].copy()
-    disrupted = disrupted.loc[disrupted["prn_event_id"].ne("")]
+    structural_frame = overlay_frozen_structural_endpoint(study_frame)
+    disrupted = structural_frame.loc[
+        structural_frame["structure_prn_interpretable_bool"] & structural_frame["structure_prn_disrupted_bool"]
+    ].copy()
+    disrupted["prn_event_id"] = structural_frame.loc[disrupted.index, "structure_prn_event_id"]
+    disrupted = disrupted.loc[is_structurally_resolved_event_id(disrupted["prn_event_id"])]
     existing = read_tsv(STRUCTURAL_CONCENTRATION_PATH)
     existing = existing.loc[
         existing["scope"].eq("overall") & existing["mechanism_group"].eq("all")
     ].copy()
     existing["row_type"] = "current_naive_reference"
     existing["weighting_scheme"] = "none"
+    existing["notes"] = normalize_text_series(existing.get("notes", pd.Series("", index=existing.index))).map(
+        downgrade_formal_test_language
+    )
+    existing["diagnostic_inference_scope"] = STRUCTURE_REUSE_DIAGNOSTIC_SCOPE
 
     rows: list[dict[str, object]] = existing.to_dict(orient="records")
     if disrupted.empty:
@@ -792,12 +871,16 @@ def build_structure_reweighting(study_frame: pd.DataFrame) -> pd.DataFrame:
             "null_dominant_event_stratum_share_p_ge_observed": "",
             "null_top3_event_stratum_share_mean": "",
             "null_top3_event_stratum_share_p_ge_observed": "",
-            "notes": "Equal-weighted across study/BioProject blocks among interpretable disrupted genomes only.",
+            "notes": (
+                "Study-block-equalized descriptive sensitivity among structurally resolved disrupted genomes only; "
+                "not a formal hypothesis test."
+            ),
             "weighting_scheme": "study_block_equalized",
             "largest_block_share": largest_block_share,
             "top3_prn_event_ids": weighted_metrics["top3_prn_event_ids"],
             "top3_matches_current_naive": top3_stable,
             "interpretation_call": interpretation,
+            "diagnostic_inference_scope": STRUCTURE_REUSE_DIAGNOSTIC_SCOPE,
         }
     )
 
@@ -842,12 +925,16 @@ def build_structure_reweighting(study_frame: pd.DataFrame) -> pd.DataFrame:
                     "null_dominant_event_stratum_share_p_ge_observed": "",
                     "null_top3_event_stratum_share_mean": "",
                     "null_top3_event_stratum_share_p_ge_observed": "",
-                    "notes": f"Observed event weights after removing largest block {largest_block_id}.",
+                    "notes": (
+                        f"Descriptive sensitivity after removing largest block {largest_block_id}; "
+                        "not a formal hypothesis test."
+                    ),
                     "weighting_scheme": "drop_largest_block_naive",
                     "largest_block_share": largest_block_share,
                     "top3_prn_event_ids": dropped_metrics["top3_prn_event_ids"],
                     "top3_matches_current_naive": dropped_metrics["top3_prn_event_ids"] == naive_metrics["top3_prn_event_ids"],
                     "interpretation_call": interpretation,
+                    "diagnostic_inference_scope": STRUCTURE_REUSE_DIAGNOSTIC_SCOPE,
                 }
             )
     structure = pd.DataFrame(rows)
@@ -857,6 +944,7 @@ def build_structure_reweighting(study_frame: pd.DataFrame) -> pd.DataFrame:
         "top3_prn_event_ids",
         "top3_matches_current_naive",
         "interpretation_call",
+        "diagnostic_inference_scope",
     ]
     ordered = [column for column in preferred_columns if column in structure.columns]
     ordered = list(dict.fromkeys(ordered))

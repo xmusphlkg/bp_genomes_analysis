@@ -27,8 +27,10 @@ Supplementary Figure source scripts:
 - `extended_data/ed11_identifiability_dag.R`
 - `extended_data/ed12_country_year_missingness_audit.R`
 - `extended_data/ed13_fig01_context_panels.R`
+- `extended_data/ed14_structural_recurrence_compendium.R`
+- `extended_data/ed15_validation_sensitivity_compendium.R`
 
-The output filenames still use `Extended_Data_Fig_*` internally because the source renderer predates the Communications Biology retargeting. In the manuscript and final upload package these panels are labelled Supplementary Figures 1-13.
+The output filenames still use `Extended_Data_Fig_*` internally because the source renderer predates the Communications Biology retargeting. In the manuscript and final upload package these panels are labelled Supplementary Figures 1-15.
 
 ## Rendering
 

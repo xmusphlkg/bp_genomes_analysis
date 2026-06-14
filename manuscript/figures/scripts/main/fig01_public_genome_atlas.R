@@ -316,9 +316,9 @@ heatmap_dat <- prn_year_focus %>%
 pB <- ggplot(heatmap_dat, aes(year, country_iso3, fill = n_genomes_total)) +
      geom_tile(width = 0.9, height = 0.74) +
      scale_fill_gradientn(
-          colours = blue_seq,
+          colours = c("white", blue_seq),
           trans = scales::log1p_trans(),
-          breaks = c(0, 1, 10, 50, 100, 500),
+          breaks = c(0, 1, 10, 50, 200, 500),
           labels = comma,
           name = "Genomes"
      ) +
@@ -349,27 +349,47 @@ annual <- prn_year_focus %>%
           frac = if_else(n_interpretable > 0, n_disrupted / n_interpretable, NA_real_),
           .groups = "drop"
      ) %>%
-     filter(n_interpretable >= 5) %>%
+     filter(n_interpretable > 0) %>%
      rowwise() %>%
      mutate(
           ci = list(binom.test(n_disrupted, n_interpretable)$conf.int),
           lo = ci[[1]],
-          hi = ci[[2]]
+          hi = ci[[2]],
+          small_denominator = n_interpretable < 10
      ) %>%
      ungroup()
 
+annual_main <- annual %>%
+     filter(!small_denominator)
+
 pC <- ggplot(annual, aes(year, frac)) +
-     geom_ribbon(aes(ymin = lo, ymax = hi), fill = alpha(npg_colors["red"], 0.13), colour = NA) +
-     geom_line(colour = npg_colors["red"], linewidth = 0.42) +
-     geom_point(aes(size = n_interpretable), shape = 21, fill = npg_colors["red"], colour = "white", stroke = 0.18) +
+     geom_ribbon(
+          data = annual_main,
+          aes(ymin = lo, ymax = hi),
+          fill = alpha(npg_colors["red"], 0.13),
+          colour = NA
+     ) +
+     geom_line(data = annual_main, colour = npg_colors["red"], linewidth = 0.42) +
+     geom_point(
+          aes(size = n_interpretable, shape = small_denominator),
+          fill = npg_colors["red"],
+          colour = FIGURE_INK,
+          stroke = 0.22
+     ) +
      # annotate("text", x = focus_year_min + 1, y = 0.05, label = "Pooled; not sampling-adjusted",
      #          hjust = 0, size = 1.7, colour = FIGURE_MUTED_TEXT, fontface = "italic") +
      scale_y_continuous(labels = percent,
                         limits = c(0, 1),
                         expand = expansion(mult = c(0.02, 0.05))) +
      scale_size_area(max_size = 4.8,
-                     limits = c(5, 200),
-                     breaks = c(5, 10, 50, 200), name = "Interpretable genomes") +
+                     limits = c(1, 200),
+                     oob = scales::squish,
+                     breaks = c(1, 5, 10, 50, 200), name = NULL) +
+     scale_shape_manual(
+          values = c(`FALSE` = 21, `TRUE` = 1),
+          labels = c(`FALSE` = "n >= 10", `TRUE` = "n < 10"),
+          name = "Annual denominator"
+     ) +
      labs(x = "Collection year", y = "Disrupted fraction") +
      theme_nature(base_size = fig1_base_size)
 
@@ -466,8 +486,8 @@ fig1 <- free(pA) + free(pB) + pC + pF +
           plot.tag = element_text(face = "bold", size = fig1_tag_size, colour = FIGURE_TEXT_COLOUR),
           plot.tag.position = c(0, 1),
           plot.title.position = "plot",
-          plot.margin = margin(3, 3, 3, 3)
+          plot.margin = margin(3, 3, 7, 3)
      )
 
-save_nc_pdf(fig1, "fig01_public_genome_atlas.pdf", height = 3.9)
-save_nc_png(fig1, "fig01_public_genome_atlas.png", height = 3.9)
+save_nc_pdf(fig1, "fig01_public_genome_atlas.pdf", height = 4.05)
+save_nc_png(fig1, "fig01_public_genome_atlas.png", height = 4.05)

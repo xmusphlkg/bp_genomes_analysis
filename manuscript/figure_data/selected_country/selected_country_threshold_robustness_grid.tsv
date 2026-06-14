@@ -3,7 +3,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 1	6	2	wide	1.0	high_or_medium	False	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 1	6	2	wide	1.0	high_or_medium	False	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 1	6	2	wide	1.0	high_or_medium	False	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-1	6	2	wide	1.0	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+1	6	2	wide	1.0	high_or_medium	False	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 1	6	2	wide	1.0	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 1	6	2	wide	1.0	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 1	6	2	wide	1.0	high_or_medium	False	False	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -15,7 +15,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 2	6	2	wide	1.0	high_or_medium	True	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 2	6	2	wide	1.0	high_or_medium	True	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 2	6	2	wide	1.0	high_or_medium	True	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-2	6	2	wide	1.0	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+2	6	2	wide	1.0	high_or_medium	True	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 2	6	2	wide	1.0	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 2	6	2	wide	1.0	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 2	6	2	wide	1.0	high_or_medium	True	False	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -27,7 +27,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 3	6	2	wide	1.0	high_or_medium	True	True	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 3	6	2	wide	1.0	high_or_medium	True	True	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 3	6	2	wide	1.0	high_or_medium	True	True	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-3	6	2	wide	1.0	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+3	6	2	wide	1.0	high_or_medium	True	True	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 3	6	2	wide	1.0	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 3	6	2	wide	1.0	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 3	6	2	wide	1.0	high_or_medium	True	True	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -75,7 +75,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 7	6	2	medium	0.67	high_or_medium	False	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 7	6	2	medium	0.67	high_or_medium	False	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 7	6	2	medium	0.67	high_or_medium	False	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-7	6	2	medium	0.67	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+7	6	2	medium	0.67	high_or_medium	False	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 7	6	2	medium	0.67	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 7	6	2	medium	0.67	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 7	6	2	medium	0.67	high_or_medium	False	False	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -87,7 +87,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 8	6	2	medium	0.67	high_or_medium	True	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 8	6	2	medium	0.67	high_or_medium	True	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 8	6	2	medium	0.67	high_or_medium	True	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-8	6	2	medium	0.67	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+8	6	2	medium	0.67	high_or_medium	True	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 8	6	2	medium	0.67	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 8	6	2	medium	0.67	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 8	6	2	medium	0.67	high_or_medium	True	False	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -99,7 +99,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 9	6	2	medium	0.67	high_or_medium	True	True	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 9	6	2	medium	0.67	high_or_medium	True	True	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 9	6	2	medium	0.67	high_or_medium	True	True	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-9	6	2	medium	0.67	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+9	6	2	medium	0.67	high_or_medium	True	True	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 9	6	2	medium	0.67	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 9	6	2	medium	0.67	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 9	6	2	medium	0.67	high_or_medium	True	True	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -147,7 +147,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 13	6	2	strict	0.5	high_or_medium	False	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 13	6	2	strict	0.5	high_or_medium	False	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 13	6	2	strict	0.5	high_or_medium	False	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-13	6	2	strict	0.5	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+13	6	2	strict	0.5	high_or_medium	False	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 13	6	2	strict	0.5	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 13	6	2	strict	0.5	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 13	6	2	strict	0.5	high_or_medium	False	False	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -159,7 +159,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 14	6	2	strict	0.5	high_or_medium	True	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 14	6	2	strict	0.5	high_or_medium	True	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 14	6	2	strict	0.5	high_or_medium	True	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-14	6	2	strict	0.5	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+14	6	2	strict	0.5	high_or_medium	True	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 14	6	2	strict	0.5	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 14	6	2	strict	0.5	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 14	6	2	strict	0.5	high_or_medium	True	False	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -171,7 +171,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 15	6	2	strict	0.5	high_or_medium	True	True	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 15	6	2	strict	0.5	high_or_medium	True	True	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 15	6	2	strict	0.5	high_or_medium	True	True	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-15	6	2	strict	0.5	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+15	6	2	strict	0.5	high_or_medium	True	True	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 15	6	2	strict	0.5	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 15	6	2	strict	0.5	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 15	6	2	strict	0.5	high_or_medium	True	True	GBR	United Kingdom	none	0	2	True	False	stage1_only	True	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -219,7 +219,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 19	6	3	wide	1.0	high_or_medium	False	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 19	6	3	wide	1.0	high_or_medium	False	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 19	6	3	wide	1.0	high_or_medium	False	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-19	6	3	wide	1.0	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+19	6	3	wide	1.0	high_or_medium	False	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 19	6	3	wide	1.0	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 19	6	3	wide	1.0	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 19	6	3	wide	1.0	high_or_medium	False	False	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -231,7 +231,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 20	6	3	wide	1.0	high_or_medium	True	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 20	6	3	wide	1.0	high_or_medium	True	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 20	6	3	wide	1.0	high_or_medium	True	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-20	6	3	wide	1.0	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+20	6	3	wide	1.0	high_or_medium	True	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 20	6	3	wide	1.0	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 20	6	3	wide	1.0	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 20	6	3	wide	1.0	high_or_medium	True	False	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -243,7 +243,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 21	6	3	wide	1.0	high_or_medium	True	True	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 21	6	3	wide	1.0	high_or_medium	True	True	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 21	6	3	wide	1.0	high_or_medium	True	True	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-21	6	3	wide	1.0	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+21	6	3	wide	1.0	high_or_medium	True	True	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 21	6	3	wide	1.0	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 21	6	3	wide	1.0	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 21	6	3	wide	1.0	high_or_medium	True	True	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -291,7 +291,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 25	6	3	medium	0.67	high_or_medium	False	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 25	6	3	medium	0.67	high_or_medium	False	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 25	6	3	medium	0.67	high_or_medium	False	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-25	6	3	medium	0.67	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+25	6	3	medium	0.67	high_or_medium	False	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 25	6	3	medium	0.67	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 25	6	3	medium	0.67	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 25	6	3	medium	0.67	high_or_medium	False	False	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -303,7 +303,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 26	6	3	medium	0.67	high_or_medium	True	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 26	6	3	medium	0.67	high_or_medium	True	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 26	6	3	medium	0.67	high_or_medium	True	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-26	6	3	medium	0.67	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+26	6	3	medium	0.67	high_or_medium	True	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 26	6	3	medium	0.67	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 26	6	3	medium	0.67	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 26	6	3	medium	0.67	high_or_medium	True	False	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -315,7 +315,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 27	6	3	medium	0.67	high_or_medium	True	True	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 27	6	3	medium	0.67	high_or_medium	True	True	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 27	6	3	medium	0.67	high_or_medium	True	True	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-27	6	3	medium	0.67	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+27	6	3	medium	0.67	high_or_medium	True	True	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 27	6	3	medium	0.67	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 27	6	3	medium	0.67	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 27	6	3	medium	0.67	high_or_medium	True	True	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -363,7 +363,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 31	6	3	strict	0.5	high_or_medium	False	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 31	6	3	strict	0.5	high_or_medium	False	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 31	6	3	strict	0.5	high_or_medium	False	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-31	6	3	strict	0.5	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+31	6	3	strict	0.5	high_or_medium	False	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 31	6	3	strict	0.5	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 31	6	3	strict	0.5	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 31	6	3	strict	0.5	high_or_medium	False	False	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -375,7 +375,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 32	6	3	strict	0.5	high_or_medium	True	False	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 32	6	3	strict	0.5	high_or_medium	True	False	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 32	6	3	strict	0.5	high_or_medium	True	False	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-32	6	3	strict	0.5	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+32	6	3	strict	0.5	high_or_medium	True	False	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 32	6	3	strict	0.5	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 32	6	3	strict	0.5	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 32	6	3	strict	0.5	high_or_medium	True	False	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -387,7 +387,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 33	6	3	strict	0.5	high_or_medium	True	True	BRA	Brazil	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 33	6	3	strict	0.5	high_or_medium	True	True	CHN	China	recurrent_architecture	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 33	6	3	strict	0.5	high_or_medium	True	True	CZE	Czechia	none	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
-33	6	3	strict	0.5	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
+33	6	3	strict	0.5	high_or_medium	True	True	ESP	Spain	none	0	1	False	False	fails_stage1	False	False		
 33	6	3	strict	0.5	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
 33	6	3	strict	0.5	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 33	6	3	strict	0.5	high_or_medium	True	True	GBR	United Kingdom	none	0	2	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
@@ -1301,7 +1301,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 109	12	2	wide	1.0	high_or_medium	False	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 109	12	2	wide	1.0	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 109	12	2	wide	1.0	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-109	12	2	wide	1.0	high_or_medium	False	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+109	12	2	wide	1.0	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 109	12	2	wide	1.0	high_or_medium	False	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 109	12	2	wide	1.0	high_or_medium	False	False	JPN	Japan	recurrent_architecture	0	2	True	True	triangulated	True	True	downward	compatible but bounded
 109	12	2	wide	1.0	high_or_medium	False	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1313,7 +1313,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 110	12	2	wide	1.0	high_or_medium	True	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 110	12	2	wide	1.0	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 110	12	2	wide	1.0	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-110	12	2	wide	1.0	high_or_medium	True	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+110	12	2	wide	1.0	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 110	12	2	wide	1.0	high_or_medium	True	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 110	12	2	wide	1.0	high_or_medium	True	False	JPN	Japan	recurrent_architecture	0	2	True	True	triangulated	True	True	downward	compatible but bounded
 110	12	2	wide	1.0	high_or_medium	True	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1325,7 +1325,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 111	12	2	wide	1.0	high_or_medium	True	True	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 111	12	2	wide	1.0	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 111	12	2	wide	1.0	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-111	12	2	wide	1.0	high_or_medium	True	True	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+111	12	2	wide	1.0	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 111	12	2	wide	1.0	high_or_medium	True	True	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 111	12	2	wide	1.0	high_or_medium	True	True	JPN	Japan	recurrent_architecture	0	2	True	False	stage1_only	True	False	downward	compatible but bounded
 111	12	2	wide	1.0	high_or_medium	True	True	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1373,7 +1373,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 115	12	2	medium	0.67	high_or_medium	False	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 115	12	2	medium	0.67	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 115	12	2	medium	0.67	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-115	12	2	medium	0.67	high_or_medium	False	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+115	12	2	medium	0.67	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 115	12	2	medium	0.67	high_or_medium	False	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 115	12	2	medium	0.67	high_or_medium	False	False	JPN	Japan	recurrent_architecture	0	2	True	True	triangulated	True	True	downward	compatible but bounded
 115	12	2	medium	0.67	high_or_medium	False	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1385,7 +1385,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 116	12	2	medium	0.67	high_or_medium	True	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 116	12	2	medium	0.67	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 116	12	2	medium	0.67	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-116	12	2	medium	0.67	high_or_medium	True	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+116	12	2	medium	0.67	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 116	12	2	medium	0.67	high_or_medium	True	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 116	12	2	medium	0.67	high_or_medium	True	False	JPN	Japan	recurrent_architecture	0	2	True	True	triangulated	True	True	downward	compatible but bounded
 116	12	2	medium	0.67	high_or_medium	True	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1397,7 +1397,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 117	12	2	medium	0.67	high_or_medium	True	True	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 117	12	2	medium	0.67	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 117	12	2	medium	0.67	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-117	12	2	medium	0.67	high_or_medium	True	True	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+117	12	2	medium	0.67	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 117	12	2	medium	0.67	high_or_medium	True	True	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 117	12	2	medium	0.67	high_or_medium	True	True	JPN	Japan	recurrent_architecture	0	2	True	False	stage1_only	True	False	downward	compatible but bounded
 117	12	2	medium	0.67	high_or_medium	True	True	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1445,7 +1445,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 121	12	2	strict	0.5	high_or_medium	False	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 121	12	2	strict	0.5	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 121	12	2	strict	0.5	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-121	12	2	strict	0.5	high_or_medium	False	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+121	12	2	strict	0.5	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 121	12	2	strict	0.5	high_or_medium	False	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 121	12	2	strict	0.5	high_or_medium	False	False	JPN	Japan	recurrent_architecture	0	2	True	True	triangulated	True	True	downward	compatible but bounded
 121	12	2	strict	0.5	high_or_medium	False	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1457,7 +1457,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 122	12	2	strict	0.5	high_or_medium	True	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 122	12	2	strict	0.5	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 122	12	2	strict	0.5	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-122	12	2	strict	0.5	high_or_medium	True	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+122	12	2	strict	0.5	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 122	12	2	strict	0.5	high_or_medium	True	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 122	12	2	strict	0.5	high_or_medium	True	False	JPN	Japan	recurrent_architecture	0	2	True	True	triangulated	True	True	downward	compatible but bounded
 122	12	2	strict	0.5	high_or_medium	True	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1469,7 +1469,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 123	12	2	strict	0.5	high_or_medium	True	True	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 123	12	2	strict	0.5	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 123	12	2	strict	0.5	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-123	12	2	strict	0.5	high_or_medium	True	True	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+123	12	2	strict	0.5	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 123	12	2	strict	0.5	high_or_medium	True	True	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 123	12	2	strict	0.5	high_or_medium	True	True	JPN	Japan	recurrent_architecture	0	2	True	False	stage1_only	True	False	downward	compatible but bounded
 123	12	2	strict	0.5	high_or_medium	True	True	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1517,7 +1517,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 127	12	3	wide	1.0	high_or_medium	False	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 127	12	3	wide	1.0	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 127	12	3	wide	1.0	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-127	12	3	wide	1.0	high_or_medium	False	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+127	12	3	wide	1.0	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 127	12	3	wide	1.0	high_or_medium	False	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 127	12	3	wide	1.0	high_or_medium	False	False	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 127	12	3	wide	1.0	high_or_medium	False	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1529,7 +1529,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 128	12	3	wide	1.0	high_or_medium	True	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 128	12	3	wide	1.0	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 128	12	3	wide	1.0	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-128	12	3	wide	1.0	high_or_medium	True	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+128	12	3	wide	1.0	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 128	12	3	wide	1.0	high_or_medium	True	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 128	12	3	wide	1.0	high_or_medium	True	False	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 128	12	3	wide	1.0	high_or_medium	True	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1541,7 +1541,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 129	12	3	wide	1.0	high_or_medium	True	True	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 129	12	3	wide	1.0	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 129	12	3	wide	1.0	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-129	12	3	wide	1.0	high_or_medium	True	True	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+129	12	3	wide	1.0	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 129	12	3	wide	1.0	high_or_medium	True	True	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 129	12	3	wide	1.0	high_or_medium	True	True	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 129	12	3	wide	1.0	high_or_medium	True	True	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1589,7 +1589,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 133	12	3	medium	0.67	high_or_medium	False	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 133	12	3	medium	0.67	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 133	12	3	medium	0.67	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-133	12	3	medium	0.67	high_or_medium	False	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+133	12	3	medium	0.67	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 133	12	3	medium	0.67	high_or_medium	False	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 133	12	3	medium	0.67	high_or_medium	False	False	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 133	12	3	medium	0.67	high_or_medium	False	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1601,7 +1601,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 134	12	3	medium	0.67	high_or_medium	True	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 134	12	3	medium	0.67	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 134	12	3	medium	0.67	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-134	12	3	medium	0.67	high_or_medium	True	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+134	12	3	medium	0.67	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 134	12	3	medium	0.67	high_or_medium	True	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 134	12	3	medium	0.67	high_or_medium	True	False	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 134	12	3	medium	0.67	high_or_medium	True	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1613,7 +1613,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 135	12	3	medium	0.67	high_or_medium	True	True	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 135	12	3	medium	0.67	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 135	12	3	medium	0.67	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-135	12	3	medium	0.67	high_or_medium	True	True	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+135	12	3	medium	0.67	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 135	12	3	medium	0.67	high_or_medium	True	True	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 135	12	3	medium	0.67	high_or_medium	True	True	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 135	12	3	medium	0.67	high_or_medium	True	True	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1661,7 +1661,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 139	12	3	strict	0.5	high_or_medium	False	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 139	12	3	strict	0.5	high_or_medium	False	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 139	12	3	strict	0.5	high_or_medium	False	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-139	12	3	strict	0.5	high_or_medium	False	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+139	12	3	strict	0.5	high_or_medium	False	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 139	12	3	strict	0.5	high_or_medium	False	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 139	12	3	strict	0.5	high_or_medium	False	False	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 139	12	3	strict	0.5	high_or_medium	False	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1673,7 +1673,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 140	12	3	strict	0.5	high_or_medium	True	False	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 140	12	3	strict	0.5	high_or_medium	True	False	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 140	12	3	strict	0.5	high_or_medium	True	False	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-140	12	3	strict	0.5	high_or_medium	True	False	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+140	12	3	strict	0.5	high_or_medium	True	False	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 140	12	3	strict	0.5	high_or_medium	True	False	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 140	12	3	strict	0.5	high_or_medium	True	False	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 140	12	3	strict	0.5	high_or_medium	True	False	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		
@@ -1685,7 +1685,7 @@ combo_id	min_interpretable_per_epoch	min_eligible_epochs	bound_width_policy	boun
 141	12	3	strict	0.5	high_or_medium	True	True	CZE	Czechia	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 141	12	3	strict	0.5	high_or_medium	True	True	ESP	Spain	none	0	0	False	False	fails_stage1	False	False		
 141	12	3	strict	0.5	high_or_medium	True	True	FIN	Finland	none	0	0	False	False	fails_stage1	False	False		
-141	12	3	strict	0.5	high_or_medium	True	True	FRA	France	package_level	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
+141	12	3	strict	0.5	high_or_medium	True	True	FRA	France	package_level	0	1	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	context only
 141	12	3	strict	0.5	high_or_medium	True	True	GBR	United Kingdom	none	0	0	False	False	fails_stage1	False	False	uncertain_or_single_epoch_only	epidemiologically estimable but not triangulated
 141	12	3	strict	0.5	high_or_medium	True	True	JPN	Japan	recurrent_architecture	0	2	False	False	fails_stage1	False	False	downward	compatible but bounded
 141	12	3	strict	0.5	high_or_medium	True	True	NLD	Netherlands (Kingdom of the)	none	0	0	False	False	fails_stage1	False	False		

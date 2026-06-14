@@ -31,12 +31,14 @@ FIGURE_DATA_DIR = REPO_ROOT / "manuscript" / "figure_data"
 SELECTED_DIR = FIGURE_DATA_DIR / "selected_country"
 SUPP_DIR = REPO_ROOT / "manuscript" / "supplementary"
 SELECTED_COUNTRY_CURATION_DIR = REPO_ROOT / "manuscript" / "curation" / "selected_country"
+AUDIT_SUPP_TABLE_DIR = REPO_ROOT / "manuscript" / "submission_data" / "audit_ledgers" / "supplementary_table_sources"
 
 HISTORY_PATH = SELECTED_DIR / "country_program_history_manifest.tsv"
 EPOCH_PREVALENCE_PATH = SELECTED_DIR / "country_epoch_prn_prevalence.tsv"
 EPOCH_ELIGIBILITY_PATH = SELECTED_DIR / "country_epoch_eligibility.tsv"
 SELECTION_SCORECARD_PATH = SELECTED_DIR / "country_selection_scorecard.tsv"
 YEAR_COMPOSITION_PATH = SUPP_DIR / "Supplementary_Table_34_Selected_Country_Epoch_Year_Composition.tsv"
+YEAR_COMPOSITION_FALLBACK_PATH = AUDIT_SUPP_TABLE_DIR / "Supplementary_Table_34_Selected_Country_Epoch_Year_Composition.tsv"
 EPOCH_CONTRAST_PATH = SELECTED_DIR / "country_epoch_contrast_summary.tsv"
 ORIGIN_PACKAGE_PATH = SELECTED_DIR / "selected_country_origin_package_summary.tsv"
 ORIGIN_SHIFT_PATH = SELECTED_DIR / "selected_country_origin_amplification.tsv"
@@ -86,6 +88,7 @@ MISSINGNESS_TIPPING_SUPP_PATH = SUPP_DIR / "Supplementary_Table_41_Missingness_T
 READINESS_THRESHOLD_SUPP_PATH = SUPP_DIR / "Supplementary_Table_42_Selected_Country_Threshold_Robustness.tsv"
 MISSINGNESS_DR_SUPP_PATH = SUPP_DIR / "Supplementary_Table_43_Selected_Country_DR_Missingness_Summary.tsv"
 ASR_SCENARIO_REGISTRY_SUPP_PATH = SUPP_DIR / "Supplementary_Table_44_ASR_Scenario_Registry.tsv"
+ASR_SCENARIO_REGISTRY_READER_SUPP_PATH = SUPP_DIR / "Supplementary_Table_6_ASR_Scenario_Registry.tsv"
 ORIGIN_CONFIDENCE_TIER_SUPP_PATH = SUPP_DIR / "Supplementary_Table_45_Origin_Confidence_Tiers.tsv"
 
 
@@ -710,7 +713,10 @@ def load_inputs() -> dict[str, pd.DataFrame]:
     epochs = pd.read_csv(EPOCH_PREVALENCE_PATH, sep="\t")
     epoch_eligibility = pd.read_csv(EPOCH_ELIGIBILITY_PATH, sep="\t")
     scorecard = pd.read_csv(SELECTION_SCORECARD_PATH, sep="\t")
-    year_comp = pd.read_csv(YEAR_COMPOSITION_PATH, sep="\t")
+    year_comp = pd.read_csv(
+        YEAR_COMPOSITION_PATH if YEAR_COMPOSITION_PATH.exists() else YEAR_COMPOSITION_FALLBACK_PATH,
+        sep="\t",
+    )
     contrasts = pd.read_csv(EPOCH_CONTRAST_PATH, sep="\t")
     origin_packages = pd.read_csv(ORIGIN_PACKAGE_PATH, sep="\t")
     origin_shift = pd.read_csv(ORIGIN_SHIFT_PATH, sep="\t")
@@ -834,7 +840,9 @@ def build_interpretability_model_table(manifest: pd.DataFrame) -> pd.DataFrame:
     feature_frame = build_missingness_feature_frame(manifest)
     feature_definitions = {
         "year": "Collection year of the genome record",
+        "year_numeric": "Collection year of the genome record",
         "has_reads": "Raw-read linkage available for the assembly",
+        "has_reads_numeric": "Raw-read linkage available for the assembly",
         "log_total_length": "Log-transformed assembly total length",
         "log_n_contigs": "Log-transformed contig count as a fragmentation proxy",
         "missing_total_length": "Indicator that assembly total length was unavailable",
@@ -910,21 +918,34 @@ def build_interpretability_model_table(manifest: pd.DataFrame) -> pd.DataFrame:
     if MISSINGNESS_MODEL_COEFFICIENTS_PATH.exists():
         coeff = pd.read_csv(MISSINGNESS_MODEL_COEFFICIENTS_PATH, sep="\t")
         coeff["feature"] = normalize_text(coeff["feature"])
+        coeff["feature"] = coeff["feature"].replace({"year_numeric": "year", "has_reads_numeric": "has_reads"})
         coeff = coeff.loc[coeff["feature"].ne("intercept")].copy()
-        coeff["standardized_coefficient"] = pd.to_numeric(coeff["coefficient_std"], errors="coerce")
+        coefficient_column = "coefficient_std" if "coefficient_std" in coeff.columns else "coefficient"
+        mean_column = "mean" if "mean" in coeff.columns else "feature_mean"
+        std_column = "std" if "std" in coeff.columns else "feature_scale"
+        if "model" not in coeff.columns:
+            coeff["model"] = "full_model"
+        coeff["standardized_coefficient"] = pd.to_numeric(coeff[coefficient_column], errors="coerce")
         coeff["direction_of_association_with_interpretable_call"] = coeff["standardized_coefficient"].map(
             lambda value: "Positive" if pd.notna(value) and value >= 0 else "Negative"
         )
         coeff["feature_definition"] = coeff["feature"].map(feature_definitions).fillna("")
-        for row in coeff.itertuples(index=False):
+        coeff["mean_numeric"] = pd.to_numeric(coeff.get(mean_column, pd.Series(index=coeff.index)), errors="coerce")
+        coeff["std_numeric"] = pd.to_numeric(coeff.get(std_column, pd.Series(index=coeff.index)), errors="coerce")
+        coeff["coefficient_notes"] = np.where(
+            coeff.get("oof_metric_provenance", pd.Series("", index=coeff.index)).fillna("").astype(str).str.len().gt(0),
+            "Workflow missingness-model coefficient; training metrics are in-sample and OOF metrics are reported separately.",
+            "Workflow-frozen standardized coefficient from the legacy missingness model export.",
+        )
+        for row in coeff.to_dict("records"):
             coeff_rows.append(
                 {
                     "row_type": "feature_coefficient",
-                    "model_variant": "full_model",
+                    "model_variant": row.get("model", "full_model"),
                     "country_iso3": "",
                     "country_name": "",
-                    "feature": row.feature,
-                    "feature_definition": row.feature_definition,
+                    "feature": row.get("feature", ""),
+                    "feature_definition": row.get("feature_definition", ""),
                     "calibration_bin": np.nan,
                     "bin_n": np.nan,
                     "bin_predicted_mean": np.nan,
@@ -942,11 +963,14 @@ def build_interpretability_model_table(manifest: pd.DataFrame) -> pd.DataFrame:
                     "brier_reliability": np.nan,
                     "brier_resolution": np.nan,
                     "brier_uncertainty": np.nan,
-                    "standardized_coefficient": row.standardized_coefficient,
-                    "direction_of_association_with_interpretable_call": row.direction_of_association_with_interpretable_call,
-                    "mean": pd.to_numeric(pd.Series([row.mean]), errors="coerce").iloc[0],
-                    "std": pd.to_numeric(pd.Series([row.std]), errors="coerce").iloc[0],
-                    "notes": "Workflow-frozen standardized coefficient from the original missingness model export.",
+                    "standardized_coefficient": row.get("standardized_coefficient", np.nan),
+                    "direction_of_association_with_interpretable_call": row.get(
+                        "direction_of_association_with_interpretable_call",
+                        "",
+                    ),
+                    "mean": row.get("mean_numeric", np.nan),
+                    "std": row.get("std_numeric", np.nan),
+                    "notes": row.get("coefficient_notes", ""),
                 }
             )
 
@@ -1680,6 +1704,23 @@ def weighted_mean(values: np.ndarray, weights: np.ndarray) -> float:
     return float(np.sum(value_arr * weight_arr) / np.sum(weight_arr))
 
 
+def probability_or_nan(value: float) -> float:
+    if not np.isfinite(value):
+        return np.nan
+    if value < 0.0 or value > 1.0:
+        return np.nan
+    return float(value)
+
+
+def estimator_status(values: Iterable[float]) -> str:
+    finite_values = [float(value) for value in values if np.isfinite(float(value))]
+    if not finite_values:
+        return "not_estimable"
+    if any(value < 0.0 or value > 1.0 for value in finite_values):
+        return "failed_out_of_bounds"
+    return "ok"
+
+
 def classify_identifiability_tier(row: pd.Series) -> str:
     if not bool(row.get("sign_stable_across_estimators", False)):
         return "fragile"
@@ -1768,17 +1809,12 @@ def build_missingness_dr_summary(
         overlap_weights = 1.0 - propensity
 
         epoch_estimates: dict[str, dict[str, float]] = {}
+        aipw_raw_estimates: dict[str, float] = {}
         for epoch_id in [pre_epoch, post_epoch]:
             epoch_mask = country_frame["epoch_id"].eq(epoch_id).to_numpy(dtype=bool)
             observed_epoch = epoch_mask & observed_mask
-            epoch_estimates[epoch_id] = {
-                "naive": safe_divide(y_filled[observed_epoch].sum(), observed_epoch.sum()),
-                "ipw_cap20": weighted_mean(y_filled[observed_epoch], weights_cap20[observed_epoch]),
-                "ipw_untruncated": weighted_mean(y_filled[observed_epoch], inverse_probability[observed_epoch]),
-                "ipw_p01_p99": weighted_mean(y_filled[observed_epoch], weights_p01_p99[observed_epoch]),
-                "ipw_p05_p95": weighted_mean(y_filled[observed_epoch], weights_p05_p95[observed_epoch]),
-                "overlap_observed": weighted_mean(y_filled[observed_epoch], overlap_weights[observed_epoch]),
-                "aipw": float(
+            raw_aipw = (
+                float(
                     np.mean(
                         outcome_pred[epoch_mask]
                         + observed_mask[epoch_mask]
@@ -1787,7 +1823,17 @@ def build_missingness_dr_summary(
                     )
                 )
                 if epoch_mask.sum() > 0
-                else np.nan,
+                else np.nan
+            )
+            aipw_raw_estimates[epoch_id] = raw_aipw
+            epoch_estimates[epoch_id] = {
+                "naive": safe_divide(y_filled[observed_epoch].sum(), observed_epoch.sum()),
+                "ipw_cap20": weighted_mean(y_filled[observed_epoch], weights_cap20[observed_epoch]),
+                "ipw_untruncated": weighted_mean(y_filled[observed_epoch], inverse_probability[observed_epoch]),
+                "ipw_p01_p99": weighted_mean(y_filled[observed_epoch], weights_p01_p99[observed_epoch]),
+                "ipw_p05_p95": weighted_mean(y_filled[observed_epoch], weights_p05_p95[observed_epoch]),
+                "overlap_observed": weighted_mean(y_filled[observed_epoch], overlap_weights[observed_epoch]),
+                "aipw": probability_or_nan(raw_aipw),
             }
 
         delta_map = {
@@ -1809,6 +1855,7 @@ def build_missingness_dr_summary(
         diagnostics = summarise_weight_distribution(observed_weights)
         interpretable_propensity = propensity[observed_mask]
         missing_propensity = propensity[~observed_mask]
+        aipw_status = estimator_status(aipw_raw_estimates.values())
         contrast_rows.append(
             {
                 "country_iso3": country_iso3,
@@ -1831,7 +1878,11 @@ def build_missingness_dr_summary(
                 "p99_weight_truncation": p99,
                 "p05_weight_truncation": p05,
                 "p95_weight_truncation": p95,
-                "dr_estimator_label": "aipw_with_crossfit_when_available",
+                "dr_estimator_label": "aipw_crossfit_bounded_fail_closed",
+                "aipw_estimator_status": aipw_status,
+                "aipw_out_of_bounds": aipw_status == "failed_out_of_bounds",
+                "previous_aipw_raw_prevalence": aipw_raw_estimates[pre_epoch],
+                "next_aipw_raw_prevalence": aipw_raw_estimates[post_epoch],
                 "sign_stable_across_estimators": sign_stable,
                 "consistent_nonzero_delta_sign": next(iter(sign_set_no_zero)) if len(sign_set_no_zero) == 1 else "mixed_or_zero",
                 **diagnostics,
@@ -1930,6 +1981,9 @@ def count_true_like(values: Iterable[object]) -> int:
 def build_asr_scenario_registry() -> tuple[pd.DataFrame, pd.DataFrame]:
     rooting = pd.read_csv(ASR_ROOTING_SENSITIVITY_PATH, sep="\t")
     rooting["scenario"] = normalize_text(rooting["scenario"])
+    support = pd.read_csv(ASR_SENSITIVITY_PATH, sep="\t")
+    support["scenario"] = normalize_text(support["scenario"])
+    support_lookup = support.drop_duplicates(subset=["scenario"]).set_index("scenario").to_dict(orient="index")
     mk = pd.read_csv(ASR_MK_PATH, sep="\t")
     mk["scenario"] = normalize_text(mk["scenario"])
     mk_lookup = mk.drop_duplicates(subset=["scenario"]).set_index("scenario").to_dict(orient="index")
@@ -1942,7 +1996,33 @@ def build_asr_scenario_registry() -> tuple[pd.DataFrame, pd.DataFrame]:
         fitch_origin_events = pd.to_numeric(
             pd.Series([getattr(row, "fitch_origin_events", np.nan)]), errors="coerce"
         ).iloc[0]
+        tip_count = pd.to_numeric(pd.Series([getattr(row, "tip_count", np.nan)]), errors="coerce").iloc[0]
+        disrupted_tip_count = pd.to_numeric(
+            pd.Series([getattr(row, "disrupted_tip_count", np.nan)]), errors="coerce"
+        ).iloc[0]
         notes = getattr(row, "notes", "")
+        support_scenario = (
+            "composition_pruned_primary_quality_frame"
+            if scenario == "composition_filtered_reference_rooted_primary"
+            else scenario
+        )
+        support_row = support_lookup.get(support_scenario, {})
+        if support_row:
+            tip_count = pd.to_numeric(pd.Series([support_row.get("tip_count", np.nan)]), errors="coerce").iloc[0]
+            disrupted_tip_count = pd.to_numeric(
+                pd.Series([support_row.get("disrupted_tip_count", np.nan)]), errors="coerce"
+            ).iloc[0]
+            fitch_origin_events = pd.to_numeric(
+                pd.Series([support_row.get("fitch_origin_events", np.nan)]), errors="coerce"
+            ).iloc[0]
+            pastml_origin_events = pd.to_numeric(
+                pd.Series([support_row.get("pastml_origin_events", np.nan)]), errors="coerce"
+            ).iloc[0]
+            notes = support_row.get("notes", notes)
+        else:
+            pastml_origin_events = pd.to_numeric(
+                pd.Series([getattr(row, "pastml_origin_events", np.nan)]), errors="coerce"
+            ).iloc[0]
         if scenario == "composition_filtered_reference_rooted_primary" and PRIMARY_ORIGIN_EVENTS_PATH.exists():
             primary_origins = pd.read_csv(PRIMARY_ORIGIN_EVENTS_PATH, sep="\t")
             if not primary_origins.empty:
@@ -1950,10 +2030,7 @@ def build_asr_scenario_registry() -> tuple[pd.DataFrame, pd.DataFrame]:
                 if pd.isna(fitch_origin_events):
                     fitch_origin_events = primary_origin_count
                 elif int(fitch_origin_events) != primary_origin_count:
-                    notes = (
-                        f"{notes} Primary origin-event table contains {primary_origin_count} rows; "
-                        f"registry keeps the frozen rooting-sensitivity count of {int(fitch_origin_events)}."
-                    ).strip()
+                    fitch_origin_events = primary_origin_count
                 tree_ids = normalize_text(primary_origins.get("phylo_tree_id", pd.Series(dtype=str)))
                 if tree_ids.str.contains("chn_rescue", case=False, na=False).any():
                     rescue_note = (
@@ -1972,14 +2049,10 @@ def build_asr_scenario_registry() -> tuple[pd.DataFrame, pd.DataFrame]:
                 ),
                 "analysis_frame": getattr(row, "analysis_frame", ""),
                 "rooting_mode": getattr(row, "rooting_mode", ""),
-                "tip_count": pd.to_numeric(pd.Series([getattr(row, "tip_count", np.nan)]), errors="coerce").iloc[0],
-                "disrupted_tip_count": pd.to_numeric(
-                    pd.Series([getattr(row, "disrupted_tip_count", np.nan)]), errors="coerce"
-                ).iloc[0],
+                "tip_count": tip_count,
+                "disrupted_tip_count": disrupted_tip_count,
                 "fitch_origin_events": fitch_origin_events,
-                "pastml_origin_events": pd.to_numeric(
-                    pd.Series([getattr(row, "pastml_origin_events", np.nan)]), errors="coerce"
-                ).iloc[0],
+                "pastml_origin_events": pastml_origin_events,
                 "mk_origin_count_mean": pd.to_numeric(
                     pd.Series([mk_row.get("mk_origin_count_mean", np.nan)]), errors="coerce"
                 ).iloc[0],
@@ -2003,8 +2076,6 @@ def build_asr_scenario_registry() -> tuple[pd.DataFrame, pd.DataFrame]:
             }
         )
 
-    support = pd.read_csv(ASR_SENSITIVITY_PATH, sep="\t")
-    support["scenario"] = normalize_text(support["scenario"])
     support_output_dir = {
         "unpruned_support_ge_70": "outputs/workflow/asr_sensitivity/support_70",
         "unpruned_support_ge_90": "outputs/workflow/asr_sensitivity/support_90",
@@ -3030,6 +3101,7 @@ def main() -> None:
         ASR_SCENARIO_REGISTRY_PATH,
         ASR_SCENARIO_REGISTRY_SUPP_PATH,
     )
+    asr_registry.to_csv(ASR_SCENARIO_REGISTRY_READER_SUPP_PATH, sep="\t", index=False)
     ASR_ONE_GLOBAL_CLONE_SUMMARY_PATH.parent.mkdir(parents=True, exist_ok=True)
     asr_one_global_clone_summary.to_csv(ASR_ONE_GLOBAL_CLONE_SUMMARY_PATH, sep="\t", index=False)
     write_dual(

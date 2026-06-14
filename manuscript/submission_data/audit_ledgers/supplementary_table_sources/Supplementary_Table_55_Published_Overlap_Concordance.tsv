@@ -1,0 +1,22 @@
+summary_level	country_iso3	metric_name	n_overlap_rows	n_compared_rows	n_concordant	concordance_fraction	repo_prn_negative_and_published_prn_negative	repo_prn_negative_and_published_prn_positive	repo_prn_positive_and_published_prn_negative	repo_prn_positive_and_published_prn_positive	notes
+overall		prn_status_concordance	1174	1174	1092	0.9301533219761499	515	7	75	577	PRN-status confusion-matrix row.
+country		prn_status_concordance	38	38	36	0.9473684210526315	6	1	1	30	PRN-status confusion-matrix row.
+country	AUS	prn_status_concordance	37	37	30	0.8108108108108109	15	2	5	15	PRN-status confusion-matrix row.
+country	CHN	prn_status_concordance	136	136	135	0.9926470588235294	13	0	1	122	PRN-status confusion-matrix row.
+country	CZE	prn_status_concordance	14	14	14	1.0	0	0	0	14	PRN-status confusion-matrix row.
+country	DEU	prn_status_concordance	1	1	1	1.0	0	0	0	1	PRN-status confusion-matrix row.
+country	DNK	prn_status_concordance	2	2	2	1.0	0	0	0	2	PRN-status confusion-matrix row.
+country	FIN	prn_status_concordance	3	3	3	1.0	0	0	0	3	PRN-status confusion-matrix row.
+country	FRA	prn_status_concordance	5	5	2	0.4	1	0	3	1	PRN-status confusion-matrix row.
+country	GBR	prn_status_concordance	15	15	15	1.0	0	0	0	15	PRN-status confusion-matrix row.
+country	GTM	prn_status_concordance	4	4	4	1.0	0	0	0	4	PRN-status confusion-matrix row.
+country	HTI	prn_status_concordance	1	1	0	0.0	0	0	1	0	PRN-status confusion-matrix row.
+country	IND	prn_status_concordance	5	5	5	1.0	0	0	0	5	PRN-status confusion-matrix row.
+country	JPN	prn_status_concordance	27	27	25	0.9259259259259259	0	0	2	25	PRN-status confusion-matrix row.
+country	NLD	prn_status_concordance	6	6	6	1.0	1	0	0	5	PRN-status confusion-matrix row.
+country	NOR	prn_status_concordance	1	1	1	1.0	0	0	0	1	PRN-status confusion-matrix row.
+country	NZL	prn_status_concordance	43	43	34	0.7906976744186046	15	0	9	19	PRN-status confusion-matrix row.
+country	SWE	prn_status_concordance	2	2	2	1.0	1	0	0	1	PRN-status confusion-matrix row.
+country	USA	prn_status_concordance	804	804	755	0.9390547263681592	463	4	45	292	PRN-status confusion-matrix row.
+country	ZAF	prn_status_concordance	30	30	22	0.7333333333333333	0	0	8	22	PRN-status confusion-matrix row.
+overall		prn_mechanism_broad_concordance	1405	493	311	0.6308316430020284					Broad comparison requires PRN-negative concordance and nonblank mechanism labels in both sources; blank or unresolved mechanism labels are excluded.

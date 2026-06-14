@@ -1,98 +1,113 @@
-record_type	analysis_set	response_type	term	estimate	ci_lower	ci_upper	p_value	n_origins	notes	origin_id	n_disrupted_descendants	follow_up_years	origin_country_iso3	origin_year	mechanism_group	origin_genotype_background	vaccine_environment	macrolide_background
-analysis_set_summary	high_confidence_fitch							0	empty_analysis_set									
-event_summary	all_fitch							23		origin_0001	1.0	1.0	FRA	2009.0	IS481	ptxP3/PRN-	routine_ap_prn_negative_or_mixed	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0002	3.0	7.0	USA	2012.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0003	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown
-event_summary	all_fitch							23		origin_0004	1.0	1.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0005	2.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0006	1.0	1.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0007	1.0	1.0	USA	2013.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0008	45.0	10.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0009	4.0	2.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0010	1.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0011	55.0	6.0	USA	2015.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0012	1.0	1.0	SWE	2009.0	inversion/rearrangement	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0013	1.0	1.0	USA	2009.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0014	70.0	11.0	USA	2010.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0015	39.0	9.0	USA	2011.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0016	1.0	1.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0017	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown
-event_summary	all_fitch							23		origin_0018	322.0	11.0	USA	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0019	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0020	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0021	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0022	1.0	1.0	NLD	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_fitch							23		origin_0023	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-analysis_set_summary	all_fitch	descendant_burden	model_terms					23	included_predictors=mechanism_group,macrolide_background;									
-model_term	all_fitch	descendant_burden	Intercept	2.2525746724193834	2.1533280381588895	2.351821306679877	0.0	23										
-model_term	all_fitch	descendant_burden	C(mechanism_group)[T.inversion/rearrangement]	-0.7287505127082757	-0.9056984096011087	-0.5518026158154428	6.915160169726929e-16	23										
-model_term	all_fitch	descendant_burden	C(macrolide_background)[T.unknown]	-2.2525746724193745	-3.6420274575625724	-0.8631218872761768	0.0014855843065230846	23										
-analysis_set_summary	all_fitch	established_ge3_descendants	model_terms					23	included_predictors=mechanism_group,macrolide_background;									
-model_term	all_fitch	established_ge3_descendants	Intercept	-0.3364722366212126	-1.4841096339146946	0.8111651606722693	0.5655376751276288	23										
-model_term	all_fitch	established_ge3_descendants	C(mechanism_group)[T.inversion/rearrangement]	0.1133286853070033	-1.6318727543494373	1.8585301249634438	0.8987229150089966	23										
-model_term	all_fitch	established_ge3_descendants	C(macrolide_background)[T.unknown]	-20.22959628507047	-24592.8170903939	24552.35789782376	0.9987125680292678	23										
-analysis_set_summary	all_fitch	established_ge2_followup_years	model_terms					23	included_predictors=mechanism_group,macrolide_background;									
-model_term	all_fitch	established_ge2_followup_years	Intercept	-0.3364722366212126	-1.4841096339146946	0.8111651606722693	0.5655376751276288	23										
-model_term	all_fitch	established_ge2_followup_years	C(mechanism_group)[T.inversion/rearrangement]	0.1133286853070033	-1.6318727543494373	1.8585301249634438	0.8987229150089966	23										
-model_term	all_fitch	established_ge2_followup_years	C(macrolide_background)[T.unknown]	-20.22959628507047	-24592.8170903939	24552.35789782376	0.9987125680292678	23										
-event_summary	all_pastml							3		pastml_origin_0001	599.0	17.0	USA	2009.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	all_pastml							3		pastml_origin_0002	1.0	1.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	all_pastml							3		pastml_origin_0003	1.0	1.0			other_or_unspecified	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-analysis_set_summary	all_pastml	descendant_burden	model_terms					3	included_predictors=intercept_only;									
-model_term	all_pastml	descendant_burden	Intercept	3.4541559553687664	3.3742073572748557	3.534104553462677	0.0	3										
-analysis_set_summary	all_pastml	established_ge3_descendants	model_terms					3	included_predictors=intercept_only;									
-model_term	all_pastml	established_ge3_descendants	Intercept	-0.6931471805597428	-3.0936025779856227	1.7073082168661369	0.5714261343156745	3										
-analysis_set_summary	all_pastml	established_ge2_followup_years	model_terms					3	included_predictors=intercept_only;									
-model_term	all_pastml	established_ge2_followup_years	Intercept	-0.6931471805597428	-3.0936025779856227	1.7073082168661369	0.5714261343156745	3										
-event_summary	support_filtered_fitch							7		origin_0002	3.0	7.0	USA	2012.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	support_filtered_fitch							7		origin_0005	2.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	support_filtered_fitch							7		origin_0011	55.0	6.0	USA	2015.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	support_filtered_fitch							7		origin_0015	39.0	9.0	USA	2011.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	support_filtered_fitch							7		origin_0018	322.0	11.0	USA	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	support_filtered_fitch							7		origin_0019	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	support_filtered_fitch							7		origin_0020	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-analysis_set_summary	support_filtered_fitch	descendant_burden	model_terms					7	included_predictors=mechanism_group;									
-model_term	support_filtered_fitch	descendant_burden	Intercept	2.471800302282699	2.371123715055139	2.5724768895102588	0.0	7										
-model_term	support_filtered_fitch	descendant_burden	C(mechanism_group)[T.inversion/rearrangement]	-1.0165130696644242	-1.2888360079764503	-0.7441901313523982	2.553711389006572e-13	7										
-analysis_set_summary	support_filtered_fitch	established_ge3_descendants	model_terms					7	included_predictors=mechanism_group;									
-model_term	support_filtered_fitch	established_ge3_descendants	Intercept	21.566068542563617	-28625.695670119083	28668.827807204212	0.998822730588575	7										
-model_term	support_filtered_fitch	established_ge3_descendants	C(mechanism_group)[T.inversion/rearrangement]	-20.872921362003673	-28668.13476059501	28626.388917871005	0.9988605687552307	7										
-analysis_set_summary	support_filtered_fitch	established_ge2_followup_years	model_terms					7	included_predictors=mechanism_group;									
-model_term	support_filtered_fitch	established_ge2_followup_years	Intercept	21.566068542563617	-28625.695670119083	28668.827807204212	0.998822730588575	7										
-model_term	support_filtered_fitch	established_ge2_followup_years	C(mechanism_group)[T.inversion/rearrangement]	-20.872921362003673	-28668.13476059501	28626.388917871005	0.9988605687552307	7										
-event_summary	balanced_country_time_weighted_fitch							23		origin_0001	1.0	1.0	FRA	2009.0	IS481	ptxP3/PRN-	routine_ap_prn_negative_or_mixed	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0002	3.0	7.0	USA	2012.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0003	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown
-event_summary	balanced_country_time_weighted_fitch							23		origin_0004	1.0	1.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0005	2.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0006	1.0	1.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0007	1.0	1.0	USA	2013.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0008	45.0	10.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0009	4.0	2.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0010	1.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0011	55.0	6.0	USA	2015.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0012	1.0	1.0	SWE	2009.0	inversion/rearrangement	ptxP3/PRN-	unknown	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0013	1.0	1.0	USA	2009.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0014	70.0	11.0	USA	2010.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0015	39.0	9.0	USA	2011.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0016	1.0	1.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0017	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown
-event_summary	balanced_country_time_weighted_fitch							23		origin_0018	322.0	11.0	USA	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0019	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0020	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0021	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0022	1.0	1.0	NLD	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-event_summary	balanced_country_time_weighted_fitch							23		origin_0023	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant
-analysis_set_summary	balanced_country_time_weighted_fitch	descendant_burden	model_terms					23	included_predictors=mechanism_group,macrolide_background;									
-model_term	balanced_country_time_weighted_fitch	descendant_burden	Intercept	1.0846728379808408	0.8280940381557756	1.341251637805906	1.174751271186374e-16	23										
-model_term	balanced_country_time_weighted_fitch	descendant_burden	C(mechanism_group)[T.inversion/rearrangement]	-0.2720856205568818	-0.7423281644248547	0.1981569233110912	0.25677405678026577	23										
-model_term	balanced_country_time_weighted_fitch	descendant_burden	C(macrolide_background)[T.unknown]	-1.0846728379808315	-2.3372749350275677	0.16792925906590472	0.0896583393723506	23										
-analysis_set_summary	balanced_country_time_weighted_fitch	established_ge3_descendants	model_terms					23	included_predictors=mechanism_group,macrolide_background;									
-model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	Intercept	-1.4674199059322597	-2.8929218090479365	-0.04191800281658287	0.04363311777191746	23										
-model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	C(mechanism_group)[T.inversion/rearrangement]	-1.4987118978454383	-5.006693225313953	2.0092694296230764	0.40239375090756224	23										
-model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	C(macrolide_background)[T.unknown]	-20.098648616929644	-35860.30201469538	35820.10471746152	0.9991230305647507	23										
-analysis_set_summary	balanced_country_time_weighted_fitch	established_ge2_followup_years	model_terms					23	included_predictors=mechanism_group,macrolide_background;									
-model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	Intercept	-1.4674199059322597	-2.8929218090479365	-0.04191800281658287	0.04363311777191746	23										
-model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	C(mechanism_group)[T.inversion/rearrangement]	-1.4987118978454383	-5.006693225313953	2.0092694296230764	0.40239375090756224	23										
-model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	C(macrolide_background)[T.unknown]	-20.098648616929644	-35860.30201469538	35820.10471746152	0.9991230305647507	23										
-direction_consistency	all_sets	descendant_burden	non_reference_mechanism_vs_reference_direction					56	consistent_direction;all_fitch=-0.728751;support_filtered_fitch=-1.016513;balanced_country_time_weighted_fitch=-0.272086									
+record_type	analysis_set	response_type	term	estimate	ci_lower	ci_upper	p_value	n_origins	notes	origin_id	n_disrupted_descendants	follow_up_years	origin_country_iso3	origin_year	mechanism_group	origin_genotype_background	vaccine_environment	macrolide_background	p_value_scope	inference_scope
+analysis_set_summary	high_confidence_fitch							0	empty_analysis_set											
+event_summary	all_fitch							24		origin_0001	1.0	1.0	FRA	2009.0	IS481	ptxP3/PRN-	routine_ap_prn_negative_or_mixed	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0002	3.0	7.0	USA	2012.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0003	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown		
+event_summary	all_fitch							24		origin_0004	1.0	1.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0005	2.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0006	1.0	1.0	USA	2013.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0007	45.0	10.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0008	4.0	2.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0009	1.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0010	55.0	6.0	USA	2015.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0011	1.0	1.0	SWE	2009.0	inversion/rearrangement	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0012	1.0	1.0	USA	2009.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0013	6.0	4.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0014	70.0	11.0	USA	2010.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0015	39.0	9.0	USA	2011.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0016	1.0	1.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0017	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown		
+event_summary	all_fitch							24		origin_0018	322.0	11.0	USA	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0019	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0020	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0021	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0022	25.0	4.0	CHN	2022.0	IS481	ptxP3/PRN-	routine_ap_prn_negative_or_mixed	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0023	1.0	1.0	NLD	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_fitch							24		origin_0024	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+analysis_set_summary	all_fitch	descendant_burden	model_terms					24	included_predictors=mechanism_group,vaccine_environment,macrolide_background;											
+model_term	all_fitch	descendant_burden	Intercept	1.6486586255873816	1.2642780639293507	2.0330391872454125	4.2227434049832703e-17	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	descendant_burden	C(mechanism_group)[T.inversion/rearrangement]	-0.841823140094377	-1.017350571350852	-0.666295708837902	5.46068662787824e-21	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	descendant_burden	C(vaccine_environment)[T.routine_ap_prn_positive]	0.6904241421695495	0.2932572495634959	1.087591034775603	0.0006564547927563287	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	descendant_burden	C(vaccine_environment)[T.unknown]	-1.0897288190579058	-1.9776914252397708	-0.20176621287604068	0.01615855775803206	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	descendant_burden	C(macrolide_background)[T.unknown]	-0.558929806529466	-2.1593854585553185	1.0415258454963863	0.49367116538562295	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	all_fitch	established_ge3_descendants	model_terms					24	included_predictors=mechanism_group,vaccine_environment,macrolide_background;											
+model_term	all_fitch	established_ge3_descendants	Intercept	2.220446049250313e-15	-2.7718076486993537	2.771807648699358	0.9999999999999988	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge3_descendants	C(mechanism_group)[T.inversion/rearrangement]	0.3588393875421764	-1.432221973288365	2.1499007483727177	0.6945565450662243	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge3_descendants	C(vaccine_environment)[T.routine_ap_prn_positive]	-0.05008067761601653	-3.098083522346485	2.997922167114452	0.9743097742314965	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge3_descendants	C(vaccine_environment)[T.unknown]	-0.817338145385845	-4.544942248402454	2.910265957630764	0.6673744895333761	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge3_descendants	C(macrolide_background)[T.unknown]	-19.748730376309364	-24592.33632413877	24552.838863386154	0.9987431708015967	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	all_fitch	established_ge2_followup_years	model_terms					24	included_predictors=mechanism_group,vaccine_environment,macrolide_background;											
+model_term	all_fitch	established_ge2_followup_years	Intercept	2.220446049250313e-15	-2.7718076486993537	2.771807648699358	0.9999999999999988	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge2_followup_years	C(mechanism_group)[T.inversion/rearrangement]	0.3588393875421764	-1.432221973288365	2.1499007483727177	0.6945565450662243	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge2_followup_years	C(vaccine_environment)[T.routine_ap_prn_positive]	-0.05008067761601653	-3.098083522346485	2.997922167114452	0.9743097742314965	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge2_followup_years	C(vaccine_environment)[T.unknown]	-0.817338145385845	-4.544942248402454	2.910265957630764	0.6673744895333761	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	all_fitch	established_ge2_followup_years	C(macrolide_background)[T.unknown]	-19.748730376309364	-24592.33632413877	24552.838863386154	0.9987431708015967	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+event_summary	all_pastml							3		pastml_origin_0001	599.0	17.0	USA	2009.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	all_pastml							3		pastml_origin_0002	1.0	1.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	all_pastml							3		pastml_origin_0003	1.0	1.0			other_or_unspecified	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+analysis_set_summary	all_pastml	descendant_burden	model_terms					3	included_predictors=intercept_only;											
+model_term	all_pastml	descendant_burden	Intercept	3.4541559553687664	3.3742073572748557	3.534104553462677	0.0	3											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	all_pastml	established_ge3_descendants	model_terms					3	included_predictors=intercept_only;											
+model_term	all_pastml	established_ge3_descendants	Intercept	-0.6931471805597428	-3.0936025779856227	1.7073082168661369	0.5714261343156745	3											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	all_pastml	established_ge2_followup_years	model_terms					3	included_predictors=intercept_only;											
+model_term	all_pastml	established_ge2_followup_years	Intercept	-0.6931471805597428	-3.0936025779856227	1.7073082168661369	0.5714261343156745	3											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+event_summary	support_filtered_fitch							8		origin_0002	3.0	7.0	USA	2012.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0005	2.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0010	55.0	6.0	USA	2015.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0013	6.0	4.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0015	39.0	9.0	USA	2011.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0018	322.0	11.0	USA	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0019	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	support_filtered_fitch							8		origin_0020	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+analysis_set_summary	support_filtered_fitch	descendant_burden	model_terms					8	included_predictors=mechanism_group;											
+model_term	support_filtered_fitch	descendant_burden	Intercept	2.471800302282701	2.371123715527495	2.5724768890379073	0.0	8											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	support_filtered_fitch	descendant_burden	C(mechanism_group)[T.inversion/rearrangement]	-1.1725173181466615	-1.4339355631004878	-0.9110990731928352	1.4841678558618919e-18	8											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	support_filtered_fitch	established_ge3_descendants	model_terms					8	included_predictors=mechanism_group;											
+model_term	support_filtered_fitch	established_ge3_descendants	Intercept	21.566068540743288	-28625.69567012089	28668.827807202375	0.9988227305886743	8											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	support_filtered_fitch	established_ge3_descendants	C(mechanism_group)[T.inversion/rearrangement]	-20.467456252075184	-28667.729284310484	28626.794371806336	0.9988827026622595	8											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	support_filtered_fitch	established_ge2_followup_years	model_terms					8	included_predictors=mechanism_group;											
+model_term	support_filtered_fitch	established_ge2_followup_years	Intercept	21.566068540743288	-28625.69567012089	28668.827807202375	0.9988227305886743	8											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	support_filtered_fitch	established_ge2_followup_years	C(mechanism_group)[T.inversion/rearrangement]	-20.467456252075184	-28667.729284310484	28626.794371806336	0.9988827026622595	8											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+event_summary	balanced_country_time_weighted_fitch							24		origin_0001	1.0	1.0	FRA	2009.0	IS481	ptxP3/PRN-	routine_ap_prn_negative_or_mixed	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0002	3.0	7.0	USA	2012.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0003	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0004	1.0	1.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0005	2.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0006	1.0	1.0	USA	2013.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0007	45.0	10.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0008	4.0	2.0			IS481	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0009	1.0	1.0	USA	2016.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0010	55.0	6.0	USA	2015.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0011	1.0	1.0	SWE	2009.0	inversion/rearrangement	ptxP3/PRN-	unknown	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0012	1.0	1.0	USA	2009.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0013	6.0	4.0	USA	2011.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0014	70.0	11.0	USA	2010.0	inversion/rearrangement	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0015	39.0	9.0	USA	2011.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0016	1.0	1.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0017	1.0	1.0			IS481	ptxP3/PRN-	unknown	unknown		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0018	322.0	11.0	USA	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0019	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0020	9.0	6.0	NZL	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0021	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0022	25.0	4.0	CHN	2022.0	IS481	ptxP3/PRN-	routine_ap_prn_negative_or_mixed	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0023	1.0	1.0	NLD	2010.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+event_summary	balanced_country_time_weighted_fitch							24		origin_0024	1.0	1.0	USA	2012.0	IS481	ptxP3/PRN-	routine_ap_prn_positive	not_MR_A2047G_dominant		
+analysis_set_summary	balanced_country_time_weighted_fitch	descendant_burden	model_terms					24	included_predictors=mechanism_group,vaccine_environment,macrolide_background;											
+model_term	balanced_country_time_weighted_fitch	descendant_burden	Intercept	1.7657839828247957	1.6499127124171575	1.8816552532324338	5.086305896074963e-196	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	descendant_burden	C(mechanism_group)[T.inversion/rearrangement]	-0.25125227023184454	-0.9120127022775786	0.40950816181388944	0.45610808006388837	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	descendant_burden	C(vaccine_environment)[T.routine_ap_prn_positive]	-0.14281251417753354	-0.5379996806632921	0.252374652308225	0.4787647676264126	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	descendant_burden	C(vaccine_environment)[T.unknown]	-1.3972984613710073	-2.226223444459009	-0.5683734782830053	0.0009536238964715904	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	descendant_burden	C(macrolide_background)[T.unknown]	-0.3684855214537761	-2.210963037385328	1.4739919944777762	0.695071381613672	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	balanced_country_time_weighted_fitch	established_ge3_descendants	model_terms					24	included_predictors=mechanism_group,vaccine_environment,macrolide_background;											
+model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	Intercept	1.0986122886681096	-0.06779958784142881	2.265024165177648	0.06488670410725764	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	C(mechanism_group)[T.inversion/rearrangement]	-2.20157364039924	-6.936113393253917	2.532966112455437	0.3620907150942435	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	C(vaccine_environment)[T.routine_ap_prn_positive]	-1.2193520850052273	-4.344327679171366	1.9056235091609117	0.44440878433068665	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	C(vaccine_environment)[T.unknown]	-1.7174376450657896	-5.18592772240409	1.7510524322725107	0.3318050370017511	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge3_descendants	C(macrolide_background)[T.unknown]	-19.94724316529259	-29267.17654252022	29227.282056189633	0.998933437831205	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+analysis_set_summary	balanced_country_time_weighted_fitch	established_ge2_followup_years	model_terms					24	included_predictors=mechanism_group,vaccine_environment,macrolide_background;											
+model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	Intercept	1.0986122886681096	-0.06779958784142881	2.265024165177648	0.06488670410725764	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	C(mechanism_group)[T.inversion/rearrangement]	-2.20157364039924	-6.936113393253917	2.532966112455437	0.3620907150942435	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	C(vaccine_environment)[T.routine_ap_prn_positive]	-1.2193520850052273	-4.344327679171366	1.9056235091609117	0.44440878433068665	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	C(vaccine_environment)[T.unknown]	-1.7174376450657896	-5.18592772240409	1.7510524322725107	0.3318050370017511	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+model_term	balanced_country_time_weighted_fitch	established_ge2_followup_years	C(macrolide_background)[T.unknown]	-19.94724316529259	-29267.17654252022	29227.282056189633	0.998933437831205	24											within_exploratory_origin_response_model_wald_p_values_no_multiplicity_adjustment	exploratory_origin_expansion_diagnostic_not_claim_generating
+direction_consistency	all_sets	descendant_burden	non_reference_mechanism_vs_reference_direction					59	consistent_direction;all_fitch=-0.841823;support_filtered_fitch=-1.172517;balanced_country_time_weighted_fitch=-0.251252											

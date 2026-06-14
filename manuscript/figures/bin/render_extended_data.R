@@ -66,7 +66,9 @@ figures <- list(
   list(label = "Extended Data Fig. 10", script = "extended_data/ed10_usa_focal_country.R", name = "USA focal-country sidecar"),
   list(label = "Extended Data Fig. 11", script = "extended_data/ed11_identifiability_dag.R", name = "Archive identifiability DAG"),
   list(label = "Extended Data Fig. 12", script = "extended_data/ed12_country_year_missingness_audit.R", name = "Country-year missingness and block audit"),
-  list(label = "Extended Data Fig. 13", script = "extended_data/ed13_fig01_context_panels.R", name = "Figure 1 context panels")
+  list(label = "Extended Data Fig. 13", script = "extended_data/ed13_fig01_context_panels.R", name = "Figure 1 context panels"),
+  list(label = "Extended Data Fig. 14", script = "extended_data/ed14_structural_recurrence_compendium.R", name = "Structural recurrence compendium"),
+  list(label = "Extended Data Fig. 15", script = "extended_data/ed15_validation_sensitivity_compendium.R", name = "Validation and sensitivity compendium")
 )
 
 results <- vector("list", length(figures))

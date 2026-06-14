@@ -22,8 +22,8 @@ step4_is_hits: "pertussis_data/pertussis_gene/step4_prn_validation/outputs/bp_pr
 step5_phylo_balanced: "pertussis_data/pertussis_gene/step5_phylogeny_asr/outputs/bp_phylogeny_manifest_balanced.tsv"
 step5_origins: "pertussis_data/pertussis_gene/step5_phylogeny_asr/outputs/bp_prn_independent_origins.tsv"
 step6_models: "pertussis_data/pertussis_gene/step6_epi_transmission/bp_country_year_association_models.tsv"
-ph_master: "pertussis_data/pertussis_gene/public_health/ph_country_year_master.tsv"
-ph_program_metadata: "pertussis_data/pertussis_gene/public_health/ph_country_program_metadata.tsv"
+ph_master: "pertussis_data/pertussis_gene/public_health/outputs/ph_country_year_master.tsv"
+ph_program_metadata: "pertussis_data/pertussis_gene/public_health/outputs/ph_country_program_metadata.tsv"
 supp_table1: "manuscript/supplementary/Supplementary_Table_1_genome_metadata.tsv"
 
 # ── Genome downloads ─────────────────────────────────────────────────────────

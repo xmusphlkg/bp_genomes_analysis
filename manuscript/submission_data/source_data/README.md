@@ -26,4 +26,6 @@ Each workbook contains one sheet per panel, with source-file headers followed by
 - [Supplementary Figure 9](Source_Data_Supplementary_Figure_9.xlsx)
 - [Supplementary Figure 10](Source_Data_Supplementary_Figure_10.xlsx)
 - [Supplementary Figure 13](Source_Data_Supplementary_Figure_13.xlsx)
+- [Supplementary Figure 14](Source_Data_Supplementary_Figure_14.xlsx)
+- [Supplementary Figure 15](Source_Data_Supplementary_Figure_15.xlsx)
 

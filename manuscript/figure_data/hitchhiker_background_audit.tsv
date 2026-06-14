@@ -1,10 +1,10 @@
 analysis_source	signal_name	n_origin_packages	share_of_origin_packages	median_n_disrupted_descendants	median_follow_up_years	mean_branch_support	notes
-all_fitch	ptxP3_like	23	1.0	1.0	1.0	81.3	descriptive_background_audit
-all_fitch	fim2_present	23	1.0	1.0	1.0	81.3	descriptive_background_audit
-all_fitch	fim3_present	23	1.0	1.0	1.0	81.3	descriptive_background_audit
+all_fitch	ptxP3_like	24	1.0	1.5	1.0	79.66666666666667	descriptive_background_audit
+all_fitch	fim2_present	24	1.0	1.5	1.0	79.66666666666667	descriptive_background_audit
+all_fitch	fim3_present	24	1.0	1.5	1.0	79.66666666666667	descriptive_background_audit
 all_pastml	ptxP3_like	3	1.0	1.0	1.0	100.0	descriptive_background_audit
 all_pastml	fim2_present	3	1.0	1.0	1.0	100.0	descriptive_background_audit
 all_pastml	fim3_present	3	1.0	1.0	1.0	100.0	descriptive_background_audit
-support_filtered_fitch	ptxP3_like	7	1.0	9.0	6.0	99.0	descriptive_background_audit
-support_filtered_fitch	fim2_present	7	1.0	9.0	6.0	99.0	descriptive_background_audit
-support_filtered_fitch	fim3_present	7	1.0	9.0	6.0	99.0	descriptive_background_audit
+support_filtered_fitch	ptxP3_like	8	1.0	9.0	6.0	99.125	descriptive_background_audit
+support_filtered_fitch	fim2_present	8	1.0	9.0	6.0	99.125	descriptive_background_audit
+support_filtered_fitch	fim3_present	8	1.0	9.0	6.0	99.125	descriptive_background_audit

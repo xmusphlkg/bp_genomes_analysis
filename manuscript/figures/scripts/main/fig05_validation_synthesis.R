@@ -1,8 +1,9 @@
 #!/usr/bin/env Rscript
-# Figure 5: Validation, specificity and identifiability synthesis
-# Merged from former Fig 5 (specificity/bias bounds) + Fig 6 (synthesis)
-# Panels: A = PRN specificity, B = phenotype bridge, C = AMR/lineage overlay,
-#          D = missingness bounds, E = evidence grid, F = identifiability ledger
+# Figure 5: Validation, specificity and phenotype synthesis
+# Panels: A = denominator/evidence flow, B = PRN specificity,
+#          C = phenotype bridge, D = validation evidence stack
+# Context-only AMR/lineage, missingness and country-glyph diagnostics remain in
+# supplementary/source-data outputs rather than the main synthesis figure.
 
 get_script_dir <- function() {
   frame_files <- vapply(sys.frames(), function(frame) {
@@ -21,6 +22,7 @@ source(file.path(script_dir, "..", "lib", "data_utils.R"))
 source(file.path(script_dir, "..", "lib", "manuscript_rebuild_helpers.R"))
 
 library(dplyr)
+library(ggforce)
 library(ggplot2)
 library(patchwork)
 library(readr)
@@ -32,12 +34,17 @@ library(tidyr)
 
 fig5_base_size <- FIGURE_BASE_SIZE
 fig5_tag_size  <- FIGURE_TAG_SIZE
-fig5_legend_text_size <- FIGURE_LEGEND_TEXT_SIZE
-fig5_legend_title_size <- FIGURE_LEGEND_TITLE_SIZE
 fig5_annot_size <- FIGURE_ANNOT_SIZE
-fig5_delta_limits <- c(-1, 0.75)
 
 # data loading -------------------------------------------------------
+
+flow_summary <- safe_load(file.path(FIGURE_DATA_DIR, "fig05_evidence_chain_summary.tsv"), "Fig. 5 evidence chain summary") %>%
+  mutate(
+    n = as.numeric(n),
+    parent_n = suppressWarnings(as.numeric(parent_n))
+  )
+
+specificity_locus_order <- c("Fim3", "Fim2", "SphB1", "Vag8", "TcfA", "BapC", "Phg", "BrkA", "FHA/FhaB", "prn")
 
 controls <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "prn_specificity_negative_control.tsv"), "PRN specificity controls") %>%
   filter(table_scope == "global_overlap_frame") %>%
@@ -48,7 +55,8 @@ controls <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "prn_specif
     has_locus_frame = !is.na(n_locus_interpretable) & n_locus_interpretable > 0,
     plot_fraction = if_else(has_locus_frame, replace_na(signal_positive_fraction_among_interpretable, 0), 0),
     locus_label = if_else(locus == "prn", "prn", locus_label),
-    locus_label = factor(locus_label, levels = rev(c("prn", "FHA/FhaB", "BrkA", "Phg", "BapC", "Fim2", "Fim3", "TcfA", "Vag8", "SphB1"))),
+    locus_label = factor(locus_label, levels = specificity_locus_order),
+    locus_rank = match(as.character(locus_label), specificity_locus_order),
     group = case_when(
       locus == "prn" ~ "prn",
       !has_locus_frame ~ "No frame",
@@ -56,7 +64,7 @@ controls <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "prn_specif
     )
   )
 
-controls_label_xmax <- max(controls$plot_fraction, na.rm = TRUE) * 1.15
+controls_label_xmax <- max(controls$plot_fraction, na.rm = TRUE) * 1.18
 controls_label_dat <- controls %>%
   mutate(
     signal_label = case_when(
@@ -65,11 +73,16 @@ controls_label_dat <- controls %>%
       TRUE ~ percent(plot_fraction, accuracy = 0.1)
     ),
     label_x = pmax(
-      plot_fraction + controls_label_xmax * 0.012,
-      controls_label_xmax * if_else(has_locus_frame, 0.018, 0.035)
+      plot_fraction + controls_label_xmax * 0.013,
+      controls_label_xmax * if_else(has_locus_frame, 0.022, 0.040)
     ),
     label_colour = if_else(group == "prn", unname(npg_colors["red"]), FIGURE_MUTED_TEXT)
   )
+
+max_comparator_fraction <- controls %>%
+  filter(group == "Comparator", has_locus_frame) %>%
+  summarise(max_fraction = max(plot_fraction, na.rm = TRUE), .groups = "drop") %>%
+  pull(max_fraction)
 
 biology_external <- safe_load(file.path(FIGURE_DATA_DIR, "biology_bridge_external_context.tsv"), "biology bridge external context") %>%
   mutate(
@@ -79,32 +92,110 @@ biology_external <- safe_load(file.path(FIGURE_DATA_DIR, "biology_bridge_externa
     n_amr_or_a2047g = as.numeric(n_amr_or_a2047g)
   )
 
-biology_internal <- safe_load(file.path(FIGURE_DATA_DIR, "biology_bridge_internal_sensitivity.tsv"), "biology bridge internal sensitivity") %>%
+phenotype_tiers <- safe_load(
+  file.path(BASE_DIR, "manuscript", "supplementary", "Supplementary_Table_10_Event_Class_Phenotype_Evidence_Tiers.tsv"),
+  "phenotype evidence tiers"
+) %>%
+  mutate(sample_count = as.numeric(sample_count))
+
+validation_summary <- safe_load(
+  file.path(FIGURE_DATA_DIR, "caller_validation_sensitivity_summary.tsv"),
+  "caller validation sensitivity summary"
+) %>%
   mutate(
-    n_records = as.numeric(n_records),
-    n_prn_interpretable = as.numeric(n_prn_interpretable),
-    n_prn_disrupted = as.numeric(n_prn_disrupted),
-    prn_disrupted_fraction_among_interpretable = as.numeric(prn_disrupted_fraction_among_interpretable),
-    n_gap1043 = as.numeric(n_gap1043),
-    n_ptxP3 = as.numeric(n_ptxP3),
-    n_fim3_1 = as.numeric(n_fim3_1)
+    n_compared_rows = suppressWarnings(as.numeric(n_compared_rows)),
+    n_supporting_rows = suppressWarnings(as.numeric(n_supporting_rows)),
+    fraction = suppressWarnings(as.numeric(fraction))
   )
 
-dr <- safe_load(file.path(FIGURE_DATA_DIR, "selected_country", "selected_country_dr_missingness_summary.tsv"), "DR missingness summary") %>%
-  mutate(across(starts_with("delta_"), as.numeric))
-
-evidence <- safe_load(data_paths$rr_evidence_grid, "cross-country evidence grid")
-
-
 # ===========================================================================
-# Panel A: PRN specificity ???outlying recurrent structural signal
+# Panel A: Denominator and evidence flow
 # ===========================================================================
 
-pA <- ggplot(controls, aes(y = locus_label)) +
-  geom_col(
+flow_count <- setNames(flow_summary$n, flow_summary$stage_id)
+
+sankey_paths <- tibble::tribble(
+  ~archive_frame, ~endpoint_frame, ~genome_call, ~evidence_boundary, ~flow_group, ~value,
+  "Retained\n2,406", "Interpretable\n1,325", "Resolved\n577", "Tier 1a\n544", "Tier 1a", flow_count[["tier1a_phenotype_bridge"]],
+  "Retained\n2,406", "Interpretable\n1,325", "Resolved\n577", "Tier 1b-3\n33", "Tier 1b-3", flow_count[["other_disrupted_phenotype_tiers"]],
+  "Retained\n2,406", "Interpretable\n1,325", "Intact boundary\n748", "Boundary\n748", "Boundary", flow_count[["intact_boundary"]],
+  "Retained\n2,406", "Missing/uncertain\n1,081", "Missing/uncertain\n1,081", "Missingness\nbounds\n1,081", "Missing/uncertain", flow_count[["noninterpretable_uncertain"]]
+) %>%
+  mutate(value = as.numeric(value))
+
+sankey_dat <- ggforce::gather_set_data(
+  sankey_paths,
+  c("archive_frame", "endpoint_frame", "genome_call", "evidence_boundary"),
+  id_name = "flow_id"
+) %>%
+  mutate(
+    x = factor(
+      x,
+      levels = c("archive_frame", "endpoint_frame", "genome_call", "evidence_boundary")
+    )
+)
+
+sankey_flow_colours <- c(
+  "Tier 1a" = alpha(unname(npg_colors["green"]), 0.70),
+  "Tier 1b-3" = alpha(unname(npg_colors["teal"]), 0.50),
+  "Boundary" = alpha(FIGURE_MID_GREY, 0.42),
+  "Missing/uncertain" = alpha(FIGURE_GREY, 0.42)
+)
+
+pA <- ggplot(sankey_dat, aes(x = x, id = flow_id, split = y, value = value)) +
+  geom_parallel_sets(
+    aes(fill = flow_group),
+    alpha = 0.86,
+    axis.width = 0.13,
+    sep = 0.035,
+    strength = 0.56,
+    colour = NA
+  ) +
+  geom_parallel_sets_axes(
+    axis.width = 0.13,
+    fill = FIGURE_PANEL_FILL,
+    colour = "white",
+    linewidth = 0.25
+  ) +
+  geom_parallel_sets_labels(
+    angle = 0,
+    size = 1.55,
+    lineheight = 0.82,
+    colour = FIGURE_INK,
+    fontface = "bold"
+  ) +
+  scale_fill_manual(values = sankey_flow_colours, guide = "none") +
+  scale_x_discrete(
+    labels = c(
+      archive_frame = "Archive frame",
+      endpoint_frame = "Endpoint frame",
+      genome_call = "Genome call",
+      evidence_boundary = "Evidence boundary"
+    )
+  ) +
+  labs(x = NULL, y = NULL, tag = "a") +
+  theme_void(base_size = fig5_base_size) +
+  theme(
+    axis.text.x = element_text(size = 5.1, face = "bold", colour = FIGURE_TEXT_COLOUR),
+    plot.margin = margin(2, 2, 2, 2)
+  )
+
+# ===========================================================================
+# Panel B: PRN specificity as an outlying recurrent structural signal
+# ===========================================================================
+
+pB <- ggplot(controls, aes(y = locus_rank)) +
+  annotate(
+    "rect",
+    xmin = 0, xmax = max_comparator_fraction,
+    ymin = -Inf, ymax = Inf,
+    fill = FIGURE_PANEL_FILL,
+    colour = NA
+  ) +
+  geom_rect(
     data = controls %>% filter(has_locus_frame),
-    aes(x = plot_fraction, fill = group),
-    width = 0.65, colour = "white", linewidth = 0.18
+    aes(xmin = 0, xmax = plot_fraction, ymin = locus_rank - 0.30, ymax = locus_rank + 0.30, fill = group),
+    colour = "white", linewidth = 0.18
   ) +
   geom_point(
     data = controls %>% filter(!has_locus_frame),
@@ -116,17 +207,29 @@ pA <- ggplot(controls, aes(y = locus_label)) +
     aes(x = label_x, label = signal_label, colour = label_colour),
     hjust = 0, size = fig5_annot_size
   ) +
+  geom_vline(xintercept = max_comparator_fraction, linewidth = 0.26, linetype = "dashed", colour = FIGURE_MUTED_TEXT) +
   scale_colour_identity() +
   scale_x_continuous(labels = percent,
     limits = c(0, controls_label_xmax),
     expand = c(0, 0)) +
+  scale_y_continuous(
+    breaks = seq_along(specificity_locus_order),
+    labels = specificity_locus_order,
+    expand = expansion(add = 0.45)
+  ) +
   scale_fill_manual(values = c("prn" = unname(npg_colors["red"]), "Comparator" = FIGURE_GREY, "No frame" = "white"), guide = "none") +
-  labs(x = "Signal-positive fraction among interpretable loci", y = NULL) +
+  labs(
+    x = "Signal-positive fraction among interpretable loci",
+    y = NULL,
+    tag = "b"
+  ) +
   theme_nature(base_size = fig5_base_size) +
-  theme(axis.text.y = element_text(size = 5.2))
+  theme(
+    axis.text.y = element_text(size = 5.2)
+  )
 
 # ===========================================================================
-# Panel B: Published phenotype bridge
+# Panel C: Published phenotype bridge and present genome-call tiers
 # ===========================================================================
 
 phenotype_bridge <- biology_external %>%
@@ -156,12 +259,14 @@ phenotype_bridge <- biology_external %>%
     cohort_label = factor(cohort_label, levels = rev(cohort_label[order(prn_deficient_fraction)]))
   )
 
-pB <- ggplot(phenotype_bridge, aes(prn_deficient_fraction, cohort_label, fill = assay_class)) +
-  geom_col(width = 0.62, colour = "white", linewidth = 0.18) +
+pC_external <- ggplot(phenotype_bridge, aes(prn_deficient_fraction, cohort_label, fill = assay_class)) +
+  geom_segment(aes(x = 0, xend = prn_deficient_fraction, yend = cohort_label),
+    colour = FIGURE_RULE_COLOUR, linewidth = 0.55) +
+  geom_point(shape = 21, colour = FIGURE_INK, size = 2.25, stroke = 0.22) +
   geom_text(aes(label = count_label), hjust = -0.08, size = fig5_annot_size, colour = FIGURE_INK) +
   scale_x_continuous(
     labels = percent,
-    limits = c(0, max(phenotype_bridge$prn_deficient_fraction, na.rm = TRUE) * 1.25),
+    limits = c(0, max(phenotype_bridge$prn_deficient_fraction, na.rm = TRUE) * 1.42),
     expand = c(0, 0)
   ) +
   scale_fill_manual(
@@ -170,210 +275,217 @@ pB <- ggplot(phenotype_bridge, aes(prn_deficient_fraction, cohort_label, fill = 
       "Immunoblot" = unname(npg_colors["blue"]),
       "Published expression" = unname(npg_colors["peach"])
     ),
-    name = NULL
+    guide = "none"
   ) +
-  labs(x = "PRN-negative in published phenotype cohorts", y = NULL) +
+  labs(
+    x = "PRN-negative in published phenotype cohorts",
+    y = NULL,
+    tag = "c"
+  ) +
   theme_nature(base_size = fig5_base_size) +
   theme(
-    axis.text.y = element_text(size = 4.8),
-    legend.position = "bottom",
-    legend.text = element_text(size = fig5_legend_text_size)
+    axis.text.y = element_text(size = 4.8)
   )
 
-# ===========================================================================
-# Panel C: AMR and lineage-background overlay
-# ===========================================================================
+tier_levels <- c(
+  "Tier 1a junction-class phenotype bridge",
+  "Tier 1b lesion-class bridge only",
+  "Tier 2 genome-disruption plausible",
+  "Tier 3 genome-only disruption",
+  "Boundary only, not expression-proven"
+)
 
-amr_overlay <- biology_internal %>%
-  filter(
-    analysis_layer == "internal_genome_context",
-    (group_variable == "marker_23s_status" & group_value %in% c("MS", "MR_A2047G")) |
-      (group_variable == "published_sublineage" & group_value %in% c(
-        "United States Sublineage 1", "MR-MT28-PG1", "MR-MT28-PG2", "MR-MT28-others", "MS-MT28"
-      ))
+route_family_order <- c("Intact boundary", "Other disruption", "Rearrangement", "IS481 insertion")
+tier_axis_order <- c("Tier 1a", "Tier 1b", "Tier 2", "Tier 3", "Intact")
+
+route_tier <- phenotype_tiers %>%
+  mutate(
+    phenotype_evidence_tier = factor(phenotype_evidence_tier, levels = tier_levels),
+    tier_short = recode(as.character(phenotype_evidence_tier),
+      `Tier 1a junction-class phenotype bridge` = "Tier 1a",
+      `Tier 1b lesion-class bridge only` = "Tier 1b",
+      `Tier 2 genome-disruption plausible` = "Tier 2",
+      `Tier 3 genome-only disruption` = "Tier 3",
+      `Boundary only, not expression-proven` = "Intact",
+      .default = as.character(phenotype_evidence_tier)
+    ),
+    route_family = case_when(
+      phenotype_evidence_tier == "Boundary only, not expression-proven" ~ "Intact boundary",
+      str_detect(event_subcategory, regex("IS481", ignore_case = TRUE)) ~ "IS481 insertion",
+      str_detect(event_subcategory, regex("Inversion|rearrangement", ignore_case = TRUE)) ~ "Rearrangement",
+      TRUE ~ "Other disruption"
+    )
+  ) %>%
+  group_by(route_family, tier_short) %>%
+  summarise(
+    event_classes = n(),
+    genomes = sum(sample_count, na.rm = TRUE),
+    .groups = "drop"
   ) %>%
   mutate(
-    display_label = recode(group_value,
-      MS = "23S susceptible\nmarker",
-      MR_A2047G = "23S A2047G\nmarker",
-      `United States Sublineage 1` = "US\nSublineage 1",
-      `MR-MT28-PG1` = "MR-MT28\nPG1",
-      `MR-MT28-PG2` = "MR-MT28\nPG2",
-      `MR-MT28-others` = "MR-MT28\nother",
-      `MS-MT28` = "MS-MT28",
-      .default = group_value
-    ),
-    context_class = if_else(group_variable == "marker_23s_status", "23S marker", "Published lineage"),
-    count_label = paste0(n_prn_disrupted, "/", n_prn_interpretable),
-    display_label = factor(display_label, levels = rev(c(
-      "23S susceptible\nmarker", "23S A2047G\nmarker", "US\nSublineage 1",
-      "MR-MT28\nPG1", "MR-MT28\nPG2", "MR-MT28\nother", "MS-MT28"
-    )))
+    tier_short = factor(tier_short, levels = tier_axis_order),
+    route_family = factor(route_family, levels = route_family_order),
+    x_rank = match(as.character(tier_short), tier_axis_order),
+    y_rank = match(as.character(route_family), route_family_order),
+    label_colour = if_else(genomes >= 100, "white", FIGURE_INK),
+    label = comma(genomes)
   )
 
-pC <- ggplot(amr_overlay, aes(prn_disrupted_fraction_among_interpretable, display_label, fill = context_class)) +
-  geom_col(width = 0.62, colour = "white", linewidth = 0.18) +
-  geom_text(aes(label = count_label), hjust = -0.08, size = fig5_annot_size, colour = FIGURE_INK) +
+tier_fill <- c(
+  "Tier 1a" = unname(npg_colors["green"]),
+  "Tier 1b" = unname(npg_colors["teal"]),
+  "Tier 2" = unname(npg_colors["blue"]),
+  "Tier 3" = unname(npg_colors["peach"]),
+  "Intact" = FIGURE_LIGHT_GREY
+)
+
+route_grid <- tidyr::crossing(
+  x_rank = seq_along(tier_axis_order),
+  y_rank = seq_along(route_family_order)
+)
+
+pC_tiers <- ggplot() +
+  geom_tile(
+    data = route_grid,
+    aes(x = x_rank, y = y_rank),
+    fill = FIGURE_PANEL_FILL,
+    colour = "white",
+    linewidth = 0.28,
+    width = 0.92,
+    height = 0.82
+  ) +
+  geom_point(
+    data = route_tier,
+    aes(x = x_rank, y = y_rank, size = genomes, fill = tier_short),
+    shape = 21,
+    colour = FIGURE_INK,
+    stroke = 0.22,
+    alpha = 0.96
+  ) +
+  geom_text(
+    data = route_tier,
+    aes(x = x_rank, y = y_rank, label = label, colour = label_colour),
+    size = 1.45,
+    fontface = "bold",
+    show.legend = FALSE
+  ) +
+  scale_colour_identity() +
+  scale_size_area(max_size = 8.2, guide = "none") +
+  scale_fill_manual(values = tier_fill, guide = "none") +
   scale_x_continuous(
-    labels = percent,
-    limits = c(0, 1.28),
-    breaks = c(0, 0.3, 0.6, 0.9),
+    breaks = seq_along(tier_axis_order),
+    labels = c("Tier 1a\nbridge", "Tier 1b\nlesion", "Tier 2\nplausible", "Tier 3\ngenome-only", "Intact\nboundary"),
+    limits = c(0.45, length(tier_axis_order) + 0.55),
     expand = c(0, 0)
   ) +
-  scale_fill_manual(
-    values = c("23S marker" = unname(npg_colors["peach"]), "Published lineage" = unname(npg_colors["purple"])),
-    name = NULL
+  scale_y_continuous(
+    breaks = seq_along(route_family_order),
+    labels = route_family_order,
+    limits = c(0.45, length(route_family_order) + 0.55),
+    expand = c(0, 0)
   ) +
-  labs(x = "Genome-defined prn disruption", y = NULL) +
+  labs(x = "Present genome-call phenotype tier", y = "Route family") +
   theme_nature(base_size = fig5_base_size) +
   theme(
-    axis.text.y = element_text(size = 4.8),
-    legend.position = "bottom",
-    legend.text = element_text(size = fig5_legend_text_size)
+    panel.grid.major = element_blank(),
+    axis.text.x = element_text(size = 4.35, lineheight = 0.84),
+    axis.text.y = element_text(size = 4.55, face = "bold"),
+    axis.title = element_text(size = 4.8),
+    axis.ticks = element_blank(),
+    legend.position = "none",
+    plot.margin = margin(2, 3, 2, 3)
   )
 
+pC <- pC_external / pC_tiers +
+  plot_layout(heights = c(1.18, 0.78))
+
 # ===========================================================================
-# Panel D: Missingness bounds (multiple estimators per country)
+# Panel D: Validation evidence stack
 # ===========================================================================
 
-dr_long <- dr %>%
-  filter(country_iso3 %in% c("USA", "NZL", "JPN", "AUS")) %>%
-  transmute(
-    country_iso3 = factor(country_iso3, levels = rev(c("USA", "NZL", "JPN", "AUS"))),
-    Naive = delta_naive_prevalence,
-    `IPW cap20` = delta_ipw_cap20_prevalence,
-    `Overlap observed` = delta_overlap_observed_prevalence,
-    AIPW = delta_aipw_prevalence
-  ) %>%
-  pivot_longer(-country_iso3, names_to = "estimator", values_to = "delta") %>%
+validation_key <- tibble::tribble(
+  ~evidence_layer, ~comparison_or_risk, ~display_label, ~display_class, ~invert_fraction,
+  "PRN status", "repo PRN status versus published PRN status or phenotype annotation", "Published PRN status", "External concordance", FALSE,
+  "broad mechanism", "repo broad mechanism versus published broad mechanism among PRN-negative concordant rows", "Broad mechanism", "Crosswalk bounded", FALSE,
+  "manual/read junction evidence tiers", "event-class confidence tiers from read-backed TSD, public long-read or hybrid, assembly/rule support or unresolved validation", "Read/TSD event classes", "Read-backed support", FALSE,
+  "full caller threshold grid", "HSP identity 85-95%, locus coverage 90-99% and relaxed/default/strict IS-support profiles", "Gap1043 dominant\nacross caller grid", "Threshold robustness", FALSE,
+  "intact controls", "read-validation audit of intact control rows", "False signal in\nintact controls", "Negative control", FALSE
+)
+
+validation_stack <- validation_summary %>%
+  inner_join(validation_key, by = c("evidence_layer", "comparison_or_risk")) %>%
   mutate(
-    delta_plot = squish(delta, range = fig5_delta_limits),
-    clipped = !is.na(delta) & delta != delta_plot,
-    clip_hjust = if_else(delta < fig5_delta_limits[1], -0.08, 1.08),
-    clip_label = if_else(delta < fig5_delta_limits[1], "< -100 pp", "> 75 pp")
-  )
-
-dr_range <- dr_long %>%
-  group_by(country_iso3) %>%
-  summarise(xmin = min(delta_plot, na.rm = TRUE), xmax = max(delta_plot, na.rm = TRUE), .groups = "drop")
-
-pD <- ggplot(dr_long, aes(delta_plot, country_iso3, fill = estimator)) +
-  geom_vline(xintercept = 0, linetype = "dashed", linewidth = 0.25, colour = FIGURE_MID_GREY) +
-  geom_segment(data = dr_range, aes(x = xmin, xend = xmax, y = country_iso3, yend = country_iso3),
-    inherit.aes = FALSE, colour = FIGURE_RULE_COLOUR, linewidth = 0.44) +
-  geom_point(shape = 21, colour = FIGURE_INK, size = 2.15, stroke = 0.16, alpha = 0.92, na.rm = TRUE) +
-  geom_text(
-    data = dr_long %>% filter(clipped),
-    aes(label = clip_label, hjust = clip_hjust),
-    colour = FIGURE_MUTED_TEXT, size = 1.65, show.legend = FALSE, na.rm = TRUE
-  ) +
-  scale_x_continuous(
-    labels = label_number(scale = 100, suffix = " pp"),
-    limits = fig5_delta_limits,
-    breaks = c(-1, -0.5, 0, 0.5),
-    expand = expansion(mult = c(0.05, 0.08))
-  ) +
-  scale_fill_manual(values = c(
-    "Naive" = unname(npg_colors["red"]),
-    "IPW cap20" = unname(npg_colors["blue"]),
-    "Overlap observed" = unname(npg_colors["peach"]),
-    "AIPW" = unname(npg_colors["green"])
-  ), name = NULL) +
-  labs(x = "Post-minus-pre change (percentage points)", y = NULL) +
-  theme_nature(base_size = fig5_base_size) +
-  theme(
-    legend.position = "bottom",
-    legend.text = element_text(size = fig5_legend_text_size)
-  )
-
-# ===========================================================================
-# Panel E: Cross-country evidence grid (from former Fig 6)
-# ===========================================================================
-
-country_levels <- c("USA", "NZL", "JPN", "AUS", "GBR", "CHN", "FRA", "BRA")
-
-glyph_dat <- evidence %>%
-  filter(country_iso3 %in% country_levels) %>%
-  transmute(
-    country_iso3,
-    Direction = direction_label(prevalence_direction),
-    `Repeated origin` = evidence_label(repeated_origin_evidence),
-    `Structural reuse` = evidence_label(structural_reuse_evidence),
-    Amplification = evidence_label(amplification_pattern),
-    Interpretation = evidence_label(final_interpretation_tier)
-  ) %>%
-  pivot_longer(-country_iso3, names_to = "dimension", values_to = "status") %>%
-  mutate(
-    country_iso3 = factor(country_iso3, levels = rev(country_levels)),
-    dimension = factor(dimension, levels = c("Direction", "Repeated origin", "Structural reuse", "Amplification", "Interpretation")),
-    status_class = case_when(
-      status %in% c("Upward", "Strong") ~ "Strong",
-      status %in% c("Downward", "Bounded", "Limited") ~ "Bounded",
-      status %in% c("Context", "None", "No change") ~ "Context",
-      TRUE ~ "Uncertain"
+    plot_fraction = if_else(invert_fraction, 1 - fraction, fraction),
+    denominator_label = case_when(
+      evidence_layer == "full caller threshold grid" ~ paste0(n_supporting_rows, "/", n_compared_rows, " grids"),
+      evidence_layer == "intact controls" ~ paste0(n_supporting_rows, "/", n_compared_rows, " false"),
+      TRUE ~ paste0(n_supporting_rows, "/", n_compared_rows)
     ),
-    dimension_label = recode(as.character(dimension),
-      Direction = "Direction",
-      `Repeated origin` = "Repeated\norigin",
-      `Structural reuse` = "Structural\nreuse",
-      Amplification = "Amplification",
-      Interpretation = "Interpretation"
+    value_label = case_when(
+      evidence_layer == "intact controls" ~ denominator_label,
+      TRUE ~ paste0(percent(plot_fraction, accuracy = 0.1), "\n", denominator_label)
+    ),
+    label_x = if_else(plot_fraction >= 0.85, plot_fraction - 0.04, plot_fraction + 0.04),
+    label_hjust = if_else(plot_fraction >= 0.85, 1, 0),
+    display_label = factor(display_label, levels = rev(validation_key$display_label)),
+    display_class = factor(
+      display_class,
+      levels = c("External concordance", "Crosswalk bounded", "Read-backed support", "Threshold robustness", "Negative control")
     )
   )
 
-pE <- ggplot(glyph_dat, aes(dimension, country_iso3)) +
-  geom_tile(fill = FIGURE_PANEL_FILL, colour = "white", linewidth = 0.25) +
-  geom_point(aes(fill = status_class), shape = 21, size = 3.0, colour = FIGURE_INK, stroke = 0.22) +
-  scale_fill_manual(
-    values = c("Strong" = unname(npg_colors["green"]), "Bounded" = unname(npg_colors["teal"]),
-               "Context" = FIGURE_LIGHT_GREY, "Uncertain" = FIGURE_GREY),
-    name = "Evidence"
+validation_colours <- c(
+  "External concordance" = unname(npg_colors["green"]),
+  "Crosswalk bounded" = unname(npg_colors["peach"]),
+  "Read-backed support" = unname(npg_colors["teal"]),
+  "Threshold robustness" = unname(npg_colors["blue"]),
+  "Negative control" = FIGURE_GREY
+)
+
+pD <- ggplot(validation_stack, aes(plot_fraction, display_label)) +
+  geom_segment(
+    aes(x = 0, xend = plot_fraction, yend = display_label),
+    colour = FIGURE_RULE_COLOUR,
+    linewidth = 0.55
   ) +
-  scale_x_discrete(labels = setNames(unique(glyph_dat$dimension_label), unique(glyph_dat$dimension))) +
-  labs(x = NULL, y = NULL) +
-  theme_nature_matrix(base_size = fig5_base_size) +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 0.5, size = 4.9, lineheight = 0.85),
-    axis.text.y = element_text(face = "bold", size = 5.5),
-    legend.position = "bottom",
-    legend.text = element_text(size = fig5_legend_text_size)
-  )
-
-# ===========================================================================
-# Panel F: Identifiability ledger (from former Fig 6)
-# ===========================================================================
-
-ledger <- tibble::tribble(
-  ~object, ~status, ~x,
-  "Recoverable-locus prevalence", "Identified", 1,
-  "Product-aware exposure index", "Bounded", 2,
-  "Reported-case scenario model", "Bounded", 2,
-  "Country-epoch contrasts", "Bounded", 2,
-  "Repeated origin in analysed trees", "Bounded", 2,
-  "Circulation-wide prevalence", "Needs new data", 3,
-  "Global vaccine-programme causal effect", "Needs new data", 3,
-  "Direct PRN antigen expression", "Needs new data", 3
-) %>%
-  mutate(
-    status = factor(status, levels = c("Identified", "Bounded", "Needs new data")),
-    object = factor(object, levels = rev(object))
-  )
-
-pF <- ggplot(ledger, aes(x, object)) +
-  geom_segment(aes(x = 1, xend = x, yend = object), colour = FIGURE_RULE_COLOUR, linewidth = 0.42) +
-  geom_point(aes(fill = status), shape = 21, size = 3.0, colour = FIGURE_INK, stroke = 0.22) +
+  geom_point(
+    aes(fill = display_class),
+    shape = 21,
+    colour = FIGURE_INK,
+    size = 2.65,
+    stroke = 0.22,
+    show.legend = FALSE
+  ) +
+  geom_text(
+    aes(
+      x = label_x,
+      label = value_label,
+      hjust = label_hjust
+    ),
+    size = 1.58,
+    lineheight = 0.84,
+    colour = FIGURE_INK
+  ) +
+  geom_vline(xintercept = 0, colour = FIGURE_INK, linewidth = 0.28) +
+  scale_fill_manual(
+    values = validation_colours,
+    guide = "none"
+  ) +
   scale_x_continuous(
-    breaks = c(1, 2, 3),
-    labels = c("Identified", "Bounded", "Needs new data"),
-    limits = c(0.72, 3.28),
+    labels = percent,
+    limits = c(0, 1.12),
+    breaks = c(0, 0.5, 1),
     expand = c(0, 0)
   ) +
-  scale_fill_manual(values = identifiability_colors, guide = "none") +
-  labs(x = NULL, y = NULL) +
+  labs(
+    x = "Observed validation fraction",
+    y = NULL,
+    tag = "d"
+  ) +
   theme_nature(base_size = fig5_base_size) +
   theme(
-    axis.text.x = element_text(face = "bold", size = 5.5),
-    axis.text.y = element_text(size = 5)
+    axis.text.y = element_text(size = 4.8, lineheight = 0.86),
+    panel.grid.major.y = element_blank()
   )
 
 # ===========================================================================
@@ -381,18 +493,16 @@ pF <- ggplot(ledger, aes(x, object)) +
 # ===========================================================================
 
 fig5_layout <- "
-AABB
-CCDD
-EEFF
+AD
+BC
 "
 
-fig5 <- pA + pB + pC + pD + pE + free(pF) +
+fig5 <- pA + pB + pC + pD +
   plot_layout(
     design = fig5_layout,
-    widths = c(1, 1, 1, 1),
-    heights = c(0.90, 0.90, 1.0)
-  ) +
-  plot_annotation(tag_levels = "a") &
+    widths = c(1, 1),
+    heights = c(0.88, 1.22)
+  ) &
   theme(
     plot.tag = element_text(face = "bold", size = fig5_tag_size, colour = FIGURE_TEXT_COLOUR),
     plot.tag.position = c(0, 1),
@@ -400,5 +510,5 @@ fig5 <- pA + pB + pC + pD + pE + free(pF) +
     plot.margin = margin(3, 3, 3, 3)
   )
 
-save_nc_pdf(fig5, "fig05_validation_synthesis.pdf", height = NC_MAX_HEIGHT)
-save_nc_png(fig5, "fig05_validation_synthesis.png", height = NC_MAX_HEIGHT)
+save_nc_pdf(fig5, "fig05_validation_synthesis.pdf", height = NC_MAX_HEIGHT * 0.84)
+save_nc_png(fig5, "fig05_validation_synthesis.png", height = NC_MAX_HEIGHT * 0.84)

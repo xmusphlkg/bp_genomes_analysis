@@ -491,7 +491,33 @@ def apply_formulation_curation(merged: pd.DataFrame, formulation_curation: pd.Da
         output["first_routine_ap_year"].fillna(output["first_any_ap_year"])
     )
     output["prn_formulation_component"] = output["prn_in_vaccine_curated"].map(PRN_VALUE_MAP)
-    output["ap_exposure_v2_available"] = output["prn_in_vaccine_curated"].isin(["yes", "mixed", "no"])
+    output["ap_exposure_v2_dtp3_component_available"] = coerce_numeric(
+        output.get("dtp3_coverage", pd.Series(index=output.index, dtype=str))
+    ).notna()
+    output["ap_exposure_v2_timing_component_available"] = output["ap_timing_anchor_year_effective"].notna()
+    output["ap_exposure_v2_prn_component_available"] = output["prn_formulation_component"].notna()
+    output["ap_exposure_v2_available"] = (
+        output["ap_exposure_v2_dtp3_component_available"]
+        & output["ap_exposure_v2_timing_component_available"]
+        & output["ap_exposure_v2_prn_component_available"]
+    )
+    output["ap_exposure_v2_component_status"] = np.select(
+        [
+            ~output["ap_exposure_v2_dtp3_component_available"]
+            & ~output["ap_exposure_v2_timing_component_available"]
+            & ~output["ap_exposure_v2_prn_component_available"],
+            ~output["ap_exposure_v2_dtp3_component_available"],
+            ~output["ap_exposure_v2_timing_component_available"],
+            ~output["ap_exposure_v2_prn_component_available"],
+        ],
+        [
+            "missing_dtp3_timing_and_prn_components",
+            "missing_dtp3_component",
+            "missing_timing_component",
+            "missing_prn_formulation_component",
+        ],
+        default="complete_v2_components",
+    )
     output["program_supports_ap"] = output["vaccine_program_type_effective"].map(program_phase_supports_ap)
     output["program_formulation_class"] = output.apply(
         lambda row: classify_program_formulation(
@@ -771,28 +797,51 @@ def write_formulation_outputs(base_frame: pd.DataFrame, output_index_path: str) 
         "program_formulation_conflict",
         "exposure_precedence_rule",
         "ap_exposure_v2_available",
+        "ap_exposure_v2_component_status",
+        "ap_exposure_v2_dtp3_component_available",
+        "ap_exposure_v2_timing_component_available",
+        "ap_exposure_v2_prn_component_available",
         "formulation_source_name",
         "formulation_source_url",
         "formulation_source_release_date",
         "formulation_notes",
     ]
-    base_frame[country_year_columns].to_csv(country_year_path, sep="\t", index=False)
+    available_country_year_columns = [column for column in country_year_columns if column in base_frame.columns]
+    base_frame[available_country_year_columns].to_csv(country_year_path, sep="\t", index=False)
 
-    summary = (
-        base_frame.groupby("country_iso3", dropna=False)
-        .agg(
-            country_name=("country_name", canonical_country_name),
-            n_country_years=("year", "count"),
-            n_with_known_prn=("ap_exposure_v2_available", "sum"),
-            first_year=("year", "min"),
-            last_year=("year", "max"),
-            dominant_primary_series_formulation=("primary_series_formulation", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
-            dominant_booster_formulation=("booster_formulation", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
-            dominant_prn_in_vaccine_curated=("prn_in_vaccine_curated", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
-            dominant_formulation_confidence=("formulation_confidence", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
+    aggregation = {
+        "country_name": ("country_name", canonical_country_name),
+        "n_country_years": ("year", "count"),
+        "n_with_known_prn": (
+            "prn_in_vaccine_curated",
+            lambda values: int(values.fillna("").astype(str).str.lower().isin(["yes", "mixed", "no"]).sum()),
+        ),
+        "n_with_complete_v2_components": ("ap_exposure_v2_available", "sum"),
+        "first_year": ("year", "min"),
+        "last_year": ("year", "max"),
+        "dominant_primary_series_formulation": (
+            "primary_series_formulation",
+            lambda values: values.mode().iloc[0] if not values.mode().empty else "",
+        ),
+        "dominant_booster_formulation": (
+            "booster_formulation",
+            lambda values: values.mode().iloc[0] if not values.mode().empty else "",
+        ),
+        "dominant_prn_in_vaccine_curated": (
+            "prn_in_vaccine_curated",
+            lambda values: values.mode().iloc[0] if not values.mode().empty else "",
+        ),
+        "dominant_formulation_confidence": (
+            "formulation_confidence",
+            lambda values: values.mode().iloc[0] if not values.mode().empty else "",
+        ),
+    }
+    if "ap_exposure_v2_component_status" in base_frame.columns:
+        aggregation["dominant_v2_component_status"] = (
+            "ap_exposure_v2_component_status",
+            lambda values: values.mode().iloc[0] if not values.mode().empty else "",
         )
-        .reset_index()
-    )
+    summary = base_frame.groupby("country_iso3", dropna=False).agg(**aggregation).reset_index()
     summary["known_prn_fraction"] = np.where(
         summary["n_country_years"].gt(0),
         summary["n_with_known_prn"] / summary["n_country_years"],
@@ -845,6 +894,11 @@ def write_product_metadata_outputs(base_frame: pd.DataFrame, output_index_path: 
         "routine_primary_ap_prn_positive_coverage_proxy",
         "routine_primary_ap_prn_negative_coverage_proxy",
         "routine_primary_wp_coverage_proxy",
+        "ap_exposure_v3_primary_component_available",
+        "ap_exposure_v3_booster_component_required",
+        "ap_exposure_v3_booster_component_available",
+        "ap_exposure_v3_available",
+        "ap_exposure_v3_component_status",
     ]
     available_country_year_columns = [column for column in country_year_columns if column in base_frame.columns]
     base_frame[available_country_year_columns].to_csv(country_year_path, sep="\t", index=False)
@@ -857,6 +911,7 @@ def write_product_metadata_outputs(base_frame: pd.DataFrame, output_index_path: 
             n_years_with_primary_product_metadata=("product_routine_primary_observed_share", lambda values: int(values.fillna(0).gt(0).sum())),
             n_years_with_booster_product_metadata=("product_routine_booster_observed_share", lambda values: int(values.fillna(0).gt(0).sum())),
             n_years_with_maternal_product_metadata=("product_maternal_observed_share", lambda values: int(values.fillna(0).gt(0).sum())),
+            n_years_with_complete_v3_components=("ap_exposure_v3_available", "sum"),
             mean_primary_prn_positive_share=("product_routine_primary_ap_prn_positive_share_conf_weighted", "mean"),
             mean_primary_prn_negative_share=("product_routine_primary_ap_prn_negative_share_conf_weighted", "mean"),
             mean_primary_ap_share=("product_routine_primary_ap_share_conf_weighted", "mean"),
@@ -864,6 +919,7 @@ def write_product_metadata_outputs(base_frame: pd.DataFrame, output_index_path: 
             mean_maternal_prn_positive_share=("product_maternal_ap_prn_positive_share_conf_weighted", "mean"),
             dominant_primary_products=("product_routine_primary_product_list", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
             dominant_primary_share_basis=("product_routine_primary_share_basis", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
+            dominant_v3_component_status=("ap_exposure_v3_component_status", lambda values: values.mode().iloc[0] if not values.mode().empty else ""),
         )
         .reset_index()
     )
@@ -888,12 +944,15 @@ def write_precedence_audit(base_frame: pd.DataFrame, output_index_path: str) -> 
         "resolved_supports_ap",
         "program_formulation_conflict",
         "exposure_precedence_rule",
+        "ap_exposure_v2_available",
+        "ap_exposure_v2_component_status",
         "prn_in_vaccine_source_class",
         "formulation_source_name",
         "formulation_source_url",
         "formulation_notes",
     ]
-    base_frame[audit_columns].sort_values(["program_formulation_conflict", "country_iso3", "year"], ascending=[False, True, True]).to_csv(
+    available_audit_columns = [column for column in audit_columns if column in base_frame.columns]
+    base_frame[available_audit_columns].sort_values(["program_formulation_conflict", "country_iso3", "year"], ascending=[False, True, True]).to_csv(
         audit_path,
         sep="\t",
         index=False,
@@ -984,10 +1043,14 @@ def build_index(
     )
     merged["ap_exposure_v3_primary_component_available"] = (
         merged["product_routine_primary_observed_share"].notna()
+        & merged["product_routine_primary_weighted_confidence"].notna()
+        & merged["product_routine_primary_ap_prn_positive_share_conf_weighted"].notna()
     )
     merged["ap_exposure_v3_booster_component_required"] = merged["booster_flag"].fillna(0).astype(float).gt(0)
     merged["ap_exposure_v3_booster_component_available"] = (
         merged["product_routine_booster_observed_share"].notna()
+        & merged["product_routine_booster_weighted_confidence"].notna()
+        & merged["product_routine_booster_ap_prn_positive_share_conf_weighted"].notna()
     )
     merged["ap_exposure_v3_available"] = (
         merged["ap_exposure_v3_primary_component_available"]
@@ -1017,6 +1080,8 @@ def build_index(
     primary_lambda = select_primary_value(lambda_range)
     primary_gamma = select_primary_value(gamma_range)
     delta_prn = 1.0
+    parameterization_grid_size = len(lambda_range) * len(gamma_range)
+    requested_version = normalize_text(exposure_version).lower()
 
     records: list[pd.DataFrame] = []
     for lambda_value, gamma_value in product(lambda_range, gamma_range):
@@ -1028,6 +1093,15 @@ def build_index(
         parameter_frame["exposure_formula_id"] = f"{exposure_version}_lambda_{lambda_value:g}_gamma_{gamma_value:g}"
         parameter_frame["is_primary_parameterization"] = (
             (float(lambda_value) == primary_lambda) and (float(gamma_value) == primary_gamma)
+        )
+        parameter_frame["exposure_parameterization_role"] = np.where(
+            parameter_frame["is_primary_parameterization"],
+            "primary_parameterization",
+            "sensitivity_parameterization",
+        )
+        parameter_frame["exposure_parameterization_grid_size"] = int(parameterization_grid_size)
+        parameter_frame["exposure_parameterization_scope"] = (
+            "lambda_gamma_sensitivity_grid_with_single_prn_delta"
         )
         parameter_frame["ap_exposure_v1_score"] = (
             parameter_frame["dtp3_component_z"]
@@ -1047,10 +1121,31 @@ def build_index(
             + float(gamma_value) * parameter_frame["product_routine_booster_ap_prn_positive_share_z"]
         )
         parameter_frame["dtp3_only_score"] = parameter_frame["dtp3_coverage"]
-        parameter_frame["exposure_version_effective"] = np.where(
-            parameter_frame["ap_exposure_v2_available"],
-            "v2_curated",
-            "v1_fallback",
+        parameter_frame["exposure_version_effective"] = np.select(
+            [
+                requested_version == "v3",
+                parameter_frame["ap_exposure_v2_available"],
+            ],
+            [
+                np.where(
+                    parameter_frame["ap_exposure_v3_available"],
+                    "v3_product_metadata",
+                    np.where(parameter_frame["ap_exposure_v2_available"], "v2_curated", "v1_fallback"),
+                ),
+                "v2_curated",
+            ],
+            default="v1_fallback",
+        )
+        parameter_frame["exposure_component_availability_status"] = np.select(
+            [
+                parameter_frame["exposure_version_effective"].eq("v3_product_metadata"),
+                parameter_frame["exposure_version_effective"].eq("v2_curated"),
+            ],
+            [
+                parameter_frame["ap_exposure_v3_component_status"],
+                parameter_frame["ap_exposure_v2_component_status"],
+            ],
+            default="v1_or_incomplete_curated_components",
         )
         parameter_frame["vaccine_variable_decision"] = vaccine_variable_decision
         parameter_frame["vaccine_variable_recommendation"] = vaccine_variable_recommendation
