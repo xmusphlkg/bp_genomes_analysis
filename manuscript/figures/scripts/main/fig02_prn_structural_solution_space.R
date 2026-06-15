@@ -183,14 +183,14 @@ confidence_colours <- c(
   "Not audited" = FIGURE_MID_GREY
 )
 
-fig2_null_model_colors <- c(
+fig2_baseline_colors <- c(
   "Equal-event" = figure_discrete_at(2),
   "Accessibility-weighted" = figure_discrete_at(5)
 )
 
 fig2_study_weight_colors <- c(
   "Naive" = figure_discrete_at(1),
-  "Study-weighted" = figure_discrete_at(2),
+  "Equal-block" = figure_discrete_at(2),
   "Drop largest block" = figure_discrete_at(5)
 )
 
@@ -222,10 +222,8 @@ target_callout <- target_site %>%
     junction_x = ((observed_gap1043_breakpoint_left + observed_gap1043_breakpoint_right) / 2) -
       reference_start_1based + 1,
     callout_label = paste0(
-      "IS481 ", gap1043_orientation, "; ACTAGG TSD\n",
-      "nt ", comma(round(breakpoint_left_cds)), "-", comma(round(breakpoint_right_cds)),
-      "; codons ", codon_start, "-", codon_end, "\n",
-      "coding interruption; ", gap1043_reads, " reads"
+      "gap1043: IS481 ", gap1043_orientation, "\n",
+      "ACTAGG TSD; ", gap1043_reads, " reads"
     )
   )
 
@@ -241,7 +239,7 @@ prn_locus <- target_site %>%
     xmin = 1,
     xmax = locus_length_bp,
     y = 4.34,
-    label = paste0("BP1054 / prn; pertactin autotransporter (", comma(locus_length_bp), " bp)"),
+    label = paste0("BP1054 / prn (", comma(locus_length_bp), " bp)"),
     reference_start_1based,
     reference_end_1based
   )
@@ -317,13 +315,13 @@ pA <- ggplot() +
     aes(x = junction_x, xend = junction_x, y = 4.50, yend = 4.68),
     inherit.aes = FALSE, linewidth = 0.16, colour = FIGURE_MUTED_TEXT
   ) +
-  geom_label(
-    data = target_callout_a,
-    aes(x = 1910, y = 4.70, label = callout_label),
-    inherit.aes = FALSE, size = 1.36, lineheight = 0.78,
-    linewidth = 0.12, label.padding = unit(1.0, "pt"),
-    fill = "white", colour = FIGURE_INK
-  ) +
+	  geom_label(
+	    data = target_callout_a,
+	    aes(x = 1910, y = 4.70, label = callout_label),
+	    inherit.aes = FALSE, size = 1.42, lineheight = 0.82,
+	    linewidth = 0.12, label.padding = unit(1.0, "pt"),
+	    fill = "white", colour = FIGURE_INK
+	  ) +
   geom_segment(
     data = event_tracks,
     aes(x = junction_x, xend = junction_x, y = track_y - 0.16, yend = track_y + 0.16, colour = event_colour),
@@ -471,7 +469,7 @@ pC <- ggplot(composition, aes(country_iso3, event)) +
   )
 
 # ===========================================================================
-# Panel D: Concentration vs null models
+# Panel D: Concentration vs redistribution baselines
 # ===========================================================================
 
 null_base <- concentration %>%
@@ -532,8 +530,8 @@ pD <- ggplot() +
     hjust = -0.22, size = fig2_annot_size, colour = FIGURE_INK
   ) +
   scale_x_continuous(labels = percent, limits = c(0, 1), expand = expansion(mult = c(0.02, 0.12))) +
-  scale_shape_manual(values = c("Equal-event" = 21, "Accessibility-weighted" = 24), name = "Null model") +
-  scale_colour_manual(values = fig2_null_model_colors, name = "Null model") +
+  scale_shape_manual(values = c("Equal-event" = 21, "Accessibility-weighted" = 24), name = "Redistribution baseline") +
+  scale_colour_manual(values = fig2_baseline_colors, name = "Redistribution baseline") +
   guides(colour = guide_legend(override.aes = list(fill = "white"))) +
   labs(x = "Share of structurally resolved disrupted genomes", y = NULL) +
   theme_nature(base_size = fig2_base_size) +
@@ -553,10 +551,10 @@ weight_metric <- study_weight %>%
          row_type %in% c("current_naive_reference", "study_block_equalized", "drop_largest_block_naive")) %>%
   mutate(row_type = recode(row_type,
     current_naive_reference = "Naive",
-    study_block_equalized = "Study-weighted",
+    study_block_equalized = "Equal-block",
     drop_largest_block_naive = "Drop largest block"
   )) %>%
-  arrange(match(row_type, c("Naive", "Study-weighted", "Drop largest block"))) %>%
+  arrange(match(row_type, c("Naive", "Equal-block", "Drop largest block"))) %>%
   distinct(row_type, .keep_all = TRUE) %>%
   select(row_type, dominant_event_share, top3_share) %>%
   pivot_longer(-row_type, names_to = "metric", values_to = "value") %>%
@@ -566,7 +564,7 @@ weight_metric <- study_weight %>%
       top3_share = "Top-three events"
     ),
     metric = factor(metric, levels = c("Dominant event", "Top-three events")),
-    row_type = factor(row_type, levels = c("Naive", "Study-weighted", "Drop largest block")),
+    row_type = factor(row_type, levels = c("Naive", "Equal-block", "Drop largest block")),
     label_vjust = case_when(
       metric == "Top-three events" & row_type == "Naive" ~ 1.55,
       metric == "Top-three events" & row_type == "Drop largest block" ~ -1.15,
@@ -585,20 +583,20 @@ study_weight_note <- study_weight %>%
          row_type == "study_block_equalized") %>%
   slice_head(n = 1) %>%
   mutate(
-    note = "equal block\ntop: tied low-burden events"
+    note = "tie"
   )
 
 pE <- ggplot(weight_metric, aes(value, metric, fill = row_type)) +
   geom_line(aes(group = metric), colour = FIGURE_RULE_COLOUR, linewidth = 0.5) +
   geom_point(shape = 21, colour = FIGURE_INK, size = 2.8, stroke = 0.16) +
   geom_text(aes(label = percent(value, accuracy = 1), vjust = label_vjust, hjust = label_hjust), size = fig2_annot_size) +
-  geom_label(
-    data = study_weight_note,
-    aes(x = 0.44, y = "Top-three events", label = note),
-    inherit.aes = FALSE, size = 1.55, lineheight = 0.78,
-    linewidth = 0.12, label.padding = unit(1.0, "pt"),
-    fill = "white", colour = FIGURE_MUTED_TEXT
-  ) +
+	  geom_label(
+	    data = study_weight_note,
+	    aes(x = 0.44, y = "Top-three events", label = note),
+	    inherit.aes = FALSE, size = 1.55, lineheight = 0.78,
+	    linewidth = 0.12, label.padding = unit(1.0, "pt"),
+	    fill = "white", colour = FIGURE_MUTED_TEXT
+	  ) +
   scale_x_continuous(labels = percent, limits = c(0, 1), expand = expansion(mult = c(0.02, 0.06))) +
   scale_fill_manual(
     values = fig2_study_weight_colors,

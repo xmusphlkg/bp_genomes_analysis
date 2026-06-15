@@ -356,6 +356,16 @@ panel_a_track_labels <- panel_a_key_rows %>%
      distinct(track, y)
 
 pA_key <- ggplot(panel_a_key_rows, aes(x = x, y = y)) +
+     annotate(
+	          "text",
+	          x = 0.05,
+	          y = 4.88,
+	          label = "Topology-only summary",
+          hjust = 0,
+          size = 1.55,
+          fontface = "italic",
+          colour = FIGURE_MUTED_TEXT
+     ) +
      geom_text(
           data = panel_a_track_labels,
           aes(x = 0.05, y = y, label = track),
@@ -426,14 +436,13 @@ event_package_plot <- event_specific %>%
      filter(rank_by_genome_burden <= 3) %>%
      arrange(desc(sample_count)) %>%
      mutate(
-          event_display = .env$event_label(prn_event_id),
-          event_display = factor(event_display, levels = rev(unique(event_display))),
-          package_label = paste0(
-               acquisition_package_count, " pkg; ",
-               n_country_year_cells, " cells\n",
-               comma(sample_count), " genomes; ",
-               n_mlst_st, " ST"
-          ),
+	          event_display = .env$event_label(prn_event_id),
+	          event_display = factor(event_display, levels = rev(unique(event_display))),
+	          package_label = paste0(
+	               comma(sample_count), " genomes; ",
+	               n_country_year_cells, " cells\n",
+	               n_mlst_st, " ST"
+	          ),
           label_x = acquisition_package_count + 0.48
      )
 

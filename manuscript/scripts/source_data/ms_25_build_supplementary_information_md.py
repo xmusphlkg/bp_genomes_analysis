@@ -143,7 +143,7 @@ OPTIMIZED_COLUMN_SUBSETS: Dict[str, List[str]] = {
         "non_singleton_package_count",
         "largest_package_disrupted_tips",
         "validation_level",
-        "representative_tsd_direct_repeats",
+        "convergence_interpretation",
         "event_specific_interpretation",
     ],
 }
@@ -227,7 +227,7 @@ PUBLISHED_TABLES: List[Dict[str, str]] = [
         "pub_no": "12",
         "source_file": "Supplementary_Table_12_Event_Specific_Acquisition_Packages.tsv",
         "title": "Event-specific minimum tree-level acquisition package support for recurrent prn events",
-        "rationale": "compact event-specific recurrence summary supporting the revised Fig. 3d",
+        "rationale": "compact event-specific recurrence and convergence summary supporting the revised Fig. 3d",
         "legacy_source_file": "Supplementary_Table_65_Event_Specific_Acquisition_Packages.tsv",
     },
 ]
@@ -275,6 +275,7 @@ COLUMN_RENAMES: Dict[str, str] = {
     "event_count": "No. events",
     "event_definition_rule": "Event definition rule",
     "event_label": "Event label",
+    "convergence_interpretation": "Convergence interpretation",
     "event_specific_interpretation": "Event-specific interpretation",
     "event_subcategory": "Event subcategory",
     "evidence_alignment": "Evidence alignment",

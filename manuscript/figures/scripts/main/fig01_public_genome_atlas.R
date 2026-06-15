@@ -209,7 +209,7 @@ map_bi_legend <- expand.grid(x = seq_len(map_bi_dim), y = seq_len(map_bi_dim)) %
           expand = c(0, 0)
      ) +
      coord_equal(expand = FALSE, clip = "off") +
-     labs(x = "Retained\ngenomes", y = "Disrupted %") +
+     labs(x = "Archive\nburden", y = "Disrupted\nfraction") +
      theme_bw(base_size = 5) +
      theme(
           plot.background = element_rect(fill = map_ocean_fill, colour = NA),
@@ -331,11 +331,12 @@ pB <- ggplot(heatmap_dat, aes(year, country_iso3, fill = n_genomes_total)) +
      theme_nature(base_size = fig1_base_size) +
      theme(
           axis.text.y = element_text(size = 4.8),
-          legend.position = "bottom",
+          legend.position = "top",
+          legend.box.spacing = grid::unit(0, "pt"),
           legend.title = element_text(size = fig1_legend_title_size),
           legend.text = element_text(size = fig1_legend_text_size)
      ) +
-     guides(fill = guide_colorbar(title.position = "left", title.hjust = 0.5, barwidth = 5, barheight = 0.45))
+     guides(fill = guide_colorbar(title.position = "top", title.hjust = 0, barwidth = 4.8, barheight = 0.38))
 
 # panel C -------------------------------------------------------------
 
@@ -387,13 +388,14 @@ pC <- ggplot(annual, aes(year, frac)) +
                      breaks = c(1, 5, 10, 50, 200), name = NULL) +
      scale_shape_manual(
           values = c(`FALSE` = 21, `TRUE` = 1),
-          labels = c(`FALSE` = "n >= 10", `TRUE` = "n < 10"),
-          name = "Annual denominator"
+          guide = "none"
      ) +
      labs(x = "Collection year", y = "Disrupted fraction") +
      theme_nature(base_size = fig1_base_size)
 
 # panel D -------------------------------------------------------------
+
+readiness_label_countries <- c("USA", "CHN", "JPN", "NZL", "AUS", "GBR", "FRA", "BRA", "CZE", "NLD", "FIN", "ESP")
 
 score_top_labels <- score %>%
      filter(country_iso3 %in% c("NLD", "BRA", "CZE")) %>%
@@ -410,7 +412,7 @@ score_top_labels <- score %>%
           )
      )
 
-pF <- score %>%
+pD <- score %>%
      ggplot(aes(n_prn_interpretable, interpretability_fraction, label = country_iso3)) +
      geom_point(
           aes(fill = selection_state),
@@ -421,7 +423,9 @@ pF <- score %>%
           alpha = 0.95
      ) +
      ggrepel::geom_text_repel(
-          data = score %>% filter(!country_iso3 %in% c("NLD", "BRA", "CZE")),
+          data = score %>%
+               filter(country_iso3 %in% readiness_label_countries,
+                      !country_iso3 %in% c("NLD", "BRA", "CZE")),
           size = fig1_repel_size,
           min.segment.length = 0,
           segment.size = 0.1,
@@ -471,14 +475,14 @@ pF <- score %>%
 # save -------------------------------------------------------------
 
 fig1_layout <- "
-AAB
-CDB
+AAAB
+CCDB
 "
 
-fig1 <- free(pA) + free(pB) + pC + pF +
+fig1 <- free(pA) + free(pB) + pC + pD +
      plot_layout(
           design = fig1_layout,
-          widths = c(1, 1, 1),
+          widths = c(1, 1, 1, 1),
           heights = c(1.1, 0.90)
      ) +
      plot_annotation(tag_levels = "a") &

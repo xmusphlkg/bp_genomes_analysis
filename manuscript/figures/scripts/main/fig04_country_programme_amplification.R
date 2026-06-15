@@ -35,8 +35,8 @@ focus_countries <- c("USA", "NZL", "JPN", "AUS", "GBR", "CHN", "FRA", "BRA")
 focus_year_min <- 1980
 
 fig4_event_colors <- c(
-  "First acquisition" = figure_discrete_at(1),
-  "First detection" = figure_discrete_at(4)
+  "Tree package" = figure_discrete_at(1),
+  "Archive detection" = figure_discrete_at(4)
 )
 
 # data loading -------------------------------------------------------
@@ -75,7 +75,7 @@ relative <- safe_load(data_paths$rr_relative_year_plot_data, "relative-year plot
     ipw_prevalence = as.numeric(ipw_prevalence),
     n_genomes_prn_interpretable = as.numeric(n_genomes_prn_interpretable),
     n_origin_clades_active = as.numeric(n_origin_clades_active),
-    event_type = recode(event_type, first_local_origin = "First acquisition", first_prn_detection = "First detection")
+    event_type = recode(event_type, first_local_origin = "Tree package", first_prn_detection = "Archive detection")
   )
 
 pooled_relative <- safe_load(file.path(FIGURE_DATA_DIR, "figure4_event_centered_pooled.tsv"), "pooled event-centered data") %>%
@@ -84,7 +84,7 @@ pooled_relative <- safe_load(file.path(FIGURE_DATA_DIR, "figure4_event_centered_
     mean_value = as.numeric(mean_value),
     median_value = as.numeric(median_value),
     n_countries = as.numeric(n_countries),
-    event_type = recode(event_type, first_local_origin = "First acquisition", first_prn_detection = "First detection")
+    event_type = recode(event_type, first_local_origin = "Tree package", first_prn_detection = "Archive detection")
   )
 
 prn_year <- safe_load(data_paths$prn_country_year, "country-year PRN summary") %>%
@@ -152,7 +152,7 @@ timeline_point_dat <- timeline_dat %>%
 
 event_years <- event_years %>%
   left_join(country_track_lookup, by = "country_iso3") %>%
-  mutate(event_y = country_y - 0.20 + if_else(event_type == "First acquisition", 0.16, -0.16))
+  mutate(event_y = country_y - 0.20 + if_else(event_type == "Tree package", 0.16, -0.16))
 
 programme_backbone <- tibble::tibble(
   country_iso3 = country_track_levels,
@@ -193,8 +193,8 @@ pA <- ggplot() +
                             name = "Genomes\nper year",
                             guide = guide_legend(override.aes = list(fill = unname(npg_colors["teal"]), colour = NA, size = 3))) +
      scale_size_area(max_size = 3.4, guide = "none") +
-     scale_shape_manual(values = c("First acquisition" = 24, "First detection" = 21),
-                        name = "Event",
+     scale_shape_manual(values = c("Tree package" = 24, "Archive detection" = 21),
+                        name = "Marker",
                         guide = guide_legend(ncol = 1)) +
      scale_x_continuous(breaks = seq(1980, 2020, 5), expand = c(0, 0)) +
      scale_y_continuous(
@@ -254,7 +254,7 @@ pB <- ggplot(epoch_bounds_dat) +
     linewidth = 0.46, alpha = 0.88, lineend = "round", na.rm = TRUE) +
   geom_point(aes(x = ipw_prevalence, y = country_y_plot, size = n_prn_interpretable, fill = epoch_class),
     shape = 21, colour = FIGURE_INK, stroke = 0.18, alpha = 0.96, na.rm = TRUE) +
-  annotate("text", x = 0.03, y = 0.72, label = "diagnostic only",
+  annotate("text", x = 0.03, y = 0.72, label = "bounds",
     hjust = 0, size = 1.55, colour = FIGURE_MUTED_TEXT, fontface = "italic") +
   scale_x_continuous(labels = percent, limits = c(0, 1), breaks = c(0, 0.5, 1),
                      expand = expansion(mult = c(0.02, 0.04))) +
@@ -289,11 +289,12 @@ pooled_label_dat <- pooled_dat %>%
   filter(relative_year == max(relative_year, na.rm = TRUE)) %>%
   slice_head(n = 1) %>%
   ungroup() %>%
-  mutate(
-    label_x = relative_year - 0.10,
-    label_hjust = 1,
-    label_y = pmax(median_value, 0.055)
-  )
+	  mutate(
+	    label_x = 3.33,
+	    label_hjust = 0,
+	    label_y = pmax(median_value, 0.055),
+	    event_label = recode(event_type, `Tree package` = "Tree pkg", `Archive detection` = "Detection")
+	  )
 
 pC <- ggplot() +
   annotate("rect", xmin = -0.45, xmax = 0.45, ymin = -Inf, ymax = Inf,
@@ -308,15 +309,15 @@ pC <- ggplot() +
   geom_point(data = pooled_dat,
     aes(relative_year, median_value, fill = event_type),
     shape = 21, size = 2.15, colour = FIGURE_INK, stroke = 0.18, alpha = 0.95, na.rm = TRUE) +
-  geom_text(data = pooled_label_dat,
-    aes(label_x, label_y, label = event_type, colour = event_type, hjust = label_hjust),
-    size = 1.65, fontface = "bold", show.legend = FALSE) +
+	  geom_text(data = pooled_label_dat,
+	    aes(label_x, label_y, label = event_label, colour = event_type, hjust = label_hjust),
+	    size = 1.65, fontface = "bold", show.legend = FALSE) +
   scale_colour_manual(values = fig4_event_colors, guide = "none") +
   scale_fill_manual(values = fig4_event_colors, guide = "none") +
   scale_y_continuous(labels = percent, limits = c(0, 1), expand = expansion(mult = c(0.02, 0.08))) +
   scale_x_continuous(breaks = -3:3) +
   labs(
-    x = "Years from archive marker",
+    x = "Years from aligned marker",
     y = "Median archive-frame disrupted fraction"
   ) +
   coord_cartesian(xlim = c(-3, 3.62), clip = "off") +
@@ -406,5 +407,5 @@ fig4 <- pA + pB + pC + free(pD) +
     plot.margin = margin(3, 3, 3, 3)
   )
 
-save_nc_pdf(fig4, "fig04_country_programme_amplification.pdf", height = NC_MAX_HEIGHT)
-save_nc_png(fig4, "fig04_country_programme_amplification.png", height = NC_MAX_HEIGHT)
+save_nc_pdf(fig4, "fig04_archive_context_amplification.pdf", height = NC_MAX_HEIGHT)
+save_nc_png(fig4, "fig04_archive_context_amplification.png", height = NC_MAX_HEIGHT)

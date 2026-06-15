@@ -34,6 +34,7 @@ ANCHORS = first_existing_path(
 JUNCTION = FIGURE_DATA / "prn_junction_confidence_matrix.tsv"
 OUT_FIGURE = FIGURE_DATA / "event_specific_acquisition_summary.tsv"
 OUT_SUPP = SUPP_DIR / "Supplementary_Table_12_Event_Specific_Acquisition_Packages.tsv"
+OUT_AUDIT = AUDIT_LEDGER_DIR / "Supplementary_Table_65_Event_Specific_Acquisition_Packages.tsv"
 
 
 FIELDNAMES = [
@@ -61,6 +62,7 @@ FIELDNAMES = [
     "representative_tsd_direct_repeats",
     "supporting_read_count",
     "supporting_validation_rows",
+    "convergence_interpretation",
     "event_specific_interpretation",
 ]
 
@@ -163,6 +165,25 @@ def interpretation(package_count: int, sample_count: int) -> str:
     return "Singleton or sparse event without primary ASR package support in this ledger."
 
 
+def convergence_interpretation(
+    package_count: int,
+    sample_count: int,
+    country_year_cells: int,
+    mlst_count: int,
+    validation_level: str,
+) -> str:
+    high_validation = validation_level in {"read_backed_supported", "public_longread_or_hybrid_assembly"}
+    if sample_count >= 50 and package_count >= 2 and (country_year_cells >= 10 or mlst_count >= 2) and high_validation:
+        return "strong archive-level convergence"
+    if sample_count >= 10 and (package_count >= 2 or country_year_cells >= 5) and high_validation:
+        return "moderate archive-level recurrence"
+    if package_count == 1 and sample_count >= 2:
+        return "lineage-amplified recurrence"
+    if sample_count >= 2 and high_validation:
+        return "archive-anchored recurrence without resolved tree package"
+    return "sparse or low-confidence structural signal"
+
+
 def main() -> int:
     origin_collapse = read_tsv(ORIGIN_COLLAPSE)
     anchors = {row["prn_event_id"]: row for row in read_tsv(ANCHORS)}
@@ -178,6 +199,7 @@ def main() -> int:
         sizes = [package_size_from_id(package_id, origin_rows) for package_id in packages]
         anchor = anchors.get(event_id, {})
         junction_row = junction.get(event_id, {})
+        validation_level = clean(row.get("validation_level") or junction_row.get("validation_level"))
         non_singleton = sum(1 for size in sizes if size >= 2)
         singleton = sum(1 for size in sizes if size == 1)
 
@@ -202,20 +224,29 @@ def main() -> int:
                 "non_singleton_package_count": str(non_singleton),
                 "largest_package_disrupted_tips": str(max(sizes) if sizes else ""),
                 "median_package_disrupted_tips": str(median(sizes) if sizes else ""),
-                "validation_level": clean(row.get("validation_level") or junction_row.get("validation_level")),
+                "validation_level": validation_level,
                 "confidence_tier": clean(junction_row.get("confidence_tier")),
                 "representative_tsd_direct_repeats": clean(junction_row.get("representative_tsd_direct_repeats")),
                 "supporting_read_count": clean(junction_row.get("supporting_read_count")),
                 "supporting_validation_rows": clean(junction_row.get("supporting_validation_rows")),
+                "convergence_interpretation": convergence_interpretation(
+                    len(packages),
+                    sample_count,
+                    as_int(anchor.get("n_country_year_cells")),
+                    as_int(anchor.get("n_mlst_st")),
+                    validation_level,
+                ),
                 "event_specific_interpretation": interpretation(len(packages), sample_count),
             }
         )
 
     write_tsv(OUT_FIGURE, rows)
     write_tsv(OUT_SUPP, rows)
+    write_tsv(OUT_AUDIT, rows)
     print(f"Wrote {len(rows)} event-specific acquisition rows")
     print(OUT_FIGURE)
     print(OUT_SUPP)
+    print(OUT_AUDIT)
     return 0
 
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env Rscript
 # Figure 5: Validation, specificity and phenotype synthesis
-# Panels: A = denominator/evidence flow, B = PRN specificity,
-#          C = phenotype bridge, D = validation evidence stack
+# Panels: A = frame transition, B = PRN specificity,
+#          C = external phenotype bridge, D = validation metrics,
+#          E = genome-call phenotype tiers
 # Context-only AMR/lineage, missingness and country-glyph diagnostics remain in
 # supplementary/source-data outputs rather than the main synthesis figure.
 
@@ -109,75 +110,67 @@ validation_summary <- safe_load(
   )
 
 # ===========================================================================
-# Panel A: Denominator and evidence flow
+# Panel A: Frame transition
 # ===========================================================================
 
-flow_count <- setNames(flow_summary$n, flow_summary$stage_id)
-
-sankey_paths <- tibble::tribble(
-  ~archive_frame, ~endpoint_frame, ~genome_call, ~evidence_boundary, ~flow_group, ~value,
-  "Retained\n2,406", "Interpretable\n1,325", "Resolved\n577", "Tier 1a\n544", "Tier 1a", flow_count[["tier1a_phenotype_bridge"]],
-  "Retained\n2,406", "Interpretable\n1,325", "Resolved\n577", "Tier 1b-3\n33", "Tier 1b-3", flow_count[["other_disrupted_phenotype_tiers"]],
-  "Retained\n2,406", "Interpretable\n1,325", "Intact boundary\n748", "Boundary\n748", "Boundary", flow_count[["intact_boundary"]],
-  "Retained\n2,406", "Missing/uncertain\n1,081", "Missing/uncertain\n1,081", "Missingness\nbounds\n1,081", "Missing/uncertain", flow_count[["noninterpretable_uncertain"]]
-) %>%
-  mutate(value = as.numeric(value))
-
-sankey_dat <- ggforce::gather_set_data(
-  sankey_paths,
-  c("archive_frame", "endpoint_frame", "genome_call", "evidence_boundary"),
-  id_name = "flow_id"
+flow_nodes <- tibble::tribble(
+  ~label, ~x, ~y, ~fill,
+  "Retained archive\n2,406", 1.00, 2.40, FIGURE_PANEL_FILL,
+  "Interpretable prn\n1,325", 2.10, 2.95, unname(npg_colors["teal"]),
+  "Missing/uncertain\n1,081", 2.10, 1.55, FIGURE_LIGHT_GREY,
+  "Resolved disrupted\n577", 3.30, 3.25, unname(npg_colors["red"]),
+  "Intact boundary\n748", 3.30, 2.65, FIGURE_MID_GREY,
+  "Bounds\n1,081", 3.30, 1.55, FIGURE_LIGHT_GREY,
+  "Tier 1a bridge\n544", 4.55, 3.25, unname(npg_colors["green"]),
+  "Other tiers\n33", 4.55, 2.65, unname(npg_colors["teal"])
 ) %>%
   mutate(
-    x = factor(
-      x,
-      levels = c("archive_frame", "endpoint_frame", "genome_call", "evidence_boundary")
-    )
+    xmin = x - 0.47,
+    xmax = x + 0.47,
+    ymin = y - 0.25,
+    ymax = y + 0.25
+  )
+
+flow_edges <- tibble::tribble(
+  ~x, ~y, ~xend, ~yend,
+  1.47, 2.40, 1.63, 2.95,
+  1.47, 2.40, 1.63, 1.55,
+  2.57, 2.95, 2.83, 3.25,
+  2.57, 2.95, 2.83, 2.65,
+  2.57, 1.55, 2.83, 1.55,
+  3.77, 3.25, 4.08, 3.25,
+  3.77, 3.25, 4.08, 2.65
 )
 
-sankey_flow_colours <- c(
-  "Tier 1a" = alpha(unname(npg_colors["green"]), 0.70),
-  "Tier 1b-3" = alpha(unname(npg_colors["teal"]), 0.50),
-  "Boundary" = alpha(FIGURE_MID_GREY, 0.42),
-  "Missing/uncertain" = alpha(FIGURE_GREY, 0.42)
-)
-
-pA <- ggplot(sankey_dat, aes(x = x, id = flow_id, split = y, value = value)) +
-  geom_parallel_sets(
-    aes(fill = flow_group),
-    alpha = 0.86,
-    axis.width = 0.13,
-    sep = 0.035,
-    strength = 0.56,
-    colour = NA
+pA <- ggplot() +
+  geom_segment(
+    data = flow_edges,
+    aes(x = x, y = y, xend = xend, yend = yend),
+    arrow = grid::arrow(length = grid::unit(2.4, "pt"), type = "closed"),
+    linewidth = 0.34,
+    colour = FIGURE_RULE_COLOUR,
+    lineend = "round"
   ) +
-  geom_parallel_sets_axes(
-    axis.width = 0.13,
-    fill = FIGURE_PANEL_FILL,
+  geom_rect(
+    data = flow_nodes,
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = fill),
     colour = "white",
-    linewidth = 0.25
+    linewidth = 0.28
   ) +
-  geom_parallel_sets_labels(
-    angle = 0,
-    size = 1.55,
+  geom_text(
+    data = flow_nodes,
+    aes(x = x, y = y, label = label),
+    size = 1.58,
     lineheight = 0.82,
-    colour = FIGURE_INK,
-    fontface = "bold"
+    fontface = "bold",
+    colour = FIGURE_TEXT_COLOUR
   ) +
-  scale_fill_manual(values = sankey_flow_colours, guide = "none") +
-  scale_x_discrete(
-    labels = c(
-      archive_frame = "Archive frame",
-      endpoint_frame = "Endpoint frame",
-      genome_call = "Genome call",
-      evidence_boundary = "Evidence boundary"
-    )
-  ) +
+  scale_fill_identity() +
+  coord_cartesian(xlim = c(0.44, 5.10), ylim = c(1.06, 3.66), clip = "off") +
   labs(x = NULL, y = NULL, tag = "a") +
   theme_void(base_size = fig5_base_size) +
   theme(
-    axis.text.x = element_text(size = 5.1, face = "bold", colour = FIGURE_TEXT_COLOUR),
-    plot.margin = margin(2, 2, 2, 2)
+    plot.margin = margin(3, 3, 3, 3)
   )
 
 # ===========================================================================
@@ -229,7 +222,7 @@ pB <- ggplot(controls, aes(y = locus_rank)) +
   )
 
 # ===========================================================================
-# Panel C: Published phenotype bridge and present genome-call tiers
+# Panel C/E: Published phenotype bridge and present genome-call tiers
 # ===========================================================================
 
 phenotype_bridge <- biology_external %>%
@@ -372,19 +365,19 @@ pC_tiers <- ggplot() +
   scale_colour_identity() +
   scale_size_area(max_size = 8.2, guide = "none") +
   scale_fill_manual(values = tier_fill, guide = "none") +
-  scale_x_continuous(
-    breaks = seq_along(tier_axis_order),
-    labels = c("Tier 1a\nbridge", "Tier 1b\nlesion", "Tier 2\nplausible", "Tier 3\ngenome-only", "Intact\nboundary"),
-    limits = c(0.45, length(tier_axis_order) + 0.55),
-    expand = c(0, 0)
-  ) +
+	scale_x_continuous(
+	    breaks = seq_along(tier_axis_order),
+	    labels = c("T1a\nbridge", "T1b\nlesion", "T2\nplaus.", "T3\ngenome", "Intact\nboundary"),
+	    limits = c(0.45, length(tier_axis_order) + 0.55),
+	    expand = c(0, 0)
+	  ) +
   scale_y_continuous(
     breaks = seq_along(route_family_order),
     labels = route_family_order,
     limits = c(0.45, length(route_family_order) + 0.55),
     expand = c(0, 0)
   ) +
-  labs(x = "Present genome-call phenotype tier", y = "Route family") +
+	  labs(x = "Phenotype-evidence tier", y = "Route family", tag = "e") +
   theme_nature(base_size = fig5_base_size) +
   theme(
     panel.grid.major = element_blank(),
@@ -400,7 +393,7 @@ pC <- pC_external / pC_tiers +
   plot_layout(heights = c(1.18, 0.78))
 
 # ===========================================================================
-# Panel D: Validation evidence stack
+# Panel D: Validation dashboard
 # ===========================================================================
 
 validation_key <- tibble::tribble(
@@ -412,8 +405,10 @@ validation_key <- tibble::tribble(
   "intact controls", "read-validation audit of intact control rows", "False signal in\nintact controls", "Negative control", FALSE
 )
 
-validation_stack <- validation_summary %>%
+validation_metrics <- validation_summary %>%
   inner_join(validation_key, by = c("evidence_layer", "comparison_or_risk")) %>%
+  mutate(display_order = match(display_label, validation_key$display_label)) %>%
+  arrange(display_order) %>%
   mutate(
     plot_fraction = if_else(invert_fraction, 1 - fraction, fraction),
     denominator_label = case_when(
@@ -422,16 +417,26 @@ validation_stack <- validation_summary %>%
       TRUE ~ paste0(n_supporting_rows, "/", n_compared_rows)
     ),
     value_label = case_when(
-      evidence_layer == "intact controls" ~ denominator_label,
+      evidence_layer == "intact controls" ~ "0/7\nfalse signals",
       TRUE ~ paste0(percent(plot_fraction, accuracy = 0.1), "\n", denominator_label)
     ),
-    label_x = if_else(plot_fraction >= 0.85, plot_fraction - 0.04, plot_fraction + 0.04),
-    label_hjust = if_else(plot_fraction >= 0.85, 1, 0),
-    display_label = factor(display_label, levels = rev(validation_key$display_label)),
+	    display_label = recode(display_label,
+	      `Published PRN status` = "PRN status",
+	      `Read/TSD event classes` = "Read/TSD event classes",
+	      `Gap1043 dominant\nacross caller grid` = "Caller grid",
+	      `False signal in\nintact controls` = "Intact controls"
+	    ),
     display_class = factor(
       display_class,
       levels = c("External concordance", "Crosswalk bounded", "Read-backed support", "Threshold robustness", "Negative control")
-    )
+    ),
+    display_label = factor(display_label, levels = rev(display_label)),
+    label_x = case_when(
+      plot_fraction >= 0.92 ~ plot_fraction - 0.025,
+      plot_fraction <= 0.08 ~ plot_fraction + 0.035,
+      TRUE ~ plot_fraction + 0.035
+    ),
+    label_hjust = if_else(plot_fraction >= 0.92, 1, 0)
   )
 
 validation_colours <- c(
@@ -442,50 +447,41 @@ validation_colours <- c(
   "Negative control" = FIGURE_GREY
 )
 
-pD <- ggplot(validation_stack, aes(plot_fraction, display_label)) +
+pD <- ggplot(validation_metrics, aes(plot_fraction, display_label)) +
   geom_segment(
     aes(x = 0, xend = plot_fraction, yend = display_label),
     colour = FIGURE_RULE_COLOUR,
-    linewidth = 0.55
+    linewidth = 0.48
   ) +
   geom_point(
     aes(fill = display_class),
     shape = 21,
+    size = 2.45,
     colour = FIGURE_INK,
-    size = 2.65,
-    stroke = 0.22,
+    stroke = 0.20,
     show.legend = FALSE
   ) +
   geom_text(
-    aes(
-      x = label_x,
-      label = value_label,
-      hjust = label_hjust
-    ),
+    aes(x = label_x, label = value_label, hjust = label_hjust),
     size = 1.58,
     lineheight = 0.84,
-    colour = FIGURE_INK
+    colour = FIGURE_TEXT_COLOUR
   ) +
-  geom_vline(xintercept = 0, colour = FIGURE_INK, linewidth = 0.28) +
   scale_fill_manual(
     values = validation_colours,
     guide = "none"
   ) +
-  scale_x_continuous(
-    labels = percent,
-    limits = c(0, 1.12),
-    breaks = c(0, 0.5, 1),
-    expand = c(0, 0)
-  ) +
+  scale_x_continuous(labels = percent, limits = c(0, 1.10), breaks = c(0, 0.5, 1), expand = c(0, 0)) +
   labs(
-    x = "Observed validation fraction",
+    x = "Fraction within validation layer",
     y = NULL,
     tag = "d"
   ) +
   theme_nature(base_size = fig5_base_size) +
   theme(
     axis.text.y = element_text(size = 4.8, lineheight = 0.86),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_blank(),
+    plot.margin = margin(3, 3, 3, 3)
   )
 
 # ===========================================================================
