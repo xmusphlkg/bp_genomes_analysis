@@ -18,6 +18,8 @@ Each workbook contains one sheet per panel, with source-file headers followed by
 - [Supplementary Figure 1](Source_Data_Supplementary_Figure_1.xlsx)
 - [Supplementary Figure 2](Source_Data_Supplementary_Figure_2.xlsx)
 - [Supplementary Figure 3](Source_Data_Supplementary_Figure_3.xlsx)
+- Supplementary Figure 4 is supported by `manuscript/figure_data/claim_evidence_denominator_ledger.tsv` and the source-data manifests listed above.
+- Supplementary Figure 5 is supported by `manuscript/figure_data/epidemiology_revision_country_year_audit.tsv`, `manuscript/figure_data/epidemiology_revision_event_anchors.tsv` and the source-data manifests listed above.
 - [Supplementary Figure 6](Source_Data_Supplementary_Figure_6.xlsx)
 - [Supplementary Figure 7](Source_Data_Supplementary_Figure_7.xlsx)
 - [Supplementary Figure 8](Source_Data_Supplementary_Figure_8.xlsx)
